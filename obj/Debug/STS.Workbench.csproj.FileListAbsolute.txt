@@ -1,2 +1,3 @@
 c:\users\sft.student4\documents\visual studio 2012\Projects\STS.Workbench\STS.Workbench\bin\Debug\STS.Workbench.exe.config
 D:\STS Tools\STS-Workbench\bin\Debug\STS.Workbench.exe.config
+D:\STS-Workbench\bin\Debug\STS.Workbench.exe.config
