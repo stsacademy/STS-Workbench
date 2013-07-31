@@ -52,7 +52,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="STSDbCommand.cs">
+    <Compile Include="STS Data Adapter\STSDbCommand.cs">
       <SubType>Component</SubType>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
