@@ -55,6 +55,7 @@
     <Compile Include="STS Data Adapter\STSDbCommand.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="STS Data Adapter\STSSchema.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
