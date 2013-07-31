@@ -8,5 +8,7 @@ namespace STS.Workbench.STS_Data_Adapter
 {
     class STSSchema
     {
+        private Type[] KeyTypes;
+        private Type[] RecordTypes;
     }
 }
