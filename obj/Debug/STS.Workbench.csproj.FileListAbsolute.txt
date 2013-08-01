@@ -10,9 +10,3 @@ D:\STSWorkbench\STS-Workbench\obj\Debug\STS.Workbench.exe
 D:\STSWorkbench\STS-Workbench\obj\Debug\STS.Workbench.pdb
 D:\STS-Workbench\obj\Debug\STS.Workbench.exe
 D:\STS-Workbench\obj\Debug\STS.Workbench.pdb
-D:\STS-Workbench\bin\Debug\STS.Workbench.exe
-D:\STS-Workbench\bin\Debug\STS.Workbench.pdb
-D:\STS-Workbench\bin\Debug\STSdb4.pdb
-D:\STS-Workbench\obj\Debug\STS.Workbench.Properties.Resources.resources
-D:\STS-Workbench\obj\Debug\STS.Workbench.csproj.GenerateResource.Cache
-D:\STS-Workbench\obj\Debug\STS.Workbench.csprojResolveAssemblyReference.cache

@@ -32,9 +32,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="STSdb4, Version=4.0.3.3, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\STSdb4.dll</HintPath>
+    <Reference Include="STSdb4">
+      <HintPath>\\STUDENT-1\Shared Folder\STSdb4\STSdb4\bin\Release\STSdb4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
