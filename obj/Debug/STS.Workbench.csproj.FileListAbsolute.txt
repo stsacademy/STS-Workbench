@@ -10,3 +10,14 @@ D:\STSWorkbench\STS-Workbench\obj\Debug\STS.Workbench.exe
 D:\STSWorkbench\STS-Workbench\obj\Debug\STS.Workbench.pdb
 D:\STS-Workbench\obj\Debug\STS.Workbench.exe
 D:\STS-Workbench\obj\Debug\STS.Workbench.pdb
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\bin\Debug\STS.Workbench.exe.config
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.exe
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.pdb
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\bin\Debug\STS.Workbench.exe
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\bin\Debug\STS.Workbench.pdb
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\bin\Debug\STSdb4.dll
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\bin\Debug\STSdb4.pdb
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.csprojResolveAssemblyReference.cache
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.Properties.Resources.resources
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.csproj.GenerateResource.Cache
+D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.MainForm.resources
