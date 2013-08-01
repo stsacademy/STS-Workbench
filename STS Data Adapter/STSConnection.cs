@@ -13,7 +13,7 @@ namespace STS.Workbench.STS_Data_Adapter
     {
         #region IDbConnection
 
-        private StorageEngine engine;
+        private IStorageEngine engine;
         private ConnectionState state;
 
         private string dataBase;
@@ -24,7 +24,7 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public string ConnectionString { get; set; }
 
-        public StorageEngine Engine { get { return engine; } }
+        public IStorageEngine Engine { get { return engine; } }
 
         public ConnectionState State { get { return state; } }
 
@@ -71,14 +71,14 @@ namespace STS.Workbench.STS_Data_Adapter
         public void Open()
         {
             if (IsValidConnectionString())
-                engine = (StorageEngine)STSdb4.Database.STSdb.FromFile(systemFile, dataFile); // edited
+                engine = STSdb.FromFile(systemFile, dataFile);
             else
                 throw new Exception("Connection failed.");
 
             state = ConnectionState.Open;
         }
 
-        //@"Provider=STSDb.4.0;System Source=D:\stsdb4.sys;Data Source=D:\data.stsdb4"
+        //@"Provider=STSDb.4.0;System Source=D:\stsdb4.sys;Data Source=D:\stsdb4.dat"
         private bool IsValidConnectionString()
         {
             if (ConnectionString == null)
