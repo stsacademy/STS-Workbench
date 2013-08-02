@@ -106,9 +106,12 @@ namespace STS.Workbench.STS_Data_Adapter
             return true;
         }
 
-        public void Dispose()
+        new public void Dispose()
         {
-            throw new NotImplementedException();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+
+            Close();
         }
 
         public IDbTransaction BeginTransaction(IsolationLevel il)
