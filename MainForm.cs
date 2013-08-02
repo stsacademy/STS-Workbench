@@ -16,6 +16,6 @@ namespace STS.Workbench
         public MainForm()
         {
             InitializeComponent();
-        }
+        }  
     }
 }

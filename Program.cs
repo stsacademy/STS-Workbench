@@ -21,7 +21,7 @@ namespace STS.Workbench
 
                 for (int i = 0; i < 1000000; i++)
                 {
-                    table[i] = i.ToString();
+                         table[i] = i.ToString();                   
                 }
 
                 table.Flush();
