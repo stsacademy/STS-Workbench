@@ -20,3 +20,5 @@ D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.csp
 D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.Properties.Resources.resources
 D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.csproj.GenerateResource.Cache
 D:\NikolaBintev\Projects\STS.Workbench\STS-Workbench\obj\Debug\STS.Workbench.MainForm.resources
+D:\STS Tools\STS-Workbench\obj\Debug\STS.Workbench.exe
+D:\STS Tools\STS-Workbench\obj\Debug\STS.Workbench.pdb
