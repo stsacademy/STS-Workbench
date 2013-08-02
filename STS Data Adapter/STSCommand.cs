@@ -9,7 +9,6 @@ namespace STS.Workbench.STS_Data_Adapter
 {
     class STSCommand : IDbCommand
     {
-        #region IDbCommand
         //fields
         public string commandText;
         public int commandTimeout;
@@ -123,8 +122,6 @@ namespace STS.Workbench.STS_Data_Adapter
         {
             throw new NotImplementedException();
         }
-
-
 
         public void Dispose()
         {
