@@ -6,8 +6,7 @@
 *.user
 *.sln.docstates
 
-
-# Build files and other unnecesary stuff
+# Build results and other unnecesary stuff
 *.exe
 *.dat
 *.sys
