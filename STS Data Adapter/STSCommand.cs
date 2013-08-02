@@ -10,49 +10,38 @@ namespace STS.Workbench.STS_Data_Adapter
     class STSCommand : IDbCommand
     {
         #region IDbCommand
+        //fields
+        public string commandText;
+        public int commandTimeout;
+        public CommandType commandType;
+        IDbConnection connection;
 
-        public void Cancel()
-        {
-            throw new NotImplementedException();
-        }
-
+        //properties
         public string CommandText
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return commandText; }
+            set { commandText = value; }
         }
 
         public int CommandTimeout
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return commandTimeout; }
+            set { commandTimeout = value; }
         }
 
         public CommandType CommandType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return commandType; }
+            set { commandType = value; }
         }
 
         public IDbConnection Connection
+        {
+            get { return connection; }
+            set { connection = value; }
+        }
+
+        public IDbTransaction Transaction
         {
             get
             {
@@ -64,7 +53,43 @@ namespace STS.Workbench.STS_Data_Adapter
             }
         }
 
+        public UpdateRowSource UpdatedRowSource
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        //constructors
+        public STSCommand()
+        {
+        }
+
+        public STSCommand(string cmdText)
+        {
+            commandText = cmdText;
+        }
+
+        public STSCommand(string cmdText, IDbConnection dbConnection)
+        {
+            commandText = cmdText;
+            connection = dbConnection;
+        }
+
+        #region Methods
+
+        //methods
         public IDbDataParameter CreateParameter()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Cancel()
         {
             throw new NotImplementedException();
         }
@@ -99,29 +124,7 @@ namespace STS.Workbench.STS_Data_Adapter
             throw new NotImplementedException();
         }
 
-        public IDbTransaction Transaction
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
 
-        public UpdateRowSource UpdatedRowSource
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
 
         public void Dispose()
         {
