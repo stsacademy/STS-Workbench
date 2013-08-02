@@ -56,8 +56,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\Column.cs" />
+    <Compile Include="Schema\DataTable.cs" />
+    <Compile Include="Schema\SchemaTable.cs" />
     <Compile Include="STS Data Adapter\STSCommand.cs" />
-    <Compile Include="STS Data Adapter\STSConnection.cs" />
+    <Compile Include="STS Data Adapter\STSConnection.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="STS Data Adapter\STSDataAdapter.cs" />
     <Compile Include="STS Data Adapter\STSDataReader.cs" />
     <Compile Include="STS Data Adapter\STSdbCommand.cs">
