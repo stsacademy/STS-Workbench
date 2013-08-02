@@ -37,6 +37,7 @@ namespace STS.Workbench.Schema
 
         public void AddRecords()
         {
+            //test comment
         }
     }
 }
