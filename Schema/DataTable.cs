@@ -41,55 +41,47 @@ namespace STS.Workbench.Schema
         {
             //test comment
 
-            var keys = GetKeys(rowValues);
-            var records = GetRecords(rowValues);
+            Data<object[]> key = GetParameters(rowValues, true);
+            Data<object[]> record = GetParameters(rowValues, false);
 
-            Data<object[]> key = new Data<object[]>(GetKeys(rowValues));
-            Data<object[]> record = new Data<object[]>(GetRecords(rowValues));
-
-            Index.Replace(key, record);
+            Index[key] = record;
 
             RowCount++;
         }
 
-        private object[] GetKeys(object[] rowValues)
+        private Data<object[]> GetParameters(object[] rowValues, bool isKey)
         {
-            List<int> list = new List<int>();
+            List<int> indexes = new List<int>();
 
             for (int i = 0; i < Columns.Length; i++)
             {
-                if (Columns[i].IsPrimaryKey)
-                    list.Add(i);
+                if (isKey)
+                {
+                    if (Columns[i].IsPrimaryKey)
+                    {
+                        indexes.Add(i);
+                    }
+                }
+                else
+                {
+                    if(!Columns[i].IsPrimaryKey)
+                        indexes.Add(i); 
+                }
             }
 
-            object[] keys = new object[list.Count];
-
-            for (int i = 0; i < keys.Length; i++)
-            {
-                keys[i] = rowValues[list[i]];
-            }
-
-            return keys;
+            return new Data<object[]>(BuildParameters(rowValues, indexes));
         }
 
-        private object[] GetRecords(object[] rowValues)
+        private object[] BuildParameters(object[] rowValues, List<int> indexes)
         {
-            List<int> list = new List<int>();
+            object[] temp = new object[indexes.Count];
 
-            for (int i = 0; i < Columns.Length; i++)
+            for (int i = 0; i < temp.Length; i++)
             {
-                if (!Columns[i].IsPrimaryKey)
-                    list.Add(i);
+                temp[i] = rowValues[indexes[i]];
             }
 
-            object[] records = new object[list.Count];
-
-            for (int i = 0; i < records.Length; i++)
-            {
-                records[i] = rowValues[list[i]];
-            }
-
-            return records;
+            return temp;
         }
     }
 }
