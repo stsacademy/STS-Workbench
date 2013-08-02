@@ -6,10 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace STS.Workbench.STS_Data_Adapter
 {
-    class STSConnection : IDbConnection
+    class STSConnection : Component, IDbConnection
     {
         #region IDbConnection
 
