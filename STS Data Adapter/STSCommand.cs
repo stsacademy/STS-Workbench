@@ -13,7 +13,7 @@ namespace STS.Workbench.STS_Data_Adapter
         public string commandText;
         public int commandTimeout;
         public CommandType commandType;
-        IDbConnection connection;
+        STSConnection connection;
 
         //properties
         public string CommandText
@@ -34,7 +34,7 @@ namespace STS.Workbench.STS_Data_Adapter
             set { commandType = value; }
         }
 
-        public IDbConnection Connection
+        public STSConnection Connection
         {
             get { return connection; }
             set { connection = value; }
@@ -74,7 +74,7 @@ namespace STS.Workbench.STS_Data_Adapter
             commandText = cmdText;
         }
 
-        public STSCommand(string cmdText, IDbConnection dbConnection)
+        public STSCommand(string cmdText, STSConnection dbConnection)
         {
             commandText = cmdText;
             connection = dbConnection;
