@@ -1,6 +1,7 @@
 ﻿﻿using STSdb4.Database;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace STS.Workbench.STS_Data_Adapter
 {
-    class STSConnection : IDbConnection
+    class STSConnection : Component, IDbConnection
     {
         #region IDbConnection
 
@@ -107,7 +108,10 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+
+            Close();
         }
 
         public IDbTransaction BeginTransaction(IsolationLevel il)
