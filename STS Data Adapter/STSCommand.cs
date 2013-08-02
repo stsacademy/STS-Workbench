@@ -83,14 +83,9 @@ namespace STS.Workbench.STS_Data_Adapter
         #region Methods
 
         //methods
-        public IDbDataParameter CreateParameter()
+        public STSParameter CreateParameter()
         {
-            throw new NotImplementedException();
-        }
-
-        public void Cancel()
-        {
-            throw new NotImplementedException();
+            return new STSParameter();
         }
 
         public int ExecuteNonQuery()
@@ -98,12 +93,12 @@ namespace STS.Workbench.STS_Data_Adapter
             throw new NotImplementedException();
         }
 
-        public IDataReader ExecuteReader(CommandBehavior behavior)
+        public STSDataReader ExecuteReader(CommandBehavior behavior)
         {
             throw new NotImplementedException();
         }
 
-        public IDataReader ExecuteReader()
+        public STSDataReader ExecuteReader()
         {
             throw new NotImplementedException();
         }
@@ -113,7 +108,7 @@ namespace STS.Workbench.STS_Data_Adapter
             throw new NotImplementedException();
         }
 
-        public IDataParameterCollection Parameters
+        public STSParameter Parameters
         {
             get { throw new NotImplementedException(); }
         }
@@ -128,6 +123,44 @@ namespace STS.Workbench.STS_Data_Adapter
             throw new NotImplementedException();
         }
 
+        public void Cancel()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
+
+
+        IDbConnection IDbCommand.Connection
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        IDbDataParameter IDbCommand.CreateParameter()
+        {
+            throw new NotImplementedException();
+        }
+
+        IDataReader IDbCommand.ExecuteReader(CommandBehavior behavior)
+        {
+            throw new NotImplementedException();
+        }
+
+        IDataReader IDbCommand.ExecuteReader()
+        {
+            throw new NotImplementedException();
+        }
+
+        IDataParameterCollection IDbCommand.Parameters
+        {
+            get { throw new NotImplementedException(); }
+        }
     }
 }

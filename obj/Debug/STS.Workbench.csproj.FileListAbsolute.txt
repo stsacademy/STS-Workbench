@@ -39,3 +39,10 @@ D:\STS-Workbench\obj\Debug\STS.Workbench.csproj.GenerateResource.Cache
 D:\NikolaBintev\Projects\STS-Workbench\bin\Debug\STS.Workbench.exe.config
 D:\NikolaBintev\Projects\STS-Workbench\obj\Debug\STS.Workbench.exe
 D:\NikolaBintev\Projects\STS-Workbench\obj\Debug\STS.Workbench.pdb
+D:\NikolaBintev\Projects\STS-Workbench\obj\Debug\STS.Workbench.csprojResolveAssemblyReference.cache
+D:\NikolaBintev\Projects\STS-Workbench\obj\Debug\STS.Workbench.MainForm.resources
+D:\NikolaBintev\Projects\STS-Workbench\obj\Debug\STS.Workbench.Properties.Resources.resources
+D:\NikolaBintev\Projects\STS-Workbench\obj\Debug\STS.Workbench.csproj.GenerateResource.Cache
+D:\NikolaBintev\Projects\STS-Workbench\bin\Debug\STS.Workbench.exe
+D:\NikolaBintev\Projects\STS-Workbench\bin\Debug\STS.Workbench.pdb
+D:\NikolaBintev\Projects\STS-Workbench\bin\Debug\STSdb4.pdb
