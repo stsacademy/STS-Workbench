@@ -10,16 +10,16 @@ namespace STS.Workbench.STS_Data_Adapter
     class STSCommand : IDbCommand
     {
         //fields
-        public string query;
+        public string commandText;
         public int commandTimeout;
         public CommandType commandType;
         STSConnection connection;
 
         //properties
-        public string Query
+        public string CommandText
         {
-            get { return query; }
-            set { query = value; }
+            get { return commandText; }
+            set { commandText = value; }
         }
 
         public int CommandTimeout
@@ -71,12 +71,12 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public STSCommand(string queryText)
         {
-            query = queryText;
+            commandText = queryText;
         }
 
-        public STSCommand(string queryText, STSConnection dbConnection)
+        public STSCommand(string cmdText, STSConnection dbConnection)
         {
-            query = queryText;
+            commandText = cmdText;
             connection = dbConnection;
         }
 
