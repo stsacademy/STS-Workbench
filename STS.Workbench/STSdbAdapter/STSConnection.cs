@@ -112,6 +112,7 @@ namespace STS.Workbench.STS_Data_Adapter
             GC.SuppressFinalize(this);
 
             Close();
+            engine.Dispose();
         }
 
         public IDbTransaction BeginTransaction(IsolationLevel il)
