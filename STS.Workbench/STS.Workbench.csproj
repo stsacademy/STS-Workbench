@@ -59,9 +59,7 @@
     <Compile Include="Schema\DataTable.cs" />
     <Compile Include="Schema\SchemaTable.cs" />
     <Compile Include="STSdbAdapter\STSCommand.cs" />
-    <Compile Include="STSdbAdapter\STSConnection.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="STSdbAdapter\STSConnection.cs" />
     <Compile Include="STSdbAdapter\STSDataAdapter.cs" />
     <Compile Include="STSdbAdapter\STSDataReader.cs" />
     <Compile Include="STSdbAdapter\STSdbCommand.cs">

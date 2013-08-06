@@ -50,7 +50,7 @@ namespace STS.Workbench.Schema
             IData record = recordTransformer.ToIData(records);
 
             Index[key] = record;
-
+            
             RowCount++;
         }
 
