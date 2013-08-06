@@ -61,6 +61,9 @@ namespace STS.Workbench.Schema
 
         public void RemoveRow(Row row)
         {
+            if (Rows[row.RowNumber - 1] == null)
+                return;
+
             Rows[row.RowNumber - 1] = null;
 
             object[] keys = GetParameters(row.RowValues, true);
@@ -70,8 +73,31 @@ namespace STS.Workbench.Schema
             IData key = keyTransformer.ToIData(keys);
 
             IData find = Index.Find(key);
-
+    
             Index.Delete(find);
+
+            RowCount--;
+        }
+
+        public void RemoveRow(Row firstRow, Row secondRow)
+        {
+            if (firstRow.RowNumber > secondRow.RowNumber)
+                throw new Exception("First Row is Greater Than Second Row.");
+
+            if (firstRow.RowNumber == secondRow.RowNumber)
+                RemoveRow(firstRow);
+
+            for (int i = 0; i < secondRow.RowNumber - firstRow.RowNumber; i++)
+                Rows[i] = null;
+
+            DataToObjectsTransformer keyTrasformer = new DataToObjectsTransformer(KeyTypes);
+
+            IData firstKey = keyTrasformer.ToIData(firstRow.RowValues);
+            IData secondKey = keyTrasformer.ToIData(secondRow.RowValues);
+
+            Index.Delete(firstKey, secondKey);
+            
+            //rowcount - x
         }
 
         public void Clear()
@@ -106,6 +132,12 @@ namespace STS.Workbench.Schema
 
         private object[] BuildParameters(object[] rowValues, List<int> indexes)
         {
+            if (rowValues == null)
+                throw new ArgumentNullException("Row Values cannot be null.");
+
+            if (rowValues.Length == 0)
+                throw new Exception("Row Values Length cannot be zero.");
+
             object[] temp = new object[indexes.Count];
 
             for (int i = 0; i < temp.Length; i++)
