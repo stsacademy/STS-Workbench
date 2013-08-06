@@ -1,4 +1,9 @@
-﻿using System;
+﻿﻿using STSdb4.Database;
+﻿using STSdb4.Data;
+using STSdb4.General;
+using STSdb4.Storage;
+using STSdb4.WaterfallTree;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,6 +16,17 @@ namespace STS.Workbench.STS_Data_Adapter
     {
         #region IDataAdapter
 
+        private STSConnection connection;
+        private STSCommand command;
+        private bool isOpen;
+        private STSSchema schema;
+
+        public STSDataReader(STSConnection connection, STSCommand command) 
+        {
+            this.connection = connection;
+            this.command = command;
+        }
+
         public void Close()
         {
             throw new NotImplementedException();
@@ -18,17 +34,17 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public int Depth
         {
-            get { throw new NotImplementedException(); }
+            get { return 0; }
         }
 
         public DataTable GetSchemaTable()
-        {
-            throw new NotImplementedException();
-        }
+            {
+                throw new NotImplementedException();
+            }
 
         public bool IsClosed
         {
-            get { throw new NotImplementedException(); }
+            get { return !isOpen; }
         }
 
         public bool NextResult()
@@ -46,9 +62,26 @@ namespace STS.Workbench.STS_Data_Adapter
             get { throw new NotImplementedException(); }
         }
 
-        public void Dispose()
+        void IDisposable.Dispose()
         {
-            throw new NotImplementedException();
+            this.Dispose(true);
+            System.GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                try
+                {
+                    this.Close();
+                }
+                catch (Exception e)
+                {
+                    throw new SystemException("An exception of type " + e.GetType() +
+                                              " was encountered while closing the STSDataReader.");
+                }
+            }
         }
 
         public int FieldCount

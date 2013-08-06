@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace STS.Workbench.STS_Data_Adapter
 {
-    class STSConnection : Component, IDbConnection
+    class STSConnection : IDbConnection
     {
         #region IDbConnection
 
@@ -106,13 +106,29 @@ namespace STS.Workbench.STS_Data_Adapter
             return true;
         }
 
-        new public void Dispose()
+        void IDisposable.Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
-
-            Close();
+            
             engine.Dispose();
+            Close();
+            
+        }
+        private void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                try
+                {
+                    this.Close();
+                }
+                catch (Exception e)
+                {
+                    throw new SystemException("An exception of type " + e.GetType() +
+                                              " was encountered while closing the STSConnection.");
+                }
+            }
         }
 
         public IDbTransaction BeginTransaction(IsolationLevel il)
