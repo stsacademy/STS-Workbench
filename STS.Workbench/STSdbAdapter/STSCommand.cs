@@ -66,24 +66,30 @@ namespace STS.Workbench.STS_Data_Adapter
 
         //constructors
         public STSCommand()
-        {
+        {        
+            CommandTimeout = 30;
+            CommandText = "";
+            Connection = null;
         }
 
-        public STSCommand(string queryText)
+        public STSCommand(string cmdText)
         {
-            commandText = queryText;
+            CommandTimeout = 30;
+            CommandText = cmdText;            
+            Connection = null;
         }
 
         public STSCommand(string cmdText, STSConnection dbConnection)
         {
-            commandText = cmdText;
-            connection = dbConnection;
+            CommandTimeout = 30;
+            CommandText = cmdText;
+            Connection = dbConnection;
         }
 
         #region Methods
 
         //methods
-        public STSParameter CreateParameter()
+        public STSParameter CreateParameter()   
         {
             return new STSParameter();
         }
