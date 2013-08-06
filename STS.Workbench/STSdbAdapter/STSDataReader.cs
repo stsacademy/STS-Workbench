@@ -29,7 +29,7 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public void Close()
         {
-            throw new NotImplementedException();
+            isOpen = false;
         }
 
         public int Depth
@@ -59,7 +59,7 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public int RecordsAffected
         {
-            get { throw new NotImplementedException(); }
+            get { return -1; }
         }
 
         void IDisposable.Dispose()
@@ -213,6 +213,9 @@ namespace STS.Workbench.STS_Data_Adapter
 
         private object GetFieldValue(int index)
         {
+            if (index > FieldCount || index <= 0)
+                throw new IndexOutOfRangeException();
+
             int columnsLength = dbSchemaTable.Columns.Length;
 
             int row = (index - 1) / columnsLength;
