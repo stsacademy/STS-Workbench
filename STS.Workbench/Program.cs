@@ -21,9 +21,9 @@ namespace STS.Workbench
             columns.Add(new Schema.Column("Column1", DataType.Int32, true));
             columns.Add(new Schema.Column("Column2", DataType.String, false));
 
-            Schema.SchemaTable tab = new Schema.SchemaTable("MyDatabase", false, "MyPath");
+            Schema.SchemaTable table = new Schema.SchemaTable("MyDatabase", false, "MyPath");
 
-            var index = tab.CreateTable("MyTable", columns.ToArray());
+            var index = table.CreateTable("MyTable", columns.ToArray());
 
             index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho" }));
 
