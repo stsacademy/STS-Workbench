@@ -13,6 +13,7 @@ namespace STS.Workbench.Schema
     {
         public string TableName;
         public Column[] Columns;
+        public Row[] Rows;
         public long RowCount { get; private set; }
 
         private SchemaTable SchemaTable;
@@ -31,17 +32,21 @@ namespace STS.Workbench.Schema
 
             TableName = tableName;
             Columns = columns;
+            Rows = new Row[4];
 
             KeyTypes = SchemaTable.GetKeyTypes(TableName);
             RecordTypes = SchemaTable.GetRecordTypes(TableName);
 
-            Index = (XIndex)Engine.OpenXIndex(KeyTypes, RecordTypes, TableName); //DataType.Array(...)?!
+            Index = (XIndex)Engine.OpenXIndex(KeyTypes, RecordTypes, TableName);
         }
 
-        public void AddRow(object[] rowValues)
+        public void AddRow(Row row)
         {
-            object[] keys = GetParameters(rowValues, true);
-            object[] records = GetParameters(rowValues, false);
+            EnsureCapacity();
+            Rows[row.RowNumber - 1] = row;
+
+            object[] keys = GetParameters(row.RowValues, true);
+            object[] records = GetParameters(row.RowValues, false);
 
             DataToObjectsTransformer keyTransformer = new DataToObjectsTransformer(KeyTypes);
             DataToObjectsTransformer recordTransformer = new DataToObjectsTransformer(RecordTypes);
@@ -54,10 +59,12 @@ namespace STS.Workbench.Schema
             RowCount++;
         }
 
-        public void RemoveRow(object[] rowValues) //long row
+        public void RemoveRow(Row row)
         {
-            object[] keys = GetParameters(rowValues, true);
-            object[] records = GetParameters(rowValues, false);
+            Rows[row.RowNumber - 1] = null;
+
+            object[] keys = GetParameters(row.RowValues, true);
+            object[] records = GetParameters(row.RowValues, false);
 
             DataToObjectsTransformer keyTransformer = new DataToObjectsTransformer(KeyTypes);
             IData key = keyTransformer.ToIData(keys);
@@ -118,6 +125,18 @@ namespace STS.Workbench.Schema
                 types[i] = dataTypes[i].GetType();
 
             return types;
+        }
+
+        private void EnsureCapacity()
+        {
+            if (RowCount == Rows.Length)
+            {
+                Row[] temp = Rows;
+
+                Rows = new Row[temp.Length * 2];
+
+                temp.CopyTo(Rows, 0);
+            }
         }
 
         #endregion

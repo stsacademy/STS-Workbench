@@ -25,7 +25,7 @@ namespace STS.Workbench
 
             var index = tab.CreateTable("MyTable", columns.ToArray());
 
-            index.AddRow(new object[] { 8, "Gosho" });
+            index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho" }));
 
             using (IStorageEngine engine = STSdb.FromFile("stsdb4.sys", "stsdb4.dat"))
             {
