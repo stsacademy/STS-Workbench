@@ -12,16 +12,16 @@ using System.Threading.Tasks;
 
 namespace STS.Workbench.STS_Data_Adapter
 {
-    class STSDataReader:IDataReader
+    class STSDataReader : IDataReader
     {
         #region IDataAdapter
-    
+
         private STSConnection connection;
         private STSCommand command;
         private bool isOpen;
         private Schema.DataTable dbSchemaTable;
 
-        public STSDataReader(STSConnection connection, STSCommand command) 
+        public STSDataReader(STSConnection connection, STSCommand command)
         {
             this.connection = connection;
             this.command = command;
@@ -38,9 +38,9 @@ namespace STS.Workbench.STS_Data_Adapter
         }
 
         public DataTable GetSchemaTable()
-            {
-                throw new NotImplementedException();
-            }
+        {
+            throw new NotImplementedException();
+        }
 
         public bool IsClosed
         {
@@ -86,7 +86,7 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public int FieldCount
         {
-            get { throw new NotImplementedException(); }
+            get { return (int)dbSchemaTable.RowCount * dbSchemaTable.Columns.Length; }
         }
 
         public bool GetBoolean(int i)
@@ -210,5 +210,15 @@ namespace STS.Workbench.STS_Data_Adapter
         }
 
         #endregion
+
+        private object GetFieldValue(int index)
+        {
+            int columnsLength = dbSchemaTable.Columns.Length;
+
+            int row = (index - 1) / columnsLength;
+            int column = (index - 1) - (row * columnsLength);
+
+            return dbSchemaTable.Rows[row].RowValues[column];
+        }
     }
 }
