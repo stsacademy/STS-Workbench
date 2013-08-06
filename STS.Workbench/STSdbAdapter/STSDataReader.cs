@@ -15,11 +15,11 @@ namespace STS.Workbench.STS_Data_Adapter
     class STSDataReader:IDataReader
     {
         #region IDataAdapter
-
+    
         private STSConnection connection;
         private STSCommand command;
         private bool isOpen;
-        private STSSchema schema;
+        private Schema.DataTable dbSchemaTable;
 
         public STSDataReader(STSConnection connection, STSCommand command) 
         {
