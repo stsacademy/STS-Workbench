@@ -9,7 +9,7 @@ namespace STS.Workbench.Schema
     class Row
     {
         public long RowNumber;
-        public object[] RowValues;
+        public readonly object[] RowValues;
 
         public Row(int index, object[] rowValues)
         {
