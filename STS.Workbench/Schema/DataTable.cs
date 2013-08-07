@@ -178,14 +178,14 @@ namespace STS.Workbench.Schema
                 return null;
         }
 
-        public object[] FirstRow() //return Row
+        public object[] FirstRow() 
         {
             var firstRow = Index.FirstRow;
 
             return GetRowValues(firstRow.Key, firstRow.Value);
         }
 
-        public object[] LastRow() //return Row
+        public object[] LastRow()
         {
             var lastRow = Index.LastRow;
 
