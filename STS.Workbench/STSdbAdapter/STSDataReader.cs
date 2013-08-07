@@ -23,7 +23,7 @@ namespace STS.Workbench.STS_Data_Adapter
         private bool isClosed;
         private bool hasRows;
 
-        private int currentRow;
+        private int currentRow = 0;
         public STSDataReader(STSConnection connection, STSCommand command)
         {
             this.connection = connection;
@@ -57,7 +57,12 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            if (currentRow < dbSchemaTable.RowCount)
+            {
+                currentRow++;
+                return true;
+            }
+            return false;
         }
 
         public int RecordsAffected
@@ -92,9 +97,9 @@ namespace STS.Workbench.STS_Data_Adapter
             get { return (int)dbSchemaTable.RowCount * dbSchemaTable.Columns.Length; }
         }
 
-        public bool GetBoolean(int i)
+        public bool GetBoolean(int index)
         {
-            throw new NotImplementedException();
+                return (bool)GetFieldValue(index);
         }
 
         public byte GetByte(int i)
