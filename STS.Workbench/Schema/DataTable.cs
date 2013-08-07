@@ -73,7 +73,7 @@ namespace STS.Workbench.Schema
             IData key = keyTransformer.ToIData(keys);
 
             IData find = Index.Find(key);
-    
+
             Index.Delete(find);
 
             RowCount--;
@@ -85,10 +85,21 @@ namespace STS.Workbench.Schema
                 throw new Exception("First Row is Greater Than Second Row.");
 
             if (firstRow.RowNumber == secondRow.RowNumber)
+            {
                 RemoveRow(firstRow);
 
-            for (int i = 0; i < secondRow.RowNumber - firstRow.RowNumber; i++)
-                Rows[i] = null;
+                return;
+            }
+
+            long index = firstRow.RowNumber - 1;
+
+            for (int i = 0; i < (secondRow.RowNumber - firstRow.RowNumber) + 1; i++)
+            {
+                Rows[index] = null;
+
+                index++;
+                RowCount--;
+            }
 
             DataToObjectsTransformer keyTrasformer = new DataToObjectsTransformer(KeyTypes);
 
@@ -96,8 +107,6 @@ namespace STS.Workbench.Schema
             IData secondKey = keyTrasformer.ToIData(secondRow.RowValues);
 
             Index.Delete(firstKey, secondKey);
-            
-            //rowcount - x
         }
 
         public void Clear()
