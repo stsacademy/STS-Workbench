@@ -18,9 +18,12 @@ namespace STS.Workbench.STS_Data_Adapter
 
         private STSConnection connection;
         private STSCommand command;
-        private bool isOpen;
         private Schema.DataTable dbSchemaTable;
 
+        private bool isClosed;
+        private bool hasRows;
+
+        private int currentRow;
         public STSDataReader(STSConnection connection, STSCommand command)
         {
             this.connection = connection;
@@ -29,7 +32,7 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public void Close()
         {
-            isOpen = false;
+            isClosed = true;
         }
 
         public int Depth
@@ -44,7 +47,7 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public bool IsClosed
         {
-            get { return !isOpen; }
+            get { return isClosed; }
         }
 
         public bool NextResult()
@@ -199,14 +202,26 @@ namespace STS.Workbench.STS_Data_Adapter
             throw new NotImplementedException();
         }
 
-        public object this[string name]
+        public object this[string columnName]
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                Schema.Column column = null;
+
+                for (int i = 0; i < dbSchemaTable.Columns.Length; i++)
+                {
+                    if (dbSchemaTable.Columns[i].ColumnName == columnName)
+                    {
+                        column = dbSchemaTable.Columns[i];
+                    }
+                }
+                return column;
+            }
         }
 
-        public object this[int i]
+        public object this[int columnIndex]
         {
-            get { throw new NotImplementedException(); }
+            get { return dbSchemaTable.Columns[columnIndex]; }
         }
 
         #endregion
