@@ -106,7 +106,6 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public STSDataReader ExecuteReader()
         {
-            CommandText = CommandType.ToString();
             throw new NotImplementedException();
         }
 

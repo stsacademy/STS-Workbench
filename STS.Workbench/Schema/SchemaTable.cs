@@ -15,7 +15,7 @@ namespace STS.Workbench.Schema
         public bool Compress;
         public string DatabasePath;
 
-        private Dictionary<string, Column[]> Table;
+        private Dictionary<string, DataTable> Table;
         private StorageEngine Engine;
 
         private string SystemFile;
@@ -29,7 +29,7 @@ namespace STS.Workbench.Schema
 
             Directory.CreateDirectory(DatabasePath);
 
-            Table = new Dictionary<string, Column[]>();
+            Table = new Dictionary<string, DataTable>();
 
             SystemFile = Path.Combine(DatabasePath, "System.sys");
             DataFile = Path.Combine(DatabasePath, DatabaseName + ".data");
@@ -44,9 +44,11 @@ namespace STS.Workbench.Schema
             if (contains)
                 throw new Exception("Table already exsist.");
 
-            Table.Add(tableName, columns);
+            DataTable table = new DataTable(this, Engine, tableName, columns);
 
-            return new DataTable(this, Engine, tableName, columns);
+            Table.Add(tableName, table);
+
+            return table;
         }
 
         public void RemoveTable(string tableName)
@@ -55,48 +57,6 @@ namespace STS.Workbench.Schema
 
             if (!removed)
                 throw new Exception("Table does not exsist.");
-        }
-
-        public DataType[] GetKeyTypes(string tableName)
-        {
-            Column[] columns = GetColumns(tableName);
-
-            List<DataType> list = new List<DataType>();
-
-            for (int i = 0; i < columns.Length; i++)
-            {
-                if (columns[i].IsPrimaryKey)
-                    list.Add(columns[i].ColumnType);
-            }
-
-            return list.ToArray();
-        }
-
-        public DataType[] GetRecordTypes(string tableName)
-        {
-            Column[] columns = GetColumns(tableName);
-
-            List<DataType> list = new List<DataType>();
-
-            for (int i = 0; i < columns.Length; i++)
-            {
-                if (!columns[i].IsPrimaryKey)
-                    list.Add(columns[i].ColumnType);
-            }
-
-            return list.ToArray();
-        }
-
-        private Column[] GetColumns(string tableName)
-        {
-            Column[] columns;
-
-            bool contains = Table.TryGetValue(tableName, out columns);
-
-            if (!contains)
-                throw new Exception("Cannot find Table.");
-
-            return columns;
         }
     }
 }

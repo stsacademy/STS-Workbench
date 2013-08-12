@@ -36,8 +36,8 @@ namespace STS.Workbench.Schema
             Columns = columns;
             Rows = new Row[4];
 
-            KeyTypes = SchemaTable.GetKeyTypes(TableName);
-            RecordTypes = SchemaTable.GetRecordTypes(TableName);
+            KeyTypes = GetKeyTypes();
+            RecordTypes = GetRecordTypes();
 
             KeyTrasformer = new DataToObjectsTransformer(KeyTypes);
             RecordTransformer = new DataToObjectsTransformer(RecordTypes);
@@ -87,7 +87,6 @@ namespace STS.Workbench.Schema
             object[] keys = GetParameters(row.RowValues, true);
 
             IData key = KeyTrasformer.ToIData(keys);
-
             IData find = Index.Find(key);
 
             Index.Delete(find);
@@ -176,6 +175,34 @@ namespace STS.Workbench.Schema
                 return GetRowValues(find.Value.Key, find.Value.Value);
             else
                 return null;
+        }
+
+        public Row[] Ascending()
+        {
+            Row[] rows = new Row[Index.Count()];
+            int index = 0;
+
+            foreach (var row in Index.Forward())
+            {
+                object[] temp = GetRowValues(row.Key, row.Value);
+                rows[index] = new Row(index, temp);
+            }
+
+            return rows;
+        }
+
+        public Row[] Descending()
+        {
+            Row[] rows = new Row[Index.Count()];
+            int index = 0;
+
+            foreach (var row in Index.Backward())
+            {
+                object[] temp = GetRowValues(row.Key, row.Value);
+                rows[index] = new Row(index, temp);
+            }
+
+            return rows;
         }
 
         public object[] FirstRow() 
@@ -285,6 +312,32 @@ namespace STS.Workbench.Schema
             records.CopyTo(tmp, keys.Length);
 
             return BuildParameters(tmp, indexes);
+        }
+
+        public DataType[] GetKeyTypes()
+        {
+            List<DataType> list = new List<DataType>();
+
+            for (int i = 0; i < Columns.Length; i++)
+            {
+                if (Columns[i].IsPrimaryKey)
+                    list.Add(Columns[i].ColumnType);
+            }
+
+            return list.ToArray();
+        }
+
+        public DataType[] GetRecordTypes()
+        {
+            List<DataType> list = new List<DataType>();
+
+            for (int i = 0; i < Columns.Length; i++)
+            {
+                if (!Columns[i].IsPrimaryKey)
+                    list.Add(Columns[i].ColumnType);
+            }
+
+            return list.ToArray();
         }
 
         #endregion
