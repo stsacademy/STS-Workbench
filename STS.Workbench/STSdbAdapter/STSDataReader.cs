@@ -99,112 +99,127 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public bool GetBoolean(int index)
         {
-                return (bool)GetFieldValue(index);
+            return (bool)GetFieldValue(index);
         }
 
-        public byte GetByte(int i)
+        public byte GetByte(int index)
+        {
+            return (byte)GetFieldValue(index);
+        }
+
+        public long GetBytes(int index, long fieldOffset, byte[] buffer, int bufferoffset, int length)
         {
             throw new NotImplementedException();
         }
 
-        public long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
+        public char GetChar(int index)
+        {
+            return (char)GetFieldValue(index);
+        }
+
+        public long GetChars(int index, long fieldoffset, char[] buffer, int bufferoffset, int length)
         {
             throw new NotImplementedException();
         }
 
-        public char GetChar(int i)
+        public IDataReader GetData(int index)
         {
             throw new NotImplementedException();
         }
 
-        public long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
+        public string GetDataTypeName(int index)
+        {
+            return GetFieldValue(index).GetType().ToString();
+        }
+
+        public DateTime GetDateTime(int index)
+        {
+            return (DateTime)GetFieldValue(index); 
+        }
+
+        public decimal GetDecimal(int index)
+        {
+            return (decimal)GetFieldValue(index); 
+        }
+
+        public double GetDouble(int index)
+        {
+            return (double)GetFieldValue(index); 
+        }
+
+        public Type GetFieldType(int index)
+        {
+            return GetFieldValue(index).GetType();
+        }
+
+        public float GetFloat(int index)
+        {
+            return (float)GetFieldValue(index);
+        }
+
+        public Guid GetGuid(int index)
+        {
+            return (Guid)GetFieldValue(index);
+        }
+
+        public short GetInt16(int index)
+        {
+            return (Int16)GetFieldValue(index);
+        }
+
+        public int GetInt32(int index)
+        {
+            return (Int32)GetFieldValue(index);
+        }
+
+        public long GetInt64(int index)
+        {
+            return (Int64)GetFieldValue(index);
+        }
+
+        public string GetName(int index)
         {
             throw new NotImplementedException();
         }
 
-        public IDataReader GetData(int i)
+        public int GetOrdinal(string columnName)
         {
-            throw new NotImplementedException();
+            int i = 0;
+
+            for (i = 0; i < dbSchemaTable.Columns.Length; i++)
+            {
+                if (dbSchemaTable.Columns[i].ColumnName == columnName)
+                {
+                    return i;
+                }
+            }
+
+            throw new IndexOutOfRangeException("Could not find specified column in results");
         }
 
-        public string GetDataTypeName(int i)
+        public string GetString(int index)
         {
-            throw new NotImplementedException();
+            return (String)GetFieldValue(index);
         }
 
-        public DateTime GetDateTime(int i)
+        public object GetValue(int index)
         {
-            throw new NotImplementedException();
-        }
-
-        public decimal GetDecimal(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public double GetDouble(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Type GetFieldType(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public float GetFloat(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Guid GetGuid(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public short GetInt16(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetInt32(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public long GetInt64(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetName(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetOrdinal(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetString(int i)
-        {
-            throw new NotImplementedException();
-        }
-
-        public object GetValue(int i)
-        {
-            throw new NotImplementedException();
+            return GetFieldValue(index);
         }
 
         public int GetValues(object[] values)
         {
-            throw new NotImplementedException();
+            int i = 0, j = 0;
+            for (; i < values.Length && j < dbSchemaTable.Columns.Length; i++, j++)
+            {
+                values[i] = GetFieldValue(j);
+            }
+            return i;
         }
 
-        public bool IsDBNull(int i)
+        public bool IsDBNull(int index)
         {
-            throw new NotImplementedException();
+            return GetFieldValue(index) == DBNull.Value;
         }
 
         public object this[string columnName]
