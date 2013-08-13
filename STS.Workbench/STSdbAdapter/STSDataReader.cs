@@ -60,6 +60,7 @@ namespace STS.Workbench.STS_Data_Adapter
             if (currentRow < dbSchemaTable.RowCount)
             {
                 currentRow++;
+                hasRows = true;
                 return true;
             }
             return false;
@@ -179,7 +180,7 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public string GetName(int index)
         {
-            throw new NotImplementedException();
+            return dbSchemaTable.Columns[index].ColumnName;
         }
 
         public int GetOrdinal(string columnName)
