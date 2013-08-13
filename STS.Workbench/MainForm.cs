@@ -53,7 +53,12 @@ namespace STS.Workbench
 
         private void button1_Click(object sender, EventArgs e)
         {
-            TableComponent table = new TableComponent(MousePoint, new Size(160, 400), "Gosho", DataType.Slotes(DataType.Int32), DataType.Int32, DataType.String);
+            Point cordinates = new Point(20, 20);
+            Size size = new Size(160, 200);
+            DataType[] keyType = new DataType[] { DataType.Slotes(DataType.Int32), DataType.Int32 };
+            DataType[] recType = new DataType[] { DataType.Int32, DataType.String };
+
+            TableComponent table = new TableComponent(cordinates, size, "Gosho", keyType, recType);
             table.MouseUp += MainForm_MouseUp;
             table.MouseDown += MainForm_MouseDown;
             table.MouseMove += MainForm_MouseMove;

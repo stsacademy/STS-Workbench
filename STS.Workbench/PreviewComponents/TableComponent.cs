@@ -12,30 +12,51 @@ namespace STS.Workbench.PreviewComponents
     public class TableComponent : GroupBox
     {
         private TreeView treeTypes;
+        private Label lbltableName;
 
         public string TableName { get; set; }
         public Type[] TableTypes { get; set; }
 
-        public TableComponent(Point cordinates, Size size, string tableName, params DataType[] tableTypes)
+        public TableComponent(Point cordinates, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
+            InitializeComponents(cordinates, size, tableName, keyTypes, recordTypes);
+        }
+
+        private void InitializeComponents(Point cordinates, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
+        {
+            //Tree view (table types).
             treeTypes = new TreeView();
-            treeTypes.Location = new Point(cordinates.X, cordinates.Y);
+            treeTypes.Location = cordinates;
             treeTypes.Name = "TableTreeTypes_" + tableName;
-            treeTypes.Width = size.Width - 20;
+            treeTypes.Width = size.Width;
             treeTypes.Height = size.Height;
             treeTypes.Dock = DockStyle.Fill;
-            treeTypes.Nodes.Add(MakeTypeTree(tableTypes));
+            treeTypes.Margin = new Padding(10, 30, 10, 15);
 
-            Controls.Add(treeTypes);
+            //Label (table name).
+            lbltableName = new Label();
+            lbltableName.Location = cordinates;
+            lbltableName.Text = tableName;
+            lbltableName.Dock = DockStyle.Top;
+            lbltableName.Margin = new Padding(5, 5, 5, 5);
+
+            treeTypes.Nodes.Add(MakeTypeTree(keyTypes));
+            treeTypes.Nodes.Add(MakeTypeTree(recordTypes));
+            treeTypes.Nodes[0].Text = "Key types";
+            treeTypes.Nodes[1].Text = "Record types";
+
+            //Group box.
             Location = cordinates;
             Name = "TableGruopBox_" + tableName;
             Size = size;
             TabStop = false;
-            Text = tableName;
-            Padding = new Padding(10, 20, 10, 15);
+            Padding = new Padding(10, 10, 10, 15);
+
+            Controls.Add(treeTypes);
+            Controls.Add(lbltableName);
         }
 
-        public TreeNode MakeTypeTree(params DataType[] dataTypes)
+        private TreeNode MakeTypeTree(params DataType[] dataTypes)
         {
             TreeNode node = new TreeNode("Slotes");
 
