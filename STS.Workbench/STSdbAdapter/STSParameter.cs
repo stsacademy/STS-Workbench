@@ -32,7 +32,7 @@ namespace STS.Workbench.STS_Data_Adapter
         public STSParameter(string parameterName, object value)
         {
             m_sParamName = parameterName;
-            this.Value = value;
+            Value = value;
             // Setting the value also infers the type.
         }
 
