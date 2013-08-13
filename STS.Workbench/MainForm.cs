@@ -1,4 +1,6 @@
-﻿using STSdb4.Database;
+﻿using STS.Workbench.PreviewComponents;
+using STSdb4.Data;
+using STSdb4.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,7 +23,6 @@ namespace STS.Workbench
         #region DragElemets
 
         private Point MousePoint = new Point();
-        private Control ctrlMoved = new Control();
         private bool IsMoving = false;
 
         private void MainForm_MouseDown(object sender, MouseEventArgs e)
@@ -42,12 +43,22 @@ namespace STS.Workbench
         {
             if (IsMoving && e.Button == MouseButtons.Left)
             {
-                ctrlMoved = (Control)sender;
-                ctrlMoved.Left += e.X - MousePoint.X;
-                ctrlMoved.Top += e.Y - MousePoint.Y;
+                Control control = (Control)sender;
+                control.Left += e.X - MousePoint.X;
+                control.Top += e.Y - MousePoint.Y;
             }
         }
 
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TableComponent table = new TableComponent(MousePoint, new Size(160, 400), "Gosho", DataType.Slotes(DataType.Int32), DataType.Int32, DataType.String);
+            table.MouseUp += MainForm_MouseUp;
+            table.MouseDown += MainForm_MouseDown;
+            table.MouseMove += MainForm_MouseMove;
+
+            Controls.Add(table);
+        }
     }
 }
