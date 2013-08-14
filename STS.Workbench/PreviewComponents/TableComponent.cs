@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,17 @@ namespace STS.Workbench.PreviewComponents
     {
         private TreeView treeViewTypes;
         private Label lblTableName;
-        private PictureBox pBoxIcon;
 
         public string TableName { get; set; }
-        public Type[] TableTypes { get; set; }
+        public DataType[] KeyTypes { get; set; }
+        public DataType[] RecordTypes { get; set; }
 
         public TableComponent(Point cordinates, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
+            TableName = tableName;
+            KeyTypes = keyTypes;
+            RecordTypes = recordTypes;
+
             InitializeComponents(cordinates, size, tableName, keyTypes, recordTypes);
         }
 
@@ -33,32 +38,40 @@ namespace STS.Workbench.PreviewComponents
             treeViewTypes.Height = size.Height;
             treeViewTypes.Dock = DockStyle.Fill;
 
+            treeViewTypes.ImageList = new ImageList();
+            treeViewTypes.ImageList.Images.Add("key", new Icon(global::STS.Workbench.Properties.Resources.key, 16, 16));
+            treeViewTypes.ImageList.Images.Add("record", new Icon(global::STS.Workbench.Properties.Resources.record, 16, 16));
+            treeViewTypes.ImageList.Images.Add("primitiveType", new Icon(global::STS.Workbench.Properties.Resources.empty, 16, 16));
+            treeViewTypes.ImageList.Images.Add("userType", new Icon(global::STS.Workbench.Properties.Resources.userType, 16, 16));
+
             treeViewTypes.Nodes.Add(MakeTypeTree(keyTypes));
-            treeViewTypes.Nodes.Add(MakeTypeTree(recordTypes));
             treeViewTypes.Nodes[0].Text = "Key types";
+            treeViewTypes.Nodes[0].ImageKey = "key";
+            treeViewTypes.Nodes[0].SelectedImageKey = "key";
+
+            treeViewTypes.Nodes.Add(MakeTypeTree(recordTypes));
             treeViewTypes.Nodes[1].Text = "Record types";
+            treeViewTypes.Nodes[1].ImageKey = "record";
+            treeViewTypes.Nodes[1].SelectedImageKey = "record";
+
             treeViewTypes.ExpandAll();
 
             //Label (table name).
             lblTableName = new Label();
             lblTableName.Location = location;
+            lblTableName.Image = new Icon(global::STS.Workbench.Properties.Resources.table, 16, 16).ToBitmap();
+            lblTableName.ImageAlign = ContentAlignment.MiddleLeft;
+            lblTableName.TextAlign = ContentAlignment.MiddleCenter;
             lblTableName.Text = tableName;
+            lblTableName.Font = new Font(lblTableName.Font.FontFamily.Name, 10, FontStyle.Bold);
             lblTableName.Dock = DockStyle.Top;
-
-            //Picture box (icon)
-            Icon icon = new Icon(@"TABLE.ICO.ico");
-            pBoxIcon.Image = global::STS.Workbench.Properties.Resources.TABLE_ICO;
-            pBoxIcon.Location = location;
-            pBoxIcon.Name = "pictureBoxIcon" + tableName;
-            pBoxIcon.Size = new System.Drawing.Size(32, 32);
-            pBoxIcon.TabIndex = 3;
 
             //Group box.
             Location = location;
             Name = "TableGruopBox_" + tableName;
             Size = size;
             TabStop = false;
-            Padding = new Padding(10, 10, 10, 15);
+            Padding = new Padding(10, 10, 10, 10);
 
             Controls.Add(treeViewTypes);
             Controls.Add(lblTableName);
@@ -71,12 +84,22 @@ namespace STS.Workbench.PreviewComponents
             for (int i = 0; i < dataTypes.Length; i++)
             {
                 if (dataTypes[i].IsPrimitive)
-                    node.Nodes.Add(dataTypes[i].ToString());
+                {
+                    TreeNode internalNode = new TreeNode(dataTypes[i].ToString());
+                    internalNode.ImageKey = "primitiveType";
+                    internalNode.SelectedImageKey = "primitiveType";
+                    node.Nodes.Add(internalNode);
+                }
 
                 if (dataTypes[i].IsSlotes)
                 {
                     foreach (var t in dataTypes[i])
-                        node.Nodes.Add(MakeTypeTree(t));
+                    {
+                        TreeNode internalNode = MakeTypeTree(t);
+                        internalNode.ImageKey = "userType";
+                        internalNode.SelectedImageKey = "userType";
+                        node.Nodes.Add(internalNode);
+                    }
                 }
             }
 
