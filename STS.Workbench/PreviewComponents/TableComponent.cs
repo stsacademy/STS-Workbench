@@ -11,8 +11,9 @@ namespace STS.Workbench.PreviewComponents
 {
     public class TableComponent : GroupBox
     {
-        private TreeView treeTypes;
-        private Label lbltableName;
+        private TreeView treeViewTypes;
+        private Label lblTableName;
+        private PictureBox pBoxIcon;
 
         public string TableName { get; set; }
         public Type[] TableTypes { get; set; }
@@ -22,38 +23,45 @@ namespace STS.Workbench.PreviewComponents
             InitializeComponents(cordinates, size, tableName, keyTypes, recordTypes);
         }
 
-        private void InitializeComponents(Point cordinates, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
+        private void InitializeComponents(Point location, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
             //Tree view (table types).
-            treeTypes = new TreeView();
-            treeTypes.Location = cordinates;
-            treeTypes.Name = "TableTreeTypes_" + tableName;
-            treeTypes.Width = size.Width;
-            treeTypes.Height = size.Height;
-            treeTypes.Dock = DockStyle.Fill;
-            treeTypes.Margin = new Padding(10, 30, 10, 15);
+            treeViewTypes = new TreeView();
+            treeViewTypes.Location = location;
+            treeViewTypes.Name = "TableTreeTypes_" + tableName;
+            treeViewTypes.Width = size.Width;
+            treeViewTypes.Height = size.Height;
+            treeViewTypes.Dock = DockStyle.Fill;
+
+            treeViewTypes.Nodes.Add(MakeTypeTree(keyTypes));
+            treeViewTypes.Nodes.Add(MakeTypeTree(recordTypes));
+            treeViewTypes.Nodes[0].Text = "Key types";
+            treeViewTypes.Nodes[1].Text = "Record types";
+            treeViewTypes.ExpandAll();
 
             //Label (table name).
-            lbltableName = new Label();
-            lbltableName.Location = cordinates;
-            lbltableName.Text = tableName;
-            lbltableName.Dock = DockStyle.Top;
-            lbltableName.Margin = new Padding(5, 5, 5, 5);
+            lblTableName = new Label();
+            lblTableName.Location = location;
+            lblTableName.Text = tableName;
+            lblTableName.Dock = DockStyle.Top;
 
-            treeTypes.Nodes.Add(MakeTypeTree(keyTypes));
-            treeTypes.Nodes.Add(MakeTypeTree(recordTypes));
-            treeTypes.Nodes[0].Text = "Key types";
-            treeTypes.Nodes[1].Text = "Record types";
+            //Picture box (icon)
+            Icon icon = new Icon(@"TABLE.ICO.ico");
+            pBoxIcon.Image = global::STS.Workbench.Properties.Resources.TABLE_ICO;
+            pBoxIcon.Location = location;
+            pBoxIcon.Name = "pictureBoxIcon" + tableName;
+            pBoxIcon.Size = new System.Drawing.Size(32, 32);
+            pBoxIcon.TabIndex = 3;
 
             //Group box.
-            Location = cordinates;
+            Location = location;
             Name = "TableGruopBox_" + tableName;
             Size = size;
             TabStop = false;
             Padding = new Padding(10, 10, 10, 15);
 
-            Controls.Add(treeTypes);
-            Controls.Add(lbltableName);
+            Controls.Add(treeViewTypes);
+            Controls.Add(lblTableName);
         }
 
         private TreeNode MakeTypeTree(params DataType[] dataTypes)
