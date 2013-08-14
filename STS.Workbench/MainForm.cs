@@ -18,6 +18,10 @@ namespace STS.Workbench
         public MainForm()
         {
             InitializeComponent();
+
+            TablesPreview tablesPreview = new TablesPreview();
+
+            Controls.Add(tablesPreview);
         }
 
         #region DragElemets
@@ -53,6 +57,8 @@ namespace STS.Workbench
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+
             Point cordinates = new Point(20, 20);
             Size size = new Size(160, 200);
             DataType[] keyType = new DataType[] { DataType.Slotes(DataType.Int32), DataType.Int32 };

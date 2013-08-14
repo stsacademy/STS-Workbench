@@ -41,7 +41,7 @@ namespace STS.Workbench
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.dataGridView1.Location = new System.Drawing.Point(870, 101);
+            this.dataGridView1.Location = new System.Drawing.Point(1130, 101);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(238, 149);
             this.dataGridView1.TabIndex = 0;
@@ -51,7 +51,7 @@ namespace STS.Workbench
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(264, 313);
+            this.button1.Location = new System.Drawing.Point(1180, 587);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 1;
@@ -65,7 +65,7 @@ namespace STS.Workbench
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.treeView1);
-            this.groupBox1.Location = new System.Drawing.Point(856, 352);
+            this.groupBox1.Location = new System.Drawing.Point(1164, 364);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(138, 144);
             this.groupBox1.TabIndex = 2;
@@ -74,7 +74,7 @@ namespace STS.Workbench
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(15, 19);
+            this.treeView1.Location = new System.Drawing.Point(14, 19);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(97, 98);
             this.treeView1.TabIndex = 0;
