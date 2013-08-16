@@ -18,7 +18,7 @@ namespace STS.Workbench.PreviewComponents
         public string TableName { get; set; }
         public DataType[] KeyTypes { get; set; }
         public DataType[] RecordTypes { get; set; }
-
+        
         public TableComponent(Point cordinates, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
             TableName = tableName;

@@ -14,12 +14,14 @@ namespace STS.Workbench
 {
     public partial class TablesPreview : UserControl
     {
+        private Dictionary<int, TableComponent> tables = new Dictionary<int, TableComponent>();
+        private TableAddComponent tableAddComponent = new TableAddComponent(new Point(3, 30));
+
         public TablesPreview()
         {
             InitializeComponent();
+            tableAddComponent.Hide();
         }
-
-        private Dictionary<int, TableComponent> tables = new Dictionary<int, TableComponent>();
 
         #region TableVisualization
 
@@ -59,7 +61,7 @@ namespace STS.Workbench
                 DataType[] keyType = new DataType[] { DataType.Slotes(DataType.Int32), DataType.Int32 };
                 DataType[] recType = new DataType[] { DataType.Int32, DataType.String };
 
-                TableComponent table = new TableComponent(PointToClient(MousePosition), size, tbxTableName.Text, keyType, recType);
+                TableComponent table = new TableComponent(PointToClient(MousePosition), size, tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
                 table.MouseDown += OnMouseDown;
                 table.MouseUp += OnMouseUp;
                 table.MouseMove += OnMouseMove;
@@ -67,7 +69,9 @@ namespace STS.Workbench
                 Controls.Add(table);
 
                 IsPlacing = false;
-                panelPlaceTable.Visible = false;
+
+                tableAddComponent.Hide();
+                tableAddComponent.Dispose();
             }
         }
 
@@ -76,7 +80,9 @@ namespace STS.Workbench
         private void btnAddTable_Click(object sender, EventArgs e)
         {
             IsPlacing = true;
-            panelPlaceTable.Visible = true;
+
+            tableAddComponent = new TableAddComponent(new Point(3, 30));
+            Controls.Add(tableAddComponent);
         }
     }
 }

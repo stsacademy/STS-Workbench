@@ -53,6 +53,9 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PreviewComponents\TableAddComponent.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PreviewComponents\TableComponent.cs">
       <SubType>Component</SubType>
     </Compile>

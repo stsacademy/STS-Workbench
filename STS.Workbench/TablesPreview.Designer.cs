@@ -28,20 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridView dataGridView2;
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.btnAddTable = new System.Windows.Forms.Button();
+            this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnDeleteTable = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panelPlaceTable = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tbxTableName = new System.Windows.Forms.TextBox();
-            this.Datatype = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Key = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panelPlaceTable.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // splitter1
@@ -53,19 +47,19 @@
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
-            // btnAddTable
+            // btnPlaceTable
             // 
-            this.btnAddTable.Location = new System.Drawing.Point(3, 3);
-            this.btnAddTable.Name = "btnAddTable";
-            this.btnAddTable.Size = new System.Drawing.Size(84, 23);
-            this.btnAddTable.TabIndex = 1;
-            this.btnAddTable.Text = "Add table";
-            this.btnAddTable.UseVisualStyleBackColor = true;
-            this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
+            this.btnPlaceTable.Location = new System.Drawing.Point(4, 3);
+            this.btnPlaceTable.Name = "btnPlaceTable";
+            this.btnPlaceTable.Size = new System.Drawing.Size(84, 23);
+            this.btnPlaceTable.TabIndex = 1;
+            this.btnPlaceTable.Text = "Place Table";
+            this.btnPlaceTable.UseVisualStyleBackColor = true;
+            this.btnPlaceTable.Click += new System.EventHandler(this.btnAddTable_Click);
             // 
             // btnDeleteTable
             // 
-            this.btnDeleteTable.Location = new System.Drawing.Point(93, 3);
+            this.btnDeleteTable.Location = new System.Drawing.Point(94, 3);
             this.btnDeleteTable.Name = "btnDeleteTable";
             this.btnDeleteTable.Size = new System.Drawing.Size(84, 23);
             this.btnDeleteTable.TabIndex = 2;
@@ -75,81 +69,43 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(132, 431);
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dataGridView1.Location = new System.Drawing.Point(190, 428);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(707, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(766, 150);
             this.dataGridView1.TabIndex = 3;
             // 
-            // panelPlaceTable
+            // Column1
             // 
-            this.panelPlaceTable.Controls.Add(dataGridView2);
-            this.panelPlaceTable.Controls.Add(this.label1);
-            this.panelPlaceTable.Controls.Add(this.tbxTableName);
-            this.panelPlaceTable.Location = new System.Drawing.Point(3, 32);
-            this.panelPlaceTable.Name = "panelPlaceTable";
-            this.panelPlaceTable.Size = new System.Drawing.Size(370, 160);
-            this.panelPlaceTable.TabIndex = 4;
-            this.panelPlaceTable.Visible = false;
+            this.Column1.HeaderText = "Column1";
+            this.Column1.Name = "Column1";
             // 
-            // label1
+            // Column2
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Table name:";
+            this.Column2.HeaderText = "Column2";
+            this.Column2.Name = "Column2";
             // 
-            // tbxTableName
+            // Column3
             // 
-            this.tbxTableName.Location = new System.Drawing.Point(75, 10);
-            this.tbxTableName.Name = "tbxTableName";
-            this.tbxTableName.Size = new System.Drawing.Size(100, 20);
-            this.tbxTableName.TabIndex = 5;
-            this.tbxTableName.Text = "table";
-            // 
-            // Datatype
-            // 
-            this.Datatype.HeaderText = "Datatype";
-            this.Datatype.Name = "Datatype";
-            this.Datatype.ReadOnly = true;
-            this.Datatype.Width = 135;
-            // 
-            // Key
-            // 
-            this.Key.HeaderText = "Key";
-            this.Key.Name = "Key";
-            this.Key.Width = 30;
-            // 
-            // dataGridView2
-            // 
-            dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Key,
-            this.Datatype});
-            dataGridView2.Location = new System.Drawing.Point(6, 36);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowHeadersVisible = false;
-            dataGridView2.Size = new System.Drawing.Size(169, 115);
-            dataGridView2.TabIndex = 6;
+            this.Column3.HeaderText = "Column3";
+            this.Column3.Name = "Column3";
             // 
             // TablesPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panelPlaceTable);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnDeleteTable);
-            this.Controls.Add(this.btnAddTable);
+            this.Controls.Add(this.btnPlaceTable);
             this.Controls.Add(this.splitter1);
+            this.Controls.Add(this.btnDeleteTable);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "TablesPreview";
             this.Size = new System.Drawing.Size(1189, 618);
             this.Click += new System.EventHandler(this.TablesPreview_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panelPlaceTable.ResumeLayout(false);
-            this.panelPlaceTable.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -157,13 +113,11 @@
         #endregion
 
         private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.Button btnAddTable;
+        private System.Windows.Forms.Button btnPlaceTable;
         private System.Windows.Forms.Button btnDeleteTable;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Panel panelPlaceTable;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbxTableName;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Key;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Datatype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
