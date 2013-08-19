@@ -25,9 +25,14 @@ namespace STS.Workbench.PreviewComponents
         public DataType[] KeyTypes { get { return GetDataTypes(treeViewTypes.Nodes[0]); } }
         public DataType[] RecordTypes { get { return GetDataTypes(treeViewTypes.Nodes[1]); } }
 
-        public TableAddComponent(Point location)
+        public TableAddComponent()
         {
-            InitalizeComponents(location);
+            InitalizeComponents(new Point(0, 0));
+        }
+
+        public void ResetFields()
+        {
+            InitalizeComponents(new Point(0, 0));
         }
 
         private void treeViewTypes_AfterSelect(object sender, EventArgs e)
@@ -121,14 +126,11 @@ namespace STS.Workbench.PreviewComponents
 
         private void InitalizeComponents(Point location)
         {
-            //Panel
-            Text = "Set new table.";
+            //Group box
             Location = location;
             Name = "panelPlaceTable";
             Size = new Size(210, 250);
             Padding = new Padding(2);
-
-            location = new Point(location.X + 5, location.Y - 20);
 
             //Label table name
             lbltableName.AutoSize = true;
@@ -158,6 +160,10 @@ namespace STS.Workbench.PreviewComponents
 
             treeViewTypes.Nodes.Add("keyTypes", "Key types", "imgKey", "imgKey");
             treeViewTypes.Nodes.Add("recordTypes", "Record types", "imgRecord", "imgRecord");
+
+            treeViewTypes.Nodes[0].Nodes.Add("Int32", "Int32", "imgPrimitiveType", "imgPrimitiveType");
+            treeViewTypes.Nodes[1].Nodes.Add("String", "String", "imgPrimitiveType", "imgPrimitiveType");
+            treeViewTypes.ExpandAll();
 
             treeViewTypes.AfterSelect += treeViewTypes_AfterSelect;
 

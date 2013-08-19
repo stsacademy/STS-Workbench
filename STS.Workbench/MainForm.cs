@@ -20,7 +20,6 @@ namespace STS.Workbench
             InitializeComponent();
 
             TablesPreview tablesPreview = new TablesPreview();
-
             Controls.Add(tablesPreview);
         }
 
@@ -54,26 +53,5 @@ namespace STS.Workbench
         }
 
         #endregion
-        TableAddComponent tableAdd;
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Point cordinates = new Point(10, 10);
-            Size size = new Size(160, 200);
-            DataType[] keyType = new DataType[] { DataType.Slotes(DataType.Int32), DataType.Int32 };
-            DataType[] recType = new DataType[] { DataType.Int32, DataType.String };
-
-            tableAdd = new TableAddComponent(cordinates);
-            tableAdd.MouseUp += MainForm_MouseUp;
-            tableAdd.MouseDown += MainForm_MouseDown;
-            tableAdd.MouseMove += MainForm_MouseMove;
-
-            Controls.Add(tableAdd);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var x = tableAdd.KeyTypes;
-        }
     }
 }

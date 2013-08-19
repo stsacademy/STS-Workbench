@@ -15,12 +15,13 @@ namespace STS.Workbench
     public partial class TablesPreview : UserControl
     {
         private Dictionary<int, TableComponent> tables = new Dictionary<int, TableComponent>();
-        private TableAddComponent tableAddComponent = new TableAddComponent(new Point(3, 30));
+        public Control LastClickedTable { get; private set; }
 
         public TablesPreview()
         {
             InitializeComponent();
-            tableAddComponent.Hide();
+
+            splitContainer4.Panel1Collapsed = true;
         }
 
         #region TableVisualization
@@ -53,36 +54,42 @@ namespace STS.Workbench
             }
         }
 
-        private void TablesPreview_Click(object sender, EventArgs e)
+        #endregion
+
+        private void btnPlaceTable_Click(object sender, EventArgs e)
+        {
+            if (IsPlacing)
+                return;
+
+            IsPlacing = true;
+            splitContainer4.Panel1Collapsed = false;
+        }
+
+        private void btnRemoveTable_Click(object sender, EventArgs e)
+        {
+            ucrlTablesField.Controls.Remove(LastClickedTable);
+        }
+
+        private void ucrlTablesField_Click(object sender, EventArgs e)
         {
             if (IsPlacing)
             {
-                Size size = new Size(160, 200);
-                DataType[] keyType = new DataType[] { DataType.Slotes(DataType.Int32), DataType.Int32 };
-                DataType[] recType = new DataType[] { DataType.Int32, DataType.String };
-
-                TableComponent table = new TableComponent(PointToClient(MousePosition), size, tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
+                TableComponent table = new TableComponent(ucrlTablesField.PointToClient(MousePosition), new Size(160, 200), tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
                 table.MouseDown += OnMouseDown;
                 table.MouseUp += OnMouseUp;
                 table.MouseMove += OnMouseMove;
+                table.Click += table_Click;
 
-                Controls.Add(table);
+                ucrlTablesField.Controls.Add(table);
 
                 IsPlacing = false;
-
-                tableAddComponent.Hide();
-                tableAddComponent.Dispose();
+                splitContainer4.Panel1Collapsed = true;
             }
         }
 
-        #endregion
-
-        private void btnAddTable_Click(object sender, EventArgs e)
+        private void table_Click(object sender, EventArgs e)
         {
-            IsPlacing = true;
-
-            tableAddComponent = new TableAddComponent(new Point(3, 30));
-            Controls.Add(tableAddComponent);
+            LastClickedTable = (Control)sender;
         }
     }
 }

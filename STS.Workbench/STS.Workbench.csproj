@@ -59,6 +59,12 @@
     <Compile Include="PreviewComponents\TableComponent.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="PreviewComponents\TablesField.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PreviewComponents\TablesField.Designer.cs">
+      <DependentUpon>TablesField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\Column.cs" />
@@ -82,6 +88,9 @@
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewComponents\TablesField.resx">
+      <DependentUpon>TablesField.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
