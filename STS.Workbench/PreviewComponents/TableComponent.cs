@@ -25,15 +25,15 @@ namespace STS.Workbench.PreviewComponents
             KeyTypes = keyTypes;
             RecordTypes = recordTypes;
 
-            InitializeComponents(cordinates, size, tableName, keyTypes, recordTypes);
+            InitializeComponents(cordinates, size);
         }
 
-        private void InitializeComponents(Point location, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
+        private void InitializeComponents(Point location, Size size)
         {
             //Tree view (table types).
             treeViewTypes = new TreeView();
             treeViewTypes.Location = location;
-            treeViewTypes.Name = "TableTreeTypes_" + tableName;
+            treeViewTypes.Name = "TableTreeTypes_" + TableName;
             treeViewTypes.Width = size.Width;
             treeViewTypes.Height = size.Height;
             treeViewTypes.Dock = DockStyle.Fill;
@@ -44,12 +44,12 @@ namespace STS.Workbench.PreviewComponents
             treeViewTypes.ImageList.Images.Add("primitiveType", new Icon(global::STS.Workbench.Properties.Resources.empty, 16, 16));
             treeViewTypes.ImageList.Images.Add("userType", new Icon(global::STS.Workbench.Properties.Resources.userType, 16, 16));
 
-            treeViewTypes.Nodes.Add(MakeTypeTree(keyTypes));
+            treeViewTypes.Nodes.Add(MakeTypeTree(KeyTypes));
             treeViewTypes.Nodes[0].Text = "Key types";
             treeViewTypes.Nodes[0].ImageKey = "key";
             treeViewTypes.Nodes[0].SelectedImageKey = "key";
 
-            treeViewTypes.Nodes.Add(MakeTypeTree(recordTypes));
+            treeViewTypes.Nodes.Add(MakeTypeTree(RecordTypes));
             treeViewTypes.Nodes[1].Text = "Record types";
             treeViewTypes.Nodes[1].ImageKey = "record";
             treeViewTypes.Nodes[1].SelectedImageKey = "record";
@@ -62,13 +62,13 @@ namespace STS.Workbench.PreviewComponents
             lblTableName.Image = new Icon(global::STS.Workbench.Properties.Resources.table, 16, 16).ToBitmap();
             lblTableName.ImageAlign = ContentAlignment.MiddleLeft;
             lblTableName.TextAlign = ContentAlignment.MiddleCenter;
-            lblTableName.Text = tableName;
+            lblTableName.Text = TableName;
             lblTableName.Font = new Font(lblTableName.Font.FontFamily.Name, 10, FontStyle.Bold);
             lblTableName.Dock = DockStyle.Top;
 
             //Group box.
             Location = location;
-            Name = "TableGruopBox_" + tableName;
+            Name = "TableGruopBox_" + TableName;
             Size = size;
             TabStop = false;
             Padding = new Padding(10, 10, 10, 10);

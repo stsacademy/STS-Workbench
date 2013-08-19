@@ -29,7 +29,7 @@ namespace STS.Workbench.PreviewComponents
         {
             InitalizeComponents(location);
         }
-        
+
         private void treeViewTypes_AfterSelect(object sender, EventArgs e)
         {
             string imgKey = treeViewTypes.SelectedNode.ImageKey;
