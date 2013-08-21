@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormExtensions.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,14 +57,17 @@
     <Compile Include="PreviewComponents\TableAddComponent.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PreviewComponents\TableComponent.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="PreviewComponents\TablesField.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="PreviewComponents\TablesField.Designer.cs">
       <DependentUpon>TablesField.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PreviewComponents\TableComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PreviewComponents\TableComponent.Designer.cs">
+      <DependentUpon>TableComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PreviewComponents\TablesField.resx">
       <DependentUpon>TablesField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PreviewComponents\TableComponent.resx">
+      <DependentUpon>TableComponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -120,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\key.ico" />
+    <None Include="Resources\Move.ico" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />
     <Content Include="Resources\table.ico" />

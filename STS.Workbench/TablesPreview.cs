@@ -14,8 +14,8 @@ namespace STS.Workbench
 {
     public partial class TablesPreview : UserControl
     {
-        private Dictionary<int, TableComponent> tables = new Dictionary<int, TableComponent>();
-        public Control LastClickedTable { get; private set; }
+        private Dictionary<string, TableComponent> tables = new Dictionary<string, TableComponent>();
+        public TableComponent ActiveTable { get; private set; }
 
         public TablesPreview()
         {
@@ -48,9 +48,12 @@ namespace STS.Workbench
         {
             if (IsMoving && e.Button == MouseButtons.Left)
             {
-                Control control = (Control)sender;
-                control.Left += e.X - MousePoint.X;
-                control.Top += e.Y - MousePoint.Y;
+                Control control = ((Control)sender).Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent;
+                if (control.GetType() == typeof(TableComponent))
+                {
+                    control.Left += e.X - MousePoint.X;
+                    control.Top += e.Y - MousePoint.Y;
+                }
             }
         }
 
@@ -58,38 +61,105 @@ namespace STS.Workbench
 
         private void btnPlaceTable_Click(object sender, EventArgs e)
         {
-            if (IsPlacing)
-                return;
-
-            IsPlacing = true;
-            splitContainer4.Panel1Collapsed = false;
+            if (!IsPlacing)
+            {
+                tableAddComponent.ResetFields();
+                splitContainer4.Panel1Collapsed = false;
+                IsPlacing = true;
+            }
         }
 
         private void btnRemoveTable_Click(object sender, EventArgs e)
         {
-            ucrlTablesField.Controls.Remove(LastClickedTable);
+            if (ActiveTable != null)
+                RemoveTable(ActiveTable);
+        }
+
+        private void btnCancelTable_Click(object sender, EventArgs e)
+        {
+            IsPlacing = false;
+            splitContainer4.Panel1Collapsed = true;
+        }
+
+        private void AddTable(TableComponent table)
+        {
+            tables.Add(table.TableName, table);
+            ucrlTablesField.Controls.Add(table);
+            treeViewTablesCatalog.Nodes[0].Nodes.Add(table.TableName, table.TableName);
+            treeViewTablesCatalog.ExpandAll();
+        }
+
+        private void RemoveTable(TableComponent table)
+        {
+            ucrlTablesField.Controls.Remove(table);
+            tables.Remove(table.TableName);
+            treeViewTablesCatalog.Nodes[0].Nodes.RemoveByKey(table.TableName);
         }
 
         private void ucrlTablesField_Click(object sender, EventArgs e)
         {
             if (IsPlacing)
             {
-                TableComponent table = new TableComponent(ucrlTablesField.PointToClient(MousePosition), new Size(160, 200), tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
-                table.MouseDown += OnMouseDown;
-                table.MouseUp += OnMouseUp;
-                table.MouseMove += OnMouseMove;
-                table.Click += table_Click;
+                TableComponent t;
+                if (tables.TryGetValue(tableAddComponent.TableName, out t))
+                {
+                    MessageBox.Show(String.Format("'{0}', alredy exist!", tableAddComponent.TableName), "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
-                ucrlTablesField.Controls.Add(table);
+                TableComponent table = new TableComponent(tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
+                table.Location = ucrlTablesField.PointToClient(MousePosition);
 
-                IsPlacing = false;
+                table.pbMoveIcon.MouseDown += OnMouseDown;
+                table.pbMoveIcon.MouseUp += OnMouseUp;
+                table.pbMoveIcon.MouseMove += OnMouseMove;
+
+                table.pbTable.Click += table_Click;
+                AddTable(table);
+
                 splitContainer4.Panel1Collapsed = true;
+                IsPlacing = false;
             }
         }
 
         private void table_Click(object sender, EventArgs e)
         {
-            LastClickedTable = (Control)sender;
+            var cntrl = ((Control)sender).Parent.Parent.Parent.Parent.Parent.Parent.Parent;
+            var table = (TableComponent)cntrl;
+
+            var node = treeViewTablesCatalog.Nodes[0].Nodes.Find(table.TableName, true)[0];
+            treeViewTablesCatalog.SelectedNode = node;
+
+            MarkTable(table);
+        }
+
+        private void treeViewTablesCatalog_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            treeViewTablesCatalog.Nodes[0].BackColor = Color.White;
+
+            if (treeViewTablesCatalog.Nodes[0] == treeViewTablesCatalog.SelectedNode)
+                return;
+
+            var cntrl = ucrlTablesField.FindControlByName(treeViewTablesCatalog.SelectedNode.Text, ControlType.UserControl);
+            var table = (TableComponent)cntrl;
+
+            MarkTable(table);
+        }
+
+        private void MarkTable(TableComponent table)
+        {
+            foreach (var n in treeViewTablesCatalog.Nodes[0].Nodes)
+                ((TreeNode)n).BackColor = Color.White;
+
+            treeViewTablesCatalog.SelectedNode.BackColor = SystemColors.Highlight;
+
+            if (ActiveTable != null)
+                ActiveTable.BackColor = SystemColors.ControlLight;
+
+            table.BackColor = Color.FromArgb(135, 206, 250);
+            table.BringToFront();
+
+            ActiveTable = table;
         }
     }
 }

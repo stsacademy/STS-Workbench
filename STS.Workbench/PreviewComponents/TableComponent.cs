@@ -1,42 +1,38 @@
-﻿using STSdb4.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
-using System.IO;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using STSdb4.Data;
 
 namespace STS.Workbench.PreviewComponents
 {
-    public class TableComponent : GroupBox
+    public partial class TableComponent : UserControl
     {
-        private TreeView treeViewTypes;
-        private Label lblTableName;
+        public string TableName { get; private set; }
+        public DataType[] KeyTypes { get; private set; }
+        public DataType[] RecordTypes { get; private set; }
 
-        public string TableName { get; set; }
-        public DataType[] KeyTypes { get; set; }
-        public DataType[] RecordTypes { get; set; }
-        
-        public TableComponent(Point cordinates, Size size, string tableName, DataType[] keyTypes, DataType[] recordTypes)
+        public TableComponent()
+        {
+            InitializeComponent();
+        }
+
+        public TableComponent(string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
             TableName = tableName;
             KeyTypes = keyTypes;
             RecordTypes = recordTypes;
 
-            InitializeComponents(cordinates, size);
-        }
+            InitializeComponent();
 
-        private void InitializeComponents(Point location, Size size)
-        {
-            //Tree view (table types).
-            treeViewTypes = new TreeView();
-            treeViewTypes.Location = location;
-            treeViewTypes.Name = "TableTreeTypes_" + TableName;
-            treeViewTypes.Width = size.Width;
-            treeViewTypes.Height = size.Height;
-            treeViewTypes.Dock = DockStyle.Fill;
+            //settings
+            lblTableName.Text = TableName;
+            Name = TableName;
 
             treeViewTypes.ImageList = new ImageList();
             treeViewTypes.ImageList.Images.Add("key", new Icon(global::STS.Workbench.Properties.Resources.key, 16, 16));
@@ -55,26 +51,6 @@ namespace STS.Workbench.PreviewComponents
             treeViewTypes.Nodes[1].SelectedImageKey = "record";
 
             treeViewTypes.ExpandAll();
-
-            //Label (table name).
-            lblTableName = new Label();
-            lblTableName.Location = location;
-            lblTableName.Image = new Icon(global::STS.Workbench.Properties.Resources.table, 16, 16).ToBitmap();
-            lblTableName.ImageAlign = ContentAlignment.MiddleLeft;
-            lblTableName.TextAlign = ContentAlignment.MiddleCenter;
-            lblTableName.Text = TableName;
-            lblTableName.Font = new Font(lblTableName.Font.FontFamily.Name, 10, FontStyle.Bold);
-            lblTableName.Dock = DockStyle.Top;
-
-            //Group box.
-            Location = location;
-            Name = "TableGruopBox_" + TableName;
-            Size = size;
-            TabStop = false;
-            Padding = new Padding(10, 10, 10, 10);
-
-            Controls.Add(treeViewTypes);
-            Controls.Add(lblTableName);
         }
 
         private TreeNode MakeTypeTree(params DataType[] dataTypes)

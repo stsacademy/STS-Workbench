@@ -53,5 +53,12 @@ namespace STS.Workbench
         }
 
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TableComponent cntr = new TableComponent();
+            cntr.Location = new Point(1200, 500);
+            Controls.Add(cntr);
+        }
     }
 }
