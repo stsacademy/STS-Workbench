@@ -32,7 +32,17 @@ namespace STS.Workbench.PreviewComponents
 
         public void ResetFields()
         {
-            InitalizeComponents(new Point(0, 0));
+            //table name
+            tbxTableName.Text = "table";
+
+            //tree view types
+            treeViewTypes.Nodes.Clear();
+            treeViewTypes.Nodes.Add("keyTypes", "Key types", "imgKey", "imgKey");
+            treeViewTypes.Nodes.Add("recordTypes", "Record types", "imgRecord", "imgRecord");
+
+            treeViewTypes.Nodes[0].Nodes.Add("Int32", "Int32", "imgPrimitiveType", "imgPrimitiveType");
+            treeViewTypes.Nodes[1].Nodes.Add("String", "String", "imgPrimitiveType", "imgPrimitiveType");
+            treeViewTypes.ExpandAll();
         }
 
         private void treeViewTypes_AfterSelect(object sender, EventArgs e)
@@ -41,6 +51,8 @@ namespace STS.Workbench.PreviewComponents
             btnAdd.Enabled = imgKey == "imgKey" || imgKey == "imgRecord" || imgKey == "imgUserType";
 
             btnRemove.Enabled = treeViewTypes.SelectedNode.Level > 0;
+
+            Console.WriteLine(treeViewTypes.SelectedNode.Text);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

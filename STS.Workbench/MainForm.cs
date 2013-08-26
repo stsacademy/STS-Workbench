@@ -19,7 +19,7 @@ namespace STS.Workbench
         {
             InitializeComponent();
 
-            TablesPreview tablesPreview = new TablesPreview();
+            TablesPreview tablesPreview = new TablesPreview(null);
             Controls.Add(tablesPreview);
         }
 

@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="STSdb4">
-      <HintPath>..\..\..\STSdb4\STSdb4\bin\Release\STSdb4.dll</HintPath>
+    <Reference Include="STSdb4, Version=4.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\plamen.dimitrov\Desktop\STSdb4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -48,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="Readers\IConnection.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +73,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\STSDbConnection.cs" />
     <Compile Include="Schema\Column.cs" />
     <Compile Include="Schema\DataTable.cs" />
     <Compile Include="Schema\Row.cs" />

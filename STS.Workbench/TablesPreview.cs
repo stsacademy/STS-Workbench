@@ -17,14 +17,17 @@ namespace STS.Workbench
         private Dictionary<string, TableComponent> tables = new Dictionary<string, TableComponent>();
         public TableComponent ActiveTable { get; private set; }
 
-        public TablesPreview()
-        {
-            InitializeComponent();
+        public readonly IConnection DbConnection;
 
+        public TablesPreview(IConnection dbConnection)
+        {
+            DbConnection = dbConnection;
+
+            InitializeComponent();
             splitContainer4.Panel1Collapsed = true;
         }
 
-        #region TableVisualization
+        #region TableMoves
 
         private Point MousePoint = new Point();
         private bool IsMoving = false;
@@ -83,10 +86,20 @@ namespace STS.Workbench
 
         private void AddTable(TableComponent table)
         {
+            DbConnection.OpenTable(table.Name, table.KeyTypes, table.RecordTypes);
+
             tables.Add(table.TableName, table);
             ucrlTablesField.Controls.Add(table);
             treeViewTablesCatalog.Nodes[0].Nodes.Add(table.TableName, table.TableName);
             treeViewTablesCatalog.ExpandAll();
+
+            //set events
+            table.pbMoveIcon.MouseDown += OnMouseDown;
+            table.pbMoveIcon.MouseUp += OnMouseUp;
+            table.pbMoveIcon.MouseMove += OnMouseMove;
+
+            table.pbTable.Click += table_Click;
+            table.pbTable.MouseDoubleClick += table_DoubleClick;
         }
 
         private void RemoveTable(TableComponent table)
@@ -110,11 +123,6 @@ namespace STS.Workbench
                 TableComponent table = new TableComponent(tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
                 table.Location = ucrlTablesField.PointToClient(MousePosition);
 
-                table.pbMoveIcon.MouseDown += OnMouseDown;
-                table.pbMoveIcon.MouseUp += OnMouseUp;
-                table.pbMoveIcon.MouseMove += OnMouseMove;
-
-                table.pbTable.Click += table_Click;
                 AddTable(table);
 
                 splitContainer4.Panel1Collapsed = true;
@@ -131,6 +139,11 @@ namespace STS.Workbench
             treeViewTablesCatalog.SelectedNode = node;
 
             MarkTable(table);
+        }
+
+        private void table_DoubleClick(object sender, EventArgs e)
+        {
+
         }
 
         private void treeViewTablesCatalog_AfterSelect(object sender, TreeViewEventArgs e)
