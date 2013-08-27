@@ -1,4 +1,5 @@
 ﻿using STS.Workbench.PreviewComponents;
+using STS.Workbench.Readers;
 using STSdb4.Data;
 using STSdb4.Database;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +21,29 @@ namespace STS.Workbench
         {
             InitializeComponent();
 
-            TablesPreview tablesPreview = new TablesPreview(null);
+            string sys = "stsdb4.sys";
+            string dat = "stsdb4.data";
+
+            File.Delete(sys);
+            File.Delete(dat);
+
+            IStorageEngine engine = STSdb.FromFile(sys, dat);
+
+            var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
+            for (int i = 0; i < 3; i++)
+                index1[i] = "gosho " + i;
+
+            var index2 = engine.OpenXIndex<int, int>("Tabldsfgsdfsde2");
+            for (int i = 0; i < 15; i++)
+                index2[i] = i + i;
+
+            index1.Flush();
+            index2.Flush();
+            engine.Commit();
+
+            STSDbConnection STSdbConnection = new STSDbConnection(engine);
+
+            TablesPreview tablesPreview = new TablesPreview(STSdbConnection);
             Controls.Add(tablesPreview);
         }
 

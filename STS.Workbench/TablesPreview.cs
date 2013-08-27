@@ -14,17 +14,39 @@ namespace STS.Workbench
 {
     public partial class TablesPreview : UserControl
     {
+        private Point LastTableLocation = new Point(40, 40);
         private Dictionary<string, TableComponent> tables = new Dictionary<string, TableComponent>();
-        public TableComponent ActiveTable { get; private set; }
+
+        private List<DataGridViewRow> addedRows = new List<DataGridViewRow>();
+        private List<DataGridViewRow> removedRows = new List<DataGridViewRow>();
 
         public readonly IConnection DbConnection;
 
+        public TableComponent ActiveTable { get; private set; }
+        public ITable OpenedTable { get; private set; }
+
         public TablesPreview(IConnection dbConnection)
         {
+            if (dbConnection == null)
+                throw new ArgumentNullException("dbConnection");
+
             DbConnection = dbConnection;
 
             InitializeComponent();
             splitContainer4.Panel1Collapsed = true;
+
+            PreviewScheme();
+        }
+
+        private void PreviewScheme()
+        {
+            foreach (var table in DbConnection.GetSchema())
+            {
+                TableComponent tableComponent = new TableComponent(table.TableName, table.KeyTypes, table.RecordTypes);
+                tableComponent.Location = LastTableLocation;
+                LastTableLocation = new Point(LastTableLocation.X + 200, LastTableLocation.Y);
+                AddTable(tableComponent);
+            }
         }
 
         #region TableMoves
@@ -143,7 +165,46 @@ namespace STS.Workbench
 
         private void table_DoubleClick(object sender, EventArgs e)
         {
+            var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
+            OpenedTable = table;
+            VisualizeData(table);
+        }
 
+        private void VisualizeData(ITable table)
+        {
+            grdViewTableRecords.Rows.Clear();
+            grdViewTableRecords.Columns.Clear();
+
+            int keyTypesLen = table.KeyTypes.Length;
+            int recTypesLen = table.RecordTypes.Length;
+
+            grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
+
+            List<object> types = new List<object>();
+            List<string> keyTypes = new List<string>();
+            List<string> recTypes = new List<string>();
+
+            foreach (var keyType in table.KeyTypes)
+                keyTypes.Add("(key) " + keyType);
+
+            foreach (var recType in table.RecordTypes)
+                keyTypes.Add("(record) " + recType);
+
+            types.AddRange(keyTypes);
+            types.AddRange(recTypes);
+            grdViewTableRecords.Rows.Add(types.ToArray());
+            grdViewTableRecords.Rows[0].ReadOnly = true;
+            foreach (var cell in grdViewTableRecords.Rows[0].Cells)
+                ((DataGridViewCell)cell).Style.BackColor = Color.LightBlue;
+
+            foreach (var kv in table.Read())
+            {
+                List<object> list = new List<object>();
+                list.AddRange(kv.Key);
+                list.AddRange(kv.Value);
+
+                grdViewTableRecords.Rows.Add(list.ToArray());
+            }
         }
 
         private void treeViewTablesCatalog_AfterSelect(object sender, TreeViewEventArgs e)
@@ -173,6 +234,36 @@ namespace STS.Workbench
             table.BringToFront();
 
             ActiveTable = table;
+        }
+
+        private void grdViewTableRecords_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            addedRows.Add(grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1]);
+        }
+
+        private void btnSaveRow_Click(object sender, EventArgs e)
+        {
+            int keyCount = OpenedTable.KeyTypes.Length;
+            int recCount = OpenedTable.RecordTypes.Length;
+
+            object[] key = new object[keyCount];
+            object[] rec = new object[recCount];
+
+            //TODO objectString to IDAta transofmer
+            foreach (var row in addedRows)
+            {
+                for (int i = 0; i < row.Cells.Count; i++)
+                {
+                    for (int j = 0; j < keyCount; j++)
+                        key[j] = row.Cells[j].Value;
+
+                    int recCounter = 0;
+                    for (int j = keyCount; j < keyCount + recCount; j++)
+                        rec[recCounter++] = row.Cells[j].Value;
+
+                    OpenedTable.Insert(key, rec);
+                }
+            }
         }
     }
 }

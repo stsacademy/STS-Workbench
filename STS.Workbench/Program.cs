@@ -16,39 +16,39 @@ namespace STS.Workbench
         [STAThread]
         static void Main()
         {
-            List<Schema.Column> columns = new List<Schema.Column>();
+            //List<Schema.Column> columns = new List<Schema.Column>();
 
-            columns.Add(new Schema.Column("Column1", DataType.Int32, true));
-            columns.Add(new Schema.Column("Column2", DataType.String, false));
+            //columns.Add(new Schema.Column("Column1", DataType.Int32, true));
+            //columns.Add(new Schema.Column("Column2", DataType.String, false));
 
-            Schema.SchemaTable tab = new Schema.SchemaTable("MyDatabase", false, "MyPath");
+            //Schema.SchemaTable tab = new Schema.SchemaTable("MyDatabase", false, "MyPath");
 
-            var index = tab.CreateTable("MyTable", columns.ToArray());
+            //var index = tab.CreateTable("MyTable", columns.ToArray());
 
-            index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho" }));
-            index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho1" }));
+            //index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho" }));
+            //index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho1" }));
             
-            using (IStorageEngine engine = STSdb.FromFile("stsdb4.sys", "stsdb4.dat"))
-            {
-                IIndex<int, string> table = engine.OpenXIndex<int, string>("table");
+            //using (IStorageEngine engine = STSdb.FromFile("stsdb4.sys", "stsdb4.dat"))
+            //{
+            //    IIndex<int, string> table = engine.OpenXIndex<int, string>("table");
 
-                for (int i = 0; i < 1000000; i++)
-                {
-                    table[i] = i.ToString();
-                }
+            //    for (int i = 0; i < 1000000; i++)
+            //    {
+            //        table[i] = i.ToString();
+            //    }
 
-                table.Flush();
-                engine.Commit();
-            }
+            //    table.Flush();
+            //    engine.Commit();
+            //}
 
 
-            STS_Data_Adapter.STSConnection connection = new STS_Data_Adapter.STSConnection(@"Provider=STSDb.4.0;System Source=D:\stsdb4.sys;Data Source=D:\stsdb4.dat");
+            //STS_Data_Adapter.STSConnection connection = new STS_Data_Adapter.STSConnection(@"Provider=STSDb.4.0;System Source=D:\stsdb4.sys;Data Source=D:\stsdb4.dat");
 
-            connection.Open();
-            connection.State.ToString();
+            //connection.Open();
+            //connection.State.ToString();
 
-            connection.Close();
-            connection.State.ToString();
+            //connection.Close();
+            //connection.State.ToString();
 
 
             Application.EnableVisualStyles();

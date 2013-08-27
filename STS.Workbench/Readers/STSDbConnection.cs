@@ -36,14 +36,18 @@ namespace STS.Workbench.Readers
 
     public class STSDbTable : ITable
     {
+        private string tableName;
+        private DataType[] keyTypes;
+        private DataType[] recordTypes;
+
         private DataToObjectsTransformer keyTransfomer;
         private DataToObjectsTransformer recordTransformer;
 
         public int PageCapacity { get { return 1000; } }
 
-        public string TableName { get { return XIndex.Locator.Name; } }
-        public DataType[] KeyTypes { get { return XIndex.Locator.KeyDescriptor.SlotTypes; } }
-        public DataType[] RecordTypes { get { return XIndex.Locator.RecordDescriptor.SlotTypes; } }
+        public string TableName { get { return tableName; } }
+        public DataType[] KeyTypes { get { return keyTypes; } }
+        public DataType[] RecordTypes { get { return recordTypes; } }
 
         public IIndex<IData, IData> XIndex { get; private set; }
 
@@ -52,13 +56,23 @@ namespace STS.Workbench.Readers
             if (index == null)
                 throw new ArgumentException("storageEngine == null");
 
-            keyTransfomer = new DataToObjectsTransformer(index.Locator.KeyDescriptor.SlotTypes);
-            recordTransformer = new DataToObjectsTransformer(index.Locator.RecordDescriptor.SlotTypes);
+            XIndex = index;
+
+            tableName = XIndex.Locator.Name;
+            keyTypes = XIndex.Locator.KeyDescriptor.SlotTypes;
+            recordTypes = XIndex.Locator.RecordDescriptor.SlotTypes;
+
+            keyTransfomer = new DataToObjectsTransformer(XIndex.Locator.KeyDescriptor.SlotTypes);
+            recordTransformer = new DataToObjectsTransformer(XIndex.Locator.RecordDescriptor.SlotTypes);
         }
 
         public void Insert(object[] key, object[] record)
         {
-            XIndex[keyTransfomer.ToIData(key)] = recordTransformer.ToIData(record);
+            DataToStringTransformer keyDataTostring = new DataToStringTransformer(KeyTypes, new char[] { ',' });
+            DataToStringTransformer recDataTostring = new DataToStringTransformer(RecordTypes, new char[] { ',' });
+            
+
+            XIndex[keyTransfomer.ToIData(key)] = recordTransformer.ToIData(keyTransfomer.ToIData(key));
         }
 
         public object[] Find(object[] key)

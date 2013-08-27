@@ -29,24 +29,21 @@ namespace STS.Workbench
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("myDb");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
             this.grdViewTableRecords = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.ucrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnSaveRow = new System.Windows.Forms.Button();
             this.btnRemoveTable = new System.Windows.Forms.Button();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnCancelTable = new System.Windows.Forms.Button();
             this.SplitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
+            this.ucrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
             this.splitContainerTablesPreview.Panel1.SuspendLayout();
@@ -76,40 +73,25 @@ namespace STS.Workbench
             // grdViewTableRecords
             // 
             this.grdViewTableRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdViewTableRecords.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
+            this.grdViewTableRecords.ColumnHeadersVisible = false;
             this.grdViewTableRecords.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdViewTableRecords.Location = new System.Drawing.Point(0, 0);
             this.grdViewTableRecords.Name = "grdViewTableRecords";
+            this.grdViewTableRecords.RowHeadersVisible = false;
+            this.grdViewTableRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.grdViewTableRecords.Size = new System.Drawing.Size(1125, 140);
             this.grdViewTableRecords.TabIndex = 3;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Column1";
-            this.Column1.Name = "Column1";
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Column2";
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Column3";
-            this.Column3.Name = "Column3";
+            this.grdViewTableRecords.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grdViewTableRecords_UserAddedRow);
             // 
             // treeViewTablesCatalog
             // 
             this.treeViewTablesCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTablesCatalog.Location = new System.Drawing.Point(3, 3);
             this.treeViewTablesCatalog.Name = "treeViewTablesCatalog";
-            treeNode2.Name = "trvCatalogTree";
-            treeNode2.Text = "myDb";
+            treeNode1.Name = "trvCatalogTree";
+            treeNode1.Text = "myDb";
             this.treeViewTablesCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeViewTablesCatalog.Size = new System.Drawing.Size(193, 151);
             this.treeViewTablesCatalog.TabIndex = 4;
             this.treeViewTablesCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTablesCatalog_AfterSelect);
@@ -156,15 +138,6 @@ namespace STS.Workbench
             this.splitContainer4.SplitterDistance = 257;
             this.splitContainer4.TabIndex = 8;
             // 
-            // tableAddComponent
-            // 
-            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
-            this.tableAddComponent.Name = "tableAddComponent";
-            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
-            this.tableAddComponent.Size = new System.Drawing.Size(190, 244);
-            this.tableAddComponent.TabIndex = 0;
-            this.tableAddComponent.TabStop = false;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -201,16 +174,6 @@ namespace STS.Workbench
             this.splitContainer1.SplitterDistance = 445;
             this.splitContainer1.TabIndex = 4;
             // 
-            // ucrlTablesField
-            // 
-            this.ucrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ucrlTablesField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.ucrlTablesField.Location = new System.Drawing.Point(3, 3);
-            this.ucrlTablesField.Name = "ucrlTablesField";
-            this.ucrlTablesField.Size = new System.Drawing.Size(1405, 623);
-            this.ucrlTablesField.TabIndex = 0;
-            this.ucrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
-            // 
             // splitContainer3
             // 
             this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -240,6 +203,7 @@ namespace STS.Workbench
             this.btnSaveRow.TabIndex = 0;
             this.btnSaveRow.Text = "Save";
             this.btnSaveRow.UseVisualStyleBackColor = true;
+            this.btnSaveRow.Click += new System.EventHandler(this.btnSaveRow_Click);
             // 
             // btnRemoveTable
             // 
@@ -291,6 +255,25 @@ namespace STS.Workbench
             this.SplitContainerMain.SplitterDistance = 37;
             this.SplitContainerMain.TabIndex = 9;
             // 
+            // tableAddComponent
+            // 
+            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
+            this.tableAddComponent.Name = "tableAddComponent";
+            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
+            this.tableAddComponent.Size = new System.Drawing.Size(190, 244);
+            this.tableAddComponent.TabIndex = 0;
+            this.tableAddComponent.TabStop = false;
+            // 
+            // ucrlTablesField
+            // 
+            this.ucrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ucrlTablesField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ucrlTablesField.Location = new System.Drawing.Point(3, 3);
+            this.ucrlTablesField.Name = "ucrlTablesField";
+            this.ucrlTablesField.Size = new System.Drawing.Size(1405, 623);
+            this.ucrlTablesField.TabIndex = 0;
+            this.ucrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
+            // 
             // TablesPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -331,9 +314,6 @@ namespace STS.Workbench
         #endregion
 
         private System.Windows.Forms.DataGridView grdViewTableRecords;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.TreeView treeViewTablesCatalog;
         private SplitContainer splitContainerTablesPreview;
         private SplitContainer splitContainer1;
