@@ -1,4 +1,5 @@
-﻿using STSdb4.Data;
+﻿using STS.Workbench.Helpers;
+using STSdb4.Data;
 using STSdb4.Database;
 using System;
 using System.Collections.Generic;
@@ -20,10 +21,17 @@ namespace STS.Workbench.Readers
             StorageEngine = storageEngine;
         }
 
+        public string Name { get { return "STSdb4"; } }
+
         public IEnumerable<ITable> GetSchema()
         {
             foreach (var table in StorageEngine)
                 yield return OpenTable(table.Name, table.KeyDescriptor.SlotTypes, table.RecordDescriptor.SlotTypes);
+        }
+
+        public void Commit()
+        {
+            StorageEngine.Commit();
         }
 
         public ITable OpenTable(string tableName, DataType[] keyTypes, DataType[] recordTypes)
@@ -32,22 +40,24 @@ namespace STS.Workbench.Readers
 
             return new STSDbTable(index);
         }
+
+        public void RemoveTable(string tableName, DataType[] keyTypes, DataType[] recordTypes)
+        {
+            StorageEngine.Delete(tableName);
+        }
     }
 
     public class STSDbTable : ITable
     {
-        private string tableName;
-        private DataType[] keyTypes;
-        private DataType[] recordTypes;
-
-        private DataToObjectsTransformer keyTransfomer;
-        private DataToObjectsTransformer recordTransformer;
+        private StringObjectToIDataTransformer keyTransfomer;
+        private StringObjectToIDataTransformer recordTransformer;
 
         public int PageCapacity { get { return 1000; } }
 
-        public string TableName { get { return tableName; } }
-        public DataType[] KeyTypes { get { return keyTypes; } }
-        public DataType[] RecordTypes { get { return recordTypes; } }
+        public string TableName { get; private set; }
+        public DataType[] KeyTypes { get; private set; }
+        public DataType[] RecordTypes { get; private set; }
+
 
         public IIndex<IData, IData> XIndex { get; private set; }
 
@@ -58,26 +68,27 @@ namespace STS.Workbench.Readers
 
             XIndex = index;
 
-            tableName = XIndex.Locator.Name;
-            keyTypes = XIndex.Locator.KeyDescriptor.SlotTypes;
-            recordTypes = XIndex.Locator.RecordDescriptor.SlotTypes;
+            TableName = XIndex.Locator.Name;
+            KeyTypes = XIndex.Locator.KeyDescriptor.SlotTypes;
+            RecordTypes = XIndex.Locator.RecordDescriptor.SlotTypes;
 
-            keyTransfomer = new DataToObjectsTransformer(XIndex.Locator.KeyDescriptor.SlotTypes);
-            recordTransformer = new DataToObjectsTransformer(XIndex.Locator.RecordDescriptor.SlotTypes);
+            keyTransfomer = new StringObjectToIDataTransformer(KeyTypes);
+            recordTransformer = new StringObjectToIDataTransformer(RecordTypes);
         }
 
         public void Insert(object[] key, object[] record)
         {
-            DataToStringTransformer keyDataTostring = new DataToStringTransformer(KeyTypes, new char[] { ',' });
-            DataToStringTransformer recDataTostring = new DataToStringTransformer(RecordTypes, new char[] { ',' });
-            
+            XIndex[keyTransfomer.ToIData(key)] = recordTransformer.ToIData(record);
+        }
 
-            XIndex[keyTransfomer.ToIData(key)] = recordTransformer.ToIData(keyTransfomer.ToIData(key));
+        public void Delete(object[] key)
+        {
+            XIndex.Delete(keyTransfomer.ToIData(key));
         }
 
         public object[] Find(object[] key)
         {
-            throw new NotImplementedException();
+            return recordTransformer.FromIData(XIndex.Find(keyTransfomer.ToIData(key)));
         }
 
         public IEnumerable<KeyValuePair<object[], object[]>> Read()
@@ -86,10 +97,19 @@ namespace STS.Workbench.Readers
                 yield return new KeyValuePair<object[], object[]>(keyTransfomer.FromIData(kv.Key), recordTransformer.FromIData(kv.Value));
         }
 
-        public IEnumerable<KeyValuePair<object[], object[]>> Read(object[] from, object[] to)
+        public IEnumerable<KeyValuePair<object[], object[]>> Read(object[] fromKey, object[] toKey)
         {
             throw new NotImplementedException();
         }
-    }
 
+        public void Save()
+        {
+            XIndex.Flush();
+        }
+
+        public void Clear()
+        {
+            XIndex.Clear();
+        }
+    }
 }

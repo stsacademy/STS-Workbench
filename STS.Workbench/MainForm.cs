@@ -1,4 +1,5 @@
-﻿using STS.Workbench.PreviewComponents;
+﻿using STS.Workbench.Helpers;
+using STS.Workbench.PreviewComponents;
 using STS.Workbench.Readers;
 using STSdb4.Data;
 using STSdb4.Database;
@@ -20,7 +21,7 @@ namespace STS.Workbench
         public MainForm()
         {
             InitializeComponent();
-
+            
             string sys = "stsdb4.sys";
             string dat = "stsdb4.data";
 
@@ -30,7 +31,7 @@ namespace STS.Workbench
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 50000; i++)
                 index1[i] = "gosho " + i;
 
             var index2 = engine.OpenXIndex<int, int>("Tabldsfgsdfsde2");

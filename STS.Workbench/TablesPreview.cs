@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using STS.Workbench.PreviewComponents;
 using STSdb4.Data;
+using STS.Workbench.Helpers;
 
 namespace STS.Workbench
 {
     public partial class TablesPreview : UserControl
     {
-        private Point LastTableLocation = new Point(40, 40);
+        private Point LastTableLocation = new Point(15, 15);
         private Dictionary<string, TableComponent> tables = new Dictionary<string, TableComponent>();
 
-        private List<DataGridViewRow> addedRows = new List<DataGridViewRow>();
+        private List<KeyValuePair<RowOperation, DataGridViewRow>> ModifyedRows = new List<KeyValuePair<RowOperation, DataGridViewRow>>();
         private List<DataGridViewRow> removedRows = new List<DataGridViewRow>();
 
         public readonly IConnection DbConnection;
@@ -33,6 +34,7 @@ namespace STS.Workbench
             DbConnection = dbConnection;
 
             InitializeComponent();
+            treeViewTablesCatalog.Nodes[0].Text = dbConnection.Name;
             splitContainer4.Panel1Collapsed = true;
 
             PreviewScheme();
@@ -43,6 +45,7 @@ namespace STS.Workbench
             foreach (var table in DbConnection.GetSchema())
             {
                 TableComponent tableComponent = new TableComponent(table.TableName, table.KeyTypes, table.RecordTypes);
+                tableComponent.Name = table.TableName;
                 tableComponent.Location = LastTableLocation;
                 LastTableLocation = new Point(LastTableLocation.X + 200, LastTableLocation.Y);
                 AddTable(tableComponent);
@@ -73,6 +76,7 @@ namespace STS.Workbench
         {
             if (IsMoving && e.Button == MouseButtons.Left)
             {
+                //GetTableComponent
                 Control control = ((Control)sender).Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent;
                 if (control.GetType() == typeof(TableComponent))
                 {
@@ -90,6 +94,7 @@ namespace STS.Workbench
             {
                 tableAddComponent.ResetFields();
                 splitContainer4.Panel1Collapsed = false;
+                ucrlTablesField.Cursor = new Cursor(global::STS.Workbench.Properties.Resources.table.GetHicon());
                 IsPlacing = true;
             }
         }
@@ -98,12 +103,15 @@ namespace STS.Workbench
         {
             if (ActiveTable != null)
                 RemoveTable(ActiveTable);
+
+            DbConnection.RemoveTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
         }
 
         private void btnCancelTable_Click(object sender, EventArgs e)
         {
             IsPlacing = false;
             splitContainer4.Panel1Collapsed = true;
+            ucrlTablesField.Cursor = Cursors.Default;
         }
 
         private void AddTable(TableComponent table)
@@ -147,6 +155,7 @@ namespace STS.Workbench
 
                 AddTable(table);
 
+                ucrlTablesField.Cursor = Cursors.Default;
                 splitContainer4.Panel1Collapsed = true;
                 IsPlacing = false;
             }
@@ -165,6 +174,7 @@ namespace STS.Workbench
 
         private void table_DoubleClick(object sender, EventArgs e)
         {
+            ModifyedRows.Clear();
             var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
             OpenedTable = table;
             VisualizeData(table);
@@ -231,39 +241,160 @@ namespace STS.Workbench
                 ActiveTable.BackColor = SystemColors.ControlLight;
 
             table.BackColor = Color.FromArgb(135, 206, 250);
+
             table.BringToFront();
+            ucrlTablesField.ScrollControlIntoView(table);
 
             ActiveTable = table;
         }
 
         private void grdViewTableRecords_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
-            addedRows.Add(grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1]);
+            ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Insert, grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 2]));
         }
 
         private void btnSaveRow_Click(object sender, EventArgs e)
         {
+            if (OpenedTable == null)
+                return;
+
             int keyCount = OpenedTable.KeyTypes.Length;
             int recCount = OpenedTable.RecordTypes.Length;
 
+            foreach (var modfiyRow in ModifyedRows)
+            {
+                var kv = GetRowKeyValue(modfiyRow.Value, OpenedTable.KeyTypes.Length, OpenedTable.KeyTypes.Length);
+
+                try
+                {
+                    if (modfiyRow.Key == RowOperation.Insert)
+                        OpenedTable.Insert(kv.Key, kv.Value);
+                    else if (modfiyRow.Key == RowOperation.Delete)
+                        OpenedTable.Delete(kv.Key);
+                }
+                catch { }
+
+                OpenedTable.Save();
+                VisualizeData(OpenedTable);
+            }
+
+            ModifyedRows.Clear();
+        }
+
+        private void btnDiscard_Click(object sender, EventArgs e)
+        {
+            if (OpenedTable == null)
+                return;
+
+            ModifyedRows.Clear();
+            VisualizeData(OpenedTable);
+        }
+
+        #region Export/Import
+
+        private void btnImportCsv_Click(object sender, EventArgs e)
+        {
+            if (OpenedTable == null)
+                return;
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Csv ';'separated (*.csv)|*.csv|Epf ',' separated (*.epf)|*.epf|Txt ',' separated (*.txt)|*.txt|Txt 'Tab' separated (*.txt)|*.txt";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var fileType = (FileType)dialog.FilterIndex;
+                FileImporter importer = new FileImporter(dialog.FileName, fileType);
+
+                foreach (var kv in importer.Read(OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
+                {
+                    try
+                    {
+                        OpenedTable.Insert(kv.Key, kv.Value);
+                    }
+                    catch { }
+                }
+
+                OpenedTable.Save();
+                VisualizeData(OpenedTable);
+            }
+        }
+
+        private void btnExportCsv_Click(object sender, EventArgs e)
+        {
+            if (OpenedTable == null)
+                return;
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = OpenedTable.TableName;
+            dialog.Filter = "Csv ';'separated (*.csv)|*.csv";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                FileExporter exporter = new FileExporter(dialog.FileName);
+                exporter.Export(OpenedTable.Read());
+            }
+        }
+
+        #endregion
+
+        private void btnClearErrors_Click(object sender, EventArgs e)
+        {
+            tbxErrors.Clear();
+        }
+
+        private void btnDeleteRow_Click(object sender, EventArgs e)
+        {
+            if (OpenedTable == null)
+                return;
+
+            foreach (var row in grdViewTableRecords.SelectedRows)
+            {
+                //Not first(header) or last(empty) row.
+                if ((DataGridViewRow)row != grdViewTableRecords.Rows[0] && (DataGridViewRow)row != grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1])
+                {
+                    ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Delete, (DataGridViewRow)row));
+                    grdViewTableRecords.Rows.Remove((DataGridViewRow)row);
+                }
+            }
+        }
+
+        private DataGridViewRow changedRow;
+        private DataGridViewRow oldChangedRow;
+        private void grdViewTableRecords_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (grdViewTableRecords.SelectedRows.Count > 0 && grdViewTableRecords.SelectedRows[0] != grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1])
+            {
+                ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Delete, oldChangedRow));
+                ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Insert, changedRow));
+            }
+        }
+
+        private KeyValuePair<object[], object[]> GetRowKeyValue(DataGridViewRow row, int keyCount, int recCount)
+        {
             object[] key = new object[keyCount];
             object[] rec = new object[recCount];
 
-            //TODO objectString to IDAta transofmer
-            foreach (var row in addedRows)
+            for (int i = 0; i < keyCount; i++)
+                key[i] = row.Cells[i].Value;
+
+            for (int i = keyCount; i < keyCount + recCount; i++)
+                rec[i - keyCount] = row.Cells[i].Value;
+
+            return new KeyValuePair<object[], object[]>(key, rec);
+        }
+
+        private void grdViewTableRecords_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            changedRow = (DataGridViewRow)grdViewTableRecords.SelectedRows[0];
+            oldChangedRow = new DataGridViewRow();
             {
-                for (int i = 0; i < row.Cells.Count; i++)
-                {
-                    for (int j = 0; j < keyCount; j++)
-                        key[j] = row.Cells[j].Value;
-
-                    int recCounter = 0;
-                    for (int j = keyCount; j < keyCount + recCount; j++)
-                        rec[recCounter++] = row.Cells[j].Value;
-
-                    OpenedTable.Insert(key, rec);
-                }
+                oldChangedRow.CreateCells(grdViewTableRecords);
+                for (int i = 0; i < changedRow.Cells.Count; i++)
+                    oldChangedRow.Cells[i].Value = changedRow.Cells[i].Value;
             }
+        }
+
+        private void btnCommit_Click(object sender, EventArgs e)
+        {
+            DbConnection.Commit();
         }
     }
 }

@@ -49,6 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="Helpers\FileExporter.cs" />
+    <Compile Include="Helpers\FileImporter.cs" />
+    <Compile Include="Helpers\RowOperations.cs" />
+    <Compile Include="Helpers\StringObjectToIDataTransformer.cs" />
     <Compile Include="Readers\IConnection.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

@@ -52,9 +52,13 @@ namespace STS.Workbench.PreviewComponents
 
             btnRemove.Enabled = treeViewTypes.SelectedNode.Level > 0;
 
-            Console.WriteLine(treeViewTypes.SelectedNode.Text);
-        }
+            if (treeViewTypes.SelectedNode.Parent == treeViewTypes.Nodes[0])
+                btnRemove.Enabled = treeViewTypes.Nodes[0].Nodes.Count > 1;
 
+            if (treeViewTypes.SelectedNode.Parent == treeViewTypes.Nodes[1])
+                btnRemove.Enabled = treeViewTypes.Nodes[1].Nodes.Count > 1;
+        }
+        
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string type = cbxTypes.Text;
@@ -186,7 +190,7 @@ namespace STS.Workbench.PreviewComponents
             cbxTypes.Name = "comboBox1";
             cbxTypes.Size = new Size(175, 21);
             cbxTypes.Items.AddRange(new object[] {
-            "Slotes",
+            //"Slotes",
             "Boolean",
             "Char",
             "SByte",
@@ -202,8 +206,9 @@ namespace STS.Workbench.PreviewComponents
             "Decimal",
             "DateTime",
             "String",
-            "ByteArray"});
-            cbxTypes.Text = "Slotes";
+            //"ByteArray"
+            });
+            cbxTypes.Text = "String";
 
             //Button add
             btnAdd.Location = new Point(location.X + 9, location.Y + 205);
