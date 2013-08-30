@@ -18,7 +18,7 @@ namespace STS.Workbench.Helpers
 
         public Expression<Func<object[], IData>> LambdaToIData { get; private set; }
         public Expression<Func<IData, object[]>> LambdaFromIData { get; private set; }
-        
+
         public StringObjectToIDataTransformer(params DataType[] slotTypes)
         {
             bool supported = slotTypes.All(x => x.IsPrimitive);
@@ -76,7 +76,7 @@ namespace STS.Workbench.Helpers
                 else if (SlotTypes[i] == DataType.DateTime)
                     parsedValues[i] = Expression.Call(typeof(DateTime).GetMethod("Parse", new Type[] { typeof(string) }), Expression.Call(value, typeof(object).GetMethod("ToString")));
                 else if (SlotTypes[i] == DataType.String)
-                    parsedValues[i] = Expression.Convert(value, typeof(string));
+                    parsedValues[i] = Expression.Call(value, typeof(object).GetMethod("ToString"));
                 else if (SlotTypes[i] == DataType.ByteArray)
                     throw new NotImplementedException();
             }
