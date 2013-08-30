@@ -13,9 +13,14 @@ using STS.Workbench.Helpers;
 
 namespace STS.Workbench
 {
-    public partial class TablesPreview : UserControl
+    public partial class DiagramPreview : UserControl
     {
-        private Point LastTableLocation = new Point(15, 15);
+        private int PageCapacity { get { return int.Parse(cmbxPageCount.Text); } }
+        private object[] NextKey = null;
+        private object[] PreviousKey = null;
+
+        private int TableDistanceX = 180;
+
         private Dictionary<string, TableComponent> tables = new Dictionary<string, TableComponent>();
 
         private List<KeyValuePair<RowOperation, DataGridViewRow>> ModifyedRows = new List<KeyValuePair<RowOperation, DataGridViewRow>>();
@@ -26,7 +31,7 @@ namespace STS.Workbench
         public TableComponent ActiveTable { get; private set; }
         public ITable OpenedTable { get; private set; }
 
-        public TablesPreview(IConnection dbConnection)
+        public DiagramPreview(IConnection dbConnection)
         {
             if (dbConnection == null)
                 throw new ArgumentNullException("dbConnection");
@@ -34,20 +39,28 @@ namespace STS.Workbench
             DbConnection = dbConnection;
 
             InitializeComponent();
+
             treeViewTablesCatalog.Nodes[0].Text = dbConnection.Name;
             splitContainer4.Panel1Collapsed = true;
+            cmbxPageCount.Text = "5";
 
             PreviewScheme();
         }
 
         private void PreviewScheme()
         {
+            Point PreviousTableLocation = new Point(15, 15);
+            treeViewTablesCatalog.Nodes[0].Nodes.Clear();
+
+            foreach (var table in tables)
+                RemoveTable(table.Value);
+
             foreach (var table in DbConnection.GetSchema())
             {
                 TableComponent tableComponent = new TableComponent(table.TableName, table.KeyTypes, table.RecordTypes);
                 tableComponent.Name = table.TableName;
-                tableComponent.Location = LastTableLocation;
-                LastTableLocation = new Point(LastTableLocation.X + 200, LastTableLocation.Y);
+                tableComponent.Location = PreviousTableLocation;
+                PreviousTableLocation = new Point(PreviousTableLocation.X + TableDistanceX, PreviousTableLocation.Y);
                 AddTable(tableComponent);
             }
         }
@@ -82,6 +95,9 @@ namespace STS.Workbench
                 {
                     control.Left += e.X - MousePoint.X;
                     control.Top += e.Y - MousePoint.Y;
+
+                    control.Left = control.Left < 0 ? control.Left = 0 : control.Left;
+                    control.Top = control.Top < 0 ? control.Top = 0 : control.Top;
                 }
             }
         }
@@ -94,7 +110,7 @@ namespace STS.Workbench
             {
                 tableAddComponent.ResetFields();
                 splitContainer4.Panel1Collapsed = false;
-                ucrlTablesField.Cursor = new Cursor(global::STS.Workbench.Properties.Resources.table.GetHicon());
+                cntrlTablesField.Cursor = new Cursor(global::STS.Workbench.Properties.Resources.table.GetHicon());
                 IsPlacing = true;
             }
         }
@@ -111,15 +127,13 @@ namespace STS.Workbench
         {
             IsPlacing = false;
             splitContainer4.Panel1Collapsed = true;
-            ucrlTablesField.Cursor = Cursors.Default;
+            cntrlTablesField.Cursor = Cursors.Default;
         }
 
         private void AddTable(TableComponent table)
         {
-            DbConnection.OpenTable(table.Name, table.KeyTypes, table.RecordTypes);
-
             tables.Add(table.TableName, table);
-            ucrlTablesField.Controls.Add(table);
+            cntrlTablesField.Controls.Add(table);
             treeViewTablesCatalog.Nodes[0].Nodes.Add(table.TableName, table.TableName);
             treeViewTablesCatalog.ExpandAll();
 
@@ -134,9 +148,11 @@ namespace STS.Workbench
 
         private void RemoveTable(TableComponent table)
         {
-            ucrlTablesField.Controls.Remove(table);
+            cntrlTablesField.Controls.Remove(table);
             tables.Remove(table.TableName);
             treeViewTablesCatalog.Nodes[0].Nodes.RemoveByKey(table.TableName);
+
+            OpenedTable = null;
         }
 
         private void ucrlTablesField_Click(object sender, EventArgs e)
@@ -151,15 +167,17 @@ namespace STS.Workbench
                 }
 
                 TableComponent table = new TableComponent(tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
-                table.Location = ucrlTablesField.PointToClient(MousePosition);
+                table.Location = cntrlTablesField.PointToClient(MousePosition);
 
                 AddTable(table);
 
-                ucrlTablesField.Cursor = Cursors.Default;
+                cntrlTablesField.Cursor = Cursors.Default;
                 splitContainer4.Panel1Collapsed = true;
                 IsPlacing = false;
             }
         }
+
+        #region Table Select/Open
 
         private void table_Click(object sender, EventArgs e)
         {
@@ -177,44 +195,7 @@ namespace STS.Workbench
             ModifyedRows.Clear();
             var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
             OpenedTable = table;
-            VisualizeData(table);
-        }
-
-        private void VisualizeData(ITable table)
-        {
-            grdViewTableRecords.Rows.Clear();
-            grdViewTableRecords.Columns.Clear();
-
-            int keyTypesLen = table.KeyTypes.Length;
-            int recTypesLen = table.RecordTypes.Length;
-
-            grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
-
-            List<object> types = new List<object>();
-            List<string> keyTypes = new List<string>();
-            List<string> recTypes = new List<string>();
-
-            foreach (var keyType in table.KeyTypes)
-                keyTypes.Add("(key) " + keyType);
-
-            foreach (var recType in table.RecordTypes)
-                keyTypes.Add("(record) " + recType);
-
-            types.AddRange(keyTypes);
-            types.AddRange(recTypes);
-            grdViewTableRecords.Rows.Add(types.ToArray());
-            grdViewTableRecords.Rows[0].ReadOnly = true;
-            foreach (var cell in grdViewTableRecords.Rows[0].Cells)
-                ((DataGridViewCell)cell).Style.BackColor = Color.LightBlue;
-
-            foreach (var kv in table.Read())
-            {
-                List<object> list = new List<object>();
-                list.AddRange(kv.Key);
-                list.AddRange(kv.Value);
-
-                grdViewTableRecords.Rows.Add(list.ToArray());
-            }
+            VisualizeData(table, null, null);
         }
 
         private void treeViewTablesCatalog_AfterSelect(object sender, TreeViewEventArgs e)
@@ -224,10 +205,79 @@ namespace STS.Workbench
             if (treeViewTablesCatalog.Nodes[0] == treeViewTablesCatalog.SelectedNode)
                 return;
 
-            var cntrl = ucrlTablesField.FindControlByName(treeViewTablesCatalog.SelectedNode.Text, ControlType.UserControl);
+            var cntrl = cntrlTablesField.FindControlByName(treeViewTablesCatalog.SelectedNode.Text, ControlType.UserControl);
             var table = (TableComponent)cntrl;
 
             MarkTable(table);
+        }
+
+        private void treeViewTablesCatalog_DoubleClick(object sender, EventArgs e)
+        {
+            ModifyedRows.Clear();
+            var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
+            OpenedTable = table;
+            VisualizeData(table, null, null);
+        }
+
+        #endregion
+
+        private void VisualizeData(ITable table, object[] fromKey, object[] toKey)
+        {
+            grdViewTableRecords.Rows.Clear();
+            grdViewTableRecords.Columns.Clear();
+
+            int keyTypesLen = table.KeyTypes.Length;
+            int recTypesLen = table.RecordTypes.Length;
+
+            grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
+
+            List<string> keyTypes = new List<string>();
+            foreach (var keyType in table.KeyTypes)
+                keyTypes.Add("(key) " + keyType);
+
+            List<string> recTypes = new List<string>();
+            foreach (var recType in table.RecordTypes)
+                keyTypes.Add("(record) " + recType);
+
+            var typesRow = keyTypes.Concat(recTypes);
+            grdViewTableRecords.Rows.Add(typesRow.ToArray());
+            grdViewTableRecords.Rows[0].ReadOnly = true;
+            foreach (var cell in grdViewTableRecords.Rows[0].Cells)
+                ((DataGridViewCell)cell).Style.BackColor = Color.LightBlue;
+
+            object[] LastKey = null;
+            foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
+            {
+                LastKey = kv.Key;
+                List<object> list = new List<object>();
+                list.AddRange(kv.Key);
+                list.AddRange(kv.Value);
+
+                grdViewTableRecords.Rows.Add(list.ToArray());
+            }
+
+            foreach (var kv in table.Read(fromKey, null).Take(1))
+                PreviousKey = kv.Key;
+
+            if (PreviousKey != null)
+            {
+                for (int i = 0; i < PageCapacity; i++)
+                {
+                    var before = table.FindBefore(PreviousKey);
+                    PreviousKey = before.HasValue ? before.Value.Key : null;
+
+                    if (!before.HasValue)
+                        break;
+                }
+            }
+            if (LastKey != null)
+            {
+                var after = table.FindAfter(LastKey);
+                NextKey = after.HasValue ? after.Value.Key : null;
+            }
+
+            btnNextPage.Enabled = NextKey != null;
+            btnPreviousPage.Enabled = PreviousKey != null;
         }
 
         private void MarkTable(TableComponent table)
@@ -243,7 +293,7 @@ namespace STS.Workbench
             table.BackColor = Color.FromArgb(135, 206, 250);
 
             table.BringToFront();
-            ucrlTablesField.ScrollControlIntoView(table);
+            cntrlTablesField.ScrollControlIntoView(table);
 
             ActiveTable = table;
         }
@@ -275,7 +325,6 @@ namespace STS.Workbench
                 catch { }
 
                 OpenedTable.Save();
-                VisualizeData(OpenedTable);
             }
 
             ModifyedRows.Clear();
@@ -287,7 +336,7 @@ namespace STS.Workbench
                 return;
 
             ModifyedRows.Clear();
-            VisualizeData(OpenedTable);
+            VisualizeData(OpenedTable, null, null);
         }
 
         #region Export/Import
@@ -314,7 +363,7 @@ namespace STS.Workbench
                 }
 
                 OpenedTable.Save();
-                VisualizeData(OpenedTable);
+                VisualizeData(OpenedTable, null, null);
             }
         }
 
@@ -367,6 +416,17 @@ namespace STS.Workbench
             }
         }
 
+        private void grdViewTableRecords_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            changedRow = (DataGridViewRow)grdViewTableRecords.SelectedRows[0];
+            oldChangedRow = new DataGridViewRow();
+            {
+                oldChangedRow.CreateCells(grdViewTableRecords);
+                for (int i = 0; i < changedRow.Cells.Count; i++)
+                    oldChangedRow.Cells[i].Value = changedRow.Cells[i].Value;
+            }
+        }
+
         private KeyValuePair<object[], object[]> GetRowKeyValue(DataGridViewRow row, int keyCount, int recCount)
         {
             object[] key = new object[keyCount];
@@ -381,20 +441,33 @@ namespace STS.Workbench
             return new KeyValuePair<object[], object[]>(key, rec);
         }
 
-        private void grdViewTableRecords_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            changedRow = (DataGridViewRow)grdViewTableRecords.SelectedRows[0];
-            oldChangedRow = new DataGridViewRow();
-            {
-                oldChangedRow.CreateCells(grdViewTableRecords);
-                for (int i = 0; i < changedRow.Cells.Count; i++)
-                    oldChangedRow.Cells[i].Value = changedRow.Cells[i].Value;
-            }
-        }
-
         private void btnCommit_Click(object sender, EventArgs e)
         {
             DbConnection.Commit();
+        }
+
+        private void btnNextPage_Click(object sender, EventArgs e)
+        {
+            if (OpenedTable != null)
+                VisualizeData(OpenedTable, NextKey, null);
+        }
+
+        private void btnPreviousPage_Click(object sender, EventArgs e)
+        {
+            if (OpenedTable != null)
+                VisualizeData(OpenedTable, PreviousKey, null);
+        }
+
+        private void btnFirstPage_Click(object sender, EventArgs e)
+        {
+            if (OpenedTable != null)
+                VisualizeData(OpenedTable, null, null);
+        }
+
+        private void cmbxPageCount_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (OpenedTable != null)
+                VisualizeData(OpenedTable, null, null);
         }
     }
 }

@@ -19,6 +19,8 @@ namespace STS.Workbench
         void Delete(object[] key);
 
         object[] Find(object[] key);
+        KeyValuePair<object[], object[]>? FindAfter(object[] key);
+        KeyValuePair<object[], object[]>? FindBefore(object[] key);
 
         IEnumerable<KeyValuePair<object[], object[]>> Read();
         IEnumerable<KeyValuePair<object[], object[]>> Read(object[] fromKey, object[] toKey);

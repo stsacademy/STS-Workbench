@@ -17,11 +17,11 @@ using System.Windows.Forms;
 namespace STS.Workbench
 {
     public partial class MainForm : Form
-    {
+    {       
         public MainForm()
         {
             InitializeComponent();
-            
+
             string sys = "stsdb4.sys";
             string dat = "stsdb4.data";
 
@@ -31,20 +31,16 @@ namespace STS.Workbench
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
-            for (int i = 0; i < 50000; i++)
+            for (int i = 0; i < 10; i++)
                 index1[i] = "gosho " + i;
-
-            var index2 = engine.OpenXIndex<int, int>("Tabldsfgsdfsde2");
-            for (int i = 0; i < 15; i++)
-                index2[i] = i + i;
-
+            
             index1.Flush();
-            index2.Flush();
+
             engine.Commit();
 
             STSDbConnection STSdbConnection = new STSDbConnection(engine);
 
-            TablesPreview tablesPreview = new TablesPreview(STSdbConnection);
+            DiagramPreview tablesPreview = new DiagramPreview(STSdbConnection);
             Controls.Add(tablesPreview);
         }
 

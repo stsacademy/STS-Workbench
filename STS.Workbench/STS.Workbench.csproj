@@ -60,19 +60,19 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PreviewComponents\TableAddComponent.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableAddComponent.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="PreviewComponents\TablesField.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TablesField.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PreviewComponents\TablesField.Designer.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TablesField.Designer.cs">
       <DependentUpon>TablesField.cs</DependentUpon>
     </Compile>
-    <Compile Include="PreviewComponents\TableComponent.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PreviewComponents\TableComponent.Designer.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.Designer.cs">
       <DependentUpon>TableComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
@@ -91,19 +91,20 @@
     </Compile>
     <Compile Include="STSdbAdapter\STSParameter.cs" />
     <Compile Include="STSdbAdapter\STSSchema.cs" />
-    <Compile Include="TablesPreview.cs">
+    <Compile Include="TablesDiagram\DiagramPreview.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TablesPreview.Designer.cs">
-      <DependentUpon>TablesPreview.cs</DependentUpon>
+    <Compile Include="TablesDiagram\DiagramPreview.Designer.cs">
+      <DependentUpon>DiagramPreview.cs</DependentUpon>
     </Compile>
+    <Compile Include="TablesDiagram\table.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PreviewComponents\TablesField.resx">
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TablesField.resx">
       <DependentUpon>TablesField.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PreviewComponents\TableComponent.resx">
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponent.resx">
       <DependentUpon>TableComponent.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -116,8 +117,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TablesPreview.resx">
-      <DependentUpon>TablesPreview.cs</DependentUpon>
+    <EmbeddedResource Include="TablesDiagram\DiagramPreview.resx">
+      <DependentUpon>DiagramPreview.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
