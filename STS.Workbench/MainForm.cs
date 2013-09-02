@@ -39,7 +39,7 @@ namespace STS.Workbench
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
-            for (int i = 0; i < 10000000; i++)
+            for (int i = 0; i < 10000; i++)
                 index1[i] = "gosho " + i;
 
             index1.Flush();
