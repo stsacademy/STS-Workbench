@@ -16,7 +16,9 @@ namespace STS.Workbench
     public partial class DiagramPreview : UserControl
     {
         private int PageCapacity { get { return int.Parse(cmbxPageCount.Text); } }
+
         private object[] NextKey = null;
+        private object[] CurrentKey = null;
         private object[] PreviousKey = null;
 
         private int TableDistanceX = 180;
@@ -89,7 +91,6 @@ namespace STS.Workbench
         {
             if (IsMoving && e.Button == MouseButtons.Left)
             {
-                //GetTableComponent
                 Control control = ((Control)sender).Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent;
                 if (control.GetType() == typeof(TableComponent))
                 {
@@ -119,8 +120,6 @@ namespace STS.Workbench
         {
             if (ActiveTable != null)
                 RemoveTable(ActiveTable);
-
-            DbConnection.RemoveTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
         }
 
         private void btnCancelTable_Click(object sender, EventArgs e)
@@ -151,6 +150,7 @@ namespace STS.Workbench
             cntrlTablesField.Controls.Remove(table);
             tables.Remove(table.TableName);
             treeViewTablesCatalog.Nodes[0].Nodes.RemoveByKey(table.TableName);
+            DbConnection.RemoveTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
 
             OpenedTable = null;
         }
@@ -195,6 +195,7 @@ namespace STS.Workbench
             ModifyedRows.Clear();
             var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
             OpenedTable = table;
+
             VisualizeData(table, null, null);
         }
 
@@ -226,9 +227,6 @@ namespace STS.Workbench
             grdViewTableRecords.Rows.Clear();
             grdViewTableRecords.Columns.Clear();
 
-            int keyTypesLen = table.KeyTypes.Length;
-            int recTypesLen = table.RecordTypes.Length;
-
             grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
 
             List<string> keyTypes = new List<string>();
@@ -245,6 +243,8 @@ namespace STS.Workbench
             foreach (var cell in grdViewTableRecords.Rows[0].Cells)
                 ((DataGridViewCell)cell).Style.BackColor = Color.LightBlue;
 
+            NextKey = null;
+            CurrentKey = null;
             object[] LastKey = null;
             foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
             {
@@ -257,8 +257,9 @@ namespace STS.Workbench
             }
 
             foreach (var kv in table.Read(fromKey, null).Take(1))
-                PreviousKey = kv.Key;
+                CurrentKey = kv.Key;
 
+            PreviousKey = CurrentKey;
             if (PreviousKey != null)
             {
                 for (int i = 0; i < PageCapacity; i++)
@@ -270,6 +271,7 @@ namespace STS.Workbench
                         break;
                 }
             }
+
             if (LastKey != null)
             {
                 var after = table.FindAfter(LastKey);
@@ -308,12 +310,9 @@ namespace STS.Workbench
             if (OpenedTable == null)
                 return;
 
-            int keyCount = OpenedTable.KeyTypes.Length;
-            int recCount = OpenedTable.RecordTypes.Length;
-
             foreach (var modfiyRow in ModifyedRows)
             {
-                var kv = GetRowKeyValue(modfiyRow.Value, OpenedTable.KeyTypes.Length, OpenedTable.KeyTypes.Length);
+                var kv = modfiyRow.Value.GetKeyValue(OpenedTable.KeyTypes.Length, OpenedTable.KeyTypes.Length);
 
                 try
                 {
@@ -336,7 +335,6 @@ namespace STS.Workbench
                 return;
 
             ModifyedRows.Clear();
-            VisualizeData(OpenedTable, null, null);
         }
 
         #region Export/Import
@@ -427,20 +425,6 @@ namespace STS.Workbench
             }
         }
 
-        private KeyValuePair<object[], object[]> GetRowKeyValue(DataGridViewRow row, int keyCount, int recCount)
-        {
-            object[] key = new object[keyCount];
-            object[] rec = new object[recCount];
-
-            for (int i = 0; i < keyCount; i++)
-                key[i] = row.Cells[i].Value;
-
-            for (int i = keyCount; i < keyCount + recCount; i++)
-                rec[i - keyCount] = row.Cells[i].Value;
-
-            return new KeyValuePair<object[], object[]>(key, rec);
-        }
-
         private void btnCommit_Click(object sender, EventArgs e)
         {
             DbConnection.Commit();
@@ -467,7 +451,7 @@ namespace STS.Workbench
         private void cmbxPageCount_SelectedValueChanged(object sender, EventArgs e)
         {
             if (OpenedTable != null)
-                VisualizeData(OpenedTable, null, null);
+                VisualizeData(OpenedTable, CurrentKey, null);
         }
     }
 }

@@ -14,12 +14,21 @@ namespace STS.Workbench.Helpers
         public FileType FileType { get; private set; }
         public char[] Delimiters { get; private set; }
 
+        public double Percents { get; private set; }
+
         public FileImporter(string filePath, FileType fileType)
         {
             FilePath = filePath;
             FileType = fileType;
 
             Delimiters = SetDelimiters();
+        }
+
+        public FileImporter(string filePath, char[] delimiters)
+        {
+            FilePath = filePath;
+            FileType = FileType.Undefined;
+            Delimiters = delimiters;
         }
 
         private char[] SetDelimiters()
@@ -82,5 +91,6 @@ namespace STS.Workbench.Helpers
         Epf = 2,
         TxtCommaSeparated = 3,
         TxtTabSeparated = 4,
+        Undefined = 100
     }
 }

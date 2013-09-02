@@ -9,7 +9,6 @@ namespace STS.Workbench.Helpers
     public enum RowOperation
     {
         Insert = 1,
-        Replace = 2,
-        Delete = 3
+        Delete = 2
     }
 }
