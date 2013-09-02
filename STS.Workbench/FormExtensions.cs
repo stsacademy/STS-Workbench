@@ -22,46 +22,16 @@ namespace STS.Workbench
 
             return new KeyValuePair<object[], object[]>(key, rec);
         }
-
+        
         public static Control FindControlByName(this Control control, string name)
         {
-            return control.FindControlByName(name, ControlType.All);
-        }
-
-        public static Control FindControlByName(this Control control, string name, ControlType controlType)
-        {
-            switch (controlType)
+            foreach (var cntrl in control.Controls)
             {
-                case ControlType.All:
-                    {
-                        foreach (var cntrl in control.Controls)
-                        {
-                            if (((Control)cntrl).Name == name)
-                                return (Control)cntrl;
-                        }
-                    }
-                    break;
-                case ControlType.UserControl:
-                    {
-                        foreach (var cntrl in control.Controls)
-                        {
-                            if (((Control)cntrl).Name == name || cntrl.GetType() == typeof(UserControl))
-                                return (Control)cntrl;
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                if (((Control)cntrl).Name == name || cntrl.GetType() == typeof(UserControl))
+                    return (Control)cntrl;
             }
 
             return null;
         }
-    }
-
-    public enum ControlType
-    {
-        All = 0,
-        UserControl = 1,
-        //TODO all.
     }
 }

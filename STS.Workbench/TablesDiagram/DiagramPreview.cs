@@ -201,7 +201,7 @@ namespace STS.Workbench
             if (treeViewTablesCatalog.Nodes[0] == treeViewTablesCatalog.SelectedNode)
                 return;
 
-            var cntrl = cntrlTablesField.FindControlByName(treeViewTablesCatalog.SelectedNode.Text, ControlType.UserControl);
+            var cntrl = cntrlTablesField.FindControlByName(treeViewTablesCatalog.SelectedNode.Text);
             var table = (TableComponent)cntrl;
 
             MarkTable(table);
