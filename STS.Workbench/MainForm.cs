@@ -44,6 +44,10 @@ namespace STS.Workbench
             STSDbConnection STSdbConnection = new STSDbConnection(engine);
 
             DiagramPreview tablesPreview = new DiagramPreview(STSdbConnection);
+
+
+
+
             Controls.Add(tablesPreview);
         }
 
