@@ -17,11 +17,14 @@ using System.Windows.Forms;
 namespace STS.Workbench
 {
     public partial class MainForm : Form
-    {       
+    {
         public MainForm()
         {
             InitializeComponent();
+        }
 
+        private void btnTablesTest_Click(object sender, EventArgs e)
+        {
             string sys = "stsdb4.sys";
             string dat = "stsdb4.data";
 
@@ -33,7 +36,7 @@ namespace STS.Workbench
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
             for (int i = 0; i < 10; i++)
                 index1[i] = "gosho " + i;
-            
+
             index1.Flush();
 
             engine.Commit();
@@ -44,42 +47,9 @@ namespace STS.Workbench
             Controls.Add(tablesPreview);
         }
 
-        #region DragElemets
-
-        private Point MousePoint = new Point();
-        private bool IsMoving = false;
-
-        private void MainForm_MouseDown(object sender, MouseEventArgs e)
+        private void btnServer_Click(object sender, EventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                MousePoint = e.Location;
-                IsMoving = true;
-            }
-        }
 
-        private void MainForm_MouseUp(object sender, MouseEventArgs e)
-        {
-            IsMoving = false;
-        }
-
-        private void MainForm_MouseMove(object sender, MouseEventArgs e)
-        {
-            if (IsMoving && e.Button == MouseButtons.Left)
-            {
-                Control control = (Control)sender;
-                control.Left += e.X - MousePoint.X;
-                control.Top += e.Y - MousePoint.Y;
-            }
-        }
-
-        #endregion
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            TableComponent cntr = new TableComponent();
-            cntr.Location = new Point(1200, 500);
-            Controls.Add(cntr);
         }
     }
 }
