@@ -33,6 +33,9 @@
             this.ServerStatusIndicator = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.Status = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Host = new System.Windows.Forms.Label();
+            this.Port = new System.Windows.Forms.Label();
+            this.CPUUsage = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -52,14 +55,14 @@
             this.ServerStatusIndicator.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
             this.ServerStatusIndicator.FillColor = System.Drawing.SystemColors.ActiveCaption;
             this.ServerStatusIndicator.FillGradientColor = System.Drawing.Color.Linen;
-            this.ServerStatusIndicator.Location = new System.Drawing.Point(257, 14);
+            this.ServerStatusIndicator.Location = new System.Drawing.Point(78, 1);
             this.ServerStatusIndicator.Name = "ServerStatusIndicator";
-            this.ServerStatusIndicator.Size = new System.Drawing.Size(17, 14);
+            this.ServerStatusIndicator.Size = new System.Drawing.Size(18, 12);
             // 
             // Status
             // 
             this.Status.AutoSize = true;
-            this.Status.Location = new System.Drawing.Point(176, 14);
+            this.Status.Location = new System.Drawing.Point(3, 1);
             this.Status.Name = "Status";
             this.Status.Size = new System.Drawing.Size(74, 13);
             this.Status.TabIndex = 1;
@@ -67,12 +70,43 @@
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // Host
+            // 
+            this.Host.AutoSize = true;
+            this.Host.Location = new System.Drawing.Point(3, 22);
+            this.Host.Name = "Host";
+            this.Host.Size = new System.Drawing.Size(32, 13);
+            this.Host.TabIndex = 2;
+            this.Host.Text = "Host:";
+            // 
+            // Port
+            // 
+            this.Port.AutoSize = true;
+            this.Port.Location = new System.Drawing.Point(3, 44);
+            this.Port.Name = "Port";
+            this.Port.Size = new System.Drawing.Size(29, 13);
+            this.Port.TabIndex = 3;
+            this.Port.Text = "Port:";
+            // 
+            // CPUUsage
+            // 
+            this.CPUUsage.AutoSize = true;
+            this.CPUUsage.Location = new System.Drawing.Point(3, 66);
+            this.CPUUsage.Name = "CPUUsage";
+            this.CPUUsage.Size = new System.Drawing.Size(66, 13);
+            this.CPUUsage.TabIndex = 4;
+            this.CPUUsage.Text = "CPU Usage:";
             // 
             // ServerStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CPUUsage);
+            this.Controls.Add(this.Port);
+            this.Controls.Add(this.Host);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.shapeContainer1);
             this.Name = "ServerStatus";
@@ -88,5 +122,8 @@
         private Microsoft.VisualBasic.PowerPacks.OvalShape ServerStatusIndicator;
         private System.Windows.Forms.Label Status;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label Host;
+        private System.Windows.Forms.Label Port;
+        private System.Windows.Forms.Label CPUUsage;
     }
 }
