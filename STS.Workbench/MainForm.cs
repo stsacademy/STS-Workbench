@@ -45,10 +45,13 @@ namespace STS.Workbench
 
             DiagramPreview tablesPreview = new DiagramPreview(STSdbConnection);
 
+            var tabPage = new TabPage("Tables");
 
+            tablesPreview.Padding = new Padding(4);
+            tablesPreview.Dock = DockStyle.Fill;
+            tabPage.Controls.Add(tablesPreview);
 
-
-            Controls.Add(tablesPreview);
+            userControls.Controls.Add(tabPage);
         }
 
         private void btnServer_Click(object sender, EventArgs e)

@@ -10,6 +10,8 @@ namespace STS.Workbench.Helpers
 {
     public class FileImporter
     {
+        private volatile bool ShutDown;
+
         public string FilePath { get; private set; }
         public FileType FileType { get; private set; }
         public char[] Delimiters { get; private set; }
@@ -17,25 +19,66 @@ namespace STS.Workbench.Helpers
         public double Percents { get; private set; }
 
         public FileImporter(string filePath, FileType fileType)
+            : this(filePath, SetDelimiters(fileType))
         {
-            FilePath = filePath;
             FileType = fileType;
-
-            Delimiters = SetDelimiters();
         }
 
         public FileImporter(string filePath, char[] delimiters)
         {
             FilePath = filePath;
-            FileType = FileType.Undefined;
             Delimiters = delimiters;
+
+            ShutDown = false;
+            Percents = 0;
         }
 
-        private char[] SetDelimiters()
+        public IEnumerable<KeyValuePair<object[], object[]>> Read(int keyLength, int recLength)
+        {
+            ShutDown = false;
+            Percents = 0;
+
+            using (FileStream stream = new FileStream(FilePath, FileMode.Open))
+            {
+                long length = stream.Length;
+
+                StreamReader reader = new StreamReader(stream);
+                while (!ShutDown && !reader.EndOfStream)
+                {
+                    object[] key = new object[keyLength];
+                    object[] rec = new object[recLength];
+
+                    string line = reader.ReadLine();
+                    var values = line.Split(Delimiters);
+
+                    if (values.Length == keyLength + recLength)
+                    {
+                        for (int i = 0; i < keyLength; i++)
+                            key[i] = values[i];
+
+                        for (int i = keyLength; i < keyLength + recLength; i++)
+                            rec[i - keyLength] = values[i];
+
+                        yield return new KeyValuePair<object[], object[]>(key, rec);
+                    }
+
+                    Percents = 100 - (length - stream.Position);
+                }
+            }
+
+            Percents = 0;
+        }
+
+        public void Stop()
+        {
+            ShutDown = true;
+        }
+
+        private static char[] SetDelimiters(FileType fileType)
         {
             List<char> delimiters = new List<char>();
 
-            switch (FileType)
+            switch (fileType)
             {
                 case FileType.Csv:
                     delimiters.Add(';');
@@ -55,33 +98,6 @@ namespace STS.Workbench.Helpers
             }
 
             return delimiters.ToArray();
-        }
-
-        public IEnumerable<KeyValuePair<object[], object[]>> Read(int keyLength, int recLength)
-        {
-            using (FileStream stream = new FileStream(FilePath, FileMode.Open))
-            {
-                StreamReader reader = new StreamReader(stream);
-                while (!reader.EndOfStream)
-                {
-                    object[] key = new object[keyLength];
-                    object[] rec = new object[recLength];
-
-                    string line = reader.ReadLine();
-                    var values = line.Split(Delimiters);
-
-                    if (values.Length == keyLength + recLength)
-                    {
-                        for (int i = 0; i < keyLength; i++)
-                            key[i] = values[i];
-
-                        for (int i = keyLength; i < keyLength + recLength; i++)
-                            rec[i - keyLength] = values[i];
-
-                        yield return new KeyValuePair<object[], object[]>(key, rec);
-                    }
-                }
-            }
         }
     }
 
