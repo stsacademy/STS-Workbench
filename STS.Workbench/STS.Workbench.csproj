@@ -51,6 +51,7 @@
     <Compile Include="FormExtensions.cs" />
     <Compile Include="Helpers\FileExporter.cs" />
     <Compile Include="Helpers\FileImporter.cs" />
+    <Compile Include="Helpers\IProgressable.cs" />
     <Compile Include="Helpers\RowOperations.cs" />
     <Compile Include="Helpers\StringObjectToIDataTransformer.cs" />
     <Compile Include="Readers\IConnection.cs" />
@@ -59,6 +60,12 @@
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TablesDiagram\DiagramPreviewComponents\TableAddComponent.cs">
       <SubType>Component</SubType>
@@ -97,9 +104,11 @@
     <Compile Include="TablesDiagram\DiagramPreview.Designer.cs">
       <DependentUpon>DiagramPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="TablesDiagram\table.cs" />
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TablesField.resx">
       <DependentUpon>TablesField.cs</DependentUpon>
@@ -135,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\key.ico" />
+    <None Include="Resources\Wait.ico" />
     <None Include="Resources\Move.ico" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />

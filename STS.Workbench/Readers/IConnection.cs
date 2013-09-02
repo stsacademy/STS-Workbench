@@ -25,6 +25,8 @@ namespace STS.Workbench
         IEnumerable<KeyValuePair<object[], object[]>> Read();
         IEnumerable<KeyValuePair<object[], object[]>> Read(object[] fromKey, object[] toKey);
 
+        long Count { get; }
+
         void Save();
         void Clear();
     }

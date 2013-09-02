@@ -25,16 +25,17 @@ namespace STS.Workbench
 
         private void btnTablesTest_Click(object sender, EventArgs e)
         {
+
             string sys = "stsdb4.sys";
             string dat = "stsdb4.data";
 
             File.Delete(sys);
             File.Delete(dat);
-
+            
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 10000000; i++)
                 index1[i] = "gosho " + i;
 
             index1.Flush();
@@ -47,7 +48,7 @@ namespace STS.Workbench
 
             var tabPage = new TabPage("Tables");
 
-            tablesPreview.Padding = new Padding(4);
+            //tablesPreview.Padding = new Padding(4);
             tablesPreview.Dock = DockStyle.Fill;
             tabPage.Controls.Add(tablesPreview);
 

@@ -128,6 +128,11 @@ namespace STS.Workbench.Readers
                 yield return new KeyValuePair<object[], object[]>(keyTransfomer.FromIData(kv.Key), recordTransformer.FromIData(kv.Value));
         }
 
+        public long Count
+        {
+            get { return XIndex.Count(); }
+        }
+
         public void Save()
         {
             XIndex.Flush();

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace STS.Workbench.Helpers
 {
-    public class FileImporter
+    public class FileImporter : IProgressable
     {
         private volatile bool ShutDown;
 
@@ -16,7 +16,7 @@ namespace STS.Workbench.Helpers
         public FileType FileType { get; private set; }
         public char[] Delimiters { get; private set; }
 
-        public double Percents { get; private set; }
+        public int Percents { get; private set; }
 
         public FileImporter(string filePath, FileType fileType)
             : this(filePath, SetDelimiters(fileType))
@@ -62,7 +62,7 @@ namespace STS.Workbench.Helpers
                         yield return new KeyValuePair<object[], object[]>(key, rec);
                     }
 
-                    Percents = 100 - (length - stream.Position);
+                    Percents = (int)((stream.Position * 100) / length);
                 }
             }
 

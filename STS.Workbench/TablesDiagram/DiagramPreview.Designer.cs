@@ -29,19 +29,24 @@ namespace STS.Workbench
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
             this.grdViewTableRecords = new System.Windows.Forms.DataGridView();
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.lblLog = new System.Windows.Forms.Label();
             this.tbxErrors = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cmbxPageCount = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,15 +60,12 @@ namespace STS.Workbench
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnRemoveTable = new System.Windows.Forms.Button();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnCancelTable = new System.Windows.Forms.Button();
             this.SplitContainerMain = new System.Windows.Forms.SplitContainer();
             this.btnCommit = new System.Windows.Forms.Button();
-            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
-            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
-            this.label4 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
             this.splitContainerTablesPreview.Panel1.SuspendLayout();
@@ -87,7 +89,6 @@ namespace STS.Workbench
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).BeginInit();
             this.splitContainer6.Panel1.SuspendLayout();
-            this.splitContainer6.Panel2.SuspendLayout();
             this.splitContainer6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
@@ -113,7 +114,7 @@ namespace STS.Workbench
             this.grdViewTableRecords.Location = new System.Drawing.Point(0, 0);
             this.grdViewTableRecords.Name = "grdViewTableRecords";
             this.grdViewTableRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdViewTableRecords.Size = new System.Drawing.Size(1083, 134);
+            this.grdViewTableRecords.Size = new System.Drawing.Size(1083, 254);
             this.grdViewTableRecords.TabIndex = 3;
             this.grdViewTableRecords.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdViewTableRecords_CellMouseClick);
             this.grdViewTableRecords.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewTableRecords_CellValueChanged);
@@ -174,6 +175,15 @@ namespace STS.Workbench
             this.splitContainer4.Size = new System.Drawing.Size(203, 589);
             this.splitContainer4.SplitterDistance = 257;
             this.splitContainer4.TabIndex = 8;
+            // 
+            // tableAddComponent
+            // 
+            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
+            this.tableAddComponent.Name = "tableAddComponent";
+            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
+            this.tableAddComponent.Size = new System.Drawing.Size(190, 247);
+            this.tableAddComponent.TabIndex = 0;
+            this.tableAddComponent.TabStop = false;
             // 
             // splitContainer2
             // 
@@ -265,8 +275,20 @@ namespace STS.Workbench
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer6);
             this.splitContainer1.Size = new System.Drawing.Size(1087, 589);
-            this.splitContainer1.SplitterDistance = 345;
+            this.splitContainer1.SplitterDistance = 259;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // cntrlTablesField
+            // 
+            this.cntrlTablesField.AutoScroll = true;
+            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cntrlTablesField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cntrlTablesField.Location = new System.Drawing.Point(2, 2);
+            this.cntrlTablesField.Name = "cntrlTablesField";
+            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 251);
+            this.cntrlTablesField.TabIndex = 0;
+            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
             // 
             // splitContainer6
             // 
@@ -284,10 +306,10 @@ namespace STS.Workbench
             // 
             // splitContainer6.Panel2
             // 
-            this.splitContainer6.Panel2.Controls.Add(this.progressBar1);
             this.splitContainer6.Panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.splitContainer6.Size = new System.Drawing.Size(1087, 240);
-            this.splitContainer6.SplitterDistance = 206;
+            this.splitContainer6.Panel2Collapsed = true;
+            this.splitContainer6.Size = new System.Drawing.Size(1087, 326);
+            this.splitContainer6.SplitterDistance = 292;
             this.splitContainer6.TabIndex = 0;
             // 
             // splitContainer3
@@ -302,6 +324,7 @@ namespace STS.Workbench
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.btnRefresh);
             this.splitContainer3.Panel1.Controls.Add(this.label4);
             this.splitContainer3.Panel1.Controls.Add(this.label3);
             this.splitContainer3.Panel1.Controls.Add(this.cmbxPageCount);
@@ -316,14 +339,33 @@ namespace STS.Workbench
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer3.Size = new System.Drawing.Size(1087, 206);
+            this.splitContainer3.Size = new System.Drawing.Size(1087, 326);
             this.splitContainer3.SplitterDistance = 29;
             this.splitContainer3.TabIndex = 4;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(581, 2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 11;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(119, 7);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(74, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Import/Export:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(581, 7);
+            this.label3.Location = new System.Drawing.Point(682, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 9;
@@ -349,7 +391,7 @@ namespace STS.Workbench
             "20000",
             "50000",
             "100000"});
-            this.cmbxPageCount.Location = new System.Drawing.Point(630, 4);
+            this.cmbxPageCount.Location = new System.Drawing.Point(731, 4);
             this.cmbxPageCount.Name = "cmbxPageCount";
             this.cmbxPageCount.Size = new System.Drawing.Size(121, 21);
             this.cmbxPageCount.TabIndex = 8;
@@ -442,8 +484,8 @@ namespace STS.Workbench
             this.splitContainer7.Panel2.Controls.Add(this.btnNextPage);
             this.splitContainer7.Panel2.Controls.Add(this.btnPreviousPage);
             this.splitContainer7.Panel2.Controls.Add(this.btnFirstPage);
-            this.splitContainer7.Size = new System.Drawing.Size(1087, 173);
-            this.splitContainer7.SplitterDistance = 138;
+            this.splitContainer7.Size = new System.Drawing.Size(1087, 293);
+            this.splitContainer7.SplitterDistance = 258;
             this.splitContainer7.TabIndex = 4;
             // 
             // btnNextPage
@@ -476,18 +518,9 @@ namespace STS.Workbench
             this.btnFirstPage.UseVisualStyleBackColor = true;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar1.Location = new System.Drawing.Point(2, 2);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(1079, 22);
-            this.progressBar1.Step = 2;
-            this.progressBar1.TabIndex = 0;
-            // 
             // btnRemoveTable
             // 
-            this.btnRemoveTable.Location = new System.Drawing.Point(199, 6);
+            this.btnRemoveTable.Location = new System.Drawing.Point(201, 3);
             this.btnRemoveTable.Name = "btnRemoveTable";
             this.btnRemoveTable.Size = new System.Drawing.Size(92, 31);
             this.btnRemoveTable.TabIndex = 7;
@@ -497,7 +530,7 @@ namespace STS.Workbench
             // 
             // btnPlaceTable
             // 
-            this.btnPlaceTable.Location = new System.Drawing.Point(3, 6);
+            this.btnPlaceTable.Location = new System.Drawing.Point(5, 3);
             this.btnPlaceTable.Name = "btnPlaceTable";
             this.btnPlaceTable.Size = new System.Drawing.Size(92, 31);
             this.btnPlaceTable.TabIndex = 6;
@@ -507,7 +540,7 @@ namespace STS.Workbench
             // 
             // btnCancelTable
             // 
-            this.btnCancelTable.Location = new System.Drawing.Point(101, 6);
+            this.btnCancelTable.Location = new System.Drawing.Point(103, 3);
             this.btnCancelTable.Name = "btnCancelTable";
             this.btnCancelTable.Size = new System.Drawing.Size(92, 31);
             this.btnCancelTable.TabIndex = 8;
@@ -540,7 +573,7 @@ namespace STS.Workbench
             // 
             // btnCommit
             // 
-            this.btnCommit.Location = new System.Drawing.Point(387, 6);
+            this.btnCommit.Location = new System.Drawing.Point(357, 3);
             this.btnCommit.Name = "btnCommit";
             this.btnCommit.Size = new System.Drawing.Size(92, 31);
             this.btnCommit.TabIndex = 9;
@@ -548,35 +581,10 @@ namespace STS.Workbench
             this.btnCommit.UseVisualStyleBackColor = true;
             this.btnCommit.Click += new System.EventHandler(this.btnCommit_Click);
             // 
-            // tableAddComponent
+            // timer1
             // 
-            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
-            this.tableAddComponent.Name = "tableAddComponent";
-            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
-            this.tableAddComponent.Size = new System.Drawing.Size(190, 247);
-            this.tableAddComponent.TabIndex = 0;
-            this.tableAddComponent.TabStop = false;
-            // 
-            // cntrlTablesField
-            // 
-            this.cntrlTablesField.AutoScroll = true;
-            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cntrlTablesField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cntrlTablesField.Location = new System.Drawing.Point(2, 2);
-            this.cntrlTablesField.Name = "cntrlTablesField";
-            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 337);
-            this.cntrlTablesField.TabIndex = 0;
-            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(119, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Import/Export:";
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // DiagramPreview
             // 
@@ -612,7 +620,6 @@ namespace STS.Workbench
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer6.Panel1.ResumeLayout(false);
-            this.splitContainer6.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer6)).EndInit();
             this.splitContainer6.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
@@ -658,7 +665,6 @@ namespace STS.Workbench
         private Button btnDiscard;
         private Button btnCommit;
         private SplitContainer splitContainer6;
-        private ProgressBar progressBar1;
         private Label label2;
         private Label label1;
         private SplitContainer splitContainer7;
@@ -668,5 +674,7 @@ namespace STS.Workbench
         private Label label3;
         private ComboBox cmbxPageCount;
         private Label label4;
+        private Timer timer1;
+        private Button btnRefresh;
     }
 }

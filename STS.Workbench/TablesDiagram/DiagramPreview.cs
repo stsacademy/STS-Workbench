@@ -10,19 +10,23 @@ using System.Windows.Forms;
 using STS.Workbench.PreviewComponents;
 using STSdb4.Data;
 using STS.Workbench.Helpers;
+using System.Threading;
+using STS.Workbench.TablesDiagram.DiagramPreviewComponents;
 
 namespace STS.Workbench
 {
     public partial class DiagramPreview : UserControl
     {
-        private int PageCapacity { get { return int.Parse(cmbxPageCount.Text); } }
+        private Thread Worker = new Thread(() => Console.Write(""));
+        private IProgressable WorkingInstance = null;
+        private LoadingForm loadingForm = new LoadingForm();
 
+        private int PageCapacity { get { return int.Parse(cmbxPageCount.Text); } }
         private object[] NextKey = null;
         private object[] CurrentKey = null;
         private object[] PreviousKey = null;
 
         private int TableDistanceX = 180;
-
         private Dictionary<string, TableComponent> tables = new Dictionary<string, TableComponent>();
 
         private List<KeyValuePair<RowOperation, DataGridViewRow>> ModifyedRows = new List<KeyValuePair<RowOperation, DataGridViewRow>>();
@@ -190,15 +194,6 @@ namespace STS.Workbench
             MarkTable(table);
         }
 
-        private void table_DoubleClick(object sender, EventArgs e)
-        {
-            ModifyedRows.Clear();
-            var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
-            OpenedTable = table;
-
-            VisualizeData(table, null, null);
-        }
-
         private void treeViewTablesCatalog_AfterSelect(object sender, TreeViewEventArgs e)
         {
             treeViewTablesCatalog.Nodes[0].BackColor = Color.White;
@@ -210,6 +205,15 @@ namespace STS.Workbench
             var table = (TableComponent)cntrl;
 
             MarkTable(table);
+        }
+
+        private void table_DoubleClick(object sender, EventArgs e)
+        {
+            ModifyedRows.Clear();
+            var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
+            OpenedTable = table;
+
+            VisualizeData(table, null, null);
         }
 
         private void treeViewTablesCatalog_DoubleClick(object sender, EventArgs e)
@@ -265,10 +269,10 @@ namespace STS.Workbench
                 for (int i = 0; i < PageCapacity; i++)
                 {
                     var before = table.FindBefore(PreviousKey);
-                    PreviousKey = before.HasValue ? before.Value.Key : null;
-
                     if (!before.HasValue)
                         break;
+
+                    PreviousKey = before.Value.Key;
                 }
             }
 
@@ -279,7 +283,7 @@ namespace STS.Workbench
             }
 
             btnNextPage.Enabled = NextKey != null;
-            btnPreviousPage.Enabled = PreviousKey != null;
+            btnPreviousPage.Enabled = PreviousKey != CurrentKey;
         }
 
         private void MarkTable(TableComponent table)
@@ -349,20 +353,26 @@ namespace STS.Workbench
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var fileType = (FileType)dialog.FilterIndex;
-                FileImporter importer = new FileImporter(dialog.FileName, fileType);
-
-                foreach (var kv in importer.Read(OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
-                {
-                    try
-                    {
-                        OpenedTable.Insert(kv.Key, kv.Value);
-                    }
-                    catch { }
-                }
-
-                OpenedTable.Save();
-                VisualizeData(OpenedTable, null, null);
+                Worker = new Thread(() => StartImport(dialog.FileName, fileType));
+                Worker.Start();
             }
+        }
+
+        private void StartImport(string fileName, FileType fileType)
+        {
+            FileImporter importer = new FileImporter(fileName, fileType);
+            WorkingInstance = importer;
+
+            foreach (var kv in importer.Read(OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
+            {
+                try
+                {
+                    OpenedTable.Insert(kv.Key, kv.Value);
+                }
+                catch { }
+            }
+
+            OpenedTable.Save();
         }
 
         private void btnExportCsv_Click(object sender, EventArgs e)
@@ -376,7 +386,9 @@ namespace STS.Workbench
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 FileExporter exporter = new FileExporter(dialog.FileName);
-                exporter.Export(OpenedTable.Read());
+                WorkingInstance = exporter;
+                Worker = new Thread(() => exporter.Export(OpenedTable.Read(), OpenedTable.Count));
+                Worker.Start();
             }
         }
 
@@ -449,6 +461,29 @@ namespace STS.Workbench
         }
 
         private void cmbxPageCount_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (OpenedTable != null)
+                VisualizeData(OpenedTable, CurrentKey, null);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.Enabled = !Worker.IsAlive;
+            if (Worker.IsAlive)
+            {
+                loadingForm.Show();
+                loadingForm.progressBar1.Value = WorkingInstance.Percents;
+
+                if (loadingForm.Stopped)
+                    WorkingInstance.Stop();
+            }
+            else
+            {
+                loadingForm.Hide();
+            }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
             if (OpenedTable != null)
                 VisualizeData(OpenedTable, CurrentKey, null);
