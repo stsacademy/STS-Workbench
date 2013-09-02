@@ -14,6 +14,8 @@ namespace STS.Workbench.Helpers
         public string FilePath { get; private set; }
         public string Delimiter { get; private set; }
 
+        public int Percents { get; private set; }
+
         public FileExporter(string filePath)
         {
             FilePath = filePath;
@@ -73,7 +75,5 @@ namespace STS.Workbench.Helpers
         {
             ShutDown = true;
         }
-
-        public int Percents { get; private set; }
     }
 }

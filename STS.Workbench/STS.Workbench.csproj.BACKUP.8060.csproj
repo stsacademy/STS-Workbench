@@ -56,7 +56,7 @@
     <Compile Include="TablesDiagram\Helpers\IProgressable.cs" />
     <Compile Include="TablesDiagram\Helpers\RowOperations.cs" />
     <Compile Include="TablesDiagram\Helpers\StringObjectToIDataTransformer.cs" />
-    <Compile Include="TablesDiagram\Readers\IConnection.cs" />
+    <Compile Include="Readers\IConnection.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,7 +94,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TablesDiagram\Readers\STSDbConnection.cs" />
+    <Compile Include="Readers\STSDbConnection.cs" />
     <Compile Include="Schema\Column.cs" />
     <Compile Include="Schema\DataTable.cs" />
     <Compile Include="Schema\Row.cs" />
