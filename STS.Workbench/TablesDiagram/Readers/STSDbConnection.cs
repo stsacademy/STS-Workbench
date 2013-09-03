@@ -52,8 +52,6 @@ namespace STS.Workbench.Readers
         private StringObjectToIDataTransformer keyTransfomer;
         private StringObjectToIDataTransformer recordTransformer;
 
-        public int PageCapacity { get { return 1000; } }
-
         public string TableName { get; private set; }
         public DataType[] KeyTypes { get; private set; }
         public DataType[] RecordTypes { get; private set; }

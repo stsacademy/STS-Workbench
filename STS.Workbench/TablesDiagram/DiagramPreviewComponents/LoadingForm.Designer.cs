@@ -38,15 +38,16 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 52);
+            this.progressBar1.Location = new System.Drawing.Point(12, 49);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(747, 22);
+            this.progressBar1.Size = new System.Drawing.Size(416, 22);
+            this.progressBar1.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBar1.TabIndex = 0;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::STS.Workbench.Properties.Resources.Wait;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 9);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(41, 34);
             this.pictureBox1.TabIndex = 1;
@@ -54,7 +55,7 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(684, 23);
+            this.btnStop.Location = new System.Drawing.Point(183, 77);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(75, 23);
             this.btnStop.TabIndex = 2;
@@ -68,16 +69,16 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(59, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(84, 20);
+            this.label1.Size = new System.Drawing.Size(112, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Waiting...";
+            this.label1.Text = "Processing...";
             // 
             // LoadingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(771, 86);
+            this.ClientSize = new System.Drawing.Size(440, 111);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnStop);
             this.Controls.Add(this.pictureBox1);

@@ -51,8 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormExtensions.cs" />
-    <Compile Include="TablesDiagram\Helpers\FileExporter.cs" />
-    <Compile Include="TablesDiagram\Helpers\FileImporter.cs" />
+    <Compile Include="TablesDiagram\Helpers\FileUtils.cs" />
     <Compile Include="TablesDiagram\Helpers\IProgressable.cs" />
     <Compile Include="TablesDiagram\Helpers\RowOperations.cs" />
     <Compile Include="TablesDiagram\Helpers\StringObjectToIDataTransformer.cs" />

@@ -12,6 +12,7 @@ using STSdb4.Data;
 using STS.Workbench.Helpers;
 using System.Threading;
 using STS.Workbench.TablesDiagram.DiagramPreviewComponents;
+using STS.Workbench.TablesDiagram.Helpers;
 
 namespace STS.Workbench
 {
@@ -30,7 +31,6 @@ namespace STS.Workbench
         private Dictionary<string, TableComponent> tables = new Dictionary<string, TableComponent>();
 
         private List<KeyValuePair<RowOperation, DataGridViewRow>> ModifyedRows = new List<KeyValuePair<RowOperation, DataGridViewRow>>();
-        private List<DataGridViewRow> removedRows = new List<DataGridViewRow>();
 
         public readonly IConnection DbConnection;
 
@@ -353,26 +353,22 @@ namespace STS.Workbench
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var fileType = (FileType)dialog.FilterIndex;
-                Worker = new Thread(() => StartImport(dialog.FileName, fileType));
+                Worker = new Thread(() =>
+                    {
+                        foreach (var kv in FileUtils.Import(dialog.FileName, fileType, OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
+                        {
+                            try
+                            {
+                                OpenedTable.Insert(kv.Key, kv.Value);
+                            }
+                            catch { }
+                        };
+
+                        OpenedTable.Save();
+                    }
+                );
                 Worker.Start();
             }
-        }
-
-        private void StartImport(string fileName, FileType fileType)
-        {
-            FileImporter importer = new FileImporter(fileName, fileType);
-            WorkingInstance = importer;
-
-            foreach (var kv in importer.Read(OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
-            {
-                try
-                {
-                    OpenedTable.Insert(kv.Key, kv.Value);
-                }
-                catch { }
-            }
-
-            OpenedTable.Save();
         }
 
         private void btnExportCsv_Click(object sender, EventArgs e)
@@ -382,12 +378,11 @@ namespace STS.Workbench
 
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.FileName = OpenedTable.TableName;
-            dialog.Filter = "Csv ';'separated (*.csv)|*.csv";
+            dialog.Filter = "Csv ';'separated (*.csv)|*.csv|Epf ',' separated (*.epf)|*.epf|Txt ',' separated (*.txt)|*.txt|Txt 'Tab' separated (*.txt)|*.txt";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                FileExporter exporter = new FileExporter(dialog.FileName);
-                WorkingInstance = exporter;
-                Worker = new Thread(() => exporter.Export(OpenedTable.Read(), OpenedTable.Count));
+                var fileType = (FileType)dialog.FilterIndex;
+                Worker = new Thread(() => FileUtils.Export(OpenedTable.Read(), dialog.FileName, fileType, OpenedTable.Count));
                 Worker.Start();
             }
         }
@@ -472,10 +467,13 @@ namespace STS.Workbench
             if (Worker.IsAlive)
             {
                 loadingForm.Show();
-                loadingForm.progressBar1.Value = WorkingInstance.Percents;
 
                 if (loadingForm.Stopped)
-                    WorkingInstance.Stop();
+                {
+                    Thread thread = Worker;
+                    FileUtils.Stop();
+                    thread.Join(2000);
+                }
             }
             else
             {

@@ -9,8 +9,6 @@ namespace STS.Workbench
 {
     public interface ITable
     {
-        int PageCapacity { get; }
-
         string TableName { get; }
         DataType[] KeyTypes { get; }
         DataType[] RecordTypes { get; }

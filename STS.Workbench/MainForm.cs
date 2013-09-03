@@ -3,6 +3,7 @@ using STS.Workbench.PreviewComponents;
 using STS.Workbench.Readers;
 using STS.Workbench.ServerControls;
 using STS.Workbench.Servers;
+using STS.Workbench.TablesDiagram.Helpers;
 using STSdb4.Data;
 using STSdb4.Database;
 using STSdb4.General.Communication;
@@ -35,7 +36,7 @@ namespace STS.Workbench
 
             File.Delete(sys);
             File.Delete(dat);
-            
+
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
