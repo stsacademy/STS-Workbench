@@ -35,14 +35,12 @@ namespace STS.Workbench
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
-            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.lblLog = new System.Windows.Forms.Label();
             this.tbxErrors = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnRefresh = new System.Windows.Forms.Button();
@@ -66,6 +64,9 @@ namespace STS.Workbench
             this.SplitContainerMain = new System.Windows.Forms.SplitContainer();
             this.btnCommit = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnSelectAllRows = new System.Windows.Forms.Button();
+            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
+            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
             this.splitContainerTablesPreview.Panel1.SuspendLayout();
@@ -175,15 +176,6 @@ namespace STS.Workbench
             this.splitContainer4.SplitterDistance = 257;
             this.splitContainer4.TabIndex = 8;
             // 
-            // tableAddComponent
-            // 
-            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
-            this.tableAddComponent.Name = "tableAddComponent";
-            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
-            this.tableAddComponent.Size = new System.Drawing.Size(190, 247);
-            this.tableAddComponent.TabIndex = 0;
-            this.tableAddComponent.TabStop = false;
-            // 
             // splitContainer2
             // 
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -277,18 +269,6 @@ namespace STS.Workbench
             this.splitContainer1.SplitterDistance = 259;
             this.splitContainer1.TabIndex = 4;
             // 
-            // cntrlTablesField
-            // 
-            this.cntrlTablesField.AutoScroll = true;
-            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cntrlTablesField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cntrlTablesField.Location = new System.Drawing.Point(2, 2);
-            this.cntrlTablesField.Name = "cntrlTablesField";
-            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 251);
-            this.cntrlTablesField.TabIndex = 0;
-            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
-            // 
             // splitContainer6
             // 
             this.splitContainer6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -323,6 +303,7 @@ namespace STS.Workbench
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.btnSelectAllRows);
             this.splitContainer3.Panel1.Controls.Add(this.btnRefresh);
             this.splitContainer3.Panel1.Controls.Add(this.label4);
             this.splitContainer3.Panel1.Controls.Add(this.label3);
@@ -344,7 +325,7 @@ namespace STS.Workbench
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(581, 2);
+            this.btnRefresh.Location = new System.Drawing.Point(687, 2);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 11;
@@ -355,7 +336,7 @@ namespace STS.Workbench
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(119, 7);
+            this.label4.Location = new System.Drawing.Point(225, 7);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 10;
@@ -364,7 +345,7 @@ namespace STS.Workbench
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(682, 7);
+            this.label3.Location = new System.Drawing.Point(788, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 9;
@@ -390,7 +371,7 @@ namespace STS.Workbench
             "20000",
             "50000",
             "100000"});
-            this.cmbxPageCount.Location = new System.Drawing.Point(731, 4);
+            this.cmbxPageCount.Location = new System.Drawing.Point(837, 4);
             this.cmbxPageCount.Name = "cmbxPageCount";
             this.cmbxPageCount.Size = new System.Drawing.Size(121, 21);
             this.cmbxPageCount.TabIndex = 8;
@@ -401,14 +382,14 @@ namespace STS.Workbench
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(4, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(28, 13);
+            this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 7;
-            this.label2.Text = "Edit:";
+            this.label2.Text = "Edit rows:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(361, 7);
+            this.label1.Location = new System.Drawing.Point(467, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 6;
@@ -416,7 +397,7 @@ namespace STS.Workbench
             // 
             // btnDiscard
             // 
-            this.btnDiscard.Location = new System.Drawing.Point(500, 2);
+            this.btnDiscard.Location = new System.Drawing.Point(606, 2);
             this.btnDiscard.Name = "btnDiscard";
             this.btnDiscard.Size = new System.Drawing.Size(75, 23);
             this.btnDiscard.TabIndex = 5;
@@ -426,7 +407,7 @@ namespace STS.Workbench
             // 
             // btnExport
             // 
-            this.btnExport.Location = new System.Drawing.Point(280, 2);
+            this.btnExport.Location = new System.Drawing.Point(386, 2);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(75, 23);
             this.btnExport.TabIndex = 4;
@@ -436,7 +417,7 @@ namespace STS.Workbench
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(199, 2);
+            this.btnImport.Location = new System.Drawing.Point(305, 2);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(75, 23);
             this.btnImport.TabIndex = 3;
@@ -446,17 +427,17 @@ namespace STS.Workbench
             // 
             // btnDeleteRows
             // 
-            this.btnDeleteRows.Location = new System.Drawing.Point(38, 2);
+            this.btnDeleteRows.Location = new System.Drawing.Point(63, 2);
             this.btnDeleteRows.Name = "btnDeleteRows";
             this.btnDeleteRows.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteRows.TabIndex = 1;
-            this.btnDeleteRows.Text = "Delete rows";
+            this.btnDeleteRows.Text = "Delete";
             this.btnDeleteRows.UseVisualStyleBackColor = true;
             this.btnDeleteRows.Click += new System.EventHandler(this.btnDeleteRow_Click);
             // 
             // btnSaveRow
             // 
-            this.btnSaveRow.Location = new System.Drawing.Point(419, 2);
+            this.btnSaveRow.Location = new System.Drawing.Point(525, 2);
             this.btnSaveRow.Name = "btnSaveRow";
             this.btnSaveRow.Size = new System.Drawing.Size(75, 23);
             this.btnSaveRow.TabIndex = 0;
@@ -585,6 +566,37 @@ namespace STS.Workbench
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnSelectAllRows
+            // 
+            this.btnSelectAllRows.Location = new System.Drawing.Point(144, 2);
+            this.btnSelectAllRows.Name = "btnSelectAllRows";
+            this.btnSelectAllRows.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAllRows.TabIndex = 12;
+            this.btnSelectAllRows.Text = "Select all";
+            this.btnSelectAllRows.UseVisualStyleBackColor = true;
+            this.btnSelectAllRows.Click += new System.EventHandler(this.btnSelectAllRows_Click);
+            // 
+            // tableAddComponent
+            // 
+            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
+            this.tableAddComponent.Name = "tableAddComponent";
+            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
+            this.tableAddComponent.Size = new System.Drawing.Size(190, 247);
+            this.tableAddComponent.TabIndex = 0;
+            this.tableAddComponent.TabStop = false;
+            // 
+            // cntrlTablesField
+            // 
+            this.cntrlTablesField.AutoScroll = true;
+            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cntrlTablesField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cntrlTablesField.Location = new System.Drawing.Point(2, 2);
+            this.cntrlTablesField.Name = "cntrlTablesField";
+            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 251);
+            this.cntrlTablesField.TabIndex = 0;
+            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
+            // 
             // DiagramPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -675,5 +687,6 @@ namespace STS.Workbench
         private Label label4;
         private Timer timer1;
         private Button btnRefresh;
+        private Button btnSelectAllRows;
     }
 }

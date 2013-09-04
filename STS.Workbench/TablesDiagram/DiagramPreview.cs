@@ -18,9 +18,8 @@ namespace STS.Workbench
 {
     public partial class DiagramPreview : UserControl
     {
+        private LoadingForm loadingForm = null;
         private Thread Worker = new Thread(() => Console.Write(""));
-        private IProgressable WorkingInstance = null;
-        private LoadingForm loadingForm = new LoadingForm();
 
         private int PageCapacity { get { return int.Parse(cmbxPageCount.Text); } }
         private object[] NextKey = null;
@@ -238,13 +237,11 @@ namespace STS.Workbench
 
             for (int i = 0; i < typesRow.Count; i++)
             {
-                typesRow[i] = i >= table.KeyTypes.Length ? "(record) " + typesRow[i] : "(key) " + typesRow[i];
+                typesRow[i] = (i >= table.KeyTypes.Length) ? "(record) " + typesRow[i] : "(key) " + typesRow[i];
                 grdViewTableRecords.Columns[i].HeaderText = typesRow[i];
                 grdViewTableRecords.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
 
-            NextKey = null;
-            CurrentKey = null;
             object[] lastKey = null;
             foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
             {
@@ -252,8 +249,14 @@ namespace STS.Workbench
                 lastKey = kv.Key;
             }
 
-            foreach (var kv in table.Read(fromKey, null).Take(1))
-                CurrentKey = kv.Key;
+            NextKey = null;
+            if (lastKey != null)
+            {
+                var after = table.FindAfter(lastKey);
+                NextKey = after.HasValue ? after.Value.Key : null;
+            }
+
+            CurrentKey = table.Read(fromKey, null).FirstOrDefault().Key;
 
             PreviousKey = CurrentKey;
             if (PreviousKey != null)
@@ -266,12 +269,6 @@ namespace STS.Workbench
 
                     PreviousKey = before.Value.Key;
                 }
-            }
-
-            if (lastKey != null)
-            {
-                var after = table.FindAfter(lastKey);
-                NextKey = after.HasValue ? after.Value.Key : null;
             }
 
             btnNextPage.Enabled = NextKey != null;
@@ -331,6 +328,7 @@ namespace STS.Workbench
                 return;
 
             ModifyedRows.Clear();
+            VisualizeData(OpenedTable, CurrentKey, null);
         }
 
         #region Export/Import
@@ -461,21 +459,32 @@ namespace STS.Workbench
         private void timer1_Tick(object sender, EventArgs e)
         {
             this.Enabled = !Worker.IsAlive;
+
             if (Worker.IsAlive)
             {
-                loadingForm.Show();
-                loadingForm.progressBar1.Value = FileUtils.Percents;
-
-                if (loadingForm.StopClicked)
+                if (loadingForm == null)
                 {
-                    Thread thread = Worker;
-                    FileUtils.Stop();
-                    thread.Join(2000);
+                    loadingForm = new LoadingForm();
+                    loadingForm.Show();
+                }
+                else //(loadingForm != null)
+                {
+                    loadingForm.SetPercents(FileUtils.Percents);
+
+                    if (loadingForm.StopClicked)
+                    {
+                        FileUtils.Stop();
+                        Worker.Join();
+                        loadingForm.Close();
+                        loadingForm = null;
+                    }
                 }
             }
-            else
+
+            if (!Worker.IsAlive && loadingForm != null)
             {
-                loadingForm.Hide();
+                loadingForm.Close();
+                loadingForm = null;
             }
         }
 
@@ -483,6 +492,11 @@ namespace STS.Workbench
         {
             if (OpenedTable != null)
                 VisualizeData(OpenedTable, CurrentKey, null);
+        }
+
+        private void btnSelectAllRows_Click(object sender, EventArgs e)
+        {
+            grdViewTableRecords.SelectAll();
         }
     }
 }

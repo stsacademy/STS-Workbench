@@ -18,6 +18,16 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         {
             InitializeComponent();
         }
+        
+        public void SetPercents(int value)
+        {
+            progressBar1.Value = value;
+        }
+
+        public void ChangeProgressBarStyle(ProgressBarStyle style)
+        {
+            progressBar1.Style = style;
+        }
 
         private void btnStop_Click(object sender, EventArgs e)
         {

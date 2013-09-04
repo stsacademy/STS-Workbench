@@ -79,9 +79,9 @@ namespace STS.Workbench.TablesDiagram.Helpers
 
             using (FileStream stream = new FileStream(fileName, FileMode.Open))
             {
+                StreamReader reader = new StreamReader(stream);
                 long length = stream.Length;
 
-                StreamReader reader = new StreamReader(stream);
                 while (!ShutDown && !reader.EndOfStream)
                 {
                     object[] key = new object[keyLength];
