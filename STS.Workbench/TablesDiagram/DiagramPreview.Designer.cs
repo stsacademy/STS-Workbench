@@ -43,6 +43,7 @@ namespace STS.Workbench
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.btnSelectAllRows = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,7 +65,7 @@ namespace STS.Workbench
             this.SplitContainerMain = new System.Windows.Forms.SplitContainer();
             this.btnCommit = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnSelectAllRows = new System.Windows.Forms.Button();
+            this.btnCloseTab = new System.Windows.Forms.Button();
             this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
             this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
@@ -323,6 +324,16 @@ namespace STS.Workbench
             this.splitContainer3.SplitterDistance = 29;
             this.splitContainer3.TabIndex = 4;
             // 
+            // btnSelectAllRows
+            // 
+            this.btnSelectAllRows.Location = new System.Drawing.Point(144, 2);
+            this.btnSelectAllRows.Name = "btnSelectAllRows";
+            this.btnSelectAllRows.Size = new System.Drawing.Size(75, 23);
+            this.btnSelectAllRows.TabIndex = 12;
+            this.btnSelectAllRows.Text = "Select all";
+            this.btnSelectAllRows.UseVisualStyleBackColor = true;
+            this.btnSelectAllRows.Click += new System.EventHandler(this.btnSelectAllRows_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.Location = new System.Drawing.Point(687, 2);
@@ -539,6 +550,7 @@ namespace STS.Workbench
             // 
             // SplitContainerMain.Panel1
             // 
+            this.SplitContainerMain.Panel1.Controls.Add(this.btnCloseTab);
             this.SplitContainerMain.Panel1.Controls.Add(this.btnCommit);
             this.SplitContainerMain.Panel1.Controls.Add(this.btnRemoveTable);
             this.SplitContainerMain.Panel1.Controls.Add(this.btnCancelTable);
@@ -566,15 +578,15 @@ namespace STS.Workbench
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnSelectAllRows
+            // btnCloseTab
             // 
-            this.btnSelectAllRows.Location = new System.Drawing.Point(144, 2);
-            this.btnSelectAllRows.Name = "btnSelectAllRows";
-            this.btnSelectAllRows.Size = new System.Drawing.Size(75, 23);
-            this.btnSelectAllRows.TabIndex = 12;
-            this.btnSelectAllRows.Text = "Select all";
-            this.btnSelectAllRows.UseVisualStyleBackColor = true;
-            this.btnSelectAllRows.Click += new System.EventHandler(this.btnSelectAllRows_Click);
+            this.btnCloseTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseTab.Location = new System.Drawing.Point(1198, 3);
+            this.btnCloseTab.Name = "btnCloseTab";
+            this.btnCloseTab.Size = new System.Drawing.Size(92, 31);
+            this.btnCloseTab.TabIndex = 10;
+            this.btnCloseTab.Text = "Close tab";
+            this.btnCloseTab.UseVisualStyleBackColor = true;
             // 
             // tableAddComponent
             // 
@@ -688,5 +700,6 @@ namespace STS.Workbench
         private Timer timer1;
         private Button btnRefresh;
         private Button btnSelectAllRows;
+        internal Button btnCloseTab;
     }
 }

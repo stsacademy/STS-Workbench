@@ -29,10 +29,13 @@ namespace STS.Workbench
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.userControls = new System.Windows.Forms.TabControl();
             this.HomePage = new System.Windows.Forms.TabPage();
-            this.btnTablesTest = new System.Windows.Forms.Button();
             this.btnServer = new System.Windows.Forms.Button();
+            this.btnTablesTest = new System.Windows.Forms.Button();
+            this.imgListControls = new System.Windows.Forms.ImageList(this.components);
             this.userControls.SuspendLayout();
             this.HomePage.SuspendLayout();
             this.SuspendLayout();
@@ -41,37 +44,29 @@ namespace STS.Workbench
             // 
             this.userControls.Controls.Add(this.HomePage);
             this.userControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.userControls.ImageList = this.imgListControls;
             this.userControls.Location = new System.Drawing.Point(0, 0);
             this.userControls.Name = "userControls";
             this.userControls.SelectedIndex = 0;
-            this.userControls.Size = new System.Drawing.Size(1400, 670);
+            this.userControls.Size = new System.Drawing.Size(1312, 526);
             this.userControls.TabIndex = 0;
             // 
             // HomePage
             // 
             this.HomePage.Controls.Add(this.btnServer);
             this.HomePage.Controls.Add(this.btnTablesTest);
-            this.HomePage.Location = new System.Drawing.Point(4, 22);
+            this.HomePage.ImageKey = "home-12.ico";
+            this.HomePage.Location = new System.Drawing.Point(4, 23);
             this.HomePage.Name = "HomePage";
             this.HomePage.Padding = new System.Windows.Forms.Padding(3);
-            this.HomePage.Size = new System.Drawing.Size(1392, 644);
+            this.HomePage.Size = new System.Drawing.Size(1304, 499);
             this.HomePage.TabIndex = 1;
             this.HomePage.Text = "Home";
             this.HomePage.UseVisualStyleBackColor = true;
             // 
-            // btnTablesTest
-            // 
-            this.btnTablesTest.Location = new System.Drawing.Point(45, 82);
-            this.btnTablesTest.Name = "btnTablesTest";
-            this.btnTablesTest.Size = new System.Drawing.Size(75, 23);
-            this.btnTablesTest.TabIndex = 0;
-            this.btnTablesTest.Text = "TablesTest";
-            this.btnTablesTest.UseVisualStyleBackColor = true;
-            this.btnTablesTest.Click += new System.EventHandler(this.btnTablesTest_Click);
-            // 
             // btnServer
             // 
-            this.btnServer.Location = new System.Drawing.Point(45, 111);
+            this.btnServer.Location = new System.Drawing.Point(118, 151);
             this.btnServer.Name = "btnServer";
             this.btnServer.Size = new System.Drawing.Size(75, 23);
             this.btnServer.TabIndex = 1;
@@ -79,11 +74,27 @@ namespace STS.Workbench
             this.btnServer.UseVisualStyleBackColor = true;
             this.btnServer.Click += new System.EventHandler(this.btnServer_Click);
             // 
+            // btnTablesTest
+            // 
+            this.btnTablesTest.Location = new System.Drawing.Point(147, 94);
+            this.btnTablesTest.Name = "btnTablesTest";
+            this.btnTablesTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTablesTest.TabIndex = 0;
+            this.btnTablesTest.Text = "TablesTest";
+            this.btnTablesTest.UseVisualStyleBackColor = true;
+            this.btnTablesTest.Click += new System.EventHandler(this.btnTablesTest_Click);
+            // 
+            // imgListControls
+            // 
+            this.imgListControls.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgListControls.ImageStream")));
+            this.imgListControls.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgListControls.Images.SetKeyName(0, "home-12.ico");
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1400, 670);
+            this.ClientSize = new System.Drawing.Size(1312, 526);
             this.Controls.Add(this.userControls);
             this.Name = "MainForm";
             this.Text = "Form1";
@@ -99,6 +110,7 @@ namespace STS.Workbench
         private TabPage HomePage;
         private Button btnServer;
         private Button btnTablesTest;
+        private ImageList imgListControls;
     }
 }
 
