@@ -230,34 +230,26 @@ namespace STS.Workbench
         {
             grdViewTableRecords.Rows.Clear();
             grdViewTableRecords.Columns.Clear();
-
             grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
 
-            List<string> keyTypes = new List<string>();
-            foreach (var keyType in table.KeyTypes)
-                keyTypes.Add("(key) " + keyType);
+            List<string> keyTypes = new List<string>(table.KeyTypes.Select(x => x.ToString()));
+            List<string> recTypes = new List<string>(table.RecordTypes.Select(x => x.ToString()));
+            List<string> typesRow = new List<string>(keyTypes.Concat(recTypes));
 
-            List<string> recTypes = new List<string>();
-            foreach (var recType in table.RecordTypes)
-                keyTypes.Add("(record) " + recType);
-
-            var typesRow = keyTypes.Concat(recTypes);
-            grdViewTableRecords.Rows.Add(typesRow.ToArray());
-            grdViewTableRecords.Rows[0].ReadOnly = true;
-            foreach (var cell in grdViewTableRecords.Rows[0].Cells)
-                ((DataGridViewCell)cell).Style.BackColor = Color.LightBlue;
+            for (int i = 0; i < typesRow.Count; i++)
+            {
+                typesRow[i] = i >= table.KeyTypes.Length ? "(record) " + typesRow[i] : "(key) " + typesRow[i];
+                grdViewTableRecords.Columns[i].HeaderText = typesRow[i];
+                grdViewTableRecords.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
 
             NextKey = null;
             CurrentKey = null;
-            object[] LastKey = null;
+            object[] lastKey = null;
             foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
             {
-                LastKey = kv.Key;
-                List<object> list = new List<object>();
-                list.AddRange(kv.Key);
-                list.AddRange(kv.Value);
-
-                grdViewTableRecords.Rows.Add(list.ToArray());
+                grdViewTableRecords.Rows.Add(kv.Key.Concat(kv.Value).ToArray());
+                lastKey = kv.Key;
             }
 
             foreach (var kv in table.Read(fromKey, null).Take(1))
@@ -276,9 +268,9 @@ namespace STS.Workbench
                 }
             }
 
-            if (LastKey != null)
+            if (lastKey != null)
             {
-                var after = table.FindAfter(LastKey);
+                var after = table.FindAfter(lastKey);
                 NextKey = after.HasValue ? after.Value.Key : null;
             }
 
@@ -401,8 +393,8 @@ namespace STS.Workbench
 
             foreach (var row in grdViewTableRecords.SelectedRows)
             {
-                //Not first(header) or last(empty) row.
-                if ((DataGridViewRow)row != grdViewTableRecords.Rows[0] && (DataGridViewRow)row != grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1])
+                //Not last(empty) row.
+                if ((DataGridViewRow)row != grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1])
                 {
                     ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Delete, (DataGridViewRow)row));
                     grdViewTableRecords.Rows.Remove((DataGridViewRow)row);
@@ -410,26 +402,31 @@ namespace STS.Workbench
             }
         }
 
-        private DataGridViewRow changedRow;
+        private DataGridViewRow clickedRow;
         private DataGridViewRow oldChangedRow;
         private void grdViewTableRecords_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+                return;
+
             if (grdViewTableRecords.SelectedRows.Count > 0 && grdViewTableRecords.SelectedRows[0] != grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1])
             {
                 ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Delete, oldChangedRow));
-                ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Insert, changedRow));
+                ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Insert, clickedRow));
             }
         }
 
         private void grdViewTableRecords_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            changedRow = (DataGridViewRow)grdViewTableRecords.SelectedRows[0];
+            if (e.RowIndex == -1)
+                return;
+
+            clickedRow = (DataGridViewRow)grdViewTableRecords.SelectedRows[0];
             oldChangedRow = new DataGridViewRow();
-            {
-                oldChangedRow.CreateCells(grdViewTableRecords);
-                for (int i = 0; i < changedRow.Cells.Count; i++)
-                    oldChangedRow.Cells[i].Value = changedRow.Cells[i].Value;
-            }
+
+            oldChangedRow.CreateCells(grdViewTableRecords);
+            for (int i = 0; i < clickedRow.Cells.Count; i++)
+                oldChangedRow.Cells[i].Value = clickedRow.Cells[i].Value;
         }
 
         private void btnCommit_Click(object sender, EventArgs e)
@@ -467,8 +464,9 @@ namespace STS.Workbench
             if (Worker.IsAlive)
             {
                 loadingForm.Show();
+                loadingForm.progressBar1.Value = FileUtils.Percents;
 
-                if (loadingForm.Stopped)
+                if (loadingForm.StopClicked)
                 {
                     Thread thread = Worker;
                     FileUtils.Stop();

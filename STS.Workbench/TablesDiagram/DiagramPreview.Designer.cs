@@ -109,7 +109,6 @@ namespace STS.Workbench
             this.grdViewTableRecords.AllowUserToDeleteRows = false;
             this.grdViewTableRecords.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.grdViewTableRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdViewTableRecords.ColumnHeadersVisible = false;
             this.grdViewTableRecords.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdViewTableRecords.Location = new System.Drawing.Point(0, 0);
             this.grdViewTableRecords.Name = "grdViewTableRecords";

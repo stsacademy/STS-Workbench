@@ -12,7 +12,7 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
 {
     public partial class LoadingForm : Form
     {
-        public volatile bool Stopped;
+        public volatile bool StopClicked;
 
         public LoadingForm()
         {
@@ -21,12 +21,12 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            Stopped = true;
+            StopClicked = true;
         }
 
         private void LoadingForm_Shown(object sender, EventArgs e)
         {
-            Stopped = false;
+            StopClicked = false;
         }
     }
 }
