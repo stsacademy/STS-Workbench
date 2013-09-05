@@ -37,8 +37,7 @@ namespace STS.Workbench
 
         ITable OpenTable(string tableName, DataType[] keyTypes, DataType[] recordTypes);
         void RemoveTable(string tableName, DataType[] keyTypes, DataType[] recordTypes);
-
-
+        
         void Commit();
         void Close();
     }
