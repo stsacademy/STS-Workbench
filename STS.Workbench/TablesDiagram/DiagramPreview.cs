@@ -498,5 +498,10 @@ namespace STS.Workbench
         {
             grdViewTableRecords.SelectAll();
         }
+
+        private void btnCloseTab_Click(object sender, EventArgs e)
+        {
+            DbConnection.Close();
+        }
     }
 }

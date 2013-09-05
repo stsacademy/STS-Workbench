@@ -34,9 +34,12 @@ namespace STS.Workbench
         string Name { get; }
 
         IEnumerable<ITable> GetSchema();
-        void Commit();
 
         ITable OpenTable(string tableName, DataType[] keyTypes, DataType[] recordTypes);
         void RemoveTable(string tableName, DataType[] keyTypes, DataType[] recordTypes);
+
+
+        void Commit();
+        void Close();
     }
 }

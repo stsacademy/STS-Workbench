@@ -29,11 +29,6 @@ namespace STS.Workbench.Readers
                 yield return OpenTable(table.Name, table.KeyDescriptor.SlotTypes, table.RecordDescriptor.SlotTypes);
         }
 
-        public void Commit()
-        {
-            StorageEngine.Commit();
-        }
-
         public ITable OpenTable(string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
             var index = StorageEngine.OpenXIndex(keyTypes, recordTypes, tableName);
@@ -44,6 +39,16 @@ namespace STS.Workbench.Readers
         public void RemoveTable(string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
             StorageEngine.Delete(tableName);
+        }
+
+        public void Commit()
+        {
+            StorageEngine.Commit();
+        }
+
+        public void Close()
+        {
+            StorageEngine.Close();
         }
     }
 

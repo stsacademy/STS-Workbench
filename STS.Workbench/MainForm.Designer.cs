@@ -48,7 +48,7 @@ namespace STS.Workbench
             this.userControls.Location = new System.Drawing.Point(0, 0);
             this.userControls.Name = "userControls";
             this.userControls.SelectedIndex = 0;
-            this.userControls.Size = new System.Drawing.Size(1312, 526);
+            this.userControls.Size = new System.Drawing.Size(1339, 565);
             this.userControls.TabIndex = 0;
             // 
             // HomePage
@@ -59,14 +59,14 @@ namespace STS.Workbench
             this.HomePage.Location = new System.Drawing.Point(4, 23);
             this.HomePage.Name = "HomePage";
             this.HomePage.Padding = new System.Windows.Forms.Padding(3);
-            this.HomePage.Size = new System.Drawing.Size(1304, 499);
+            this.HomePage.Size = new System.Drawing.Size(1331, 538);
             this.HomePage.TabIndex = 1;
             this.HomePage.Text = "Home";
             this.HomePage.UseVisualStyleBackColor = true;
             // 
             // btnServer
             // 
-            this.btnServer.Location = new System.Drawing.Point(118, 151);
+            this.btnServer.Location = new System.Drawing.Point(92, 164);
             this.btnServer.Name = "btnServer";
             this.btnServer.Size = new System.Drawing.Size(75, 23);
             this.btnServer.TabIndex = 1;
@@ -76,7 +76,7 @@ namespace STS.Workbench
             // 
             // btnTablesTest
             // 
-            this.btnTablesTest.Location = new System.Drawing.Point(147, 94);
+            this.btnTablesTest.Location = new System.Drawing.Point(92, 106);
             this.btnTablesTest.Name = "btnTablesTest";
             this.btnTablesTest.Size = new System.Drawing.Size(75, 23);
             this.btnTablesTest.TabIndex = 0;
@@ -94,8 +94,9 @@ namespace STS.Workbench
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1312, 526);
+            this.ClientSize = new System.Drawing.Size(1339, 565);
             this.Controls.Add(this.userControls);
+            this.MinimumSize = new System.Drawing.Size(1200, 500);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.userControls.ResumeLayout(false);

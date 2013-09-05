@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbManager\DbManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DbManager\DbManager.Designer.cs">
+      <DependentUpon>DbManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormExtensions.cs" />
     <Compile Include="TablesDiagram\Helpers\FileUtils.cs" />
     <Compile Include="TablesDiagram\Helpers\IProgressable.cs" />
@@ -113,6 +119,9 @@
     <Compile Include="TablesDiagram\DiagramPreview.Designer.cs">
       <DependentUpon>DiagramPreview.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="DbManager\DbManager.resx">
+      <DependentUpon>DbManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -162,7 +171,9 @@
     <Content Include="Resources\table.ico" />
     <Content Include="Resources\userType.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="DbManager\DataBases\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

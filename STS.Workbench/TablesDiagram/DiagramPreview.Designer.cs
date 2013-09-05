@@ -115,7 +115,7 @@ namespace STS.Workbench
             this.grdViewTableRecords.Location = new System.Drawing.Point(0, 0);
             this.grdViewTableRecords.Name = "grdViewTableRecords";
             this.grdViewTableRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdViewTableRecords.Size = new System.Drawing.Size(1083, 254);
+            this.grdViewTableRecords.Size = new System.Drawing.Size(1083, 232);
             this.grdViewTableRecords.TabIndex = 3;
             this.grdViewTableRecords.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdViewTableRecords_CellMouseClick);
             this.grdViewTableRecords.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewTableRecords_CellValueChanged);
@@ -267,7 +267,7 @@ namespace STS.Workbench
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer6);
             this.splitContainer1.Size = new System.Drawing.Size(1087, 589);
-            this.splitContainer1.SplitterDistance = 259;
+            this.splitContainer1.SplitterDistance = 281;
             this.splitContainer1.TabIndex = 4;
             // 
             // splitContainer6
@@ -288,7 +288,7 @@ namespace STS.Workbench
             // 
             this.splitContainer6.Panel2.Padding = new System.Windows.Forms.Padding(2);
             this.splitContainer6.Panel2Collapsed = true;
-            this.splitContainer6.Size = new System.Drawing.Size(1087, 326);
+            this.splitContainer6.Size = new System.Drawing.Size(1087, 304);
             this.splitContainer6.SplitterDistance = 292;
             this.splitContainer6.TabIndex = 0;
             // 
@@ -320,7 +320,7 @@ namespace STS.Workbench
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer3.Size = new System.Drawing.Size(1087, 326);
+            this.splitContainer3.Size = new System.Drawing.Size(1087, 304);
             this.splitContainer3.SplitterDistance = 29;
             this.splitContainer3.TabIndex = 4;
             // 
@@ -475,8 +475,8 @@ namespace STS.Workbench
             this.splitContainer7.Panel2.Controls.Add(this.btnNextPage);
             this.splitContainer7.Panel2.Controls.Add(this.btnPreviousPage);
             this.splitContainer7.Panel2.Controls.Add(this.btnFirstPage);
-            this.splitContainer7.Size = new System.Drawing.Size(1087, 293);
-            this.splitContainer7.SplitterDistance = 258;
+            this.splitContainer7.Size = new System.Drawing.Size(1087, 271);
+            this.splitContainer7.SplitterDistance = 236;
             this.splitContainer7.TabIndex = 4;
             // 
             // btnNextPage
@@ -587,6 +587,7 @@ namespace STS.Workbench
             this.btnCloseTab.TabIndex = 10;
             this.btnCloseTab.Text = "Close tab";
             this.btnCloseTab.UseVisualStyleBackColor = true;
+            this.btnCloseTab.Click += new System.EventHandler(this.btnCloseTab_Click);
             // 
             // tableAddComponent
             // 
@@ -605,7 +606,7 @@ namespace STS.Workbench
             this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cntrlTablesField.Location = new System.Drawing.Point(2, 2);
             this.cntrlTablesField.Name = "cntrlTablesField";
-            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 251);
+            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 273);
             this.cntrlTablesField.TabIndex = 0;
             this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
             // 

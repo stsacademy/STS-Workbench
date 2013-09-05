@@ -30,7 +30,6 @@ namespace STS.Workbench
 
         private void btnTablesTest_Click(object sender, EventArgs e)
         {
-
             string sys = "stsdb4.sys";
             string dat = "stsdb4.data";
 
@@ -44,20 +43,22 @@ namespace STS.Workbench
                 index1[i] = "gosho " + i;
 
             index1.Flush();
-
             engine.Commit();
 
             STSDbConnection STSdbConnection = new STSDbConnection(engine);
-
             DiagramPreview tablesPreview = new DiagramPreview(STSdbConnection);
 
             var tabPage = new TabPage("Tables");
-
-            //tablesPreview.Padding = new Padding(4);
             tablesPreview.Dock = DockStyle.Fill;
+            tablesPreview.btnCloseTab.Click += btnCloseTab_Click;
             tabPage.Controls.Add(tablesPreview);
 
             userControls.Controls.Add(tabPage);
+        }
+
+        private void btnCloseTab_Click(object sender, EventArgs e)
+        {
+            userControls.TabPages.Remove(userControls.SelectedTab);
         }
 
         private void btnServer_Click(object sender, EventArgs e)
