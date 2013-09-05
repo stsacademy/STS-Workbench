@@ -50,11 +50,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbManager\DbManager.cs">
+    <Compile Include="DbManager\DataBases\STSdb4Client.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DbManager\DbManager.Designer.cs">
-      <DependentUpon>DbManager.cs</DependentUpon>
+    <Compile Include="DbManager\DataBases\STSdb4Client.Designer.cs">
+      <DependentUpon>STSdb4Client.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DbManager\DataBases\IDataBase.cs" />
+    <Compile Include="DbManager\DataBases\STSdb4Embaded.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DbManager\DataBases\STSdb4Embaded.Designer.cs">
+      <DependentUpon>STSdb4Embaded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DbManager\ManagerPreview.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DbManager\ManagerPreview.Designer.cs">
+      <DependentUpon>ManagerPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
     <Compile Include="TablesDiagram\Helpers\FileUtils.cs" />
@@ -85,11 +98,11 @@
     <Compile Include="TablesDiagram\DiagramPreviewComponents\TableAddComponent.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TablesField.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\Field.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TablesField.Designer.cs">
-      <DependentUpon>TablesField.cs</DependentUpon>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\Field.Designer.cs">
+      <DependentUpon>Field.cs</DependentUpon>
     </Compile>
     <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.cs">
       <SubType>UserControl</SubType>
@@ -119,8 +132,14 @@
     <Compile Include="TablesDiagram\DiagramPreview.Designer.cs">
       <DependentUpon>DiagramPreview.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="DbManager\DbManager.resx">
-      <DependentUpon>DbManager.cs</DependentUpon>
+    <EmbeddedResource Include="DbManager\DataBases\STSdb4Client.resx">
+      <DependentUpon>STSdb4Client.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DbManager\DataBases\STSdb4Embaded.resx">
+      <DependentUpon>STSdb4Embaded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DbManager\ManagerPreview.resx">
+      <DependentUpon>ManagerPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -131,8 +150,8 @@
     <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TablesField.resx">
-      <DependentUpon>TablesField.cs</DependentUpon>
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\Field.resx">
+      <DependentUpon>Field.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponent.resx">
       <DependentUpon>TableComponent.cs</DependentUpon>
@@ -171,9 +190,7 @@
     <Content Include="Resources\table.ico" />
     <Content Include="Resources\userType.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DbManager\DataBases\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,6 @@
-﻿using STS.Workbench.Helpers;
+﻿using STS.Workbench.DbManager.DataBases;
+using STS.Workbench.EngineManagers;
+using STS.Workbench.Helpers;
 using STS.Workbench.PreviewComponents;
 using STS.Workbench.Readers;
 using STS.Workbench.ServerControls;
@@ -93,6 +95,16 @@ namespace STS.Workbench
             tabPage.Controls.Add(status);
 
             userControls.Controls.Add(tabPage);
+        }
+
+        private void btnControlTest_Click(object sender, EventArgs e)
+        {
+            ManagerPreview dbManager = new ManagerPreview(userControls);
+            dbManager.Dock = DockStyle.Fill;
+            TabPage page = new TabPage("Db Manager");
+            page.Controls.Add(dbManager);
+
+            userControls.Controls.Add(page);
         }
     }
 }

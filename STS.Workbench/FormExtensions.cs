@@ -22,7 +22,7 @@ namespace STS.Workbench
 
             return new KeyValuePair<object[], object[]>(key, rec);
         }
-        
+
         public static Control FindControlByName(this Control control, string name)
         {
             foreach (var cntrl in control.Controls)
@@ -32,6 +32,22 @@ namespace STS.Workbench
             }
 
             return null;
+        }
+
+        public static bool FindControl(this Control instance, Control control)
+        {
+            foreach (var item in instance.Controls)
+            {
+                var cntrl = (Control)item;
+
+                if (cntrl.FindControl(control))
+                    return true;
+
+                if (cntrl.Controls.Contains(control))
+                    return true;
+            }
+
+            return false;
         }
     }
 }

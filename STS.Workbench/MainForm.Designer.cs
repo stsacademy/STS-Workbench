@@ -36,6 +36,7 @@ namespace STS.Workbench
             this.btnServer = new System.Windows.Forms.Button();
             this.btnTablesTest = new System.Windows.Forms.Button();
             this.imgListControls = new System.Windows.Forms.ImageList(this.components);
+            this.btnControlTest = new System.Windows.Forms.Button();
             this.userControls.SuspendLayout();
             this.HomePage.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +54,7 @@ namespace STS.Workbench
             // 
             // HomePage
             // 
+            this.HomePage.Controls.Add(this.btnControlTest);
             this.HomePage.Controls.Add(this.btnServer);
             this.HomePage.Controls.Add(this.btnTablesTest);
             this.HomePage.ImageKey = "home-12.ico";
@@ -66,7 +68,7 @@ namespace STS.Workbench
             // 
             // btnServer
             // 
-            this.btnServer.Location = new System.Drawing.Point(92, 164);
+            this.btnServer.Location = new System.Drawing.Point(8, 137);
             this.btnServer.Name = "btnServer";
             this.btnServer.Size = new System.Drawing.Size(75, 23);
             this.btnServer.TabIndex = 1;
@@ -76,7 +78,7 @@ namespace STS.Workbench
             // 
             // btnTablesTest
             // 
-            this.btnTablesTest.Location = new System.Drawing.Point(92, 106);
+            this.btnTablesTest.Location = new System.Drawing.Point(8, 108);
             this.btnTablesTest.Name = "btnTablesTest";
             this.btnTablesTest.Size = new System.Drawing.Size(75, 23);
             this.btnTablesTest.TabIndex = 0;
@@ -89,6 +91,16 @@ namespace STS.Workbench
             this.imgListControls.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgListControls.ImageStream")));
             this.imgListControls.TransparentColor = System.Drawing.Color.Transparent;
             this.imgListControls.Images.SetKeyName(0, "home-12.ico");
+            // 
+            // btnControlTest
+            // 
+            this.btnControlTest.Location = new System.Drawing.Point(8, 166);
+            this.btnControlTest.Name = "btnControlTest";
+            this.btnControlTest.Size = new System.Drawing.Size(75, 23);
+            this.btnControlTest.TabIndex = 2;
+            this.btnControlTest.Text = "Control Test";
+            this.btnControlTest.UseVisualStyleBackColor = true;
+            this.btnControlTest.Click += new System.EventHandler(this.btnControlTest_Click);
             // 
             // MainForm
             // 
@@ -112,6 +124,7 @@ namespace STS.Workbench
         private Button btnServer;
         private Button btnTablesTest;
         private ImageList imgListControls;
+        private Button btnControlTest;
     }
 }
 

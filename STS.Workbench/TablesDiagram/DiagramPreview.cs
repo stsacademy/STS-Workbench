@@ -94,14 +94,17 @@ namespace STS.Workbench
         {
             if (IsMoving && e.Button == MouseButtons.Left)
             {
-                Control control = ((Control)sender).Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent.Parent;
-                if (control.GetType() == typeof(TableComponent))
+                foreach (var item in cntrlTablesField.Controls)
                 {
-                    control.Left += e.X - MousePoint.X;
-                    control.Top += e.Y - MousePoint.Y;
+                    var control = (Control)item;
+                    if (control.FindControl((Control)sender))
+                    {
+                        control.Left += e.X - MousePoint.X;
+                        control.Top += e.Y - MousePoint.Y;
 
-                    control.Left = control.Left < 0 ? control.Left = 0 : control.Left;
-                    control.Top = control.Top < 0 ? control.Top = 0 : control.Top;
+                        control.Left = control.Left < 0 ? control.Left = 0 : control.Left;
+                        control.Top = control.Top < 0 ? control.Top = 0 : control.Top;
+                    }
                 }
             }
         }
@@ -501,7 +504,7 @@ namespace STS.Workbench
 
         private void btnCloseTab_Click(object sender, EventArgs e)
         {
-            DbConnection.Close();
+            //DbConnection.Close();
         }
     }
 }

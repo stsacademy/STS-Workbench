@@ -35,12 +35,14 @@ namespace STS.Workbench
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.lblLog = new System.Windows.Forms.Label();
             this.tbxErrors = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnSelectAllRows = new System.Windows.Forms.Button();
@@ -63,11 +65,9 @@ namespace STS.Workbench
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnCancelTable = new System.Windows.Forms.Button();
             this.SplitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.btnCloseTab = new System.Windows.Forms.Button();
             this.btnCommit = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnCloseTab = new System.Windows.Forms.Button();
-            this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
-            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
             this.splitContainerTablesPreview.Panel1.SuspendLayout();
@@ -177,6 +177,15 @@ namespace STS.Workbench
             this.splitContainer4.SplitterDistance = 257;
             this.splitContainer4.TabIndex = 8;
             // 
+            // tableAddComponent
+            // 
+            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
+            this.tableAddComponent.Name = "tableAddComponent";
+            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
+            this.tableAddComponent.Size = new System.Drawing.Size(190, 247);
+            this.tableAddComponent.TabIndex = 0;
+            this.tableAddComponent.TabStop = false;
+            // 
             // splitContainer2
             // 
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -270,6 +279,18 @@ namespace STS.Workbench
             this.splitContainer1.SplitterDistance = 281;
             this.splitContainer1.TabIndex = 4;
             // 
+            // cntrlTablesField
+            // 
+            this.cntrlTablesField.AutoScroll = true;
+            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cntrlTablesField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cntrlTablesField.Location = new System.Drawing.Point(2, 2);
+            this.cntrlTablesField.Name = "cntrlTablesField";
+            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 273);
+            this.cntrlTablesField.TabIndex = 0;
+            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
+            // 
             // splitContainer6
             // 
             this.splitContainer6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -289,7 +310,7 @@ namespace STS.Workbench
             this.splitContainer6.Panel2.Padding = new System.Windows.Forms.Padding(2);
             this.splitContainer6.Panel2Collapsed = true;
             this.splitContainer6.Size = new System.Drawing.Size(1087, 304);
-            this.splitContainer6.SplitterDistance = 292;
+            this.splitContainer6.SplitterDistance = 279;
             this.splitContainer6.TabIndex = 0;
             // 
             // splitContainer3
@@ -563,6 +584,17 @@ namespace STS.Workbench
             this.SplitContainerMain.SplitterDistance = 37;
             this.SplitContainerMain.TabIndex = 9;
             // 
+            // btnCloseTab
+            // 
+            this.btnCloseTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseTab.Location = new System.Drawing.Point(1198, 3);
+            this.btnCloseTab.Name = "btnCloseTab";
+            this.btnCloseTab.Size = new System.Drawing.Size(92, 31);
+            this.btnCloseTab.TabIndex = 10;
+            this.btnCloseTab.Text = "Close tab";
+            this.btnCloseTab.UseVisualStyleBackColor = true;
+            this.btnCloseTab.Click += new System.EventHandler(this.btnCloseTab_Click);
+            // 
             // btnCommit
             // 
             this.btnCommit.Location = new System.Drawing.Point(357, 3);
@@ -577,38 +609,6 @@ namespace STS.Workbench
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // btnCloseTab
-            // 
-            this.btnCloseTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseTab.Location = new System.Drawing.Point(1198, 3);
-            this.btnCloseTab.Name = "btnCloseTab";
-            this.btnCloseTab.Size = new System.Drawing.Size(92, 31);
-            this.btnCloseTab.TabIndex = 10;
-            this.btnCloseTab.Text = "Close tab";
-            this.btnCloseTab.UseVisualStyleBackColor = true;
-            this.btnCloseTab.Click += new System.EventHandler(this.btnCloseTab_Click);
-            // 
-            // tableAddComponent
-            // 
-            this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
-            this.tableAddComponent.Name = "tableAddComponent";
-            this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
-            this.tableAddComponent.Size = new System.Drawing.Size(190, 247);
-            this.tableAddComponent.TabIndex = 0;
-            this.tableAddComponent.TabStop = false;
-            // 
-            // cntrlTablesField
-            // 
-            this.cntrlTablesField.AutoScroll = true;
-            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cntrlTablesField.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cntrlTablesField.Location = new System.Drawing.Point(2, 2);
-            this.cntrlTablesField.Name = "cntrlTablesField";
-            this.cntrlTablesField.Size = new System.Drawing.Size(1079, 273);
-            this.cntrlTablesField.TabIndex = 0;
-            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
             // 
             // DiagramPreview
             // 

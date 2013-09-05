@@ -1,6 +1,6 @@
-﻿namespace STS.Workbench.EngineManagers
+﻿namespace STS.Workbench.PreviewComponents
 {
-    partial class DbManager
+    partial class TablesField
     {
         /// <summary> 
         /// Required designer variable.
@@ -30,16 +30,21 @@
         {
             this.SuspendLayout();
             // 
-            // DbManager
+            // TablesField
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "DbManager";
-            this.Size = new System.Drawing.Size(822, 465);
+            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.DoubleBuffered = true;
+            this.Name = "TablesField";
+            this.Size = new System.Drawing.Size(518, 318);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
     }
 }
