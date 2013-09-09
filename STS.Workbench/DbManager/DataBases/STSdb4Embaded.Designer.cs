@@ -186,10 +186,12 @@
             // rbtnOpenDb
             // 
             this.rbtnOpenDb.AutoSize = true;
-            this.rbtnOpenDb.Location = new System.Drawing.Point(105, 5);
+            this.rbtnOpenDb.Checked = true;
+            this.rbtnOpenDb.Location = new System.Drawing.Point(5, 5);
             this.rbtnOpenDb.Name = "rbtnOpenDb";
             this.rbtnOpenDb.Size = new System.Drawing.Size(51, 17);
             this.rbtnOpenDb.TabIndex = 1;
+            this.rbtnOpenDb.TabStop = true;
             this.rbtnOpenDb.Tag = "btnBrwSystem";
             this.rbtnOpenDb.Text = "Open";
             this.rbtnOpenDb.UseVisualStyleBackColor = true;
@@ -198,12 +200,10 @@
             // rbtnCreateNewDb
             // 
             this.rbtnCreateNewDb.AutoSize = true;
-            this.rbtnCreateNewDb.Checked = true;
-            this.rbtnCreateNewDb.Location = new System.Drawing.Point(5, 5);
+            this.rbtnCreateNewDb.Location = new System.Drawing.Point(62, 5);
             this.rbtnCreateNewDb.Name = "rbtnCreateNewDb";
             this.rbtnCreateNewDb.Size = new System.Drawing.Size(79, 17);
             this.rbtnCreateNewDb.TabIndex = 0;
-            this.rbtnCreateNewDb.TabStop = true;
             this.rbtnCreateNewDb.Tag = "btnBrwSystem";
             this.rbtnCreateNewDb.Text = "Create new";
             this.rbtnCreateNewDb.UseVisualStyleBackColor = true;
@@ -517,8 +517,8 @@
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(514, 6);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Location = new System.Drawing.Point(509, 6);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 1;

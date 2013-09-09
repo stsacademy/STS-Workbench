@@ -34,13 +34,28 @@
             this.btnOpenDb = new System.Windows.Forms.Button();
             this.btnEditData = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.tbxPort = new System.Windows.Forms.TextBox();
+            this.tbxHost = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
+            this.splitContainer4.Panel1.SuspendLayout();
+            this.splitContainer4.Panel2.SuspendLayout();
+            this.splitContainer4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -62,7 +77,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(596, 296);
+            this.splitContainer1.Size = new System.Drawing.Size(611, 193);
             this.splitContainer1.SplitterDistance = 34;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -87,6 +102,7 @@
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(2);
             // 
             // splitContainer2.Panel2
@@ -95,8 +111,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.btnEditData);
             this.splitContainer2.Panel2.Controls.Add(this.btnClose);
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.splitContainer2.Size = new System.Drawing.Size(596, 258);
-            this.splitContainer2.SplitterDistance = 215;
+            this.splitContainer2.Size = new System.Drawing.Size(611, 155);
+            this.splitContainer2.SplitterDistance = 112;
             this.splitContainer2.TabIndex = 0;
             // 
             // btnOpenDb
@@ -111,7 +127,7 @@
             // 
             // btnEditData
             // 
-            this.btnEditData.Location = new System.Drawing.Point(86, 6);
+            this.btnEditData.Location = new System.Drawing.Point(86, 5);
             this.btnEditData.Name = "btnEditData";
             this.btnEditData.Size = new System.Drawing.Size(75, 23);
             this.btnEditData.TabIndex = 0;
@@ -121,14 +137,90 @@
             // 
             // btnClose
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Location = new System.Drawing.Point(514, 6);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Location = new System.Drawing.Point(529, 5);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(2, 2);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            this.splitContainer3.Panel1.Controls.Add(this.label2);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
+            this.splitContainer3.Size = new System.Drawing.Size(605, 106);
+            this.splitContainer3.SplitterDistance = 76;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Port:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Host:";
+            // 
+            // splitContainer4
+            // 
+            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer4.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer4.IsSplitterFixed = true;
+            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer4.Name = "splitContainer4";
+            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer4.Panel1
+            // 
+            this.splitContainer4.Panel1.Controls.Add(this.tbxPort);
+            this.splitContainer4.Panel1.Padding = new System.Windows.Forms.Padding(2);
+            // 
+            // splitContainer4.Panel2
+            // 
+            this.splitContainer4.Panel2.Controls.Add(this.tbxHost);
+            this.splitContainer4.Panel2.Padding = new System.Windows.Forms.Padding(2);
+            this.splitContainer4.Size = new System.Drawing.Size(525, 106);
+            this.splitContainer4.SplitterDistance = 25;
+            this.splitContainer4.TabIndex = 0;
+            // 
+            // tbxPort
+            // 
+            this.tbxPort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxPort.Location = new System.Drawing.Point(2, 2);
+            this.tbxPort.Name = "tbxPort";
+            this.tbxPort.Size = new System.Drawing.Size(521, 20);
+            this.tbxPort.TabIndex = 0;
+            this.tbxPort.Text = "7182";
+            // 
+            // tbxHost
+            // 
+            this.tbxHost.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxHost.Location = new System.Drawing.Point(2, 2);
+            this.tbxHost.Name = "tbxHost";
+            this.tbxHost.Size = new System.Drawing.Size(521, 20);
+            this.tbxHost.TabIndex = 0;
+            this.tbxHost.Text = "localhost";
             // 
             // STSdb4Client
             // 
@@ -138,15 +230,27 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "STSdb4Client";
             this.Padding = new System.Windows.Forms.Padding(2);
-            this.Size = new System.Drawing.Size(600, 300);
+            this.Size = new System.Drawing.Size(615, 197);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
+            this.splitContainer4.Panel1.ResumeLayout(false);
+            this.splitContainer4.Panel1.PerformLayout();
+            this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
+            this.splitContainer4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -159,5 +263,11 @@
         private System.Windows.Forms.Button btnOpenDb;
         internal System.Windows.Forms.Button btnClose;
         internal System.Windows.Forms.Button btnEditData;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.SplitContainer splitContainer4;
+        private System.Windows.Forms.TextBox tbxPort;
+        private System.Windows.Forms.TextBox tbxHost;
     }
 }

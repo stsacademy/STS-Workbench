@@ -31,9 +31,7 @@ namespace STS.Workbench.Readers
 
         public ITable OpenTable(string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
-            var index = StorageEngine.OpenXIndex(keyTypes, recordTypes, tableName);
-
-            return new STSDbTable(index);
+            return new STSDbTable(StorageEngine, tableName, keyTypes, recordTypes);
         }
 
         public void RemoveTable(string tableName, DataType[] keyTypes, DataType[] recordTypes)
@@ -63,16 +61,16 @@ namespace STS.Workbench.Readers
 
         public IIndex<IData, IData> XIndex { get; private set; }
 
-        public STSDbTable(IIndex<IData, IData> index)
+        public STSDbTable(IStorageEngine engine, string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
-            if (index == null)
-                throw new ArgumentException("storageEngine == null");
+            if (engine == null)
+                throw new ArgumentException("engine == null");
 
-            XIndex = index;
+            XIndex = engine.OpenXIndex(keyTypes, recordTypes, tableName);
 
-            TableName = XIndex.Locator.Name;
-            KeyTypes = XIndex.Locator.KeyDescriptor.SlotTypes;
-            RecordTypes = XIndex.Locator.RecordDescriptor.SlotTypes;
+            TableName = tableName;
+            KeyTypes = keyTypes;
+            RecordTypes = recordTypes;
 
             keyTransfomer = new StringObjectToIDataTransformer(KeyTypes);
             recordTransformer = new StringObjectToIDataTransformer(RecordTypes);

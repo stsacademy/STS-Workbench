@@ -56,7 +56,7 @@ namespace STS.Workbench.EngineManagers
             foreach (var item in dbField.Controls)
             {
                 var control = (Control)item;
-                if (control.FindControl((Control)sender))
+                if (control.ContainsControlByInstance((Control)sender))
                 {
                     var db = (IDataBase)control;
                     if (db.IsReady)
@@ -83,7 +83,7 @@ namespace STS.Workbench.EngineManagers
             foreach (var item in dbField.Controls)
             {
                 var control = (Control)item;
-                if (control.FindControl((Control)sender))
+                if (control.ContainsControlByInstance((Control)sender))
                 {
                     dbField.Controls.Remove(control);
                     break;

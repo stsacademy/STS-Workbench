@@ -18,7 +18,7 @@ namespace STS.Workbench.DbManager.DataBases
         public STSdb4Embaded()
         {
             InitializeComponent();
-            splitContainer6.Panel1Collapsed = true;
+            splitContainer6.Panel2Collapsed = !CreateNew;
         }
 
         private STSDbConnection STSDbConnection;
@@ -43,7 +43,7 @@ namespace STS.Workbench.DbManager.DataBases
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format("Failed to open table. \r\n Error: {0}", e.ToString()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format("Failed to open db. \r\n Error: {0}", e.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 IsReady = false;
             }
             finally
@@ -52,10 +52,17 @@ namespace STS.Workbench.DbManager.DataBases
             }
         }
 
+        public void Close()
+        {
+            if (IsReady)
+                STSDbConnection.Close();
+        }
+
         public string SystemFilePath
         {
             get { return CreateNew ? Path.Combine(FolderPath, SystemFileName) : txbSystemFilePath.Text; }
         }
+
         public string DataFilePath
         {
             get { return CreateNew ? Path.Combine(FolderPath, DataFileName) : txbDataFilePath.Text; }
@@ -96,15 +103,12 @@ namespace STS.Workbench.DbManager.DataBases
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void btnEditData_Click(object sender, EventArgs e)
         {
-            if (IsReady)
-            {
-                
-            }
+
         }
 
         private void btnOpenDb_Click(object sender, EventArgs e)

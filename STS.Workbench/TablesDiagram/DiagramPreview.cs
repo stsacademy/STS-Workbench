@@ -97,7 +97,7 @@ namespace STS.Workbench
                 foreach (var item in cntrlTablesField.Controls)
                 {
                     var control = (Control)item;
-                    if (control.FindControl((Control)sender))
+                    if (control.ContainsControlByInstance((Control)sender))
                     {
                         control.Left += e.X - MousePoint.X;
                         control.Top += e.Y - MousePoint.Y;

@@ -25,15 +25,20 @@ namespace STS.Workbench.DbManager.DataBases
         public bool IsReady { get; private set; }
         public IConnection DbConnection { get { return STSDbConnection; } }
 
+        public string Host { get { return tbxHost.Text; } }
+        public int Port { get { return Int32.Parse(tbxPort.Text); } }
+
         public void Open()
         {
             try
             {
+                var engine = STSdb.FromNetwork(Host, Port);
+                STSDbConnection = new STSDbConnection(engine);
                 IsReady = true;
             }
             catch (Exception e)
             {
-                MessageBox.Show(string.Format("Failed to open table. \r\n Error: {0}", e.ToString()), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format("Failed to open db. \r\n Error: {0}", e.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 IsReady = false;
             }
             finally
@@ -41,7 +46,12 @@ namespace STS.Workbench.DbManager.DataBases
                 btnOpenDb.Enabled = !IsReady;
             }
         }
-                
+
+        public void Close()
+        {
+
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
 

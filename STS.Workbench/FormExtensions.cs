@@ -34,13 +34,13 @@ namespace STS.Workbench
             return null;
         }
 
-        public static bool FindControl(this Control instance, Control control)
+        public static bool ContainsControlByInstance(this Control instance, Control control)
         {
             foreach (var item in instance.Controls)
             {
                 var cntrl = (Control)item;
 
-                if (cntrl.FindControl(control))
+                if (cntrl.ContainsControlByInstance(control))
                     return true;
 
                 if (cntrl.Controls.Contains(control))
