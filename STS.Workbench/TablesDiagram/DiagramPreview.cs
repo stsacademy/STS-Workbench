@@ -183,12 +183,21 @@ namespace STS.Workbench
             }
         }
 
-        #region Table Select/Open
+        #region Table Mark/Open
 
         private void table_Click(object sender, EventArgs e)
         {
-            var cntrl = ((Control)sender).Parent.Parent.Parent.Parent.Parent.Parent.Parent;
-            var table = (TableComponent)cntrl;
+            var table = (TableComponent)null;
+
+            foreach (var item in cntrlTablesField.Controls)
+            {
+                var control = (Control)item;
+                if (control.ContainsControlByInstance((Control)sender))
+                {
+                    table = (TableComponent)control;
+                    break;
+                }
+            }
 
             var node = treeViewTablesCatalog.Nodes[0].Nodes.Find(table.TableName, true)[0];
             treeViewTablesCatalog.SelectedNode = node;
@@ -211,71 +220,86 @@ namespace STS.Workbench
 
         private void table_DoubleClick(object sender, EventArgs e)
         {
-            ModifyedRows.Clear();
-            var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
-            OpenedTable = table;
-
-            VisualizeData(table, null, null);
+            OpenTable();
         }
 
         private void treeViewTablesCatalog_DoubleClick(object sender, EventArgs e)
         {
-            ModifyedRows.Clear();
-            var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
-            OpenedTable = table;
-            VisualizeData(table, null, null);
+            OpenTable();
+        }
+
+        private void OpenTable()
+        {
+            try
+            {
+                ModifyedRows.Clear();
+                var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
+                OpenedTable = table;
+                VisualizeData(table, null, null);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         #endregion
 
         private void VisualizeData(ITable table, object[] fromKey, object[] toKey)
         {
-            grdViewTableRecords.Rows.Clear();
-            grdViewTableRecords.Columns.Clear();
-            grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
-
-            List<string> keyTypes = new List<string>(table.KeyTypes.Select(x => x.ToString()));
-            List<string> recTypes = new List<string>(table.RecordTypes.Select(x => x.ToString()));
-            List<string> typesRow = new List<string>(keyTypes.Concat(recTypes));
-
-            for (int i = 0; i < typesRow.Count; i++)
+            try
             {
-                typesRow[i] = (i >= table.KeyTypes.Length) ? "(record) " + typesRow[i] : "(key) " + typesRow[i];
-                grdViewTableRecords.Columns[i].HeaderText = typesRow[i];
-                grdViewTableRecords.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
+                grdViewTableRecords.Rows.Clear();
+                grdViewTableRecords.Columns.Clear();
+                grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
 
-            object[] lastKey = null;
-            foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
-            {
-                grdViewTableRecords.Rows.Add(kv.Key.Concat(kv.Value).ToArray());
-                lastKey = kv.Key;
-            }
+                List<string> keyTypes = new List<string>(table.KeyTypes.Select(x => x.ToString()));
+                List<string> recTypes = new List<string>(table.RecordTypes.Select(x => x.ToString()));
+                List<string> typesRow = new List<string>(keyTypes.Concat(recTypes));
 
-            NextKey = null;
-            if (lastKey != null)
-            {
-                var after = table.FindAfter(lastKey);
-                NextKey = after.HasValue ? after.Value.Key : null;
-            }
-
-            CurrentKey = table.Read(fromKey, null).FirstOrDefault().Key;
-
-            PreviousKey = CurrentKey;
-            if (PreviousKey != null)
-            {
-                for (int i = 0; i < PageCapacity; i++)
+                for (int i = 0; i < typesRow.Count; i++)
                 {
-                    var before = table.FindBefore(PreviousKey);
-                    if (!before.HasValue)
-                        break;
-
-                    PreviousKey = before.Value.Key;
+                    typesRow[i] = (i >= table.KeyTypes.Length) ? "(record) " + typesRow[i] : "(key) " + typesRow[i];
+                    grdViewTableRecords.Columns[i].HeaderText = typesRow[i];
+                    grdViewTableRecords.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
                 }
-            }
 
-            btnNextPage.Enabled = NextKey != null;
-            btnPreviousPage.Enabled = PreviousKey != CurrentKey;
+                object[] lastKey = null;
+                foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
+                {
+                    grdViewTableRecords.Rows.Add(kv.Key.Concat(kv.Value).ToArray());
+                    lastKey = kv.Key;
+                }
+
+                NextKey = null;
+                if (lastKey != null)
+                {
+                    var after = table.FindAfter(lastKey);
+                    NextKey = after.HasValue ? after.Value.Key : null;
+                }
+
+                CurrentKey = table.Read(fromKey, null).FirstOrDefault().Key;
+
+                PreviousKey = CurrentKey;
+                if (PreviousKey != null)
+                {
+                    for (int i = 0; i < PageCapacity; i++)
+                    {
+                        var before = table.FindBefore(PreviousKey);
+                        if (!before.HasValue)
+                            break;
+
+                        PreviousKey = before.Value.Key;
+                    }
+                }
+
+                btnNextPage.Enabled = NextKey != null;
+                btnPreviousPage.Enabled = PreviousKey != CurrentKey;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void MarkTable(TableComponent table)
@@ -504,7 +528,7 @@ namespace STS.Workbench
 
         private void btnCloseTab_Click(object sender, EventArgs e)
         {
-            //DbConnection.Close();
+            DbConnection.Close();
         }
     }
 }
