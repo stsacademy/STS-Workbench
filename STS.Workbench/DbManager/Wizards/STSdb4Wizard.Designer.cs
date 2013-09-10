@@ -187,7 +187,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer2.Panel2.Controls.Add(this.btnOpen);
-            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(10);
+            this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(6);
             this.splitContainer2.Size = new System.Drawing.Size(860, 391);
             this.splitContainer2.SplitterDistance = 346;
             this.splitContainer2.TabIndex = 0;
@@ -346,10 +346,12 @@
             // splitContainer6.Panel1
             // 
             this.splitContainer6.Panel1.Controls.Add(this.splitContainer8);
+            this.splitContainer6.Panel1.Padding = new System.Windows.Forms.Padding(4);
             // 
             // splitContainer6.Panel2
             // 
             this.splitContainer6.Panel2.Controls.Add(this.splitContainer10);
+            this.splitContainer6.Panel2.Padding = new System.Windows.Forms.Padding(4);
             this.splitContainer6.Size = new System.Drawing.Size(856, 196);
             this.splitContainer6.SplitterDistance = 91;
             this.splitContainer6.TabIndex = 0;
@@ -359,7 +361,7 @@
             this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer8.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer8.IsSplitterFixed = true;
-            this.splitContainer8.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer8.Location = new System.Drawing.Point(4, 4);
             this.splitContainer8.Name = "splitContainer8";
             // 
             // splitContainer8.Panel1
@@ -371,7 +373,7 @@
             // splitContainer8.Panel2
             // 
             this.splitContainer8.Panel2.Controls.Add(this.splitContainer9);
-            this.splitContainer8.Size = new System.Drawing.Size(856, 91);
+            this.splitContainer8.Size = new System.Drawing.Size(848, 83);
             this.splitContainer8.SplitterDistance = 96;
             this.splitContainer8.TabIndex = 0;
             // 
@@ -417,8 +419,8 @@
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.btnBrowseFolder);
-            this.splitContainer9.Size = new System.Drawing.Size(756, 91);
-            this.splitContainer9.SplitterDistance = 644;
+            this.splitContainer9.Size = new System.Drawing.Size(748, 83);
+            this.splitContainer9.SplitterDistance = 636;
             this.splitContainer9.TabIndex = 0;
             // 
             // splitContainer12
@@ -438,7 +440,7 @@
             // splitContainer12.Panel2
             // 
             this.splitContainer12.Panel2.Controls.Add(this.splitContainer13);
-            this.splitContainer12.Size = new System.Drawing.Size(644, 91);
+            this.splitContainer12.Size = new System.Drawing.Size(636, 83);
             this.splitContainer12.SplitterDistance = 27;
             this.splitContainer12.TabIndex = 0;
             // 
@@ -448,7 +450,7 @@
             this.tbxFolderPath.Location = new System.Drawing.Point(4, 4);
             this.tbxFolderPath.Name = "tbxFolderPath";
             this.tbxFolderPath.ReadOnly = true;
-            this.tbxFolderPath.Size = new System.Drawing.Size(636, 20);
+            this.tbxFolderPath.Size = new System.Drawing.Size(628, 20);
             this.tbxFolderPath.TabIndex = 0;
             // 
             // splitContainer13
@@ -469,7 +471,7 @@
             // 
             this.splitContainer13.Panel2.Controls.Add(this.tbxDataFileName);
             this.splitContainer13.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer13.Size = new System.Drawing.Size(644, 60);
+            this.splitContainer13.Size = new System.Drawing.Size(636, 52);
             this.splitContainer13.SplitterDistance = 25;
             this.splitContainer13.TabIndex = 0;
             // 
@@ -506,7 +508,7 @@
             this.splitContainer10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer10.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer10.IsSplitterFixed = true;
-            this.splitContainer10.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer10.Location = new System.Drawing.Point(4, 4);
             this.splitContainer10.Name = "splitContainer10";
             // 
             // splitContainer10.Panel1
@@ -517,7 +519,7 @@
             // splitContainer10.Panel2
             // 
             this.splitContainer10.Panel2.Controls.Add(this.splitContainer11);
-            this.splitContainer10.Size = new System.Drawing.Size(856, 101);
+            this.splitContainer10.Size = new System.Drawing.Size(848, 93);
             this.splitContainer10.SplitterDistance = 97;
             this.splitContainer10.TabIndex = 0;
             // 
@@ -555,8 +557,8 @@
             // 
             this.splitContainer11.Panel2.Controls.Add(this.btnBrowseDataFile);
             this.splitContainer11.Panel2.Controls.Add(this.btnBrowseSystemFile);
-            this.splitContainer11.Size = new System.Drawing.Size(755, 101);
-            this.splitContainer11.SplitterDistance = 643;
+            this.splitContainer11.Size = new System.Drawing.Size(747, 93);
+            this.splitContainer11.SplitterDistance = 635;
             this.splitContainer11.TabIndex = 0;
             // 
             // splitContainer14
@@ -577,7 +579,7 @@
             // 
             this.splitContainer14.Panel2.Controls.Add(this.tbxDataFilePath);
             this.splitContainer14.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer14.Size = new System.Drawing.Size(643, 101);
+            this.splitContainer14.Size = new System.Drawing.Size(635, 93);
             this.splitContainer14.SplitterDistance = 29;
             this.splitContainer14.TabIndex = 0;
             // 
@@ -587,7 +589,7 @@
             this.tbxSystemFilePath.Location = new System.Drawing.Point(4, 4);
             this.tbxSystemFilePath.Name = "tbxSystemFilePath";
             this.tbxSystemFilePath.ReadOnly = true;
-            this.tbxSystemFilePath.Size = new System.Drawing.Size(635, 20);
+            this.tbxSystemFilePath.Size = new System.Drawing.Size(627, 20);
             this.tbxSystemFilePath.TabIndex = 0;
             // 
             // tbxDataFilePath
@@ -596,12 +598,12 @@
             this.tbxDataFilePath.Location = new System.Drawing.Point(4, 4);
             this.tbxDataFilePath.Name = "tbxDataFilePath";
             this.tbxDataFilePath.ReadOnly = true;
-            this.tbxDataFilePath.Size = new System.Drawing.Size(635, 20);
+            this.tbxDataFilePath.Size = new System.Drawing.Size(627, 20);
             this.tbxDataFilePath.TabIndex = 1;
             // 
             // btnBrowseDataFile
             // 
-            this.btnBrowseDataFile.Location = new System.Drawing.Point(20, 31);
+            this.btnBrowseDataFile.Location = new System.Drawing.Point(20, 35);
             this.btnBrowseDataFile.Name = "btnBrowseDataFile";
             this.btnBrowseDataFile.Size = new System.Drawing.Size(75, 23);
             this.btnBrowseDataFile.TabIndex = 2;
@@ -623,7 +625,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(770, 10);
+            this.btnCancel.Location = new System.Drawing.Point(772, 7);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -634,7 +636,7 @@
             // 
             this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOpen.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOpen.Location = new System.Drawing.Point(689, 10);
+            this.btnOpen.Location = new System.Drawing.Point(691, 7);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 0;
