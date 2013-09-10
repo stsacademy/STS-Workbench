@@ -33,10 +33,11 @@ namespace STS.Workbench
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.userControls = new System.Windows.Forms.TabControl();
             this.HomePage = new System.Windows.Forms.TabPage();
+            this.btnControlTest = new System.Windows.Forms.Button();
             this.btnServer = new System.Windows.Forms.Button();
             this.btnTablesTest = new System.Windows.Forms.Button();
             this.imgListControls = new System.Windows.Forms.ImageList(this.components);
-            this.btnControlTest = new System.Windows.Forms.Button();
+            this.btnWizarDbTest = new System.Windows.Forms.Button();
             this.userControls.SuspendLayout();
             this.HomePage.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +55,7 @@ namespace STS.Workbench
             // 
             // HomePage
             // 
+            this.HomePage.Controls.Add(this.btnWizarDbTest);
             this.HomePage.Controls.Add(this.btnControlTest);
             this.HomePage.Controls.Add(this.btnServer);
             this.HomePage.Controls.Add(this.btnTablesTest);
@@ -66,11 +68,21 @@ namespace STS.Workbench
             this.HomePage.Text = "Home";
             this.HomePage.UseVisualStyleBackColor = true;
             // 
+            // btnControlTest
+            // 
+            this.btnControlTest.Location = new System.Drawing.Point(93, 138);
+            this.btnControlTest.Name = "btnControlTest";
+            this.btnControlTest.Size = new System.Drawing.Size(101, 23);
+            this.btnControlTest.TabIndex = 2;
+            this.btnControlTest.Text = "DB manager test";
+            this.btnControlTest.UseVisualStyleBackColor = true;
+            this.btnControlTest.Click += new System.EventHandler(this.btnControlTest_Click);
+            // 
             // btnServer
             // 
-            this.btnServer.Location = new System.Drawing.Point(8, 137);
+            this.btnServer.Location = new System.Drawing.Point(93, 109);
             this.btnServer.Name = "btnServer";
-            this.btnServer.Size = new System.Drawing.Size(75, 23);
+            this.btnServer.Size = new System.Drawing.Size(101, 23);
             this.btnServer.TabIndex = 1;
             this.btnServer.Text = "Servers Test";
             this.btnServer.UseVisualStyleBackColor = true;
@@ -78,9 +90,9 @@ namespace STS.Workbench
             // 
             // btnTablesTest
             // 
-            this.btnTablesTest.Location = new System.Drawing.Point(8, 108);
+            this.btnTablesTest.Location = new System.Drawing.Point(93, 80);
             this.btnTablesTest.Name = "btnTablesTest";
-            this.btnTablesTest.Size = new System.Drawing.Size(75, 23);
+            this.btnTablesTest.Size = new System.Drawing.Size(101, 23);
             this.btnTablesTest.TabIndex = 0;
             this.btnTablesTest.Text = "TablesTest";
             this.btnTablesTest.UseVisualStyleBackColor = true;
@@ -92,15 +104,15 @@ namespace STS.Workbench
             this.imgListControls.TransparentColor = System.Drawing.Color.Transparent;
             this.imgListControls.Images.SetKeyName(0, "home-12.ico");
             // 
-            // btnControlTest
+            // btnWizarDbTest
             // 
-            this.btnControlTest.Location = new System.Drawing.Point(8, 166);
-            this.btnControlTest.Name = "btnControlTest";
-            this.btnControlTest.Size = new System.Drawing.Size(75, 23);
-            this.btnControlTest.TabIndex = 2;
-            this.btnControlTest.Text = "Control Test";
-            this.btnControlTest.UseVisualStyleBackColor = true;
-            this.btnControlTest.Click += new System.EventHandler(this.btnControlTest_Click);
+            this.btnWizarDbTest.Location = new System.Drawing.Point(93, 167);
+            this.btnWizarDbTest.Name = "btnWizarDbTest";
+            this.btnWizarDbTest.Size = new System.Drawing.Size(101, 23);
+            this.btnWizarDbTest.TabIndex = 3;
+            this.btnWizarDbTest.Text = "Wizard db";
+            this.btnWizarDbTest.UseVisualStyleBackColor = true;
+            this.btnWizarDbTest.Click += new System.EventHandler(this.btnWizarDbTest_Click);
             // 
             // MainForm
             // 
@@ -125,6 +137,7 @@ namespace STS.Workbench
         private Button btnTablesTest;
         private ImageList imgListControls;
         private Button btnControlTest;
+        private Button btnWizarDbTest;
     }
 }
 

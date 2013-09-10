@@ -1,4 +1,5 @@
 ﻿using STS.Workbench.DbManager.DataBases;
+using STS.Workbench.DbManager.Wizards;
 using STS.Workbench.EngineManagers;
 using STS.Workbench.Helpers;
 using STS.Workbench.PreviewComponents;
@@ -105,6 +106,23 @@ namespace STS.Workbench
             page.Controls.Add(dbManager);
 
             userControls.Controls.Add(page);
+        }
+
+        private void btnWizarDbTest_Click(object sender, EventArgs e)
+        {
+            STSdb4Wizard wizard = new STSdb4Wizard();
+            if (wizard.ShowDialog() == DialogResult.OK)
+            {
+                STSDbConnection STSdbConnection = new STSDbConnection(wizard.StorageEngine);
+                DiagramPreview tablesPreview = new DiagramPreview(STSdbConnection);
+
+                var tabPage = new TabPage(STSdbConnection.Name);
+                tablesPreview.Dock = DockStyle.Fill;
+                tablesPreview.btnCloseTab.Click += btnCloseTab_Click;
+                tabPage.Controls.Add(tablesPreview);
+
+                userControls.Controls.Add(tabPage);
+            }
         }
     }
 }

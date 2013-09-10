@@ -33,17 +33,17 @@ namespace STS.Workbench.EngineManagers
                     controlToAdd = new STSdb4Embaded();
                     ((STSdb4Embaded)controlToAdd).btnClose.Click += btnClose_Click;
                     ((STSdb4Embaded)controlToAdd).btnEditData.Click += btnEditData_Click;
+                    controlToAdd.Size = new Size(450, 220);
                     break;
                 case "STSdb4 Client":
                     controlToAdd = new STSdb4Client();
                     ((STSdb4Client)controlToAdd).btnClose.Click += btnClose_Click;
                     ((STSdb4Client)controlToAdd).btnEditData.Click += btnEditData_Click;
+                    controlToAdd.Size = new Size(450, 150);
                     break;
                 default:
                     break;
             }
-
-            controlToAdd.Size = new Size(450, 220);
 
             dbField.Controls.Add(controlToAdd);
             ReOrderControls();
@@ -108,6 +108,11 @@ namespace STS.Workbench.EngineManagers
                 dbField.Controls.Add(cntrl);
                 location = new Point(cntrl.Location.X, cntrl.Location.Y + cntrl.Size.Height + 10);
             }
+        }
+
+        private void ManagerPreview_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

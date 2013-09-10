@@ -182,7 +182,7 @@ namespace STS.Workbench
             this.tableAddComponent.Location = new System.Drawing.Point(3, 3);
             this.tableAddComponent.Name = "tableAddComponent";
             this.tableAddComponent.Padding = new System.Windows.Forms.Padding(2);
-            this.tableAddComponent.Size = new System.Drawing.Size(190, 247);
+            this.tableAddComponent.Size = new System.Drawing.Size(193, 247);
             this.tableAddComponent.TabIndex = 0;
             this.tableAddComponent.TabStop = false;
             // 
