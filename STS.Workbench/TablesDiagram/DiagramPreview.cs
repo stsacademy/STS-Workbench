@@ -33,7 +33,7 @@ namespace STS.Workbench
 
         public readonly IConnection DbConnection;
 
-        public TableComponent ActiveTable { get; private set; }
+        public TableComponent ActiveTableComponent { get; private set; }
         public ITable OpenedTable { get; private set; }
 
         public DiagramPreview(IConnection dbConnection)
@@ -122,10 +122,18 @@ namespace STS.Workbench
             }
         }
 
+        private void btnResetTablePick_Click(object sender, EventArgs e)
+        {
+            tableAddComponent.ResetFields();
+        }
+
         private void btnRemoveTable_Click(object sender, EventArgs e)
         {
-            if (ActiveTable != null)
-                RemoveTable(ActiveTable);
+            if (ActiveTableComponent == null)
+                return;
+
+            if (MessageBox.Show("Do you want to delete table?", "Table remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                RemoveTable(ActiveTableComponent);
         }
 
         private void btnCancelTable_Click(object sender, EventArgs e)
@@ -156,7 +164,7 @@ namespace STS.Workbench
             cntrlTablesField.Controls.Remove(table);
             tables.Remove(table.TableName);
             treeViewTablesCatalog.Nodes[0].Nodes.RemoveByKey(table.TableName);
-            DbConnection.RemoveTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
+            DbConnection.RemoveTable(ActiveTableComponent.Name, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
 
             OpenedTable = null;
         }
@@ -233,7 +241,7 @@ namespace STS.Workbench
             try
             {
                 ModifyedRows.Clear();
-                var table = DbConnection.OpenTable(ActiveTable.Name, ActiveTable.KeyTypes, ActiveTable.RecordTypes);
+                var table = DbConnection.OpenTable(ActiveTableComponent.Name, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
                 OpenedTable = table;
                 VisualizeData(table, null, null);
             }
@@ -309,15 +317,15 @@ namespace STS.Workbench
 
             treeViewTablesCatalog.SelectedNode.BackColor = SystemColors.Highlight;
 
-            if (ActiveTable != null)
-                ActiveTable.BackColor = SystemColors.ControlLight;
+            if (ActiveTableComponent != null)
+                ActiveTableComponent.BackColor = SystemColors.ControlLight;
 
             table.BackColor = Color.FromArgb(135, 206, 250);
 
             table.BringToFront();
             cntrlTablesField.ScrollControlIntoView(table);
 
-            ActiveTable = table;
+            ActiveTableComponent = table;
         }
 
         private void grdViewTableRecords_UserAddedRow(object sender, DataGridViewRowEventArgs e)

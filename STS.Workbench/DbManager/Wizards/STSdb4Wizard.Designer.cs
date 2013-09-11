@@ -64,6 +64,7 @@
             this.tbxDataFilePath = new System.Windows.Forms.TextBox();
             this.btnBrowseDataFile = new System.Windows.Forms.Button();
             this.btnBrowseSystemFile = new System.Windows.Forms.Button();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -185,6 +186,7 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.btnSubmit);
             this.splitContainer2.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer2.Panel2.Controls.Add(this.btnOpen);
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(6);
@@ -480,7 +482,7 @@
             this.tbxSystemFileName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxSystemFileName.Location = new System.Drawing.Point(4, 4);
             this.tbxSystemFileName.Name = "tbxSystemFileName";
-            this.tbxSystemFileName.Size = new System.Drawing.Size(636, 20);
+            this.tbxSystemFileName.Size = new System.Drawing.Size(628, 20);
             this.tbxSystemFileName.TabIndex = 0;
             this.tbxSystemFileName.Text = "stsdb4.sys";
             // 
@@ -489,7 +491,7 @@
             this.tbxDataFileName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxDataFileName.Location = new System.Drawing.Point(4, 4);
             this.tbxDataFileName.Name = "tbxDataFileName";
-            this.tbxDataFileName.Size = new System.Drawing.Size(636, 20);
+            this.tbxDataFileName.Size = new System.Drawing.Size(628, 20);
             this.tbxDataFileName.TabIndex = 0;
             this.tbxDataFileName.Text = "stsdb4.dat";
             // 
@@ -621,6 +623,16 @@
             this.btnBrowseSystemFile.UseVisualStyleBackColor = true;
             this.btnBrowseSystemFile.Click += new System.EventHandler(this.btnBrowseSystemFile_Click);
             // 
+            // btnSubmit
+            // 
+            this.btnSubmit.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnSubmit.Location = new System.Drawing.Point(-1, 0);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(10, 10);
+            this.btnSubmit.TabIndex = 2;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -635,7 +647,6 @@
             // btnOpen
             // 
             this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpen.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOpen.Location = new System.Drawing.Point(691, 7);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
@@ -765,5 +776,6 @@
         private System.Windows.Forms.Button btnBrowseSystemFile;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOpen;
+        private System.Windows.Forms.Button btnSubmit;
     }
 }

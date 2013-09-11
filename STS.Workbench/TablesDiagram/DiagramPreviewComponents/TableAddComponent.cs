@@ -28,6 +28,7 @@ namespace STS.Workbench.PreviewComponents
         public TableAddComponent()
         {
             InitalizeComponents(new Point(0, 0));
+            btnAdd.Enabled = false;
         }
 
         public void ResetFields()
@@ -58,7 +59,7 @@ namespace STS.Workbench.PreviewComponents
             if (treeViewTypes.SelectedNode.Parent == treeViewTypes.Nodes[1])
                 btnRemove.Enabled = treeViewTypes.Nodes[1].Nodes.Count > 1;
         }
-        
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string type = cbxTypes.Text;

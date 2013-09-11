@@ -21,6 +21,7 @@ namespace STS.Workbench.DbManager.Wizards
             Size = new Size(800, 300);
             MinimumSize = new Size(800, 300);
             OnCheck(this, new EventArgs());
+            btnSubmit.Size = new Size(0, 0);
         }
 
         public bool ClientSelected { get { return rbtnClient.Checked; } }
@@ -67,11 +68,11 @@ namespace STS.Workbench.DbManager.Wizards
                 }
 
                 StorageEngine = ClientSelected ? STSdb.FromNetwork(Host, Port) : STSdb.FromFile(SystemFilePath, DataFilePath);
+                btnSubmit.PerformClick();
             }
             catch (Exception exc)
             {
-                MessageBox.Show(string.Format("Failed. \r\n Error: {0}", exc.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult = DialogResult.Cancel;
+                MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

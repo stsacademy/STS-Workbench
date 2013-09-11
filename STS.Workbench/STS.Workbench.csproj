@@ -192,11 +192,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\view_refresh.png" />
+    <None Include="Resources\file-import.ico" />
+    <None Include="Resources\file-import.bmp" />
+    <None Include="Resources\file-export.ico" />
+    <None Include="Resources\file-export.bmp" />
+    <None Include="Resources\IconCatcher.icl #Delete.ico" />
+    <None Include="Resources\Delete.bmp" />
+    <None Include="Resources\edit_select_all.ico" />
+    <None Include="Resources\gnome_edit_select_all.png" />
+    <None Include="Resources\gnome_edit_clear.png" />
+    <None Include="Resources\go_back.png" />
+    <None Include="Resources\go_next.png" />
+    <None Include="Resources\button_first.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />
+    <None Include="Resources\save-1.ico" />
+    <None Include="Resources\Save.png" />
     <Content Include="Resources\table.ico" />
+    <None Include="Resources\table1.ico" />
     <Content Include="Resources\userType.ico" />
   </ItemGroup>
   <ItemGroup />

@@ -33,11 +33,11 @@ namespace STS.Workbench
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.userControls = new System.Windows.Forms.TabControl();
             this.HomePage = new System.Windows.Forms.TabPage();
+            this.btnWizarDbTest = new System.Windows.Forms.Button();
             this.btnControlTest = new System.Windows.Forms.Button();
             this.btnServer = new System.Windows.Forms.Button();
             this.btnTablesTest = new System.Windows.Forms.Button();
             this.imgListControls = new System.Windows.Forms.ImageList(this.components);
-            this.btnWizarDbTest = new System.Windows.Forms.Button();
             this.userControls.SuspendLayout();
             this.HomePage.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +67,16 @@ namespace STS.Workbench
             this.HomePage.TabIndex = 1;
             this.HomePage.Text = "Home";
             this.HomePage.UseVisualStyleBackColor = true;
+            // 
+            // btnWizarDbTest
+            // 
+            this.btnWizarDbTest.Location = new System.Drawing.Point(93, 167);
+            this.btnWizarDbTest.Name = "btnWizarDbTest";
+            this.btnWizarDbTest.Size = new System.Drawing.Size(101, 23);
+            this.btnWizarDbTest.TabIndex = 3;
+            this.btnWizarDbTest.Text = "Wizard db";
+            this.btnWizarDbTest.UseVisualStyleBackColor = true;
+            this.btnWizarDbTest.Click += new System.EventHandler(this.btnWizarDbTest_Click);
             // 
             // btnControlTest
             // 
@@ -104,25 +114,17 @@ namespace STS.Workbench
             this.imgListControls.TransparentColor = System.Drawing.Color.Transparent;
             this.imgListControls.Images.SetKeyName(0, "home-12.ico");
             // 
-            // btnWizarDbTest
-            // 
-            this.btnWizarDbTest.Location = new System.Drawing.Point(93, 167);
-            this.btnWizarDbTest.Name = "btnWizarDbTest";
-            this.btnWizarDbTest.Size = new System.Drawing.Size(101, 23);
-            this.btnWizarDbTest.TabIndex = 3;
-            this.btnWizarDbTest.Text = "Wizard db";
-            this.btnWizarDbTest.UseVisualStyleBackColor = true;
-            this.btnWizarDbTest.Click += new System.EventHandler(this.btnWizarDbTest_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1339, 565);
             this.Controls.Add(this.userControls);
+            this.DoubleBuffered = true;
             this.MinimumSize = new System.Drawing.Size(1200, 500);
             this.Name = "MainForm";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.userControls.ResumeLayout(false);
             this.HomePage.ResumeLayout(false);
             this.ResumeLayout(false);
