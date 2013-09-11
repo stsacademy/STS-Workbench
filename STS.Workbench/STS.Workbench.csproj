@@ -205,6 +205,8 @@
     <None Include="Resources\go_back.png" />
     <None Include="Resources\go_next.png" />
     <None Include="Resources\button_first.png" />
+    <None Include="Resources\document_export.png" />
+    <None Include="Resources\document_import.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <Content Include="Resources\record.ico" />

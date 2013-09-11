@@ -35,6 +35,9 @@ namespace STS.Workbench
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
+            this.btnResetTablePick = new System.Windows.Forms.Button();
+            this.btnCancelTable = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.btnClearLog = new System.Windows.Forms.Button();
@@ -49,13 +52,10 @@ namespace STS.Workbench
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
-            this.btnCancelTable = new System.Windows.Forms.Button();
             this.SplitContainerMain = new System.Windows.Forms.SplitContainer();
             this.btnCloseTab = new System.Windows.Forms.Button();
             this.btnCommit = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.splitContainer8 = new System.Windows.Forms.SplitContainer();
-            this.btnResetTablePick = new System.Windows.Forms.Button();
             this.btnRemoveTable = new System.Windows.Forms.Button();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnSelectAllRows = new System.Windows.Forms.Button();
@@ -68,6 +68,7 @@ namespace STS.Workbench
             this.btnNextPage = new System.Windows.Forms.Button();
             this.btnPreviousPage = new System.Windows.Forms.Button();
             this.btnFirstPage = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tableAddComponent = new STS.Workbench.PreviewComponents.TableAddComponent();
             this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
@@ -79,6 +80,10 @@ namespace STS.Workbench
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
+            this.splitContainer8.Panel1.SuspendLayout();
+            this.splitContainer8.Panel2.SuspendLayout();
+            this.splitContainer8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -106,10 +111,6 @@ namespace STS.Workbench
             this.SplitContainerMain.Panel1.SuspendLayout();
             this.SplitContainerMain.Panel2.SuspendLayout();
             this.SplitContainerMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).BeginInit();
-            this.splitContainer8.Panel1.SuspendLayout();
-            this.splitContainer8.Panel2.SuspendLayout();
-            this.splitContainer8.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdViewTableRecords
@@ -183,6 +184,47 @@ namespace STS.Workbench
             this.splitContainer4.SplitterDistance = 277;
             this.splitContainer4.TabIndex = 8;
             // 
+            // splitContainer8
+            // 
+            this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer8.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer8.IsSplitterFixed = true;
+            this.splitContainer8.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer8.Name = "splitContainer8";
+            this.splitContainer8.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer8.Panel1
+            // 
+            this.splitContainer8.Panel1.Controls.Add(this.tableAddComponent);
+            // 
+            // splitContainer8.Panel2
+            // 
+            this.splitContainer8.Panel2.Controls.Add(this.btnResetTablePick);
+            this.splitContainer8.Panel2.Controls.Add(this.btnCancelTable);
+            this.splitContainer8.Size = new System.Drawing.Size(199, 273);
+            this.splitContainer8.SplitterDistance = 241;
+            this.splitContainer8.TabIndex = 11;
+            // 
+            // btnResetTablePick
+            // 
+            this.btnResetTablePick.Location = new System.Drawing.Point(3, 3);
+            this.btnResetTablePick.Name = "btnResetTablePick";
+            this.btnResetTablePick.Size = new System.Drawing.Size(75, 22);
+            this.btnResetTablePick.TabIndex = 9;
+            this.btnResetTablePick.Text = "reset fields";
+            this.btnResetTablePick.UseVisualStyleBackColor = true;
+            this.btnResetTablePick.Click += new System.EventHandler(this.btnResetTablePick_Click);
+            // 
+            // btnCancelTable
+            // 
+            this.btnCancelTable.Location = new System.Drawing.Point(120, 3);
+            this.btnCancelTable.Name = "btnCancelTable";
+            this.btnCancelTable.Size = new System.Drawing.Size(75, 22);
+            this.btnCancelTable.TabIndex = 8;
+            this.btnCancelTable.Text = "cancel";
+            this.btnCancelTable.UseVisualStyleBackColor = true;
+            this.btnCancelTable.Click += new System.EventHandler(this.btnCancelTable_Click);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -238,7 +280,7 @@ namespace STS.Workbench
             // lblLog
             // 
             this.lblLog.AutoSize = true;
-            this.lblLog.Location = new System.Drawing.Point(0, 0);
+            this.lblLog.Location = new System.Drawing.Point(-1, 0);
             this.lblLog.Name = "lblLog";
             this.lblLog.Padding = new System.Windows.Forms.Padding(5);
             this.lblLog.Size = new System.Drawing.Size(38, 23);
@@ -310,6 +352,7 @@ namespace STS.Workbench
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.BackColor = System.Drawing.SystemColors.Control;
             this.splitContainer3.Panel1.Controls.Add(this.btnSelectAllRows);
             this.splitContainer3.Panel1.Controls.Add(this.btnRefresh);
             this.splitContainer3.Panel1.Controls.Add(this.label4);
@@ -333,7 +376,7 @@ namespace STS.Workbench
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(123, 7);
+            this.label4.Location = new System.Drawing.Point(271, 7);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 10;
@@ -370,7 +413,7 @@ namespace STS.Workbench
             "20000",
             "50000",
             "100000"});
-            this.cmbxPageCount.Location = new System.Drawing.Point(959, 4);
+            this.cmbxPageCount.Location = new System.Drawing.Point(959, 2);
             this.cmbxPageCount.Name = "cmbxPageCount";
             this.cmbxPageCount.Size = new System.Drawing.Size(121, 21);
             this.cmbxPageCount.TabIndex = 8;
@@ -388,7 +431,7 @@ namespace STS.Workbench
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(265, 7);
+            this.label1.Location = new System.Drawing.Point(123, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 6;
@@ -416,16 +459,6 @@ namespace STS.Workbench
             this.splitContainer7.Size = new System.Drawing.Size(1087, 271);
             this.splitContainer7.SplitterDistance = 236;
             this.splitContainer7.TabIndex = 4;
-            // 
-            // btnCancelTable
-            // 
-            this.btnCancelTable.Location = new System.Drawing.Point(120, 3);
-            this.btnCancelTable.Name = "btnCancelTable";
-            this.btnCancelTable.Size = new System.Drawing.Size(75, 22);
-            this.btnCancelTable.TabIndex = 8;
-            this.btnCancelTable.Text = "cancel";
-            this.btnCancelTable.UseVisualStyleBackColor = true;
-            this.btnCancelTable.Click += new System.EventHandler(this.btnCancelTable_Click);
             // 
             // SplitContainerMain
             // 
@@ -478,37 +511,6 @@ namespace STS.Workbench
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // splitContainer8
-            // 
-            this.splitContainer8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer8.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer8.IsSplitterFixed = true;
-            this.splitContainer8.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer8.Name = "splitContainer8";
-            this.splitContainer8.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer8.Panel1
-            // 
-            this.splitContainer8.Panel1.Controls.Add(this.tableAddComponent);
-            // 
-            // splitContainer8.Panel2
-            // 
-            this.splitContainer8.Panel2.Controls.Add(this.btnResetTablePick);
-            this.splitContainer8.Panel2.Controls.Add(this.btnCancelTable);
-            this.splitContainer8.Size = new System.Drawing.Size(199, 273);
-            this.splitContainer8.SplitterDistance = 241;
-            this.splitContainer8.TabIndex = 11;
-            // 
-            // btnResetTablePick
-            // 
-            this.btnResetTablePick.Location = new System.Drawing.Point(3, 3);
-            this.btnResetTablePick.Name = "btnResetTablePick";
-            this.btnResetTablePick.Size = new System.Drawing.Size(75, 22);
-            this.btnResetTablePick.TabIndex = 9;
-            this.btnResetTablePick.Text = "reset fields";
-            this.btnResetTablePick.UseVisualStyleBackColor = true;
-            this.btnResetTablePick.Click += new System.EventHandler(this.btnResetTablePick_Click);
-            // 
             // btnRemoveTable
             // 
             this.btnRemoveTable.Image = global::STS.Workbench.Properties.Resources.cancelTable;
@@ -516,6 +518,7 @@ namespace STS.Workbench
             this.btnRemoveTable.Name = "btnRemoveTable";
             this.btnRemoveTable.Size = new System.Drawing.Size(39, 32);
             this.btnRemoveTable.TabIndex = 7;
+            this.toolTip.SetToolTip(this.btnRemoveTable, "Delete selected table");
             this.btnRemoveTable.UseVisualStyleBackColor = true;
             this.btnRemoveTable.Click += new System.EventHandler(this.btnRemoveTable_Click);
             // 
@@ -526,6 +529,7 @@ namespace STS.Workbench
             this.btnPlaceTable.Name = "btnPlaceTable";
             this.btnPlaceTable.Size = new System.Drawing.Size(39, 32);
             this.btnPlaceTable.TabIndex = 6;
+            this.toolTip.SetToolTip(this.btnPlaceTable, "Place new table");
             this.btnPlaceTable.UseVisualStyleBackColor = true;
             this.btnPlaceTable.Click += new System.EventHandler(this.btnPlaceTable_Click);
             // 
@@ -536,47 +540,54 @@ namespace STS.Workbench
             this.btnSelectAllRows.Name = "btnSelectAllRows";
             this.btnSelectAllRows.Size = new System.Drawing.Size(24, 24);
             this.btnSelectAllRows.TabIndex = 12;
+            this.toolTip.SetToolTip(this.btnSelectAllRows, "Select all rows");
             this.btnSelectAllRows.UseVisualStyleBackColor = true;
             this.btnSelectAllRows.Click += new System.EventHandler(this.btnSelectAllRows_Click);
             // 
             // btnRefresh
             // 
+            this.btnRefresh.BackColor = System.Drawing.SystemColors.Control;
             this.btnRefresh.Image = global::STS.Workbench.Properties.Resources.view_refresh;
-            this.btnRefresh.Location = new System.Drawing.Point(383, 1);
+            this.btnRefresh.Location = new System.Drawing.Point(241, 1);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(24, 24);
             this.btnRefresh.TabIndex = 11;
-            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.toolTip.SetToolTip(this.btnRefresh, "Refresh data");
+            this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnDiscard
             // 
             this.btnDiscard.Image = global::STS.Workbench.Properties.Resources.gnome_edit_clear;
-            this.btnDiscard.Location = new System.Drawing.Point(353, 2);
+            this.btnDiscard.Location = new System.Drawing.Point(211, 2);
             this.btnDiscard.Name = "btnDiscard";
             this.btnDiscard.Size = new System.Drawing.Size(24, 24);
             this.btnDiscard.TabIndex = 5;
+            this.toolTip.SetToolTip(this.btnDiscard, "Discard changes to data");
             this.btnDiscard.UseVisualStyleBackColor = true;
             this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
             // 
             // btnExport
             // 
-            this.btnExport.Image = global::STS.Workbench.Properties.Resources.file_export1;
-            this.btnExport.Location = new System.Drawing.Point(234, 1);
+            this.btnExport.Image = global::STS.Workbench.Properties.Resources.document_export;
+            this.btnExport.Location = new System.Drawing.Point(382, 1);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(24, 24);
             this.btnExport.TabIndex = 4;
+            this.toolTip.SetToolTip(this.btnExport, "Export data to external file");
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExportCsv_Click);
             // 
             // btnImport
             // 
-            this.btnImport.Image = global::STS.Workbench.Properties.Resources.file_import1;
-            this.btnImport.Location = new System.Drawing.Point(204, 1);
+            this.btnImport.BackColor = System.Drawing.SystemColors.Control;
+            this.btnImport.Image = global::STS.Workbench.Properties.Resources.document_import;
+            this.btnImport.Location = new System.Drawing.Point(352, 1);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(24, 24);
             this.btnImport.TabIndex = 3;
-            this.btnImport.UseVisualStyleBackColor = true;
+            this.toolTip.SetToolTip(this.btnImport, "Import data from external file");
+            this.btnImport.UseVisualStyleBackColor = false;
             this.btnImport.Click += new System.EventHandler(this.btnImportCsv_Click);
             // 
             // btnDeleteRows
@@ -586,23 +597,25 @@ namespace STS.Workbench
             this.btnDeleteRows.Name = "btnDeleteRows";
             this.btnDeleteRows.Size = new System.Drawing.Size(24, 24);
             this.btnDeleteRows.TabIndex = 1;
+            this.toolTip.SetToolTip(this.btnDeleteRows, "Delete selected row/rowss");
             this.btnDeleteRows.UseVisualStyleBackColor = true;
             this.btnDeleteRows.Click += new System.EventHandler(this.btnDeleteRow_Click);
             // 
             // btnSaveRow
             // 
             this.btnSaveRow.Image = global::STS.Workbench.Properties.Resources.Save;
-            this.btnSaveRow.Location = new System.Drawing.Point(323, 2);
+            this.btnSaveRow.Location = new System.Drawing.Point(181, 2);
             this.btnSaveRow.Name = "btnSaveRow";
             this.btnSaveRow.Size = new System.Drawing.Size(24, 24);
             this.btnSaveRow.TabIndex = 0;
+            this.toolTip.SetToolTip(this.btnSaveRow, "Apply changes to data");
             this.btnSaveRow.UseVisualStyleBackColor = true;
             this.btnSaveRow.Click += new System.EventHandler(this.btnSaveRow_Click);
             // 
             // btnNextPage
             // 
             this.btnNextPage.Image = global::STS.Workbench.Properties.Resources.go_next;
-            this.btnNextPage.Location = new System.Drawing.Point(63, 2);
+            this.btnNextPage.Location = new System.Drawing.Point(63, 3);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(24, 24);
             this.btnNextPage.TabIndex = 10;
@@ -669,6 +682,10 @@ namespace STS.Workbench
             this.splitContainer4.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
             this.splitContainer4.ResumeLayout(false);
+            this.splitContainer8.Panel1.ResumeLayout(false);
+            this.splitContainer8.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
+            this.splitContainer8.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
@@ -699,10 +716,6 @@ namespace STS.Workbench
             this.SplitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainerMain)).EndInit();
             this.SplitContainerMain.ResumeLayout(false);
-            this.splitContainer8.Panel1.ResumeLayout(false);
-            this.splitContainer8.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
-            this.splitContainer8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -748,5 +761,6 @@ namespace STS.Workbench
         internal Button btnCloseTab;
         private SplitContainer splitContainer8;
         private Button btnResetTablePick;
+        private ToolTip toolTip;
     }
 }
