@@ -36,6 +36,8 @@ namespace STS.Workbench
         public TableComponent ActiveTableComponent { get; private set; }
         public ITable OpenedTable { get; private set; }
 
+        public Dictionary<string, TableComponent> Tables { get { return tables; } }
+
         public DiagramPreview(IConnection dbConnection)
         {
             if (dbConnection == null)
@@ -45,8 +47,9 @@ namespace STS.Workbench
 
             InitializeComponent();
 
+            splitContainer1.Panel2Collapsed = true;
+
             treeViewTablesCatalog.Nodes[0].Text = dbConnection.Name;
-            splitContainer4.Panel1Collapsed = true;
             cmbxPageCount.Text = "5";
 
             PreviewScheme();
@@ -113,18 +116,18 @@ namespace STS.Workbench
 
         private void btnPlaceTable_Click(object sender, EventArgs e)
         {
-            if (!IsPlacing)
+            if (IsPlacing)
             {
-                tableAddComponent.ResetFields();
-                splitContainer4.Panel1Collapsed = false;
-                cntrlTablesField.Cursor = new Cursor(global::STS.Workbench.Properties.Resources.table.GetHicon());
+                cntrlTablesField.Cursor = Cursors.Default;
+                IsPlacing = false;
+            }
+            else
+            {
+                var img = global::STS.Workbench.Properties.Resources.place_table;
+                img.MakeTransparent(Color.White);
+                cntrlTablesField.Cursor = new Cursor(img.GetHicon());
                 IsPlacing = true;
             }
-        }
-
-        private void btnResetTablePick_Click(object sender, EventArgs e)
-        {
-            tableAddComponent.ResetFields();
         }
 
         private void btnRemoveTable_Click(object sender, EventArgs e)
@@ -134,13 +137,6 @@ namespace STS.Workbench
 
             if (MessageBox.Show("Do you want to delete table?", "Table remove", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 RemoveTable(ActiveTableComponent);
-        }
-
-        private void btnCancelTable_Click(object sender, EventArgs e)
-        {
-            IsPlacing = false;
-            splitContainer4.Panel1Collapsed = true;
-            cntrlTablesField.Cursor = Cursors.Default;
         }
 
         private void AddTable(TableComponent table)
@@ -173,20 +169,20 @@ namespace STS.Workbench
         {
             if (IsPlacing)
             {
-                TableComponent t;
-                if (tables.TryGetValue(tableAddComponent.TableName, out t))
+                var cursorPosition = Cursor.Position;
+
+                frmOpenTable openTableDialog = new frmOpenTable(this);
+                openTableDialog.Location = this.PointToClient(cursorPosition);
+
+                if (openTableDialog.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show(String.Format("'{0}', alredy exist!", tableAddComponent.TableName), "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    TableComponent table = new TableComponent(openTableDialog.TableName, openTableDialog.KeyTypes, openTableDialog.RecordTypes);
+                    table.Location = cntrlTablesField.PointToClient(cursorPosition);
+
+                    AddTable(table);
                 }
 
-                TableComponent table = new TableComponent(tableAddComponent.TableName, tableAddComponent.KeyTypes, tableAddComponent.RecordTypes);
-                table.Location = cntrlTablesField.PointToClient(MousePosition);
-
-                AddTable(table);
-
                 cntrlTablesField.Cursor = Cursors.Default;
-                splitContainer4.Panel1Collapsed = true;
                 IsPlacing = false;
             }
         }
@@ -257,6 +253,8 @@ namespace STS.Workbench
         {
             try
             {
+                splitContainer1.Panel2Collapsed = false;
+
                 grdViewTableRecords.Rows.Clear();
                 grdViewTableRecords.Columns.Clear();
                 grdViewTableRecords.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
@@ -414,11 +412,6 @@ namespace STS.Workbench
 
         #endregion
 
-        private void btnClearErrors_Click(object sender, EventArgs e)
-        {
-            tbxErrors.Clear();
-        }
-
         private void btnDeleteRow_Click(object sender, EventArgs e)
         {
             if (OpenedTable == null)
@@ -537,6 +530,11 @@ namespace STS.Workbench
         private void btnCloseTab_Click(object sender, EventArgs e)
         {
             DbConnection.Close();
+        }
+
+        private void btnHideData_Click(object sender, EventArgs e)
+        {
+            splitContainer1.Panel2Collapsed = true;
         }
     }
 }

@@ -76,8 +76,13 @@
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.Designer.cs">
+      <DependentUpon>frmOpenTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="TablesDiagram\Helpers\FileUtils.cs" />
-    <Compile Include="TablesDiagram\Helpers\IProgressable.cs" />
     <Compile Include="TablesDiagram\Helpers\RowOperations.cs" />
     <Compile Include="TablesDiagram\Helpers\StringObjectToIDataTransformer.cs" />
     <Compile Include="TablesDiagram\Readers\IConnection.cs" />
@@ -156,6 +161,9 @@
     <EmbeddedResource Include="ServerControls\ServerStatus.resx">
       <DependentUpon>ServerStatus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.resx">
+      <DependentUpon>frmOpenTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,14 +215,21 @@
     <None Include="Resources\button_first.png" />
     <None Include="Resources\document_export.png" />
     <None Include="Resources\document_import.png" />
+    <None Include="Resources\button_last.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
+    <None Include="Resources\place_table.bmp" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />
     <None Include="Resources\save-1.ico" />
     <None Include="Resources\Save.png" />
+    <None Include="Resources\sort_down.png" />
     <Content Include="Resources\table.ico" />
     <None Include="Resources\table1.ico" />
+    <None Include="Resources\table_add.png" />
+    <None Include="Resources\table_delete.png" />
+    <None Include="Resources\table2.ico" />
+    <None Include="Resources\table_information.png" />
     <Content Include="Resources\userType.ico" />
   </ItemGroup>
   <ItemGroup />
