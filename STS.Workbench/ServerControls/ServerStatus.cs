@@ -14,6 +14,7 @@ namespace STS.Workbench.ServerControls
 {
     public partial class ServerStatus : UserControl
     {
+        private long OldTime = Process.GetCurrentProcess().UserProcessorTime.Ticks;
         public IServer ServerInfo { get; private set; }
 
         public ServerStatus(IServer serverInfo)
@@ -24,8 +25,7 @@ namespace STS.Workbench.ServerControls
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            PerformanceCounter process_cpu = new PerformanceCounter("Process", "% Processor Time", Process.GetCurrentProcess().ProcessName);
-            CPUUsage.Text = "CPU Usage:" + process_cpu.NextValue();
+            CPUUsage.Text = "CPU Usage:" + (Process.GetCurrentProcess().UserProcessorTime.Ticks - OldTime) / (Environment.ProcessorCount * 100 * 100) + "%";
 
             if (ServerInfo.IsWorking)
             {
@@ -39,6 +39,8 @@ namespace STS.Workbench.ServerControls
                 Host.Text = "Host:";
                 Port.Text = "Port:";
             }
+
+            OldTime = Process.GetCurrentProcess().UserProcessorTime.Ticks;
         }
     }
 }
