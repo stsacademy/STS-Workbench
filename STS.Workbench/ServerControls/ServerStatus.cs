@@ -25,7 +25,7 @@ namespace STS.Workbench.ServerControls
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            CPUUsage.Text = "CPU Usage:" + (Process.GetCurrentProcess().UserProcessorTime.Ticks - OldTime) / (Environment.ProcessorCount * 100 * 100) + "%";
+            CPUUsage.Text = "CPU Usage:" + (Process.GetCurrentProcess().UserProcessorTime.Ticks - OldTime) / (Environment.ProcessorCount * 100 * timer1.Interval) + "%";
 
             if (ServerInfo.IsWorking)
             {
