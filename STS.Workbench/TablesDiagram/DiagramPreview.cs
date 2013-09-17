@@ -19,7 +19,7 @@ namespace STS.Workbench
     public partial class DiagramPreview : UserControl
     {
         private LoadingForm loadingForm = null;
-        private Thread Worker = new Thread(() => Console.Write(""));
+        private Thread Worker = new Thread(() => { });
 
         private int PageCapacity { get { return int.Parse(cmbxPageCount.Text); } }
         private object[] NextKey = null;

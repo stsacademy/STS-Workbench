@@ -82,6 +82,12 @@
     <Compile Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.Designer.cs">
       <DependentUpon>frmOpenTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent2.Designer.cs">
+      <DependentUpon>TableComponent2.cs</DependentUpon>
+    </Compile>
     <Compile Include="TablesDiagram\Helpers\FileUtils.cs" />
     <Compile Include="TablesDiagram\Helpers\RowOperations.cs" />
     <Compile Include="TablesDiagram\Helpers\StringObjectToIDataTransformer.cs" />
@@ -185,6 +191,9 @@
     </Compile>
     <EmbeddedResource Include="TablesDiagram\DiagramPreview.resx">
       <DependentUpon>DiagramPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponent2.resx">
+      <DependentUpon>TableComponent2.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -30,25 +30,24 @@ namespace STS.Workbench
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("myDb");
             this.grdViewTableRecords = new System.Windows.Forms.DataGridView();
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblCatalogTree = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnRemoveTable = new System.Windows.Forms.Button();
-            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnHideData = new System.Windows.Forms.Button();
             this.btnSelectAllRows = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblImportExport = new System.Windows.Forms.Label();
+            this.lblEditRows = new System.Windows.Forms.Label();
+            this.lblChanges = new System.Windows.Forms.Label();
             this.btnDiscard = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
@@ -67,6 +66,7 @@ namespace STS.Workbench
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
             this.splitContainerTablesPreview.Panel1.SuspendLayout();
@@ -124,10 +124,10 @@ namespace STS.Workbench
             this.treeViewTablesCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTablesCatalog.Location = new System.Drawing.Point(3, 3);
             this.treeViewTablesCatalog.Name = "treeViewTablesCatalog";
-            treeNode1.Name = "trvCatalogTree";
-            treeNode1.Text = "myDb";
+            treeNode2.Name = "trvCatalogTree";
+            treeNode2.Text = "myDb";
             this.treeViewTablesCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeViewTablesCatalog.Size = new System.Drawing.Size(194, 222);
             this.treeViewTablesCatalog.TabIndex = 4;
             this.treeViewTablesCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTablesCatalog_AfterSelect);
@@ -181,7 +181,7 @@ namespace STS.Workbench
             // splitContainer2.Panel1
             // 
             this.splitContainer2.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
-            this.splitContainer2.Panel1.Controls.Add(this.label5);
+            this.splitContainer2.Panel1.Controls.Add(this.lblCatalogTree);
             this.splitContainer2.Panel1.Padding = new System.Windows.Forms.Padding(3);
             // 
             // splitContainer2.Panel2
@@ -192,15 +192,15 @@ namespace STS.Workbench
             this.splitContainer2.SplitterDistance = 25;
             this.splitContainer2.TabIndex = 0;
             // 
-            // label5
+            // lblCatalogTree
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(6, 5);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(89, 17);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Catalog tree:";
+            this.lblCatalogTree.AutoSize = true;
+            this.lblCatalogTree.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblCatalogTree.Location = new System.Drawing.Point(6, 5);
+            this.lblCatalogTree.Name = "lblCatalogTree";
+            this.lblCatalogTree.Size = new System.Drawing.Size(89, 17);
+            this.lblCatalogTree.TabIndex = 0;
+            this.lblCatalogTree.Text = "Catalog tree:";
             // 
             // splitContainer1
             // 
@@ -247,6 +247,8 @@ namespace STS.Workbench
             // btnPlaceTable
             // 
             this.btnPlaceTable.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlaceTable.FlatAppearance.BorderSize = 0;
+            this.btnPlaceTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlaceTable.Image = global::STS.Workbench.Properties.Resources.table_add;
             this.btnPlaceTable.Location = new System.Drawing.Point(3, 3);
             this.btnPlaceTable.Name = "btnPlaceTable";
@@ -259,6 +261,8 @@ namespace STS.Workbench
             // btnRemoveTable
             // 
             this.btnRemoveTable.BackColor = System.Drawing.Color.Transparent;
+            this.btnRemoveTable.FlatAppearance.BorderSize = 0;
+            this.btnRemoveTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveTable.Image = global::STS.Workbench.Properties.Resources.table_delete;
             this.btnRemoveTable.Location = new System.Drawing.Point(3, 49);
             this.btnRemoveTable.Name = "btnRemoveTable";
@@ -267,18 +271,6 @@ namespace STS.Workbench
             this.toolTip.SetToolTip(this.btnRemoveTable, "Delete selected table");
             this.btnRemoveTable.UseVisualStyleBackColor = false;
             this.btnRemoveTable.Click += new System.EventHandler(this.btnRemoveTable_Click);
-            // 
-            // cntrlTablesField
-            // 
-            this.cntrlTablesField.AutoScroll = true;
-            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cntrlTablesField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cntrlTablesField.Location = new System.Drawing.Point(0, 0);
-            this.cntrlTablesField.Name = "cntrlTablesField";
-            this.cntrlTablesField.Size = new System.Drawing.Size(1030, 323);
-            this.cntrlTablesField.TabIndex = 0;
-            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
             // 
             // splitContainer3
             // 
@@ -296,9 +288,9 @@ namespace STS.Workbench
             this.splitContainer3.Panel1.Controls.Add(this.btnHideData);
             this.splitContainer3.Panel1.Controls.Add(this.btnSelectAllRows);
             this.splitContainer3.Panel1.Controls.Add(this.btnRefresh);
-            this.splitContainer3.Panel1.Controls.Add(this.label4);
-            this.splitContainer3.Panel1.Controls.Add(this.label2);
-            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            this.splitContainer3.Panel1.Controls.Add(this.lblImportExport);
+            this.splitContainer3.Panel1.Controls.Add(this.lblEditRows);
+            this.splitContainer3.Panel1.Controls.Add(this.lblChanges);
             this.splitContainer3.Panel1.Controls.Add(this.btnDiscard);
             this.splitContainer3.Panel1.Controls.Add(this.btnExport);
             this.splitContainer3.Panel1.Controls.Add(this.btnImport);
@@ -327,18 +319,23 @@ namespace STS.Workbench
             // 
             // btnSelectAllRows
             // 
+            this.btnSelectAllRows.BackColor = System.Drawing.Color.Transparent;
+            this.btnSelectAllRows.FlatAppearance.BorderSize = 0;
+            this.btnSelectAllRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectAllRows.Image = global::STS.Workbench.Properties.Resources.gnome_edit_select_all;
             this.btnSelectAllRows.Location = new System.Drawing.Point(93, 1);
             this.btnSelectAllRows.Name = "btnSelectAllRows";
             this.btnSelectAllRows.Size = new System.Drawing.Size(24, 24);
             this.btnSelectAllRows.TabIndex = 12;
             this.toolTip.SetToolTip(this.btnSelectAllRows, "Select all rows");
-            this.btnSelectAllRows.UseVisualStyleBackColor = true;
+            this.btnSelectAllRows.UseVisualStyleBackColor = false;
             this.btnSelectAllRows.Click += new System.EventHandler(this.btnSelectAllRows_Click);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRefresh.BackColor = System.Drawing.Color.Transparent;
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Image = global::STS.Workbench.Properties.Resources.view_refresh;
             this.btnRefresh.Location = new System.Drawing.Point(241, 1);
             this.btnRefresh.Name = "btnRefresh";
@@ -348,58 +345,68 @@ namespace STS.Workbench
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // label4
+            // lblImportExport
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(271, 7);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(74, 13);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Import/Export:";
+            this.lblImportExport.AutoSize = true;
+            this.lblImportExport.Location = new System.Drawing.Point(271, 7);
+            this.lblImportExport.Name = "lblImportExport";
+            this.lblImportExport.Size = new System.Drawing.Size(74, 13);
+            this.lblImportExport.TabIndex = 10;
+            this.lblImportExport.Text = "Import/Export:";
             // 
-            // label2
+            // lblEditRows
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 7);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Edit rows:";
+            this.lblEditRows.AutoSize = true;
+            this.lblEditRows.Location = new System.Drawing.Point(4, 7);
+            this.lblEditRows.Name = "lblEditRows";
+            this.lblEditRows.Size = new System.Drawing.Size(53, 13);
+            this.lblEditRows.TabIndex = 7;
+            this.lblEditRows.Text = "Edit rows:";
             // 
-            // label1
+            // lblChanges
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(123, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Changes:";
+            this.lblChanges.AutoSize = true;
+            this.lblChanges.Location = new System.Drawing.Point(123, 7);
+            this.lblChanges.Name = "lblChanges";
+            this.lblChanges.Size = new System.Drawing.Size(52, 13);
+            this.lblChanges.TabIndex = 6;
+            this.lblChanges.Text = "Changes:";
             // 
             // btnDiscard
             // 
+            this.btnDiscard.BackColor = System.Drawing.Color.Transparent;
+            this.btnDiscard.FlatAppearance.BorderSize = 0;
+            this.btnDiscard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDiscard.Image = global::STS.Workbench.Properties.Resources.gnome_edit_clear;
             this.btnDiscard.Location = new System.Drawing.Point(211, 2);
             this.btnDiscard.Name = "btnDiscard";
             this.btnDiscard.Size = new System.Drawing.Size(24, 24);
             this.btnDiscard.TabIndex = 5;
             this.toolTip.SetToolTip(this.btnDiscard, "Discard changes to data");
-            this.btnDiscard.UseVisualStyleBackColor = true;
+            this.btnDiscard.UseVisualStyleBackColor = false;
             this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
             // 
             // btnExport
             // 
+            this.btnExport.BackColor = System.Drawing.Color.Transparent;
+            this.btnExport.FlatAppearance.BorderSize = 0;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExport.Image = global::STS.Workbench.Properties.Resources.document_export;
             this.btnExport.Location = new System.Drawing.Point(382, 1);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(24, 24);
             this.btnExport.TabIndex = 4;
             this.toolTip.SetToolTip(this.btnExport, "Export data to external file");
-            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExportCsv_Click);
             // 
             // btnImport
             // 
-            this.btnImport.BackColor = System.Drawing.SystemColors.Control;
+            this.btnImport.BackColor = System.Drawing.Color.Transparent;
+            this.btnImport.FlatAppearance.BorderSize = 0;
+            this.btnImport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btnImport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnImport.Image = global::STS.Workbench.Properties.Resources.document_import;
             this.btnImport.Location = new System.Drawing.Point(352, 1);
             this.btnImport.Name = "btnImport";
@@ -411,24 +418,30 @@ namespace STS.Workbench
             // 
             // btnDeleteRows
             // 
+            this.btnDeleteRows.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteRows.FlatAppearance.BorderSize = 0;
+            this.btnDeleteRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteRows.Image = global::STS.Workbench.Properties.Resources.Delete;
             this.btnDeleteRows.Location = new System.Drawing.Point(63, 1);
             this.btnDeleteRows.Name = "btnDeleteRows";
             this.btnDeleteRows.Size = new System.Drawing.Size(24, 24);
             this.btnDeleteRows.TabIndex = 1;
             this.toolTip.SetToolTip(this.btnDeleteRows, "Delete selected row/rowss");
-            this.btnDeleteRows.UseVisualStyleBackColor = true;
+            this.btnDeleteRows.UseVisualStyleBackColor = false;
             this.btnDeleteRows.Click += new System.EventHandler(this.btnDeleteRow_Click);
             // 
             // btnSaveRow
             // 
+            this.btnSaveRow.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveRow.FlatAppearance.BorderSize = 0;
+            this.btnSaveRow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveRow.Image = global::STS.Workbench.Properties.Resources.Save;
             this.btnSaveRow.Location = new System.Drawing.Point(181, 2);
             this.btnSaveRow.Name = "btnSaveRow";
             this.btnSaveRow.Size = new System.Drawing.Size(24, 24);
             this.btnSaveRow.TabIndex = 0;
             this.toolTip.SetToolTip(this.btnSaveRow, "Apply changes to data");
-            this.btnSaveRow.UseVisualStyleBackColor = true;
+            this.btnSaveRow.UseVisualStyleBackColor = false;
             this.btnSaveRow.Click += new System.EventHandler(this.btnSaveRow_Click);
             // 
             // splitContainer7
@@ -460,12 +473,13 @@ namespace STS.Workbench
             // 
             // btnLastPage
             // 
+            this.btnLastPage.BackColor = System.Drawing.Color.Transparent;
             this.btnLastPage.Image = global::STS.Workbench.Properties.Resources.button_last;
             this.btnLastPage.Location = new System.Drawing.Point(93, 3);
             this.btnLastPage.Name = "btnLastPage";
             this.btnLastPage.Size = new System.Drawing.Size(24, 24);
             this.btnLastPage.TabIndex = 11;
-            this.btnLastPage.UseVisualStyleBackColor = true;
+            this.btnLastPage.UseVisualStyleBackColor = false;
             // 
             // btnNextPage
             // 
@@ -489,12 +503,13 @@ namespace STS.Workbench
             // 
             // btnFirstPage
             // 
+            this.btnFirstPage.BackColor = System.Drawing.Color.Transparent;
             this.btnFirstPage.Image = global::STS.Workbench.Properties.Resources.button_first;
             this.btnFirstPage.Location = new System.Drawing.Point(3, 3);
             this.btnFirstPage.Name = "btnFirstPage";
             this.btnFirstPage.Size = new System.Drawing.Size(24, 24);
             this.btnFirstPage.TabIndex = 8;
-            this.btnFirstPage.UseVisualStyleBackColor = true;
+            this.btnFirstPage.UseVisualStyleBackColor = false;
             this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
             // cmbxPageCount
@@ -602,6 +617,18 @@ namespace STS.Workbench
             this.splitContainer5.SplitterDistance = 601;
             this.splitContainer5.TabIndex = 10;
             // 
+            // cntrlTablesField
+            // 
+            this.cntrlTablesField.AutoScroll = true;
+            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cntrlTablesField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cntrlTablesField.Location = new System.Drawing.Point(0, 0);
+            this.cntrlTablesField.Name = "cntrlTablesField";
+            this.cntrlTablesField.Size = new System.Drawing.Size(1030, 323);
+            this.cntrlTablesField.TabIndex = 0;
+            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
+            // 
             // DiagramPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -673,15 +700,15 @@ namespace STS.Workbench
         private Button btnDeleteRows;
         private Button btnDiscard;
         private Button btnCommit;
-        private Label label2;
-        private Label label1;
+        private Label lblEditRows;
+        private Label lblChanges;
         private SplitContainer splitContainer7;
         private Button btnNextPage;
         private Button btnPreviousPage;
         private Button btnFirstPage;
         private Label label3;
         private ComboBox cmbxPageCount;
-        private Label label4;
+        private Label lblImportExport;
         private Timer timer1;
         private Button btnRefresh;
         private Button btnSelectAllRows;
@@ -691,7 +718,7 @@ namespace STS.Workbench
         private Button btnHideData;
         private Button btnLastPage;
         private SplitContainer splitContainer2;
-        private Label label5;
+        private Label lblCatalogTree;
         private SplitContainer splitContainer5;
     }
 }

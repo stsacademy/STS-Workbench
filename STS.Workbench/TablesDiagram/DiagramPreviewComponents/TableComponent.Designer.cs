@@ -78,7 +78,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.treeViewTypes);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(7);
-            this.splitContainer1.Size = new System.Drawing.Size(160, 200);
+            this.splitContainer1.Size = new System.Drawing.Size(159, 212);
             this.splitContainer1.SplitterDistance = 69;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -100,7 +100,7 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.lblTableName);
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(2);
-            this.splitContainer2.Size = new System.Drawing.Size(160, 69);
+            this.splitContainer2.Size = new System.Drawing.Size(159, 69);
             this.splitContainer2.SplitterDistance = 39;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -120,7 +120,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer3.Size = new System.Drawing.Size(160, 39);
+            this.splitContainer3.Size = new System.Drawing.Size(159, 39);
             this.splitContainer3.SplitterDistance = 37;
             this.splitContainer3.TabIndex = 1;
             // 
@@ -148,8 +148,8 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.pbMoveIcon);
-            this.splitContainer4.Size = new System.Drawing.Size(115, 35);
-            this.splitContainer4.SplitterDistance = 72;
+            this.splitContainer4.Size = new System.Drawing.Size(114, 35);
+            this.splitContainer4.SplitterDistance = 71;
             this.splitContainer4.TabIndex = 0;
             // 
             // splitContainer5
@@ -159,8 +159,8 @@
             this.splitContainer5.IsSplitterFixed = true;
             this.splitContainer5.Location = new System.Drawing.Point(0, 0);
             this.splitContainer5.Name = "splitContainer5";
-            this.splitContainer5.Size = new System.Drawing.Size(72, 35);
-            this.splitContainer5.SplitterDistance = 37;
+            this.splitContainer5.Size = new System.Drawing.Size(71, 35);
+            this.splitContainer5.SplitterDistance = 36;
             this.splitContainer5.TabIndex = 1;
             // 
             // pbMoveIcon
@@ -189,7 +189,7 @@
             this.treeViewTypes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTypes.Location = new System.Drawing.Point(7, 7);
             this.treeViewTypes.Name = "treeViewTypes";
-            this.treeViewTypes.Size = new System.Drawing.Size(142, 109);
+            this.treeViewTypes.Size = new System.Drawing.Size(141, 121);
             this.treeViewTypes.TabIndex = 0;
             // 
             // TableComponent
@@ -201,7 +201,7 @@
             this.Controls.Add(this.splitContainer1);
             this.MinimumSize = new System.Drawing.Size(150, 150);
             this.Name = "TableComponent";
-            this.Size = new System.Drawing.Size(160, 200);
+            this.Size = new System.Drawing.Size(159, 212);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
