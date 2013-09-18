@@ -36,6 +36,9 @@
             this.Host = new System.Windows.Forms.Label();
             this.Port = new System.Windows.Forms.Label();
             this.CPUUsage = new System.Windows.Forms.Label();
+            this.Connections = new System.Windows.Forms.Label();
+            this.ProgressCPU = new System.Windows.Forms.ProgressBar();
+            this.DatabaseName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // shapeContainer1
@@ -45,7 +48,7 @@
             this.shapeContainer1.Name = "shapeContainer1";
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
             this.ServerStatusIndicator});
-            this.shapeContainer1.Size = new System.Drawing.Size(295, 258);
+            this.shapeContainer1.Size = new System.Drawing.Size(185, 153);
             this.shapeContainer1.TabIndex = 0;
             this.shapeContainer1.TabStop = false;
             // 
@@ -57,7 +60,7 @@
             this.ServerStatusIndicator.FillGradientColor = System.Drawing.Color.Linen;
             this.ServerStatusIndicator.Location = new System.Drawing.Point(78, 1);
             this.ServerStatusIndicator.Name = "ServerStatusIndicator";
-            this.ServerStatusIndicator.Size = new System.Drawing.Size(18, 12);
+            this.ServerStatusIndicator.Size = new System.Drawing.Size(12, 12);
             // 
             // Status
             // 
@@ -95,23 +98,51 @@
             // CPUUsage
             // 
             this.CPUUsage.AutoSize = true;
-            this.CPUUsage.Location = new System.Drawing.Point(3, 66);
+            this.CPUUsage.Location = new System.Drawing.Point(3, 102);
             this.CPUUsage.Name = "CPUUsage";
             this.CPUUsage.Size = new System.Drawing.Size(66, 13);
             this.CPUUsage.TabIndex = 4;
             this.CPUUsage.Text = "CPU Usage:";
             // 
+            // Connections
+            // 
+            this.Connections.AutoSize = true;
+            this.Connections.Location = new System.Drawing.Point(3, 124);
+            this.Connections.Name = "Connections";
+            this.Connections.Size = new System.Drawing.Size(69, 13);
+            this.Connections.TabIndex = 5;
+            this.Connections.Text = "Connections:";
+            // 
+            // ProgressCPU
+            // 
+            this.ProgressCPU.Location = new System.Drawing.Point(108, 99);
+            this.ProgressCPU.Name = "ProgressCPU";
+            this.ProgressCPU.Size = new System.Drawing.Size(67, 23);
+            this.ProgressCPU.TabIndex = 6;
+            // 
+            // DatabaseName
+            // 
+            this.DatabaseName.AutoSize = true;
+            this.DatabaseName.Location = new System.Drawing.Point(3, 68);
+            this.DatabaseName.Name = "DatabaseName";
+            this.DatabaseName.Size = new System.Drawing.Size(87, 13);
+            this.DatabaseName.TabIndex = 7;
+            this.DatabaseName.Text = "Database Name:";
+            // 
             // ServerStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DatabaseName);
+            this.Controls.Add(this.ProgressCPU);
+            this.Controls.Add(this.Connections);
             this.Controls.Add(this.CPUUsage);
             this.Controls.Add(this.Port);
             this.Controls.Add(this.Host);
             this.Controls.Add(this.Status);
             this.Controls.Add(this.shapeContainer1);
             this.Name = "ServerStatus";
-            this.Size = new System.Drawing.Size(295, 258);
+            this.Size = new System.Drawing.Size(185, 153);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -126,5 +157,8 @@
         private System.Windows.Forms.Label Host;
         private System.Windows.Forms.Label Port;
         private System.Windows.Forms.Label CPUUsage;
+        private System.Windows.Forms.Label Connections;
+        private System.Windows.Forms.ProgressBar ProgressCPU;
+        private System.Windows.Forms.Label DatabaseName;
     }
 }

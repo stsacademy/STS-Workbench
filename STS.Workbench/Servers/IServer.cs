@@ -12,6 +12,7 @@ namespace STS.Workbench.Servers
         void Stop();
 
         int Port { get; }
+        string DatabaseName { get; }
         string Host { get; }
 
         bool IsWorking { get; }

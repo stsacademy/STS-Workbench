@@ -36,6 +36,11 @@ namespace STS.Workbench.Servers
             get { return "Localhost"; }
         }
 
+        public string DatabaseName
+        {
+            get { return "STSdb4"; }
+        }
+
         public bool IsWorking
         {
             get { return ServerEngine.IsWorking; }
