@@ -73,7 +73,7 @@ namespace STS.Workbench
             }
         }
 
-        #region TableMoves
+        #region Table Move & Resize
 
         private Point MousePoint = new Point();
         private bool IsMoving = false;
@@ -112,6 +112,74 @@ namespace STS.Workbench
             }
         }
 
+        private int downSidePosition;
+        private int rigthSidePosition;
+        private void cntrlTablesField_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (ActiveTableComponent == null)
+                return;
+
+            if (ActiveTableComponent.IsResizing)
+            {
+                Point originalPosition = ActiveTableComponent.Location;
+
+                switch (ActiveTableComponent.Direction)
+                {
+                    case ResizeDirection.Up:
+                        ActiveTableComponent.Height = downSidePosition - cntrlTablesField.PointToClient(Cursor.Position).Y;
+                        if (ActiveTableComponent.Height > ActiveTableComponent.MinimumSize.Height)
+                            ActiveTableComponent.Top = cntrlTablesField.PointToClient(Cursor.Position).Y;
+                        break;
+                    case ResizeDirection.Left:
+                        ActiveTableComponent.Width = rigthSidePosition - cntrlTablesField.PointToClient(Cursor.Position).X;
+                        if (ActiveTableComponent.Width > ActiveTableComponent.MinimumSize.Width)
+                            ActiveTableComponent.Left = cntrlTablesField.PointToClient(Cursor.Position).X;
+                        break;
+                    case ResizeDirection.Rigth:
+                        ActiveTableComponent.Width = cntrlTablesField.PointToClient(Cursor.Position).X - ActiveTableComponent.Left;
+                        break;
+                    case ResizeDirection.Down:
+                        ActiveTableComponent.Height = cntrlTablesField.PointToClient(Cursor.Position).Y - ActiveTableComponent.Top;
+                        break;
+                    case ResizeDirection.UpLeft:
+                        ActiveTableComponent.Height = downSidePosition - cntrlTablesField.PointToClient(Cursor.Position).Y;
+                        if (ActiveTableComponent.Height > ActiveTableComponent.MinimumSize.Height)
+                            ActiveTableComponent.Top = cntrlTablesField.PointToClient(Cursor.Position).Y;
+
+                        ActiveTableComponent.Width = rigthSidePosition - cntrlTablesField.PointToClient(Cursor.Position).X;
+                        if (ActiveTableComponent.Width > ActiveTableComponent.MinimumSize.Width)
+                            ActiveTableComponent.Left = cntrlTablesField.PointToClient(Cursor.Position).X;
+                        break;
+                    case ResizeDirection.DownLeft:
+                        ActiveTableComponent.Height = cntrlTablesField.PointToClient(Cursor.Position).Y - ActiveTableComponent.Top;
+
+                        ActiveTableComponent.Width = rigthSidePosition - cntrlTablesField.PointToClient(Cursor.Position).X;
+                        if (ActiveTableComponent.Width > ActiveTableComponent.MinimumSize.Width)
+                            ActiveTableComponent.Left = cntrlTablesField.PointToClient(Cursor.Position).X;
+                        break;
+                    case ResizeDirection.DownRigth:
+                        ActiveTableComponent.Height = cntrlTablesField.PointToClient(Cursor.Position).Y - ActiveTableComponent.Top;
+
+                        ActiveTableComponent.Width = cntrlTablesField.PointToClient(Cursor.Position).X - ActiveTableComponent.Left;
+                        break;
+                    case ResizeDirection.UpRigth:
+                        ActiveTableComponent.Height = downSidePosition - PointToClient(Cursor.Position).Y;
+                        if (ActiveTableComponent.Height > ActiveTableComponent.MinimumSize.Height)
+                            ActiveTableComponent.Top = cntrlTablesField.PointToClient(Cursor.Position).Y;
+
+                        ActiveTableComponent.Width = cntrlTablesField.PointToClient(Cursor.Position).X - ActiveTableComponent.Left;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                downSidePosition = ActiveTableComponent.Top + ActiveTableComponent.Height;
+                rigthSidePosition = ActiveTableComponent.Left + ActiveTableComponent.Width;
+            }
+        }
+
         #endregion
 
         private void btnPlaceTable_Click(object sender, EventArgs e)
@@ -147,12 +215,13 @@ namespace STS.Workbench
             treeViewTablesCatalog.ExpandAll();
 
             //set events
-            table.pbMoveIcon.MouseDown += OnMouseDown;
-            table.pbMoveIcon.MouseUp += OnMouseUp;
-            table.pbMoveIcon.MouseMove += OnMouseMove;
+            table.MouseDown += OnMouseDown;
+            table.MouseUp += OnMouseUp;
+            table.MouseMove += OnMouseMove;
+            table.MouseMove += cntrlTablesField_MouseMove;
 
-            table.pbTable.Click += table_Click;
-            table.pbTable.MouseDoubleClick += table_DoubleClick;
+            table.Click += table_Click;
+            table.DoubleClick += table_DoubleClick;
         }
 
         private void RemoveTable(TableComponent table)
@@ -191,17 +260,7 @@ namespace STS.Workbench
 
         private void table_Click(object sender, EventArgs e)
         {
-            var table = (TableComponent)null;
-
-            foreach (var item in cntrlTablesField.Controls)
-            {
-                var control = (Control)item;
-                if (control.ContainsControlByInstance((Control)sender))
-                {
-                    table = (TableComponent)control;
-                    break;
-                }
-            }
+            var table = (TableComponent)sender;
 
             var node = treeViewTablesCatalog.Nodes[0].Nodes.Find(table.TableName, true)[0];
             treeViewTablesCatalog.SelectedNode = node;
@@ -315,10 +374,10 @@ namespace STS.Workbench
 
             treeViewTablesCatalog.SelectedNode.BackColor = SystemColors.Highlight;
 
-            if (ActiveTableComponent != null)
-                ActiveTableComponent.BackColor = SystemColors.ControlLight;
+            table.EnableResizers();
 
-            table.BackColor = Color.FromArgb(135, 206, 250);
+            if (ActiveTableComponent != null && ActiveTableComponent.Name != table.Name)
+                ActiveTableComponent.DisableResizers();
 
             table.BringToFront();
             cntrlTablesField.ScrollControlIntoView(table);

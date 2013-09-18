@@ -82,11 +82,11 @@
     <Compile Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.Designer.cs">
       <DependentUpon>frmOpenTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent2.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent2.Designer.cs">
-      <DependentUpon>TableComponent2.cs</DependentUpon>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.designer.cs">
+      <DependentUpon>TableComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="TablesDiagram\Helpers\FileUtils.cs" />
     <Compile Include="TablesDiagram\Helpers\RowOperations.cs" />
@@ -121,11 +121,11 @@
     <Compile Include="TablesDiagram\DiagramPreviewComponents\Field.Designer.cs">
       <DependentUpon>Field.cs</DependentUpon>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.cs">
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponentOld.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.Designer.cs">
-      <DependentUpon>TableComponent.cs</DependentUpon>
+    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponentOld.Designer.cs">
+      <DependentUpon>TableComponentOld.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -176,8 +176,8 @@
     <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\Field.resx">
       <DependentUpon>Field.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponent.resx">
-      <DependentUpon>TableComponent.cs</DependentUpon>
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponentOld.resx">
+      <DependentUpon>TableComponentOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -192,8 +192,8 @@
     <EmbeddedResource Include="TablesDiagram\DiagramPreview.resx">
       <DependentUpon>DiagramPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponent2.resx">
-      <DependentUpon>TableComponent2.cs</DependentUpon>
+    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponent.resx">
+      <DependentUpon>TableComponent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -225,6 +225,8 @@
     <None Include="Resources\document_export.png" />
     <None Include="Resources\document_import.png" />
     <None Include="Resources\button_last.png" />
+    <None Include="Resources\HideDown.png" />
+    <None Include="Resources\HideLeft.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />
@@ -233,12 +235,14 @@
     <None Include="Resources\save-1.ico" />
     <None Include="Resources\Save.png" />
     <None Include="Resources\sort_down.png" />
+    <None Include="Resources\shape_square8x8.bmp" />
     <Content Include="Resources\table.ico" />
     <None Include="Resources\table1.ico" />
     <None Include="Resources\table_add.png" />
     <None Include="Resources\table_delete.png" />
     <None Include="Resources\table2.ico" />
     <None Include="Resources\table_information.png" />
+    <None Include="Resources\tableSmall.png" />
     <Content Include="Resources\userType.ico" />
   </ItemGroup>
   <ItemGroup />

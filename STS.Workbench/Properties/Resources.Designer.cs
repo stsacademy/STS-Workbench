@@ -201,6 +201,26 @@ namespace STS.Workbench.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HideDown {
+            get {
+                object obj = ResourceManager.GetObject("HideDown", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap HideLeft {
+            get {
+                object obj = ResourceManager.GetObject("HideLeft", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon IconCatcher_icl__Delete {
@@ -263,6 +283,16 @@ namespace STS.Workbench.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap shape_square8x8 {
+            get {
+                object obj = ResourceManager.GetObject("shape_square8x8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap sort_down {
             get {
                 object obj = ResourceManager.GetObject("sort_down", resourceCulture);
@@ -317,6 +347,16 @@ namespace STS.Workbench.Properties {
             get {
                 object obj = ResourceManager.GetObject("table2", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tableSmall {
+            get {
+                object obj = ResourceManager.GetObject("tableSmall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -205,4 +205,16 @@
   <data name="place_table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\place_table.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="HideDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HideDown.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="HideLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HideLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="shape_square8x8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape_square8x8.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tableSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tableSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>
