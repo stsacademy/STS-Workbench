@@ -71,7 +71,7 @@ namespace STS.Workbench
 
             File.Delete(sys);
             File.Delete(dat);
-
+           
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");

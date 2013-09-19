@@ -76,6 +76,9 @@
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="ServerControls\VerticalProgressBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.cs">
       <SubType>Form</SubType>
     </Compile>
