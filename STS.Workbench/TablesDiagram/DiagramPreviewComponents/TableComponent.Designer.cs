@@ -193,7 +193,7 @@
             this.pbRigth.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.pbRigth.ErrorImage = null;
             this.pbRigth.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbRigth.Location = new System.Drawing.Point(192, 4);
+            this.pbRigth.Location = new System.Drawing.Point(192, 72);
             this.pbRigth.Name = "pbRigth";
             this.pbRigth.Size = new System.Drawing.Size(8, 8);
             this.pbRigth.TabIndex = 5;
@@ -206,7 +206,7 @@
             this.pbTop.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.pbTop.ErrorImage = null;
             this.pbTop.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbTop.Location = new System.Drawing.Point(65, -64);
+            this.pbTop.Location = new System.Drawing.Point(36, 0);
             this.pbTop.Name = "pbTop";
             this.pbTop.Size = new System.Drawing.Size(8, 8);
             this.pbTop.TabIndex = 8;
@@ -219,7 +219,7 @@
             this.pbLeft.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.pbLeft.ErrorImage = null;
             this.pbLeft.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbLeft.Location = new System.Drawing.Point(0, 4);
+            this.pbLeft.Location = new System.Drawing.Point(0, 72);
             this.pbLeft.Name = "pbLeft";
             this.pbLeft.Size = new System.Drawing.Size(8, 8);
             this.pbLeft.TabIndex = 7;
@@ -232,7 +232,7 @@
             this.pbDown.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.pbDown.ErrorImage = null;
             this.pbDown.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbDown.Location = new System.Drawing.Point(65, 242);
+            this.pbDown.Location = new System.Drawing.Point(39, 242);
             this.pbDown.Name = "pbDown";
             this.pbDown.Size = new System.Drawing.Size(8, 8);
             this.pbDown.TabIndex = 6;

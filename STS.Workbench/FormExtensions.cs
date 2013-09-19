@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,7 @@ namespace STS.Workbench
         {
             foreach (var cntrl in control.Controls)
             {
-                if (((Control)cntrl).Name == name || cntrl.GetType() == typeof(UserControl))
+                if (((Control)cntrl).Name == name)
                     return (Control)cntrl;
             }
 
@@ -48,6 +49,12 @@ namespace STS.Workbench
             }
 
             return false;
+        }
+
+        public static void SetChildBackColor(this TreeNode instance, Color color)
+        {
+            foreach (var node in instance.Nodes)
+                ((TreeNode)node).BackColor = color;
         }
     }
 }

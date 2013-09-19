@@ -114,8 +114,18 @@ namespace STS.Workbench
 
         private int downSidePosition;
         private int rigthSidePosition;
-        private void cntrlTablesField_MouseMove(object sender, MouseEventArgs e)
+        private void table_MouseMove(object sender, MouseEventArgs e)
         {
+            if (IsMoving && e.Button == MouseButtons.Left)
+            {
+                var table = (TableComponent)sender;
+                if (cntrlTablesField.PointToClient(Cursor.Position).X > 0 && cntrlTablesField.PointToClient(Cursor.Position).Y > 0)
+                {
+                    table.Left += e.X - MousePoint.X;
+                    table.Top += e.Y - MousePoint.Y;
+                }
+            }
+
             if (ActiveTableComponent == null)
                 return;
 
@@ -215,10 +225,9 @@ namespace STS.Workbench
             treeViewTablesCatalog.ExpandAll();
 
             //set events
-            table.MouseDown += OnMouseDown;
             table.MouseUp += OnMouseUp;
-            table.MouseMove += OnMouseMove;
-            table.MouseMove += cntrlTablesField_MouseMove;
+            table.MouseDown += OnMouseDown;
+            table.MouseMove += table_MouseMove;
 
             table.Click += table_Click;
             table.DoubleClick += table_DoubleClick;
@@ -369,15 +378,15 @@ namespace STS.Workbench
 
         private void MarkTable(TableComponent table)
         {
-            foreach (var n in treeViewTablesCatalog.Nodes[0].Nodes)
-                ((TreeNode)n).BackColor = Color.White;
-
+            treeViewTablesCatalog.Nodes[0].SetChildBackColor(Color.White);
             treeViewTablesCatalog.SelectedNode.BackColor = SystemColors.Highlight;
 
             table.EnableResizers();
 
-            if (ActiveTableComponent != null && ActiveTableComponent.Name != table.Name)
+            if (ActiveTableComponent != null)
                 ActiveTableComponent.DisableResizers();
+
+            table.EnableResizers();
 
             table.BringToFront();
             cntrlTablesField.ScrollControlIntoView(table);

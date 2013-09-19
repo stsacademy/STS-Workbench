@@ -41,7 +41,6 @@ namespace STS.Workbench
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnRemoveTable = new System.Windows.Forms.Button();
-            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnHideData = new System.Windows.Forms.Button();
             this.btnSelectAllRows = new System.Windows.Forms.Button();
@@ -67,6 +66,7 @@ namespace STS.Workbench
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
+            this.cntrlTablesField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
             this.splitContainerTablesPreview.Panel1.SuspendLayout();
@@ -271,19 +271,6 @@ namespace STS.Workbench
             this.toolTip.SetToolTip(this.btnRemoveTable, "Delete selected table");
             this.btnRemoveTable.UseVisualStyleBackColor = false;
             this.btnRemoveTable.Click += new System.EventHandler(this.btnRemoveTable_Click);
-            // 
-            // cntrlTablesField
-            // 
-            this.cntrlTablesField.AutoScroll = true;
-            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.cntrlTablesField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cntrlTablesField.Location = new System.Drawing.Point(0, 0);
-            this.cntrlTablesField.Name = "cntrlTablesField";
-            this.cntrlTablesField.Size = new System.Drawing.Size(1030, 323);
-            this.cntrlTablesField.TabIndex = 0;
-            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
-            this.cntrlTablesField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.cntrlTablesField_MouseMove);
             // 
             // splitContainer3
             // 
@@ -517,6 +504,7 @@ namespace STS.Workbench
             // btnFirstPage
             // 
             this.btnFirstPage.BackColor = System.Drawing.Color.Transparent;
+            this.btnFirstPage.FlatAppearance.BorderSize = 0;
             this.btnFirstPage.Image = global::STS.Workbench.Properties.Resources.button_first;
             this.btnFirstPage.Location = new System.Drawing.Point(3, 3);
             this.btnFirstPage.Name = "btnFirstPage";
@@ -612,6 +600,7 @@ namespace STS.Workbench
             // 
             // splitContainer5
             // 
+            this.splitContainer5.BackColor = System.Drawing.Color.White;
             this.splitContainer5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer5.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
             this.splitContainer5.IsSplitterFixed = true;
@@ -629,6 +618,18 @@ namespace STS.Workbench
             this.splitContainer5.Size = new System.Drawing.Size(1294, 630);
             this.splitContainer5.SplitterDistance = 601;
             this.splitContainer5.TabIndex = 10;
+            // 
+            // cntrlTablesField
+            // 
+            this.cntrlTablesField.AutoScroll = true;
+            this.cntrlTablesField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.cntrlTablesField.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cntrlTablesField.Location = new System.Drawing.Point(0, 0);
+            this.cntrlTablesField.Name = "cntrlTablesField";
+            this.cntrlTablesField.Size = new System.Drawing.Size(1030, 323);
+            this.cntrlTablesField.TabIndex = 0;
+            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
             // 
             // DiagramPreview
             // 

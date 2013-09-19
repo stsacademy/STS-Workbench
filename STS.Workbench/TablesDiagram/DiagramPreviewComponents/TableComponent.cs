@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using STSdb4.Data;
+using System.Threading;
 
 namespace STS.Workbench.PreviewComponents
 {
@@ -30,6 +31,8 @@ namespace STS.Workbench.PreviewComponents
 
         public TableComponent(string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
+            DoubleBuffered = true;
+
             TableName = tableName;
             KeyTypes = keyTypes;
             RecordTypes = recordTypes;
@@ -108,13 +111,24 @@ namespace STS.Workbench.PreviewComponents
 
         private void AttachControlsToEvents(Control control)
         {
-            control.MouseClick += control_MouseClick;
+            control.Click += control_Click;
             control.DoubleClick += control_DoubleClick;
             control.MouseMove += control_MouseMove;
             control.MouseUp += control_MouseUp;
+            control.MouseDown += control_MouseDown;
 
             foreach (var item in control.Controls)
                 AttachControlsToEvents((Control)item);
+        }
+        
+        private void control_Click(object sender, EventArgs e)
+        {
+            OnClick(e);
+
+            if (AllowResize)
+                EnableResizers();
+            else
+                DisableResizers();
         }
 
         private void control_DoubleClick(object sender, EventArgs e)
@@ -129,19 +143,14 @@ namespace STS.Workbench.PreviewComponents
             OnMouseUp(e);
         }
 
+        private void control_MouseDown(object sender, MouseEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void control_MouseMove(object sender, MouseEventArgs e)
         {
             OnMouseMove(e);
-        }
-
-        private void control_MouseClick(object sender, MouseEventArgs e)
-        {
-            OnClick(e);
-
-            if (AllowResize)
-                EnableResizers();
-            else
-                DisableResizers();
         }
 
         public void EnableResizers()
