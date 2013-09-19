@@ -56,5 +56,23 @@ namespace STS.Workbench
             foreach (var node in instance.Nodes)
                 ((TreeNode)node).BackColor = color;
         }
+
+        public static void SetHeader(this DataGridView instance, ITable table)
+        {
+            instance.Rows.Clear();
+            instance.Columns.Clear();
+            instance.ColumnCount = table.KeyTypes.Length + table.RecordTypes.Length;
+
+            List<string> keyTypes = new List<string>(table.KeyTypes.Select(x => x.ToString()));
+            List<string> recTypes = new List<string>(table.RecordTypes.Select(x => x.ToString()));
+            List<string> typesRow = new List<string>(keyTypes.Concat(recTypes));
+
+            for (int i = 0; i < typesRow.Count; i++)
+            {
+                typesRow[i] = (i >= table.KeyTypes.Length) ? "(record) " + typesRow[i] : "(key) " + typesRow[i];
+                instance.Columns[i].HeaderText = typesRow[i];
+                instance.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

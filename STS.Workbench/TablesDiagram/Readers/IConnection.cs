@@ -22,9 +22,9 @@ namespace STS.Workbench
 
         IEnumerable<KeyValuePair<object[], object[]>> Read();
         IEnumerable<KeyValuePair<object[], object[]>> Read(object[] fromKey, object[] toKey);
-
-        long Count { get; }
-
+        IEnumerable<KeyValuePair<object[], object[]>> ReadReverse();
+        IEnumerable<KeyValuePair<object[], object[]>> ReadReverse(object[] fromKey, object[] toKey);
+        
         void Save();
         void Clear();
     }

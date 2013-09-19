@@ -233,6 +233,8 @@
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />
+    <None Include="Resources\place_table2.png" />
+    <None Include="Resources\place_tableTansperent.png" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />
     <None Include="Resources\save-1.ico" />
@@ -246,6 +248,7 @@
     <None Include="Resources\table2.ico" />
     <None Include="Resources\table_information.png" />
     <None Include="Resources\tableSmall.png" />
+    <None Include="Resources\undo.png" />
     <Content Include="Resources\userType.ico" />
   </ItemGroup>
   <ItemGroup />

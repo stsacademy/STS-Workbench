@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using STSdb4.Data;
 using System.Threading;
+using System.IO;
 
 namespace STS.Workbench.PreviewComponents
 {
@@ -18,12 +19,13 @@ namespace STS.Workbench.PreviewComponents
 
         private bool AllowResize = true;
         private bool isResizing = false;
-
+        
         private List<PictureBox> Resizers = new List<PictureBox>();
 
         public bool IsResizing { get { return AllowResize && isResizing; } }
-
         public ResizeDirection Direction { get; private set; }
+
+        public bool Expanded { get; private set; }
 
         public string TableName { get; private set; }
         public DataType[] KeyTypes { get; private set; }
@@ -31,8 +33,6 @@ namespace STS.Workbench.PreviewComponents
 
         public TableComponent(string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
-            DoubleBuffered = true;
-
             TableName = tableName;
             KeyTypes = keyTypes;
             RecordTypes = recordTypes;
@@ -44,6 +44,8 @@ namespace STS.Workbench.PreviewComponents
 
         private void PrepareSettings()
         {
+            Expanded = true;
+
             lblTableName.Text = TableName;
             Name = TableName;
 
@@ -120,7 +122,7 @@ namespace STS.Workbench.PreviewComponents
             foreach (var item in control.Controls)
                 AttachControlsToEvents((Control)item);
         }
-        
+
         private void control_Click(object sender, EventArgs e)
         {
             OnClick(e);
@@ -145,7 +147,7 @@ namespace STS.Workbench.PreviewComponents
 
         private void control_MouseDown(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+            OnMouseDown(e);
         }
 
         private void control_MouseMove(object sender, MouseEventArgs e)
@@ -173,85 +175,166 @@ namespace STS.Workbench.PreviewComponents
             pbTop.Location = new Point(Width / 2 - pbDown.Size.Width / 2, 0);
         }
 
-        #region Resizers MouseDownEvents
+        #region Resizing
 
-        private void pbBottomRigth_MouseDown(object sender, MouseEventArgs e)
+        public void UserResize(Control owner, int downSidePosition, int rigthSidePosition)
         {
-            isResizing = true;
-            Direction = ResizeDirection.DownRigth;
+            var ownerCoordinates = owner.PointToClient(Cursor.Position);
+            switch (Direction)
+            {
+                case ResizeDirection.Up:
+                    Height = downSidePosition - ownerCoordinates.Y;
+                    if (Height > MinimumSize.Height)
+                        Top = ownerCoordinates.Y;
+                    break;
+                case ResizeDirection.Left:
+                    Width = rigthSidePosition - ownerCoordinates.X;
+                    if (Width > MinimumSize.Width)
+                        Left = ownerCoordinates.X;
+                    break;
+                case ResizeDirection.Rigth:
+                    Width = ownerCoordinates.X - Left;
+                    break;
+                case ResizeDirection.Down:
+                    Height = ownerCoordinates.Y - Top;
+                    break;
+                case ResizeDirection.UpLeft:
+                    Height = downSidePosition - ownerCoordinates.Y;
+                    if (Height > MinimumSize.Height)
+                        Top = owner.PointToClient(Cursor.Position).Y;
+
+                    Width = rigthSidePosition - ownerCoordinates.X;
+                    if (Width > MinimumSize.Width)
+                        Left = ownerCoordinates.X;
+                    break;
+                case ResizeDirection.DownLeft:
+                    Height = ownerCoordinates.Y - Top;
+
+                    Width = rigthSidePosition - ownerCoordinates.X;
+                    if (Width > MinimumSize.Width)
+                        Left = ownerCoordinates.X;
+                    break;
+                case ResizeDirection.DownRigth:
+                    Height = ownerCoordinates.Y - Top;
+
+                    Width = ownerCoordinates.X - Left;
+                    break;
+                case ResizeDirection.UpRigth:
+                    Height = downSidePosition - ownerCoordinates.Y;
+                    if (Height > MinimumSize.Height)
+                        Top = ownerCoordinates.Y;
+
+                    Width = ownerCoordinates.X - Left;
+                    break;
+                default:
+                    break;
+            }
         }
+
 
         private void pbTop_MouseDown(object sender, MouseEventArgs e)
         {
-            isResizing = true;
-            Direction = ResizeDirection.Up;
-        }
-
-        private void pbTopRigth_MouseDown(object sender, MouseEventArgs e)
-        {
-            isResizing = true;
-            Direction = ResizeDirection.UpRigth;
-        }
-
-        private void pbTopLeft_MouseDown(object sender, MouseEventArgs e)
-        {
-            isResizing = true;
-            Direction = ResizeDirection.UpLeft;
-        }
-
-        private void pbLeft_MouseDown(object sender, MouseEventArgs e)
-        {
-            isResizing = true;
-            Direction = ResizeDirection.Left;
-        }
-
-        private void pbBottomLeft_MouseDown(object sender, MouseEventArgs e)
-        {
-            isResizing = true;
-            Direction = ResizeDirection.DownLeft;
+            ActivateResize(ResizeDirection.Up);
         }
 
         private void pbDown_MouseDown(object sender, MouseEventArgs e)
         {
-            isResizing = true;
-            Direction = ResizeDirection.Down;
+            ActivateResize(ResizeDirection.Down);
+        }
+
+        private void pbLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            ActivateResize(ResizeDirection.Left);
         }
 
         private void pbRigth_MouseDown(object sender, MouseEventArgs e)
         {
+            ActivateResize(ResizeDirection.Rigth);
+        }
+
+        private void pbTopRigth_MouseDown(object sender, MouseEventArgs e)
+        {
+            ActivateResize(ResizeDirection.UpRigth);
+        }
+
+        private void pbTopLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            ActivateResize(ResizeDirection.UpLeft);
+        }
+
+        private void pbBottomLeft_MouseDown(object sender, MouseEventArgs e)
+        {
+            ActivateResize(ResizeDirection.DownLeft);
+        }
+
+        private void pbBottomRigth_MouseDown(object sender, MouseEventArgs e)
+        {
+            ActivateResize(ResizeDirection.DownRigth);
+        }
+
+        private void ActivateResize(ResizeDirection direction)
+        {
             isResizing = true;
-            Direction = ResizeDirection.Rigth;
+            Direction = direction;
         }
 
         #endregion
 
         private void btnHide_Click(object sender, EventArgs e)
         {
-            if (splitContainer1.Panel2Collapsed)
-                ShowInfo();
+            if (Expanded)
+                Collapse();
             else
-                HideInfo();
-
-            splitContainer1.Panel2Collapsed = !splitContainer1.Panel2Collapsed;
+                Expand();
         }
 
-        private void ShowInfo()
+        public void Expand()
         {
+            if (Expanded)
+                return;
+
             btnHide.BackgroundImage = global::STS.Workbench.Properties.Resources.HideDown;
             AllowResize = true;
 
             MinimumSize = new Size(150, 120);
             Height = OriginalSize;
+
+            Expanded = true;
+            splitContainer1.Panel2Collapsed = !splitContainer1.Panel2Collapsed;
         }
 
-        private void HideInfo()
+        public void Collapse()
         {
+            if (!Expanded)
+                return;
+
             btnHide.BackgroundImage = global::STS.Workbench.Properties.Resources.HideLeft;
             AllowResize = false;
 
             OriginalSize = Height;
             MinimumSize = new Size(150, Height - splitContainer1.Panel2.Height - 4);
             Height = Height - splitContainer1.Panel2.Height - 4;
+
+            Expanded = false;
+            splitContainer1.Panel2Collapsed = !splitContainer1.Panel2Collapsed;
+        }
+
+        public void SerializeMesures(BinaryWriter writer)
+        {
+            writer.Write(Location.X);
+            writer.Write(Location.Y);
+            writer.Write(Width);
+            writer.Write(Height);
+        }
+
+        public static KeyValuePair<Point, Size> DeserializeMesures(BinaryReader reader)
+        {
+            int X = reader.ReadInt32();
+            int Y = reader.ReadInt32();
+            int width = reader.ReadInt32();
+            int heigth = reader.ReadInt32();
+
+            return new KeyValuePair<Point, Size>(new Point(X, Y), new Size(width, heigth));
         }
     }
 

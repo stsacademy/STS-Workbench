@@ -1,6 +1,7 @@
 ﻿using STS.Workbench.Helpers;
 using STSdb4.Data;
 using STSdb4.Database;
+using STSdb4.WaterfallTree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,11 +56,15 @@ namespace STS.Workbench.Readers
         private StringObjectToIDataTransformer keyTransfomer;
         private StringObjectToIDataTransformer recordTransformer;
 
+        private IIndex<IData, IData> XIndex;
+
         public string TableName { get; private set; }
+
         public DataType[] KeyTypes { get; private set; }
         public DataType[] RecordTypes { get; private set; }
 
-        public IIndex<IData, IData> XIndex { get; private set; }
+        public long ID { get; private set; }
+        public DateTime CreateTime { get; private set; }
 
         public STSDbTable(IStorageEngine engine, string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
@@ -67,6 +72,10 @@ namespace STS.Workbench.Readers
                 throw new ArgumentException("engine == null");
 
             XIndex = engine.OpenXIndex(keyTypes, recordTypes, tableName);
+            var schemeRecord = engine.Find(tableName);
+
+            ID = schemeRecord.ID;
+            CreateTime = schemeRecord.CreateTime;
 
             TableName = tableName;
             KeyTypes = keyTypes;
@@ -113,8 +122,7 @@ namespace STS.Workbench.Readers
 
         public IEnumerable<KeyValuePair<object[], object[]>> Read()
         {
-            foreach (var kv in XIndex.Forward())
-                yield return new KeyValuePair<object[], object[]>(keyTransfomer.FromIData(kv.Key), recordTransformer.FromIData(kv.Value));
+            return Read(null, null);
         }
 
         public IEnumerable<KeyValuePair<object[], object[]>> Read(object[] fromKey, object[] toKey)
@@ -129,9 +137,21 @@ namespace STS.Workbench.Readers
                 yield return new KeyValuePair<object[], object[]>(keyTransfomer.FromIData(kv.Key), recordTransformer.FromIData(kv.Value));
         }
 
-        public long Count
+        public IEnumerable<KeyValuePair<object[], object[]>> ReadReverse()
         {
-            get { return XIndex.Count(); }
+            return ReadReverse(null, null);
+        }
+
+        public IEnumerable<KeyValuePair<object[], object[]>> ReadReverse(object[] fromKey, object[] toKey)
+        {
+            bool hasFrom = fromKey != null;
+            bool hasTo = toKey != null;
+
+            var from = hasFrom ? keyTransfomer.ToIData(fromKey) : null;
+            var to = hasTo ? keyTransfomer.ToIData(toKey) : null;
+
+            foreach (var kv in XIndex.Backward(from, hasFrom, to, hasTo))
+                yield return new KeyValuePair<object[], object[]>(keyTransfomer.FromIData(kv.Key), recordTransformer.FromIData(kv.Value));
         }
 
         public void Save()

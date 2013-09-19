@@ -76,7 +76,7 @@
             this.MainPanel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.MainPanel.Location = new System.Drawing.Point(6, 6);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(188, 238);
+            this.MainPanel.Size = new System.Drawing.Size(178, 188);
             this.MainPanel.TabIndex = 0;
             // 
             // splitContainer1
@@ -98,7 +98,7 @@
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(191)))), ((int)(((byte)(219)))));
             this.splitContainer1.Panel2.Controls.Add(this.treeViewTypes);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainer1.Size = new System.Drawing.Size(188, 238);
+            this.splitContainer1.Size = new System.Drawing.Size(178, 188);
             this.splitContainer1.SplitterDistance = 30;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 0;
@@ -119,7 +119,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(188, 30);
+            this.splitContainer2.Size = new System.Drawing.Size(178, 30);
             this.splitContainer2.SplitterDistance = 26;
             this.splitContainer2.TabIndex = 2;
             // 
@@ -150,8 +150,8 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.btnHide);
             this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer3.Size = new System.Drawing.Size(158, 30);
-            this.splitContainer3.SplitterDistance = 124;
+            this.splitContainer3.Size = new System.Drawing.Size(148, 30);
+            this.splitContainer3.SplitterDistance = 114;
             this.splitContainer3.TabIndex = 1;
             // 
             // lblTableName
@@ -184,7 +184,7 @@
             this.treeViewTypes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTypes.Location = new System.Drawing.Point(5, 5);
             this.treeViewTypes.Name = "treeViewTypes";
-            this.treeViewTypes.Size = new System.Drawing.Size(178, 197);
+            this.treeViewTypes.Size = new System.Drawing.Size(168, 147);
             this.treeViewTypes.TabIndex = 0;
             // 
             // pbRigth
@@ -193,7 +193,7 @@
             this.pbRigth.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.pbRigth.ErrorImage = null;
             this.pbRigth.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbRigth.Location = new System.Drawing.Point(192, 72);
+            this.pbRigth.Location = new System.Drawing.Point(182, 22);
             this.pbRigth.Name = "pbRigth";
             this.pbRigth.Size = new System.Drawing.Size(8, 8);
             this.pbRigth.TabIndex = 5;
@@ -206,7 +206,7 @@
             this.pbTop.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.pbTop.ErrorImage = null;
             this.pbTop.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbTop.Location = new System.Drawing.Point(36, 0);
+            this.pbTop.Location = new System.Drawing.Point(36, -50);
             this.pbTop.Name = "pbTop";
             this.pbTop.Size = new System.Drawing.Size(8, 8);
             this.pbTop.TabIndex = 8;
@@ -219,7 +219,7 @@
             this.pbLeft.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.pbLeft.ErrorImage = null;
             this.pbLeft.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbLeft.Location = new System.Drawing.Point(0, 72);
+            this.pbLeft.Location = new System.Drawing.Point(0, 22);
             this.pbLeft.Name = "pbLeft";
             this.pbLeft.Size = new System.Drawing.Size(8, 8);
             this.pbLeft.TabIndex = 7;
@@ -232,7 +232,7 @@
             this.pbDown.Cursor = System.Windows.Forms.Cursors.SizeNS;
             this.pbDown.ErrorImage = null;
             this.pbDown.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbDown.Location = new System.Drawing.Point(39, 242);
+            this.pbDown.Location = new System.Drawing.Point(39, 192);
             this.pbDown.Name = "pbDown";
             this.pbDown.Size = new System.Drawing.Size(8, 8);
             this.pbDown.TabIndex = 6;
@@ -245,7 +245,7 @@
             this.pbBottomRigth.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
             this.pbBottomRigth.ErrorImage = null;
             this.pbBottomRigth.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbBottomRigth.Location = new System.Drawing.Point(192, 242);
+            this.pbBottomRigth.Location = new System.Drawing.Point(182, 192);
             this.pbBottomRigth.Name = "pbBottomRigth";
             this.pbBottomRigth.Size = new System.Drawing.Size(8, 8);
             this.pbBottomRigth.TabIndex = 4;
@@ -258,7 +258,7 @@
             this.pbBottomLeft.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.pbBottomLeft.ErrorImage = null;
             this.pbBottomLeft.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbBottomLeft.Location = new System.Drawing.Point(0, 242);
+            this.pbBottomLeft.Location = new System.Drawing.Point(0, 192);
             this.pbBottomLeft.Name = "pbBottomLeft";
             this.pbBottomLeft.Size = new System.Drawing.Size(8, 8);
             this.pbBottomLeft.TabIndex = 3;
@@ -271,7 +271,7 @@
             this.pbTopRigth.Cursor = System.Windows.Forms.Cursors.SizeNESW;
             this.pbTopRigth.ErrorImage = null;
             this.pbTopRigth.Image = global::STS.Workbench.Properties.Resources.shape_square8x8;
-            this.pbTopRigth.Location = new System.Drawing.Point(192, 0);
+            this.pbTopRigth.Location = new System.Drawing.Point(182, 0);
             this.pbTopRigth.Name = "pbTopRigth";
             this.pbTopRigth.Size = new System.Drawing.Size(8, 8);
             this.pbTopRigth.TabIndex = 2;
@@ -308,7 +308,7 @@
             this.MinimumSize = new System.Drawing.Size(120, 150);
             this.Name = "TableComponent";
             this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(200, 250);
+            this.Size = new System.Drawing.Size(190, 200);
             this.Resize += new System.EventHandler(this.TableComponent2_Resize);
             this.MainPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

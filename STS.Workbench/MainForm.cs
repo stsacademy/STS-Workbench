@@ -41,11 +41,16 @@ namespace STS.Workbench
 
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
-            var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
+            var index1 = engine.OpenXIndex<int, string>("Gosho");
             for (int i = 0; i < 10000; i++)
                 index1[i] = "gosho " + i;
 
+            var index2 = engine.OpenXIndex<int, string>("table2");
+            for (int i = 0; i < 10000; i++)
+                index2[i] = "gosho " + i;
+
             index1.Flush();
+            index2.Flush();
             engine.Commit();
 
             STSDbConnection STSdbConnection = new STSDbConnection(engine);
