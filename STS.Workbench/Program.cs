@@ -2,6 +2,7 @@
 using STSdb4.Database;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,7 +29,7 @@ namespace STS.Workbench
 
             //index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho" }));
             //index.AddRow(new Schema.Row(1, new object[] { 8, "Gosho1" }));
-            
+
             //using (IStorageEngine engine = STSdb.FromFile("stsdb4.sys", "stsdb4.dat"))
             //{
             //    IIndex<int, string> table = engine.OpenXIndex<int, string>("table");
@@ -50,7 +51,6 @@ namespace STS.Workbench
 
             //connection.Close();
             //connection.State.ToString();
-
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

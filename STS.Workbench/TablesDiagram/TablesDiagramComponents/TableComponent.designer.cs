@@ -81,6 +81,7 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(191)))), ((int)(((byte)(219)))));
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
@@ -90,14 +91,16 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(191)))), ((int)(((byte)(219)))));
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel1MinSize = 0;
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(151)))), ((int)(((byte)(191)))), ((int)(((byte)(219)))));
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.Transparent;
             this.splitContainer1.Panel2.Controls.Add(this.treeViewTypes);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainer1.Panel2MinSize = 0;
             this.splitContainer1.Size = new System.Drawing.Size(178, 188);
             this.splitContainer1.SplitterDistance = 30;
             this.splitContainer1.SplitterWidth = 1;
@@ -121,6 +124,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Size = new System.Drawing.Size(178, 30);
             this.splitContainer2.SplitterDistance = 26;
+            this.splitContainer2.SplitterWidth = 1;
             this.splitContainer2.TabIndex = 2;
             // 
             // pictureBox1
@@ -150,13 +154,14 @@
             // 
             this.splitContainer3.Panel2.Controls.Add(this.btnHide);
             this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer3.Size = new System.Drawing.Size(148, 30);
-            this.splitContainer3.SplitterDistance = 114;
+            this.splitContainer3.Size = new System.Drawing.Size(151, 30);
+            this.splitContainer3.SplitterDistance = 117;
             this.splitContainer3.TabIndex = 1;
             // 
             // lblTableName
             // 
             this.lblTableName.AutoSize = true;
+            this.lblTableName.BackColor = System.Drawing.Color.Transparent;
             this.lblTableName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblTableName.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblTableName.Location = new System.Drawing.Point(0, 7);
@@ -309,6 +314,8 @@
             this.Name = "TableComponent";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Size = new System.Drawing.Size(190, 200);
+            this.MouseEnter += new System.EventHandler(this.TableComponent_MouseEnter);
+            this.MouseLeave += new System.EventHandler(this.TableComponent_MouseLeave);
             this.Resize += new System.EventHandler(this.TableComponent2_Resize);
             this.MainPanel.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace STS.Workbench.PreviewComponents
 {
-    public class TableAddComponent : GroupBox
+    public class OpenTableComponent : GroupBox
     {
         private Label lbltableName = new Label();
         private TextBox tbxTableName = new TextBox();
@@ -25,7 +25,7 @@ namespace STS.Workbench.PreviewComponents
         public DataType[] KeyTypes { get { return GetDataTypes(treeViewTypes.Nodes[0]); } }
         public DataType[] RecordTypes { get { return GetDataTypes(treeViewTypes.Nodes[1]); } }
 
-        public TableAddComponent()
+        public OpenTableComponent()
         {
             InitalizeComponents(new Point(0, 0));
             btnAdd.Enabled = false;

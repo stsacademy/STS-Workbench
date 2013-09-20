@@ -17,7 +17,7 @@ using System.IO;
 
 namespace STS.Workbench
 {
-    public partial class DiagramPreview : UserControl
+    public partial class TablesDiagramPreview : UserControl
     {
         private LoadingForm loadingForm = null;
         private Thread Worker = new Thread(() => { });
@@ -39,7 +39,7 @@ namespace STS.Workbench
 
         public Dictionary<string, TableComponent> Tables { get { return tables; } }
 
-        public DiagramPreview(IConnection dbConnection)
+        public TablesDiagramPreview(IConnection dbConnection)
         {
             if (dbConnection == null)
                 throw new ArgumentNullException("dbConnection == null");
@@ -50,7 +50,7 @@ namespace STS.Workbench
 
             spltCntTablesData.Panel2Collapsed = true;
 
-            treeViewTablesCatalog.Nodes[0].Text = dbConnection.Name + dbConnection.ToString();
+            treeViewTablesCatalog.Nodes[0].Text = dbConnection.Name;
             cmbxPageCount.Text = "5";
 
             PreviewScheme(190);
@@ -106,11 +106,18 @@ namespace STS.Workbench
             else if (IsMoving && e.Button == MouseButtons.Left)
             {
                 var table = (TableComponent)sender;
-                if (table.Top >= 0 && table.Left >= 0)
-                {
-                    table.Left += e.X - MousePoint.X;
-                    table.Top += e.Y - MousePoint.Y;
-                }
+
+                table.Left += e.X - MousePoint.X;
+                table.Top += e.Y - MousePoint.Y;
+
+                //prevent table to leave field bounds
+                table.Left = table.Left < 0 ? 2 : table.Left;
+                table.Top = table.Top < 0 ? 2 : table.Top;
+                table.Left = table.Right > cntrlTablesField.mainField.Width ? cntrlTablesField.mainField.Width - table.Width : table.Left;
+                table.Top = table.Bottom > cntrlTablesField.mainField.Height ? cntrlTablesField.mainField.Height - table.Height : table.Top;
+
+                cntrlTablesField.ScrollControlIntoView(table);
+                cntrlTablesField.Refresh();
             }
         }
 
@@ -143,7 +150,7 @@ namespace STS.Workbench
         private void AddTable(TableComponent table)
         {
             tables.Add(table.TableName, table);
-            cntrlTablesField.Controls.Add(table);
+            cntrlTablesField.Add(table);
             treeViewTablesCatalog.Nodes[0].Nodes.Add(table.TableName, table.TableName);
             treeViewTablesCatalog.ExpandAll();
 
@@ -154,6 +161,8 @@ namespace STS.Workbench
 
             table.Click += table_Click;
             table.DoubleClick += table_DoubleClick;
+
+            ShowMessage(string.Format("Placed table '{0}'", table.TableName));
         }
 
         private void RemoveTable(TableComponent table)
@@ -173,7 +182,7 @@ namespace STS.Workbench
             {
                 var selectedPosition = Cursor.Position;
 
-                frmOpenTable openTableDialog = new frmOpenTable(this);
+                OpenTableWizard openTableDialog = new OpenTableWizard(this);
                 openTableDialog.Location = PointToClient(selectedPosition);
 
                 if (openTableDialog.ShowDialog() == DialogResult.OK)
@@ -230,11 +239,12 @@ namespace STS.Workbench
                 var table = DbConnection.OpenTable(ActiveTableComponent.Name, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
                 OpenedTable = table;
                 VisualizeData(table, null, null);
-                pgrdTableInfo.SelectedObject = table;
+
+                ShowMessage(string.Format(@"Opened table '{0}'", table.TableName));
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FormExtensions.ShowError(e.Message);
             }
         }
 
@@ -258,12 +268,12 @@ namespace STS.Workbench
                 PreviousKey = OpenedTable.ReadReverse(CurrentKey, null).Take(PageCapacity + 1).LastOrDefault().Key;
 
                 btnNextPage.Enabled = NextKey != null;
-                btnPreviousPage.Enabled = CurrentKey == null && !object.Equals(PreviousKey[0], CurrentKey[0]);
+                btnPreviousPage.Enabled = CurrentKey != null && !object.Equals(PreviousKey[0], CurrentKey[0]);
                 spltCntTablesData.Panel2Collapsed = false;
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                FormExtensions.ShowError(e.Message);
             }
         }
 
@@ -281,6 +291,8 @@ namespace STS.Workbench
             cntrlTablesField.ScrollControlIntoView(table);
 
             ActiveTableComponent = table;
+            pgrdTableInfo.SelectedObject = ActiveTableComponent;
+            ShowMessage(string.Format(@"Selected table '{0}'", table.Name));
         }
 
         private void grdViewTableRecords_UserAddedRow(object sender, DataGridViewRowEventArgs e)
@@ -580,6 +592,11 @@ namespace STS.Workbench
         private void btnTest2_Click(object sender, EventArgs e)
         {
             cntrlTablesField.Scale(new SizeF(0.9f, 0.9f));
+        }
+
+        private void ShowMessage(string text)
+        {
+            lblInfo.Text = text;
         }
     }
 }

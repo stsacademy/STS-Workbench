@@ -83,6 +83,16 @@ namespace STS.Workbench.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Cells {
+            get {
+                object obj = ResourceManager.GetObject("Cells", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Delete {
             get {
                 object obj = ResourceManager.GetObject("Delete", resourceCulture);
@@ -306,6 +316,16 @@ namespace STS.Workbench.Properties {
         internal static System.Drawing.Bitmap sort_down {
             get {
                 object obj = ResourceManager.GetObject("sort_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap stop1normalred {
+            get {
+                object obj = ResourceManager.GetObject("stop1normalred", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

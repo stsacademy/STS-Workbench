@@ -37,7 +37,6 @@
             this.tbxInfo = new System.Windows.Forms.TextBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
-            this.dbField = new STS.Workbench.PreviewComponents.TablesField();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -133,7 +132,6 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.dbField);
             // 
             // splitContainer3.Panel2
             // 
@@ -194,17 +192,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Information:";
             // 
-            // dbField
-            // 
-            this.dbField.AutoScroll = true;
-            this.dbField.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.dbField.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dbField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dbField.Location = new System.Drawing.Point(0, 0);
-            this.dbField.Name = "dbField";
-            this.dbField.Size = new System.Drawing.Size(482, 470);
-            this.dbField.TabIndex = 0;
-            // 
             // ManagerPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -241,7 +228,6 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.ComboBox cbxDataBases;
         private System.Windows.Forms.Button btnAddDb;
-        private PreviewComponents.TablesField dbField;
         private System.Windows.Forms.SplitContainer splitContainer3;
         internal System.Windows.Forms.Button btnCloseTab;
         private System.Windows.Forms.SplitContainer splitContainer4;

@@ -74,5 +74,10 @@ namespace STS.Workbench
                 instance.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
         }
+
+        public static void ShowError(string message)
+        {
+            MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

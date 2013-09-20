@@ -79,16 +79,22 @@
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.Designer.cs">
-      <DependentUpon>frmOpenTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.cs">
+    <Compile Include="TablesDiagram\TablesDiagramComponents\FieldControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponent.designer.cs">
+    <Compile Include="TablesDiagram\TablesDiagramComponents\FieldControl.Designer.cs">
+      <DependentUpon>FieldControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TablesDiagram\TablesDiagramComponents\OpenTableWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablesDiagram\TablesDiagramComponents\OpenTableWizard.Designer.cs">
+      <DependentUpon>OpenTableWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TablesDiagram\TablesDiagramComponents\TableComponent.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TablesDiagram\TablesDiagramComponents\TableComponent.designer.cs">
       <DependentUpon>TableComponent.cs</DependentUpon>
     </Compile>
     <Compile Include="TablesDiagram\Helpers\FileUtils.cs" />
@@ -109,26 +115,14 @@
     </Compile>
     <Compile Include="Servers\IServer.cs" />
     <Compile Include="Servers\STSDbServer.cs" />
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.cs">
+    <Compile Include="TablesDiagram\TablesDiagramComponents\LoadingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.Designer.cs">
+    <Compile Include="TablesDiagram\TablesDiagramComponents\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableAddComponent.cs">
+    <Compile Include="TablesDiagram\TablesDiagramComponents\OpenTableComponent.cs">
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\Field.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\Field.Designer.cs">
-      <DependentUpon>Field.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponentOld.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="TablesDiagram\DiagramPreviewComponents\TableComponentOld.Designer.cs">
-      <DependentUpon>TableComponentOld.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,11 +140,11 @@
     </Compile>
     <Compile Include="STSdbAdapter\STSParameter.cs" />
     <Compile Include="STSdbAdapter\STSSchema.cs" />
-    <Compile Include="TablesDiagram\DiagramPreview.cs">
+    <Compile Include="TablesDiagram\TablesDiagramPreview.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TablesDiagram\DiagramPreview.Designer.cs">
-      <DependentUpon>DiagramPreview.cs</DependentUpon>
+    <Compile Include="TablesDiagram\TablesDiagramPreview.Designer.cs">
+      <DependentUpon>TablesDiagramPreview.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="DbManager\DataBases\STSdb4Client.resx">
       <DependentUpon>STSdb4Client.cs</DependentUpon>
@@ -170,17 +164,14 @@
     <EmbeddedResource Include="ServerControls\ServerStatus.resx">
       <DependentUpon>ServerStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\frmOpenTable.resx">
-      <DependentUpon>frmOpenTable.cs</DependentUpon>
+    <EmbeddedResource Include="TablesDiagram\TablesDiagramComponents\FieldControl.resx">
+      <DependentUpon>FieldControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\LoadingForm.resx">
+    <EmbeddedResource Include="TablesDiagram\TablesDiagramComponents\OpenTableWizard.resx">
+      <DependentUpon>OpenTableWizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablesDiagram\TablesDiagramComponents\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\Field.resx">
-      <DependentUpon>Field.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponentOld.resx">
-      <DependentUpon>TableComponentOld.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -192,10 +183,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreview.resx">
-      <DependentUpon>DiagramPreview.cs</DependentUpon>
+    <EmbeddedResource Include="TablesDiagram\TablesDiagramPreview.resx">
+      <DependentUpon>TablesDiagramPreview.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\DiagramPreviewComponents\TableComponent.resx">
+    <EmbeddedResource Include="TablesDiagram\TablesDiagramComponents\TableComponent.resx">
       <DependentUpon>TableComponent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
@@ -230,6 +221,7 @@
     <None Include="Resources\button_last.png" />
     <None Include="Resources\HideDown.png" />
     <None Include="Resources\HideLeft.png" />
+    <None Include="Resources\Cells.bmp" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />
@@ -241,6 +233,7 @@
     <None Include="Resources\Save.png" />
     <None Include="Resources\sort_down.png" />
     <None Include="Resources\shape_square8x8.bmp" />
+    <None Include="Resources\stop1normalred.png" />
     <Content Include="Resources\table.ico" />
     <None Include="Resources\table1.ico" />
     <None Include="Resources\table_add.png" />

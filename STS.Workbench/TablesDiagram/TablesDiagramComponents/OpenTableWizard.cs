@@ -12,16 +12,16 @@ using System.Windows.Forms;
 
 namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
 {
-    public partial class frmOpenTable : Form
+    public partial class OpenTableWizard : Form
     {
         public object Owner { get; private set; }
 
-        public frmOpenTable()
+        public OpenTableWizard()
             : this(null)
         {
         }
 
-        public frmOpenTable(object owner)
+        public OpenTableWizard(object owner)
         {
             Owner = owner;
 
@@ -38,7 +38,7 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
 
         private void btnPlace_Click(object sender, EventArgs e)
         {
-            var owner = (DiagramPreview)Owner;
+            var owner = (TablesDiagramPreview)Owner;
 
             try
             {

@@ -1,6 +1,6 @@
-﻿namespace STS.Workbench.PreviewComponents
+﻿namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
 {
-    partial class TablesField
+    partial class FieldControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,23 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.mainField = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.mainField)).BeginInit();
             this.SuspendLayout();
             // 
-            // TablesField
+            // mainField
+            // 
+            this.mainField.BackgroundImage = global::STS.Workbench.Properties.Resources.Cells;
+            this.mainField.Location = new System.Drawing.Point(0, 0);
+            this.mainField.Name = "mainField";
+            this.mainField.Size = new System.Drawing.Size(2083, 1443);
+            this.mainField.TabIndex = 2;
+            this.mainField.TabStop = false;
+            // 
+            // FieldControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.DoubleBuffered = true;
-            this.Name = "TablesField";
-            this.Size = new System.Drawing.Size(518, 318);
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.mainField);
+            this.Name = "FieldControl";
+            this.Size = new System.Drawing.Size(944, 417);
+            ((System.ComponentModel.ISupportInitialize)(this.mainField)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        public System.Windows.Forms.PictureBox mainField;
+
 
     }
 }

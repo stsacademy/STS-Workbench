@@ -19,17 +19,33 @@ namespace STS.Workbench.PreviewComponents
 
         private bool AllowResize = true;
         private bool isResizing = false;
-        
+
         private List<PictureBox> Resizers = new List<PictureBox>();
 
+        [Browsable(false)]
         public bool IsResizing { get { return AllowResize && isResizing; } }
-        public ResizeDirection Direction { get; private set; }
 
+        [Browsable(false)]
+
+        public ResizeDirection Direction { get; private set; }
+        [Browsable(false)]
         public bool Expanded { get; private set; }
 
         public string TableName { get; private set; }
         public DataType[] KeyTypes { get; private set; }
         public DataType[] RecordTypes { get; private set; }
+
+        public Color BackGroundColor
+        {
+            get
+            {
+                return splitContainer1.BackColor;
+            }
+            set
+            {
+                splitContainer1.BackColor = value;
+            }
+        }
 
         public TableComponent(string tableName, DataType[] keyTypes, DataType[] recordTypes)
         {
@@ -115,9 +131,13 @@ namespace STS.Workbench.PreviewComponents
         {
             control.Click += control_Click;
             control.DoubleClick += control_DoubleClick;
+
             control.MouseMove += control_MouseMove;
             control.MouseUp += control_MouseUp;
             control.MouseDown += control_MouseDown;
+
+            control.MouseEnter += TableComponent_MouseEnter;
+            control.MouseLeave += TableComponent_MouseLeave;
 
             foreach (var item in control.Controls)
                 AttachControlsToEvents((Control)item);
@@ -173,6 +193,8 @@ namespace STS.Workbench.PreviewComponents
             pbDown.Location = new Point(Width / 2 - pbDown.Size.Width / 2, Height - pbDown.Size.Height);
             pbLeft.Location = new Point(0, Height / 2 - pbLeft.Size.Height / 2);
             pbTop.Location = new Point(Width / 2 - pbDown.Size.Width / 2, 0);
+
+            Refresh();
         }
 
         #region Resizing
@@ -180,6 +202,9 @@ namespace STS.Workbench.PreviewComponents
         public void UserResize(Control owner, int downSidePosition, int rigthSidePosition)
         {
             var ownerCoordinates = owner.PointToClient(Cursor.Position);
+            if (ownerCoordinates.X < 0 || ownerCoordinates.Y < 0)
+                return;
+
             switch (Direction)
             {
                 case ResizeDirection.Up:
@@ -229,6 +254,8 @@ namespace STS.Workbench.PreviewComponents
                 default:
                     break;
             }
+
+            owner.Refresh();
         }
 
 
@@ -335,6 +362,16 @@ namespace STS.Workbench.PreviewComponents
             int heigth = reader.ReadInt32();
 
             return new KeyValuePair<Point, Size>(new Point(X, Y), new Size(width, heigth));
+        }
+
+        private void TableComponent_MouseEnter(object sender, EventArgs e)
+        {
+            BackColor = Color.FromArgb(230, 170, 90);
+        }
+
+        private void TableComponent_MouseLeave(object sender, EventArgs e)
+        {
+            BackColor = Color.Transparent;
         }
     }
 

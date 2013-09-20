@@ -54,7 +54,7 @@ namespace STS.Workbench
             engine.Commit();
 
             STSDbConnection STSdbConnection = new STSDbConnection(engine);
-            DiagramPreview tablesPreview = new DiagramPreview(STSdbConnection);
+            TablesDiagramPreview tablesPreview = new TablesDiagramPreview(STSdbConnection);
 
             var tabPage = new TabPage("Tables");
             tablesPreview.Dock = DockStyle.Fill;
@@ -119,7 +119,7 @@ namespace STS.Workbench
             if (wizard.ShowDialog() == DialogResult.OK)
             {
                 STSDbConnection STSdbConnection = new STSDbConnection(wizard.StorageEngine);
-                DiagramPreview tablesPreview = new DiagramPreview(STSdbConnection);
+                TablesDiagramPreview tablesPreview = new TablesDiagramPreview(STSdbConnection);
 
                 var tabPage = new TabPage(STSdbConnection.Name);
                 tablesPreview.Dock = DockStyle.Fill;
