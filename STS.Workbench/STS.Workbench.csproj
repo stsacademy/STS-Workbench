@@ -79,6 +79,7 @@
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TablesDiagram\Helpers\LoadingHelper.cs" />
     <Compile Include="TablesDiagram\TablesDiagramComponents\FieldControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

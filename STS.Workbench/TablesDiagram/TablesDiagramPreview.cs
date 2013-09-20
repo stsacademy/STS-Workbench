@@ -336,22 +336,35 @@ namespace STS.Workbench
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var fileType = (FileType)dialog.FilterIndex;
-                Worker = new Thread(() =>
+                Thread thread = new Thread(() =>
                     {
                         foreach (var kv in FileUtils.Import(dialog.FileName, fileType, OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
                         {
-                            try
-                            {
-                                OpenedTable.Insert(kv.Key, kv.Value);
-                            }
+                            try { OpenedTable.Insert(kv.Key, kv.Value); }
                             catch { }
-                        };
+                        }
 
                         OpenedTable.Save();
-                    }
-                );
-                Worker.Start();
+                    });
             }
+
+            //Old
+            //var fileType = (FileType)dialog.FilterIndex;
+            //Worker = new Thread(() =>
+            //{
+            //    foreach (var kv in FileUtils.Import(dialog.FileName, fileType, OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
+            //    {
+            //        try
+            //        {
+            //            OpenedTable.Insert(kv.Key, kv.Value);
+            //        }
+            //        catch { }
+            //    };
+
+            //    OpenedTable.Save();
+            //}
+            //);
+            //Worker.Start();
         }
 
         private void btnExportCsv_Click(object sender, EventArgs e)

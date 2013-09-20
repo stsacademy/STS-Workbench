@@ -125,7 +125,7 @@
             this.splitContainer2.Size = new System.Drawing.Size(178, 30);
             this.splitContainer2.SplitterDistance = 26;
             this.splitContainer2.SplitterWidth = 1;
-            this.splitContainer2.TabIndex = 2;
+            this.splitContainer2.TabIndex = 0;
             // 
             // pictureBox1
             // 
@@ -156,7 +156,7 @@
             this.splitContainer3.Panel2.Padding = new System.Windows.Forms.Padding(4);
             this.splitContainer3.Size = new System.Drawing.Size(151, 30);
             this.splitContainer3.SplitterDistance = 117;
-            this.splitContainer3.TabIndex = 1;
+            this.splitContainer3.TabIndex = 0;
             // 
             // lblTableName
             // 

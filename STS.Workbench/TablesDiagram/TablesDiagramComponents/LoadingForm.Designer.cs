@@ -86,7 +86,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Loading...";
             this.TopMost = true;
-            this.Shown += new System.EventHandler(this.LoadingForm_Shown);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
