@@ -77,6 +77,12 @@
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="HomeControls\Home.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeControls\Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DbManager\Wizards\STSdb4Wizard.resx">
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeControls\Home.resx">
+      <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

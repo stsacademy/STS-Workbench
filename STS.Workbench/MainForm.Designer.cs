@@ -38,6 +38,7 @@ namespace STS.Workbench
             this.btnServer = new System.Windows.Forms.Button();
             this.btnTablesTest = new System.Windows.Forms.Button();
             this.imgListControls = new System.Windows.Forms.ImageList(this.components);
+            this.btnHomeTest = new System.Windows.Forms.Button();
             this.userControls.SuspendLayout();
             this.HomePage.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +56,7 @@ namespace STS.Workbench
             // 
             // HomePage
             // 
+            this.HomePage.Controls.Add(this.btnHomeTest);
             this.HomePage.Controls.Add(this.btnWizarDbTest);
             this.HomePage.Controls.Add(this.btnControlTest);
             this.HomePage.Controls.Add(this.btnServer);
@@ -114,6 +116,16 @@ namespace STS.Workbench
             this.imgListControls.TransparentColor = System.Drawing.Color.Transparent;
             this.imgListControls.Images.SetKeyName(0, "home-12.ico");
             // 
+            // btnHomeTest
+            // 
+            this.btnHomeTest.Location = new System.Drawing.Point(93, 196);
+            this.btnHomeTest.Name = "btnHomeTest";
+            this.btnHomeTest.Size = new System.Drawing.Size(101, 23);
+            this.btnHomeTest.TabIndex = 4;
+            this.btnHomeTest.Text = "Home Test";
+            this.btnHomeTest.UseVisualStyleBackColor = true;
+            this.btnHomeTest.Click += new System.EventHandler(this.btnHomeTest_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -140,6 +152,7 @@ namespace STS.Workbench
         private ImageList imgListControls;
         private Button btnControlTest;
         private Button btnWizarDbTest;
+        private Button btnHomeTest;
     }
 }
 

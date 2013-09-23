@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using STS.Workbench.HomeControls;
 
 namespace STS.Workbench
 {
@@ -76,7 +77,7 @@ namespace STS.Workbench
 
             File.Delete(sys);
             File.Delete(dat);
-           
+
             IStorageEngine engine = STSdb.FromFile(sys, dat);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
@@ -128,6 +129,15 @@ namespace STS.Workbench
 
                 userControls.Controls.Add(tabPage);
             }
+        }
+
+        private void btnHomeTest_Click(object sender, EventArgs e)
+        {
+            Home home = new Home();
+            var tabPage = new TabPage("HOME TEST");
+            tabPage.Controls.Add(home);
+
+            userControls.Controls.Add(tabPage);
         }
     }
 }
