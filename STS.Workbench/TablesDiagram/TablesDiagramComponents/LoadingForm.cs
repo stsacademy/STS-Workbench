@@ -21,14 +21,7 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         public static int x = 3;
 
         public LoadingForm()
-            : this(null, ref x)
         {
-        }
-
-        public LoadingForm(Action method, ref int percents)
-        {
-            Method = method;
-
             InitializeComponent();
         }
 

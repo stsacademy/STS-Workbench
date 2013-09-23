@@ -42,6 +42,8 @@ namespace STS.Workbench
             this.lblSelectedTableInfo = new System.Windows.Forms.Label();
             this.pgrdTableInfo = new System.Windows.Forms.PropertyGrid();
             this.spltCntTablesData = new System.Windows.Forms.SplitContainer();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblDiagramHeader = new System.Windows.Forms.Label();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnRemoveTable = new System.Windows.Forms.Button();
@@ -77,9 +79,7 @@ namespace STS.Workbench
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.lblInfo = new System.Windows.Forms.Label();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.lblDiagramHeader = new System.Windows.Forms.Label();
-            this.cntrlTablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
+            this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
             this.splitContainerTablesPreview.Panel1.SuspendLayout();
@@ -104,6 +104,10 @@ namespace STS.Workbench
             this.spltCntTablesData.Panel1.SuspendLayout();
             this.spltCntTablesData.Panel2.SuspendLayout();
             this.spltCntTablesData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).BeginInit();
             this.splitContainer9.Panel1.SuspendLayout();
             this.splitContainer9.Panel2.SuspendLayout();
@@ -124,10 +128,6 @@ namespace STS.Workbench
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdViewTableRecords
@@ -275,9 +275,9 @@ namespace STS.Workbench
             this.lblSelectedTableInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblSelectedTableInfo.Location = new System.Drawing.Point(6, 5);
             this.lblSelectedTableInfo.Name = "lblSelectedTableInfo";
-            this.lblSelectedTableInfo.Size = new System.Drawing.Size(125, 17);
+            this.lblSelectedTableInfo.Size = new System.Drawing.Size(121, 17);
             this.lblSelectedTableInfo.TabIndex = 0;
-            this.lblSelectedTableInfo.Text = "Selected table info";
+            this.lblSelectedTableInfo.Text = "Opened table info";
             // 
             // pgrdTableInfo
             // 
@@ -307,6 +307,38 @@ namespace STS.Workbench
             this.spltCntTablesData.SplitterDistance = 333;
             this.spltCntTablesData.TabIndex = 4;
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(2, 2);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.splitContainer1.Panel1.Controls.Add(this.lblDiagramHeader);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer9);
+            this.splitContainer1.Size = new System.Drawing.Size(1078, 325);
+            this.splitContainer1.SplitterDistance = 25;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // lblDiagramHeader
+            // 
+            this.lblDiagramHeader.AutoSize = true;
+            this.lblDiagramHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblDiagramHeader.Location = new System.Drawing.Point(6, 5);
+            this.lblDiagramHeader.Name = "lblDiagramHeader";
+            this.lblDiagramHeader.Size = new System.Drawing.Size(82, 17);
+            this.lblDiagramHeader.TabIndex = 0;
+            this.lblDiagramHeader.Text = "Tables map";
+            // 
             // splitContainer9
             // 
             this.splitContainer9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -324,7 +356,7 @@ namespace STS.Workbench
             // 
             // splitContainer9.Panel2
             // 
-            this.splitContainer9.Panel2.Controls.Add(this.cntrlTablesField);
+            this.splitContainer9.Panel2.Controls.Add(this.tablesField);
             this.splitContainer9.Size = new System.Drawing.Size(1078, 296);
             this.splitContainer9.SplitterDistance = 42;
             this.splitContainer9.TabIndex = 1;
@@ -790,48 +822,17 @@ namespace STS.Workbench
             this.lblInfo.Size = new System.Drawing.Size(0, 13);
             this.lblInfo.TabIndex = 0;
             // 
-            // splitContainer1
+            // tablesField
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.IsSplitterFixed = true;
-            this.splitContainer1.Location = new System.Drawing.Point(2, 2);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
-            this.splitContainer1.Panel1.Controls.Add(this.lblDiagramHeader);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.splitContainer9);
-            this.splitContainer1.Size = new System.Drawing.Size(1078, 325);
-            this.splitContainer1.SplitterDistance = 25;
-            this.splitContainer1.TabIndex = 2;
-            // 
-            // lblDiagramHeader
-            // 
-            this.lblDiagramHeader.AutoSize = true;
-            this.lblDiagramHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblDiagramHeader.Location = new System.Drawing.Point(6, 5);
-            this.lblDiagramHeader.Name = "lblDiagramHeader";
-            this.lblDiagramHeader.Size = new System.Drawing.Size(61, 17);
-            this.lblDiagramHeader.TabIndex = 0;
-            this.lblDiagramHeader.Text = "Diagram";
-            // 
-            // cntrlTablesField
-            // 
-            this.cntrlTablesField.AutoScroll = true;
-            this.cntrlTablesField.BackColor = System.Drawing.Color.White;
-            this.cntrlTablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cntrlTablesField.Location = new System.Drawing.Point(0, 0);
-            this.cntrlTablesField.Name = "cntrlTablesField";
-            this.cntrlTablesField.Size = new System.Drawing.Size(1030, 294);
-            this.cntrlTablesField.TabIndex = 0;
-            this.cntrlTablesField.Click += new System.EventHandler(this.ucrlTablesField_Click);
+            this.tablesField.AutoScroll = true;
+            this.tablesField.BackColor = System.Drawing.Color.White;
+            this.tablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablesField.Location = new System.Drawing.Point(0, 0);
+            this.tablesField.Name = "tablesField";
+            this.tablesField.Size = new System.Drawing.Size(1030, 294);
+            this.tablesField.TabIndex = 0;
+            this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.tablesField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // TablesDiagramPreview
             // 
@@ -870,6 +871,11 @@ namespace STS.Workbench
             this.spltCntTablesData.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spltCntTablesData)).EndInit();
             this.spltCntTablesData.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.splitContainer9.Panel1.ResumeLayout(false);
             this.splitContainer9.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer9)).EndInit();
@@ -893,11 +899,6 @@ namespace STS.Workbench
             this.splitContainer5.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -950,7 +951,7 @@ namespace STS.Workbench
         private Button btnTest;
         private Button btnTest2;
         private Label lblInfo;
-        private TablesDiagram.DiagramPreviewComponents.FieldControl cntrlTablesField;
+        private TablesDiagram.DiagramPreviewComponents.FieldControl tablesField;
         private SplitContainer splitContainer1;
         private Label lblDiagramHeader;
     }

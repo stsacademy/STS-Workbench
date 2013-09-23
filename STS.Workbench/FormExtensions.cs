@@ -79,5 +79,25 @@ namespace STS.Workbench
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static void PreventLeaveBounds(this Control instance, Control owner)
+        {
+            instance.Left = instance.Left < 0 ? 2 : instance.Left;
+            instance.Top = instance.Top < 0 ? 2 : instance.Top;
+            instance.Left = instance.Right > owner.Width ? owner.Width - instance.Width : instance.Left;
+            instance.Top = instance.Bottom > owner.Height ? owner.Height - instance.Height : instance.Top;
+        }
+
+        public static bool PreventLeaveBounds2(this Control instance, Control owner)
+        {
+            bool flag = false;
+
+            flag = flag || instance.Left < 0;
+            flag = flag || instance.Top < 0;
+            //instance.Left = instance.Right > owner.Width;
+            //instance.Top = instance.Bottom > owner.Height ;
+
+            return flag;
+        }
     }
 }

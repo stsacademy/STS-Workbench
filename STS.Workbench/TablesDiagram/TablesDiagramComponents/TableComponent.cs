@@ -26,8 +26,8 @@ namespace STS.Workbench.PreviewComponents
         public bool IsResizing { get { return AllowResize && isResizing; } }
 
         [Browsable(false)]
-
         public ResizeDirection Direction { get; private set; }
+
         [Browsable(false)]
         public bool Expanded { get; private set; }
 
@@ -37,14 +37,8 @@ namespace STS.Workbench.PreviewComponents
 
         public Color BackGroundColor
         {
-            get
-            {
-                return splitContainer1.BackColor;
-            }
-            set
-            {
-                splitContainer1.BackColor = value;
-            }
+            get { return splitContainer1.BackColor; }
+            set { splitContainer1.BackColor = value; }
         }
 
         public TableComponent(string tableName, DataType[] keyTypes, DataType[] recordTypes)
@@ -346,24 +340,6 @@ namespace STS.Workbench.PreviewComponents
             splitContainer1.Panel2Collapsed = !splitContainer1.Panel2Collapsed;
         }
 
-        public void SerializeMesures(BinaryWriter writer)
-        {
-            writer.Write(Location.X);
-            writer.Write(Location.Y);
-            writer.Write(Width);
-            writer.Write(Height);
-        }
-
-        public static KeyValuePair<Point, Size> DeserializeMesures(BinaryReader reader)
-        {
-            int X = reader.ReadInt32();
-            int Y = reader.ReadInt32();
-            int width = reader.ReadInt32();
-            int heigth = reader.ReadInt32();
-
-            return new KeyValuePair<Point, Size>(new Point(X, Y), new Size(width, heigth));
-        }
-
         private void TableComponent_MouseEnter(object sender, EventArgs e)
         {
             BackColor = Color.FromArgb(230, 170, 90);
@@ -372,6 +348,85 @@ namespace STS.Workbench.PreviewComponents
         private void TableComponent_MouseLeave(object sender, EventArgs e)
         {
             BackColor = Color.Transparent;
+        }
+
+        public void SerializeSettings(BinaryWriter writer)
+        {
+            TableComponentSettings settings = new TableComponentSettings(TableName, Expanded, Location, Size, BackGroundColor);
+            settings.Serialize(writer);
+        }
+
+        public static TableComponentSettings DeserializeSettings(BinaryReader reader)
+        {
+            return TableComponentSettings.Deserialize(reader);
+        }
+
+        public void ApplySettings(TableComponentSettings settings)
+        {
+            if (settings.Expanded)
+                Expand();
+            else
+                Collapse();
+
+            Location = settings.Location;
+            Size = settings.Size;
+            BackGroundColor = settings.BackgroundColor;
+        }
+
+        #region Hided members
+
+        [Browsable(false)]
+        public AccessibleRole AccessibleRole { get { return AccessibleRole; } set { value = AccessibleRole; } }
+        [Browsable(false)]
+        public string AccessibleDescription { get { return AccessibleDescription; } set { value = AccessibleDescription; } }
+        [Browsable(false)]
+        public string AccessibleName { get { return AccessibleName; } set { value = AccessibleName; } }
+
+        #endregion
+    }
+
+    public class TableComponentSettings
+    {
+        public string TableName;
+        public bool Expanded;
+
+        public Point Location;
+        public Size Size;
+        public Color BackgroundColor;
+
+        public TableComponentSettings(string tableName, bool expanded, Point location, Size size, Color backColor)
+        {
+            TableName = tableName;
+            Expanded = expanded;
+
+            Location = location;
+            Size = size;
+            BackgroundColor = backColor;
+        }
+
+        public void Serialize(BinaryWriter writer)
+        {
+            writer.Write(TableName);
+            writer.Write(Expanded);
+
+            writer.Write(Location.X);
+            writer.Write(Location.Y);
+
+            writer.Write(Size.Width);
+            writer.Write(Size.Height);
+
+            writer.Write(BackgroundColor.ToArgb());
+        }
+
+        public static TableComponentSettings Deserialize(BinaryReader reader)
+        {
+            string tableName = reader.ReadString();
+            bool expanded = reader.ReadBoolean();
+            Point location = new Point(reader.ReadInt32(), reader.ReadInt32());
+            Size size = new Size(reader.ReadInt32(), reader.ReadInt32());
+            int argb = reader.ReadInt32();
+
+            return new TableComponentSettings(tableName, expanded, location, size, Color.FromArgb(argb));
         }
     }
 

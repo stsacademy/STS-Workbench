@@ -23,9 +23,15 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         private void AttachChildsToEvent(Control control)
         {
             control.Click += control_Click;
+            control.MouseDown += control_MouseDown;
 
             foreach (var item in control.Controls)
                 AttachChildsToEvent((Control)item);
+        }
+
+        private void control_MouseDown(object sender, MouseEventArgs e)
+        {
+            OnMouseDown(e);
         }
 
         private void control_Click(object sender, EventArgs e)
@@ -42,6 +48,8 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         {
             return mainField.PointToClient(p);
         }
+
+        #region Scroll
 
         public bool IsScrolledMaxUp()
         {
@@ -62,5 +70,13 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         {
             return HorizontalScroll.Value == 0;
         }
+
+        public void ResetScrollBars()
+        {
+            VerticalScroll.Value = 0;
+            HorizontalScroll.Value = 0;
+        }
+
+        #endregion
     }
 }
