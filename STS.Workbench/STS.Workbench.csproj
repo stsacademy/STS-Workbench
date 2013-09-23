@@ -83,6 +83,12 @@
     <Compile Include="HomeControls\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomeControls\Shortcuts.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeControls\Shortcuts.Designer.cs">
+      <DependentUpon>Shortcuts.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     <EmbeddedResource Include="HomeControls\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HomeControls\Shortcuts.resx">
+      <DependentUpon>Shortcuts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -233,6 +242,7 @@
     <None Include="Resources\HideDown.png" />
     <None Include="Resources\HideLeft.png" />
     <None Include="Resources\Cells.bmp" />
+    <None Include="Resources\forumPicture.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />
