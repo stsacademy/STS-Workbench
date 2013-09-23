@@ -136,6 +136,12 @@
   <data name="HideLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HideLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="record" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\record.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="IconCatcher_icl__Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\IconCatcher.icl #Delete.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="table_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -147,9 +153,6 @@
   </data>
   <data name="Cells" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Cells.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="file_export1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file-export.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,6 +169,9 @@
   <data name="gnome_edit_clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gnome_edit_clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="forumPicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\forumPicture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="table" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -177,9 +183,6 @@
   </data>
   <data name="table2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="place_table" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\place_table.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="go_next" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\go_next.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -193,14 +196,14 @@
   <data name="empty" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\empty.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="table_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\table_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="place_table" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\place_table.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Delete.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="IconCatcher_icl__Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\IconCatcher.icl #Delete.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="file_export1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file-export.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Wait" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Wait.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -220,8 +223,8 @@
   <data name="shape_square8x8" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shape_square8x8.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="record" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\record.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="table_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="stop1normalred" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop1normalred.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -229,7 +232,7 @@
   <data name="button_last" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button_last.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="forumPicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\forumPicture.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="stsdbPic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stsdbPic.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

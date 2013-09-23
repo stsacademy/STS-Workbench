@@ -343,6 +343,16 @@ namespace STS.Workbench.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap stsdbPic {
+            get {
+                object obj = ResourceManager.GetObject("stsdbPic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap table {
             get {
                 object obj = ResourceManager.GetObject("table", resourceCulture);
