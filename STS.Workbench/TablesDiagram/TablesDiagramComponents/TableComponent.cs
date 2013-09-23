@@ -195,55 +195,61 @@ namespace STS.Workbench.PreviewComponents
 
         public void UserResize(Control owner, int downSidePosition, int rigthSidePosition)
         {
+            UserResize(owner, downSidePosition, rigthSidePosition, 0, 0);
+        }
+
+        public void UserResize(Control owner, int downSidePosition, int rigthSidePosition, int verticalScrollBarValue, int horizontalScrollBarValue)
+        {
             var ownerCoordinates = owner.PointToClient(Cursor.Position);
+
             if (ownerCoordinates.X < 0 || ownerCoordinates.Y < 0)
                 return;
 
             switch (Direction)
             {
                 case ResizeDirection.Up:
-                    Height = downSidePosition - ownerCoordinates.Y;
+                    Height = downSidePosition - ownerCoordinates.Y - verticalScrollBarValue;
                     if (Height > MinimumSize.Height)
-                        Top = ownerCoordinates.Y;
+                        Top = ownerCoordinates.Y + verticalScrollBarValue;
                     break;
                 case ResizeDirection.Left:
-                    Width = rigthSidePosition - ownerCoordinates.X;
+                    Width = rigthSidePosition - ownerCoordinates.X - horizontalScrollBarValue;
                     if (Width > MinimumSize.Width)
-                        Left = ownerCoordinates.X;
+                        Left = ownerCoordinates.X + horizontalScrollBarValue;
                     break;
                 case ResizeDirection.Rigth:
-                    Width = ownerCoordinates.X - Left;
+                    Width = ownerCoordinates.X - Left + horizontalScrollBarValue;
                     break;
                 case ResizeDirection.Down:
-                    Height = ownerCoordinates.Y - Top;
+                    Height = ownerCoordinates.Y - Top + verticalScrollBarValue;
                     break;
                 case ResizeDirection.UpLeft:
-                    Height = downSidePosition - ownerCoordinates.Y;
+                    Height = downSidePosition - ownerCoordinates.Y - verticalScrollBarValue;
                     if (Height > MinimumSize.Height)
-                        Top = owner.PointToClient(Cursor.Position).Y;
+                        Top = ownerCoordinates.Y + verticalScrollBarValue;
 
-                    Width = rigthSidePosition - ownerCoordinates.X;
+                    Width = rigthSidePosition - ownerCoordinates.X - horizontalScrollBarValue;
                     if (Width > MinimumSize.Width)
-                        Left = ownerCoordinates.X;
+                        Left = ownerCoordinates.X + horizontalScrollBarValue;
                     break;
                 case ResizeDirection.DownLeft:
-                    Height = ownerCoordinates.Y - Top;
+                    Height = ownerCoordinates.Y - Top + verticalScrollBarValue;
 
-                    Width = rigthSidePosition - ownerCoordinates.X;
+                    Width = rigthSidePosition - ownerCoordinates.X - horizontalScrollBarValue;
                     if (Width > MinimumSize.Width)
-                        Left = ownerCoordinates.X;
+                        Left = ownerCoordinates.X + horizontalScrollBarValue;
                     break;
                 case ResizeDirection.DownRigth:
-                    Height = ownerCoordinates.Y - Top;
+                    Height = ownerCoordinates.Y - Top + verticalScrollBarValue;
 
-                    Width = ownerCoordinates.X - Left;
+                    Width = ownerCoordinates.X - Left + horizontalScrollBarValue;
                     break;
                 case ResizeDirection.UpRigth:
-                    Height = downSidePosition - ownerCoordinates.Y;
+                    Height = downSidePosition - ownerCoordinates.Y - verticalScrollBarValue;
                     if (Height > MinimumSize.Height)
-                        Top = ownerCoordinates.Y;
+                        Top = ownerCoordinates.Y + verticalScrollBarValue;
 
-                    Width = ownerCoordinates.X - Left;
+                    Width = ownerCoordinates.X - Left + horizontalScrollBarValue;
                     break;
                 default:
                     break;

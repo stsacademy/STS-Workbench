@@ -88,16 +88,18 @@ namespace STS.Workbench
             instance.Top = instance.Bottom > owner.Height ? owner.Height - instance.Height : instance.Top;
         }
 
-        public static bool PreventLeaveBounds2(this Control instance, Control owner)
+        public static bool IsLeavingOwnerBounds(this Control instance, Control owner, Point mousePoint, MouseEventArgs e)
         {
-            bool flag = false;
+            if (instance.Left + e.X - mousePoint.X < 2)
+                return true;
+            if (instance.Top + e.Y - mousePoint.Y < 2)
+                return true;
+            if (instance.Right + e.X - mousePoint.X > owner.Width)
+                return true;
+            if (instance.Bottom + e.Y - mousePoint.Y > owner.Height)
+                return true;
 
-            flag = flag || instance.Left < 0;
-            flag = flag || instance.Top < 0;
-            //instance.Left = instance.Right > owner.Width;
-            //instance.Top = instance.Bottom > owner.Height ;
-
-            return flag;
+            return false;
         }
     }
 }

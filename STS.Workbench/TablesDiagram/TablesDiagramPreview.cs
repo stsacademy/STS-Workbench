@@ -107,21 +107,17 @@ namespace STS.Workbench
                 int bottomPos = ActiveTableComponent.Top + ActiveTableComponent.Height;
                 int rigthPos = ActiveTableComponent.Left + ActiveTableComponent.Width;
 
-                ActiveTableComponent.UserResize(tablesField, bottomPos, rigthPos);
+                ActiveTableComponent.UserResize(tablesField, bottomPos, rigthPos, tablesField.VerticalScroll.Value, tablesField.HorizontalScroll.Value);
             }
             else if (IsMoving && e.Button == MouseButtons.Left)
             {
                 var table = (TableComponent)sender;
 
-                if (table.Left + e.X - MousePoint.X < 0)
+                if (table.IsLeavingOwnerBounds(tablesField.mainField, MousePoint, e))
                     return;
-                if (table.Top + e.Y - MousePoint.Y < 0)
-                    return;
-                
+
                 table.Left += e.X - MousePoint.X;
                 table.Top += e.Y - MousePoint.Y;
-
-                table.PreventLeaveBounds(tablesField.mainField);
 
                 tablesField.ScrollControlIntoView(table);
                 tablesField.Refresh();
