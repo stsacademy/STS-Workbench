@@ -104,6 +104,7 @@ namespace STS.Workbench
         {
             var graphics = tablesField.mainField.CreateGraphics();
 
+
             if (ActiveTableComponent != null && ActiveTableComponent.IsResizing)
             {
                 int bottomPos = ActiveTableComponent.Top + ActiveTableComponent.Height;
@@ -126,11 +127,24 @@ namespace STS.Workbench
             }
             else if (IsSelecting)
             {
+                throw new NotImplementedException();
+                int width = e.X - MousePoint.X;
+                int heigth = e.Y - MousePoint.Y;
 
-                graphics.DrawRectangle(new Pen(Color.Black), MousePoint.X, MousePoint.Y, 200, 200);
+                Console.WriteLine("----------");
+                Console.WriteLine(MousePoint.X + " " + MousePoint.Y);
+                Console.WriteLine(heigth);
+                Console.WriteLine(width);
 
+                graphics.DrawRectangle(new Pen(Color.Black), e.X, e.Y, 1, 1);
+
+                //if (width < 0 || heigth < 0)
+                //{
+                //    graphics.DrawRectangle(new Pen(Color.Black), heigth, width, 10, 10);
+                //}
+                //else
+                //    graphics.DrawRectangle(new Pen(Color.Black), MousePoint.X, MousePoint.Y, e.X - MousePoint.X, e.Y - MousePoint.Y);
             }
-
         }
 
         #endregion
