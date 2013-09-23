@@ -255,6 +255,7 @@
     <None Include="Resources\sort_down.png" />
     <None Include="Resources\shape_square8x8.bmp" />
     <None Include="Resources\stop1normalred.png" />
+    <None Include="Resources\stsdbPic.jpg" />
     <Content Include="Resources\table.ico" />
     <None Include="Resources\table1.ico" />
     <None Include="Resources\table_add.png" />

@@ -28,23 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblShortcuts = new System.Windows.Forms.Label();
             this.lblSTSdbForums = new System.Windows.Forms.Label();
             this.lblSTSdbHomePage = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.picBoxHomePage = new System.Windows.Forms.PictureBox();
+            this.picBoxForums = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxHomePage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxForums)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.Control;
-            this.pictureBox1.Image = global::STS.Workbench.Properties.Resources.forumPicture;
-            this.pictureBox1.Location = new System.Drawing.Point(17, 159);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 49);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
             // lblShortcuts
             // 
@@ -76,19 +67,44 @@
             this.lblSTSdbHomePage.Size = new System.Drawing.Size(136, 18);
             this.lblSTSdbHomePage.TabIndex = 3;
             this.lblSTSdbHomePage.Text = "STSdb Home Page";
+            this.lblSTSdbHomePage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picBoxHomePage_MouseDown);
+            // 
+            // picBoxHomePage
+            // 
+            this.picBoxHomePage.BackColor = System.Drawing.SystemColors.Control;
+            this.picBoxHomePage.Image = global::STS.Workbench.Properties.Resources.stsdbPic;
+            this.picBoxHomePage.Location = new System.Drawing.Point(17, 80);
+            this.picBoxHomePage.Name = "picBoxHomePage";
+            this.picBoxHomePage.Size = new System.Drawing.Size(51, 49);
+            this.picBoxHomePage.TabIndex = 4;
+            this.picBoxHomePage.TabStop = false;
+            this.picBoxHomePage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picBoxHomePage_MouseDown);
+            // 
+            // picBoxForums
+            // 
+            this.picBoxForums.BackColor = System.Drawing.SystemColors.Control;
+            this.picBoxForums.Image = global::STS.Workbench.Properties.Resources.forumPicture;
+            this.picBoxForums.Location = new System.Drawing.Point(17, 159);
+            this.picBoxForums.Name = "picBoxForums";
+            this.picBoxForums.Size = new System.Drawing.Size(51, 49);
+            this.picBoxForums.TabIndex = 0;
+            this.picBoxForums.TabStop = false;
+            this.picBoxForums.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
             // 
             // Shortcuts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.Controls.Add(this.picBoxHomePage);
             this.Controls.Add(this.lblSTSdbHomePage);
             this.Controls.Add(this.lblSTSdbForums);
             this.Controls.Add(this.lblShortcuts);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.picBoxForums);
             this.Name = "Shortcuts";
             this.Size = new System.Drawing.Size(229, 640);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxHomePage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxForums)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,9 +112,10 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picBoxForums;
         private System.Windows.Forms.Label lblShortcuts;
         private System.Windows.Forms.Label lblSTSdbForums;
         private System.Windows.Forms.Label lblSTSdbHomePage;
+        private System.Windows.Forms.PictureBox picBoxHomePage;
     }
 }

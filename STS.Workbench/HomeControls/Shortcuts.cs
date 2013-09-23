@@ -25,5 +25,14 @@ namespace STS.Workbench.HomeControls
             }
             catch { }
         }
+
+        private void picBoxHomePage_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("http://stsdb.com/");
+            }
+            catch { }
+        }
     }
 }
