@@ -100,8 +100,10 @@ namespace STS.Workbench
             IsSelecting = false;
         }
 
-        private void table_MouseMove(object sender, MouseEventArgs e)
+        private void On_MouseMove(object sender, MouseEventArgs e)
         {
+            var graphics = tablesField.mainField.CreateGraphics();
+
             if (ActiveTableComponent != null && ActiveTableComponent.IsResizing)
             {
                 int bottomPos = ActiveTableComponent.Top + ActiveTableComponent.Height;
@@ -122,6 +124,13 @@ namespace STS.Workbench
                 tablesField.ScrollControlIntoView(table);
                 tablesField.Refresh();
             }
+            else if (IsSelecting)
+            {
+
+                graphics.DrawRectangle(new Pen(Color.Black), MousePoint.X, MousePoint.Y, 200, 200);
+
+            }
+
         }
 
         #endregion
@@ -160,7 +169,7 @@ namespace STS.Workbench
             //set events
             table.MouseUp += OnMouseUp;
             table.MouseDown += OnMouseDown;
-            table.MouseMove += table_MouseMove;
+            table.MouseMove += On_MouseMove;
 
             table.Click += table_Click;
             table.DoubleClick += table_DoubleClick;

@@ -832,6 +832,7 @@ namespace STS.Workbench
             this.tablesField.Size = new System.Drawing.Size(1030, 294);
             this.tablesField.TabIndex = 0;
             this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.tablesField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.On_MouseMove);
             this.tablesField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // TablesDiagramPreview

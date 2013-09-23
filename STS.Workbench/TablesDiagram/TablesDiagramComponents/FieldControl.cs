@@ -24,9 +24,21 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         {
             control.Click += control_Click;
             control.MouseDown += control_MouseDown;
+            control.MouseMove += control_MouseMove;
+            control.MouseUp += control_MouseUp;
 
             foreach (var item in control.Controls)
                 AttachChildsToEvent((Control)item);
+        }
+
+        private void control_MouseUp(object sender, MouseEventArgs e)
+        {
+            OnMouseUp(e);
+        }
+
+        private void control_MouseMove(object sender, MouseEventArgs e)
+        {
+            OnMouseMove(e);
         }
 
         private void control_MouseDown(object sender, MouseEventArgs e)
