@@ -34,5 +34,33 @@ namespace STS.Workbench.HomeControls
             }
             catch { }
         }
+
+        private void lblSTSdbHomePage_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblSTSdbHomePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.68F,
+                                                                      System.Drawing.FontStyle.Underline,
+                                                                      System.Drawing.GraphicsUnit.Point, ((byte)(0)));       
+       }
+
+        private void lblSTSdbHomePage_MouseLeave(object sender, EventArgs e)
+        {
+            lblSTSdbHomePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.68F,
+                                                                     System.Drawing.FontStyle.Regular,
+                                                                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));   
+        }
+
+        private void lblSTSdbForums_MouseMove(object sender, MouseEventArgs e)
+        {
+            lblSTSdbForums.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.68F,
+                                                                     System.Drawing.FontStyle.Underline,
+                                                                     System.Drawing.GraphicsUnit.Point, ((byte)(0)));   
+        }
+
+        private void lblSTSdbForums_MouseLeave(object sender, EventArgs e)
+        {
+            lblSTSdbForums.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.68F,
+                                                              System.Drawing.FontStyle.Regular,
+                                                              System.Drawing.GraphicsUnit.Point, ((byte)(0)));   
+        }
     }
 }

@@ -57,6 +57,8 @@
             this.lblSTSdbForums.TabIndex = 2;
             this.lblSTSdbForums.Text = "STSdb Forums";
             this.lblSTSdbForums.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.lblSTSdbForums.MouseLeave += new System.EventHandler(this.lblSTSdbForums_MouseLeave);
+            this.lblSTSdbForums.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSTSdbForums_MouseMove);
             // 
             // lblSTSdbHomePage
             // 
@@ -68,6 +70,8 @@
             this.lblSTSdbHomePage.TabIndex = 3;
             this.lblSTSdbHomePage.Text = "STSdb Home Page";
             this.lblSTSdbHomePage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picBoxHomePage_MouseDown);
+            this.lblSTSdbHomePage.MouseLeave += new System.EventHandler(this.lblSTSdbHomePage_MouseLeave);
+            this.lblSTSdbHomePage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSTSdbHomePage_MouseMove);
             // 
             // picBoxHomePage
             // 
@@ -79,6 +83,8 @@
             this.picBoxHomePage.TabIndex = 4;
             this.picBoxHomePage.TabStop = false;
             this.picBoxHomePage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picBoxHomePage_MouseDown);
+            this.picBoxHomePage.MouseLeave += new System.EventHandler(this.lblSTSdbHomePage_MouseLeave);
+            this.picBoxHomePage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSTSdbHomePage_MouseMove);
             // 
             // picBoxForums
             // 
@@ -90,6 +96,8 @@
             this.picBoxForums.TabIndex = 0;
             this.picBoxForums.TabStop = false;
             this.picBoxForums.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.picBoxForums.MouseLeave += new System.EventHandler(this.lblSTSdbForums_MouseLeave);
+            this.picBoxForums.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lblSTSdbForums_MouseMove);
             // 
             // Shortcuts
             // 
