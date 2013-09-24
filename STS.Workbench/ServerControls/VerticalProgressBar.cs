@@ -35,16 +35,16 @@ namespace STS.Workbench.ServerControls
         {
             var graphics = e.Graphics;
 
-            graphics.FillRectangle(new SolidBrush(Color.FromArgb(77, 87, 93)), new Rectangle(new System.Drawing.Point(0, 0), new System.Drawing.Size(this.Size.Width - 1, this.Size.Height - 1)));
-            graphics.FillRectangle(new SolidBrush(Color.FromArgb(64, 151, 228)), new Rectangle(new Point(1, this.Size.Height - value), new System.Drawing.Size(this.Size.Width - 2, value)));
+            graphics.FillRectangle(new SolidBrush(Color.FromArgb(77, 87, 93)), new Rectangle(new Point(0, 0), new Size(Size.Width - 1, Size.Height - 1)));
+            graphics.FillRectangle(new SolidBrush(Color.FromArgb(64, 151, 228)), new Rectangle(new Point(1, Size.Height - value), new Size(Size.Width - 2, value)));
 
             float step = (this.Size.Height - 1) / 12;
             for (float i = 0; i < this.Size.Height; i += step)
             {
-                graphics.DrawLine(new Pen(Color.FromArgb(88, 97, 105)), 0, i, this.Width, i);
+                graphics.DrawLine(new Pen(Color.FromArgb(88, 97, 105)), 0, i, Width, i);
             }
 
-            graphics.DrawRectangle(Pens.Black, new Rectangle(new System.Drawing.Point(0, 0), new System.Drawing.Size(this.Size.Width - 1, this.Size.Height - 1)));
+            graphics.DrawRectangle(Pens.Black, new Rectangle(new Point(0, 0), new Size(Size.Width - 1, Size.Height - 1)));
         }
 
         private void InitializeComponent()
@@ -52,7 +52,7 @@ namespace STS.Workbench.ServerControls
             MinValue = 0;
             MaxValue = 100;
             this.SuspendLayout();
-            this.Load += new System.EventHandler(this.Progress_Load);
+            this.Load += new EventHandler(Progress_Load);
             this.ResumeLayout(false);
         }
 
