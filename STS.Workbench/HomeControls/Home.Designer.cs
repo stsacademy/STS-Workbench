@@ -31,11 +31,13 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.shortcuts1 = new STS.Workbench.HomeControls.Shortcuts();
+            this.modelControl1 = new STS.Workbench.HomeControls.ModelControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +74,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.splitContainer2.Panel2.Controls.Add(this.modelControl1);
             this.splitContainer2.Size = new System.Drawing.Size(1001, 645);
             this.splitContainer2.SplitterDistance = 475;
             this.splitContainer2.TabIndex = 0;
@@ -85,6 +88,15 @@
             this.shortcuts1.Size = new System.Drawing.Size(225, 645);
             this.shortcuts1.TabIndex = 0;
             // 
+            // modelControl1
+            // 
+            this.modelControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.modelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modelControl1.Location = new System.Drawing.Point(0, 0);
+            this.modelControl1.Name = "modelControl1";
+            this.modelControl1.Size = new System.Drawing.Size(1001, 166);
+            this.modelControl1.TabIndex = 0;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -96,6 +108,7 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -107,6 +120,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private Shortcuts shortcuts1;
+        private ModelControl modelControl1;
 
     }
 }
