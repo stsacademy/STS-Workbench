@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.lblModels = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picBoxPlus = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxPlus)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,6 +44,15 @@
             this.lblModels.Size = new System.Drawing.Size(76, 25);
             this.lblModels.TabIndex = 0;
             this.lblModels.Text = "Models";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::STS.Workbench.Properties.Resources.folderOpen;
+            this.pictureBox1.Location = new System.Drawing.Point(131, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(33, 29);
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // picBoxPlus
             // 
@@ -57,10 +68,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.picBoxPlus);
             this.Controls.Add(this.lblModels);
             this.Name = "ModelControl";
             this.Size = new System.Drawing.Size(982, 218);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxPlus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -71,5 +84,6 @@
 
         private System.Windows.Forms.Label lblModels;
         private System.Windows.Forms.PictureBox picBoxPlus;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

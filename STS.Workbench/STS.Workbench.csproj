@@ -77,6 +77,12 @@
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="HomeControls\ConnectionsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeControls\ConnectionsControl.Designer.cs">
+      <DependentUpon>ConnectionsControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeControls\Home.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -94,6 +100,11 @@
     </Compile>
     <Compile Include="HomeControls\Shortcuts.Designer.cs">
       <DependentUpon>Shortcuts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
@@ -178,6 +189,9 @@
     <EmbeddedResource Include="DbManager\Wizards\STSdb4Wizard.resx">
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HomeControls\ConnectionsControl.resx">
+      <DependentUpon>ConnectionsControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HomeControls\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,14 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="TablesDiagram\TablesDiagramPreview.resx">
       <DependentUpon>TablesDiagramPreview.cs</DependentUpon>
     </EmbeddedResource>
@@ -232,6 +241,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\WrenchBtn2.png" />
+    <None Include="Resources\WrenchBtn.png" />
     <None Include="Resources\view_refresh.png" />
     <None Include="Resources\file-import.ico" />
     <None Include="Resources\file-import.bmp" />
@@ -252,6 +263,7 @@
     <None Include="Resources\HideLeft.png" />
     <None Include="Resources\Cells.bmp" />
     <None Include="Resources\forumPicture.png" />
+    <None Include="Resources\folderOpen.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />

@@ -173,6 +173,16 @@ namespace STS.Workbench.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap folderOpen {
+            get {
+                object obj = ResourceManager.GetObject("folderOpen", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap forumPicture {
             get {
                 object obj = ResourceManager.GetObject("forumPicture", resourceCulture);
@@ -456,6 +466,26 @@ namespace STS.Workbench.Properties {
         internal static System.Drawing.Bitmap Wait {
             get {
                 object obj = ResourceManager.GetObject("Wait", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WrenchBtn {
+            get {
+                object obj = ResourceManager.GetObject("WrenchBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap WrenchBtn2 {
+            get {
+                object obj = ResourceManager.GetObject("WrenchBtn2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
