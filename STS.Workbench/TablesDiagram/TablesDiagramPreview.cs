@@ -48,8 +48,8 @@ namespace STS.Workbench
 
             InitializeComponent();
 
+            selectorTool = new SelectorTool(tablesField.mainField);
             spltCntTablesData.Panel2Collapsed = true;
-
             treeViewTablesCatalog.Nodes[0].Text = dbConnection.Name;
             cmbxPageCount.Text = "5";
 
@@ -76,7 +76,8 @@ namespace STS.Workbench
 
         #region Table Move, Resize and Selection
 
-        private Point MousePoint = new Point();
+        private SelectorTool selectorTool;
+        private Point MousePoint;
         private bool IsMoving = false;
         private bool IsPlacing = false;
         private bool IsSelecting = false;
@@ -98,13 +99,11 @@ namespace STS.Workbench
         {
             IsMoving = false;
             IsSelecting = false;
+            tablesField.Refresh();
         }
 
         private void On_MouseMove(object sender, MouseEventArgs e)
         {
-            var graphics = tablesField.mainField.CreateGraphics();
-
-
             if (ActiveTableComponent != null && ActiveTableComponent.IsResizing)
             {
                 int bottomPos = ActiveTableComponent.Top + ActiveTableComponent.Height;
@@ -127,23 +126,7 @@ namespace STS.Workbench
             }
             else if (IsSelecting)
             {
-                throw new NotImplementedException();
-                int width = e.X - MousePoint.X;
-                int heigth = e.Y - MousePoint.Y;
-
-                Console.WriteLine("----------");
-                Console.WriteLine(MousePoint.X + " " + MousePoint.Y);
-                Console.WriteLine(heigth);
-                Console.WriteLine(width);
-
-                graphics.DrawRectangle(new Pen(Color.Black), e.X, e.Y, 1, 1);
-
-                //if (width < 0 || heigth < 0)
-                //{
-                //    graphics.DrawRectangle(new Pen(Color.Black), heigth, width, 10, 10);
-                //}
-                //else
-                //    graphics.DrawRectangle(new Pen(Color.Black), MousePoint.X, MousePoint.Y, e.X - MousePoint.X, e.Y - MousePoint.Y);
+                selectorTool.DrawRectangle(new Pen(Color.Black), MousePoint, e.Location);
             }
         }
 
