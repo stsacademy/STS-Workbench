@@ -57,7 +57,7 @@ namespace STS.Workbench
                 ((TreeNode)node).BackColor = color;
         }
 
-        public static void SetHeader(this DataGridView instance, ITable table)
+        public static void SetTableHeader(this DataGridView instance, ITable table)
         {
             instance.Rows.Clear();
             instance.Columns.Clear();
@@ -97,6 +97,27 @@ namespace STS.Workbench
             if (instance.Right + e.X - mousePoint.X > owner.Width)
                 return true;
             if (instance.Bottom + e.Y - mousePoint.Y > owner.Height)
+                return true;
+
+            return false;
+        }
+
+        public static bool HasPointInsideRectangle(this Control instance, Rectangle rect)
+        {
+            //Top left point
+            if (rect.Contains(instance.Location.X, instance.Location.Y))
+                return true;
+
+            //Bottom left point
+            if (rect.Contains(new Point(instance.Location.X + instance.Height, instance.Location.Y)))
+                return true;
+
+            //Top rigth point
+            if (rect.Contains(new Point(instance.Location.X, instance.Location.Y + instance.Width)))
+                return true;
+
+            //Top rigth point
+            if (rect.Contains(new Point(instance.Location.X + instance.Height, instance.Location.Y + instance.Width)))
                 return true;
 
             return false;

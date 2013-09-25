@@ -74,10 +74,11 @@ namespace STS.Workbench
             }
         }
 
-        #region Table Move, Resize and Selection
+        #region Table - move, resize and selection
 
         private SelectorTool selectorTool;
-        private Point MousePoint;
+        private List<TableComponent> selectedTables = new List<TableComponent>();
+        private Point SelectedMousePoint;
         private bool IsMoving = false;
         private bool IsPlacing = false;
         private bool IsSelecting = false;
@@ -86,48 +87,107 @@ namespace STS.Workbench
         {
             if (e.Button == MouseButtons.Left)
             {
-                MousePoint = e.Location;
+                SelectedMousePoint = e.Location;
 
                 if (sender.GetType() == typeof(TableComponent))
+                {
                     IsMoving = true;
-                if (sender.GetType() == typeof(FieldControl))
+                    if (!selectedTables.Contains((TableComponent)sender))
+                    {
+                        UnSelectTables();
+                        SelectTable((TableComponent)sender);
+                    }
+
+                }
+                else if (sender.GetType() == typeof(FieldControl))
+                {
                     IsSelecting = true;
+                    selectorTool.ClearLastSelection();
+                }
             }
         }
 
         private void OnMouseUp(object sender, MouseEventArgs e)
         {
+            if (IsSelecting)
+            {
+                UnSelectTables();
+                SelectTables(selectorTool.GetSelectedItems(Tables.Values));
+                IsSelecting = false;
+            }
+
             IsMoving = false;
-            IsSelecting = false;
             tablesField.Refresh();
         }
 
         private void On_MouseMove(object sender, MouseEventArgs e)
         {
+            //Do resize
             if (ActiveTableComponent != null && ActiveTableComponent.IsResizing)
             {
                 int bottomPos = ActiveTableComponent.Top + ActiveTableComponent.Height;
                 int rigthPos = ActiveTableComponent.Left + ActiveTableComponent.Width;
 
-                ActiveTableComponent.UserResize(tablesField, bottomPos, rigthPos, tablesField.VerticalScroll.Value, tablesField.HorizontalScroll.Value);
+                ActiveTableComponent.UserResize(tablesField.mainField, bottomPos, rigthPos, tablesField.VerticalScroll.Value, tablesField.HorizontalScroll.Value);
+                return;
             }
-            else if (IsMoving && e.Button == MouseButtons.Left)
+
+            //Do move
+            if (IsMoving)
             {
-                var table = (TableComponent)sender;
-
-                if (table.IsLeavingOwnerBounds(tablesField.mainField, MousePoint, e))
-                    return;
-
-                table.Left += e.X - MousePoint.X;
-                table.Top += e.Y - MousePoint.Y;
-
-                tablesField.ScrollControlIntoView(table);
-                tablesField.Refresh();
+                bool canMove = selectedTables.TrueForAll(x => !x.IsLeavingOwnerBounds(tablesField.mainField, SelectedMousePoint, e));
+                if (canMove)
+                {
+                    foreach (var table in selectedTables)
+                    {
+                        table.Left += e.X - SelectedMousePoint.X;
+                        table.Top += e.Y - SelectedMousePoint.Y;
+                    }
+                }
+                return;
             }
-            else if (IsSelecting)
-            {
-                selectorTool.DrawRectangle(new Pen(Color.Black), MousePoint, e.Location);
-            }
+
+            //Do select
+            if (IsSelecting)
+                selectorTool.DrawRectangle(new Pen(Color.Black), SelectedMousePoint, e.Location);
+        }
+
+        private void SelectTables(List<Control> tables)
+        {
+            foreach (var table in tables)
+                SelectTable((TableComponent)table);
+
+            if (tables.Count == 1)
+                ((TableComponent)tables[0]).EnableResizers();
+            else if (tables.Count > 1)
+                ShowMessage(string.Format(@"Selected tables '{0}'", string.Join(", ", new List<string>(tables.Select(x => ((TableComponent)x).Name)))));
+        }
+
+        private void UnSelectTables()
+        {
+            foreach (var table in selectedTables)
+                table.BackColor = Color.Transparent;
+
+            selectedTables.Clear();
+        }
+
+        private void SelectTable(TableComponent table)
+        {
+            if (ActiveTableComponent != null)
+                ActiveTableComponent.DisableResizers();
+
+            table.BackColor = Color.FromArgb(235, 195, 140);
+            table.CurrentColor = Color.FromArgb(235, 195, 140);
+            selectedTables.Add(table);
+
+            treeViewTablesCatalog.Nodes[0].SetChildBackColor(Color.White);
+            treeViewTablesCatalog.Nodes[0].Nodes.Find(table.TableName, true)[0].BackColor = SystemColors.Highlight;
+
+            table.BringToFront();
+            tablesField.ScrollControlIntoView(table);
+
+            ActiveTableComponent = table;
+            ShowMessage(string.Format(@"Selected table '{0}'", table.Name));
         }
 
         #endregion
@@ -138,20 +198,20 @@ namespace STS.Workbench
             IsPlacing = !IsPlacing;
         }
 
-        private void btnRemoveTable_Click(object sender, EventArgs e)
+        private void btnDeleteTables_Click(object sender, EventArgs e)
         {
-            if (ActiveTableComponent == null)
-                return;
-
-            if (MessageBox.Show(string.Format("Do you want to delete table {0}?", ActiveTableComponent.Name), "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            foreach (var table in selectedTables)
             {
-                try
+                if (MessageBox.Show(string.Format("Do you want to delete table {0}?", table.Name), "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    RemoveTable(ActiveTableComponent);
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    try
+                    {
+                        RemoveTable(ActiveTableComponent);
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -205,6 +265,8 @@ namespace STS.Workbench
                 tablesField.Cursor = Cursors.Default;
                 IsPlacing = false;
             }
+
+            UnSelectTables();
         }
 
         #region Table Mark/Open
@@ -212,11 +274,13 @@ namespace STS.Workbench
         private void table_Click(object sender, EventArgs e)
         {
             var table = (TableComponent)sender;
+            var mouseEventArgs = (MouseEventArgs)e;
 
-            var node = treeViewTablesCatalog.Nodes[0].Nodes.Find(table.TableName, true)[0];
-            treeViewTablesCatalog.SelectedNode = node;
+            if (mouseEventArgs.Button == MouseButtons.Right)
+                menuStripTables.Show(Cursor.Position);
 
-            MarkTable(table);
+            UnSelectTables();
+            SelectTable(table);
         }
 
         private void treeViewTablesCatalog_AfterSelect(object sender, TreeViewEventArgs e)
@@ -227,7 +291,8 @@ namespace STS.Workbench
             TableComponent table;
             tables.TryGetValue(treeViewTablesCatalog.SelectedNode.Text, out table);
 
-            MarkTable(table);
+            UnSelectTables();
+            SelectTable(table);
         }
 
         private void table_DoubleClick(object sender, EventArgs e)
@@ -258,30 +323,13 @@ namespace STS.Workbench
             }
         }
 
-        private void MarkTable(TableComponent table)
-        {
-            if (ActiveTableComponent != null)
-                ActiveTableComponent.DisableResizers();
-
-            table.EnableResizers();
-
-            treeViewTablesCatalog.Nodes[0].SetChildBackColor(Color.White);
-            treeViewTablesCatalog.SelectedNode.BackColor = SystemColors.Highlight;
-
-            table.BringToFront();
-            tablesField.ScrollControlIntoView(table);
-
-            ActiveTableComponent = table;
-            ShowMessage(string.Format(@"Selected table '{0}'", table.Name));
-        }
-
         #endregion
 
         private void VisualizeData(ITable table, object[] fromKey, object[] toKey)
         {
             try
             {
-                grdViewTableRecords.SetHeader(table);
+                grdViewTableRecords.SetTableHeader(table);
 
                 object[] lastKey = null;
                 foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
@@ -360,6 +408,8 @@ namespace STS.Workbench
                 }
                 );
                 Worker.Start();
+                loadingForm = new LoadingForm();
+                loadingForm.Show();
             }
         }
 
@@ -373,6 +423,8 @@ namespace STS.Workbench
                 var fileType = (FileType)dialog.FilterIndex;
                 Worker = new Thread(() => FileUtils.Export(OpenedTable.Read(), dialog.FileName, fileType));
                 Worker.Start();
+                loadingForm = new LoadingForm();
+                loadingForm.Show();
             }
         }
 
@@ -442,7 +494,7 @@ namespace STS.Workbench
         {
             try
             {
-                grdViewTableRecords.SetHeader(OpenedTable);
+                grdViewTableRecords.SetTableHeader(OpenedTable);
 
                 foreach (var kv in OpenedTable.ReadReverse().Take(PageCapacity).Reverse())
                     grdViewTableRecords.Rows.Add(kv.Key.Concat(kv.Value).ToArray());
@@ -473,22 +525,11 @@ namespace STS.Workbench
 
             if (Worker.IsAlive)
             {
-                if (loadingForm == null)
+                loadingForm.SetPercents(FileUtils.Percents);
+                if (loadingForm.StopClicked)
                 {
-                    loadingForm = new LoadingForm();
-                    loadingForm.Show();
-                }
-                else //(loadingForm != null)
-                {
-                    loadingForm.SetPercents(FileUtils.Percents);
-
-                    if (loadingForm.StopClicked)
-                    {
-                        FileUtils.Stop();
-                        Worker.Join();
-                        loadingForm.Close();
-                        loadingForm = null;
-                    }
+                    FileUtils.Stop();
+                    Worker.Join();
                 }
             }
 
@@ -586,11 +627,6 @@ namespace STS.Workbench
         private void ShowMessage(string text)
         {
             lblInfo.Text = text;
-        }
-
-        private void cntrlTablesField_MouseMove(object sender, MouseEventArgs e)
-        {
-
         }
     }
 }

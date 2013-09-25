@@ -10,28 +10,47 @@ namespace STS.Workbench.TablesDiagram.Helpers
 {
     public class SelectorTool
     {
-        private Graphics g;
+        private Rectangle lastSelection;
+
+        private Graphics graphics;
+
+        private List<Control> selectedItems = new List<Control>();
+        private List<Control> seekedItems = new List<Control>();
 
         public readonly Control Owner;
 
         public SelectorTool(Control owner)
         {
             Owner = owner;
-            g = owner.CreateGraphics();
+            graphics = Owner.CreateGraphics();
+        }
+
+        public List<Control> GetSelectedItems(IEnumerable<Control> items)
+        {
+            List<Control> list = new List<Control>();
+            foreach (var item in items)
+            {
+                if (item.HasPointInsideRectangle(lastSelection))
+                    list.Add(item);
+            }
+
+            return list;
+        }
+
+        public void ClearLastSelection()
+        {
+            lastSelection = new Rectangle();
         }
 
         public void DrawRectangle(Pen pen, Point center, Point offset)
         {
             Owner.Refresh();
             var rect = CalculateRectangle(center, offset);
-            g.DrawRectangle(pen, rect);
+            graphics.DrawRectangle(pen, rect);
         }
 
         public Rectangle CalculateRectangle(Point center, Point offset)
         {
-            //center = Owner.PointToClient(center);
-            //offset = Owner.PointToClient(offset);
-
             int x = 0;
             int y = 0;
             int width = 0;
@@ -59,7 +78,10 @@ namespace STS.Workbench.TablesDiagram.Helpers
                 heigh = offset.Y - center.Y;
             }
 
-            return new Rectangle(x, y, width, heigh);
+            var rect = new Rectangle(x, y, width, heigh);
+            lastSelection = rect;
+
+            return rect;
         }
     }
 }

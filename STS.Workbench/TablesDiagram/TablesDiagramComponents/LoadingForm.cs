@@ -24,15 +24,11 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         {
             InitializeComponent();
         }
-
-        public void Start()
-        {
-
-        }
-
+        
         public void SetPercents(int value)
         {
-            progressBar1.Value = value;
+            if (value < progressBar1.Maximum)
+                progressBar1.Value = value;
         }
 
         public void ChangeProgressBarStyle(ProgressBarStyle style)
