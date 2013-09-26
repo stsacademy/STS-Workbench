@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
+            this.ErrorsLogIndicator = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.ServerStatusIndicator = new Microsoft.VisualBasic.PowerPacks.OvalShape();
             this.Status = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -38,6 +39,10 @@
             this.CPUUsage = new System.Windows.Forms.Label();
             this.Connections = new System.Windows.Forms.Label();
             this.DatabaseName = new System.Windows.Forms.Label();
+            this.Traffic = new System.Windows.Forms.Label();
+            this.ErrorsLog = new System.Windows.Forms.Label();
+            this.DBSize = new System.Windows.Forms.Label();
+            this.TrafficProgress = new STS.Workbench.ServerControls.VerticalProgressBar();
             this.CPUProgress = new STS.Workbench.ServerControls.VerticalProgressBar();
             this.SuspendLayout();
             // 
@@ -47,10 +52,21 @@
             this.shapeContainer1.Margin = new System.Windows.Forms.Padding(0);
             this.shapeContainer1.Name = "shapeContainer1";
             this.shapeContainer1.Shapes.AddRange(new Microsoft.VisualBasic.PowerPacks.Shape[] {
+            this.ErrorsLogIndicator,
             this.ServerStatusIndicator});
-            this.shapeContainer1.Size = new System.Drawing.Size(185, 153);
+            this.shapeContainer1.Size = new System.Drawing.Size(281, 181);
             this.shapeContainer1.TabIndex = 0;
             this.shapeContainer1.TabStop = false;
+            // 
+            // ErrorsLogIndicator
+            // 
+            this.ErrorsLogIndicator.BackColor = System.Drawing.SystemColors.Control;
+            this.ErrorsLogIndicator.BackStyle = Microsoft.VisualBasic.PowerPacks.BackStyle.Opaque;
+            this.ErrorsLogIndicator.FillColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ErrorsLogIndicator.FillGradientColor = System.Drawing.Color.Linen;
+            this.ErrorsLogIndicator.Location = new System.Drawing.Point(71, 114);
+            this.ErrorsLogIndicator.Name = "ErrorsLogIndicator";
+            this.ErrorsLogIndicator.Size = new System.Drawing.Size(12, 12);
             // 
             // ServerStatusIndicator
             // 
@@ -98,7 +114,7 @@
             // CPUUsage
             // 
             this.CPUUsage.AutoSize = true;
-            this.CPUUsage.Location = new System.Drawing.Point(148, 54);
+            this.CPUUsage.Location = new System.Drawing.Point(187, 54);
             this.CPUUsage.Name = "CPUUsage";
             this.CPUUsage.Size = new System.Drawing.Size(29, 13);
             this.CPUUsage.TabIndex = 4;
@@ -107,7 +123,7 @@
             // Connections
             // 
             this.Connections.AutoSize = true;
-            this.Connections.Location = new System.Drawing.Point(3, 81);
+            this.Connections.Location = new System.Drawing.Point(3, 98);
             this.Connections.Name = "Connections";
             this.Connections.Size = new System.Drawing.Size(69, 13);
             this.Connections.TabIndex = 5;
@@ -122,9 +138,46 @@
             this.DatabaseName.TabIndex = 7;
             this.DatabaseName.Text = "Database Name:";
             // 
+            // Traffic
+            // 
+            this.Traffic.AutoSize = true;
+            this.Traffic.Location = new System.Drawing.Point(187, 150);
+            this.Traffic.Name = "Traffic";
+            this.Traffic.Size = new System.Drawing.Size(37, 13);
+            this.Traffic.TabIndex = 10;
+            this.Traffic.Text = "Traffic";
+            // 
+            // ErrorsLog
+            // 
+            this.ErrorsLog.AutoSize = true;
+            this.ErrorsLog.Location = new System.Drawing.Point(3, 114);
+            this.ErrorsLog.Name = "ErrorsLog";
+            this.ErrorsLog.Size = new System.Drawing.Size(58, 13);
+            this.ErrorsLog.TabIndex = 11;
+            this.ErrorsLog.Text = "Errors Log:";
+            // 
+            // DBSize
+            // 
+            this.DBSize.AutoSize = true;
+            this.DBSize.Location = new System.Drawing.Point(4, 84);
+            this.DBSize.Name = "DBSize";
+            this.DBSize.Size = new System.Drawing.Size(79, 13);
+            this.DBSize.TabIndex = 12;
+            this.DBSize.Text = "Database Size:";
+            // 
+            // TrafficProgress
+            // 
+            this.TrafficProgress.Location = new System.Drawing.Point(190, 98);
+            this.TrafficProgress.MaxValue = 12500000;
+            this.TrafficProgress.MinValue = 0;
+            this.TrafficProgress.Name = "TrafficProgress";
+            this.TrafficProgress.Size = new System.Drawing.Size(37, 49);
+            this.TrafficProgress.TabIndex = 9;
+            this.TrafficProgress.Value = 0;
+            // 
             // CPUProgress
             // 
-            this.CPUProgress.Location = new System.Drawing.Point(143, 3);
+            this.CPUProgress.Location = new System.Drawing.Point(190, 0);
             this.CPUProgress.MaxValue = 100;
             this.CPUProgress.MinValue = 0;
             this.CPUProgress.Name = "CPUProgress";
@@ -136,6 +189,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.DBSize);
+            this.Controls.Add(this.ErrorsLog);
+            this.Controls.Add(this.Traffic);
+            this.Controls.Add(this.TrafficProgress);
             this.Controls.Add(this.CPUProgress);
             this.Controls.Add(this.DatabaseName);
             this.Controls.Add(this.Connections);
@@ -145,7 +202,7 @@
             this.Controls.Add(this.Status);
             this.Controls.Add(this.shapeContainer1);
             this.Name = "ServerStatus";
-            this.Size = new System.Drawing.Size(185, 153);
+            this.Size = new System.Drawing.Size(281, 181);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +220,10 @@
         private System.Windows.Forms.Label Connections;
         private System.Windows.Forms.Label DatabaseName;
         private VerticalProgressBar CPUProgress;
+        private VerticalProgressBar TrafficProgress;
+        private System.Windows.Forms.Label Traffic;
+        private Microsoft.VisualBasic.PowerPacks.OvalShape ErrorsLogIndicator;
+        private System.Windows.Forms.Label ErrorsLog;
+        private System.Windows.Forms.Label DBSize;
     }
 }

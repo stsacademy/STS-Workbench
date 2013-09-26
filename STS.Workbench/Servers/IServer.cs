@@ -14,10 +14,15 @@ namespace STS.Workbench.Servers
         int Port { get; }
         string DatabaseName { get; }
         string Host { get; }
+        
         long BytesReceive { get; }
         long BytesSent { get; }
+        long DBSize { get; }
 
         bool IsWorking { get; }
+        bool ErrorsLog { get; }
+
+        Queue<KeyValuePair<DateTime, string>> Errors { get; }
 
         int CountOfConnection { get; }
     }
