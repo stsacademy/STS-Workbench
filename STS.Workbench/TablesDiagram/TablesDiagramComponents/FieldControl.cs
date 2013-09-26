@@ -20,40 +20,36 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
                 AttachChildsToEvent((Control)item);
         }
 
-        private void AttachChildsToEvent(Control control)
-        {
-            control.Click += control_Click;
-            control.MouseDown += control_MouseDown;
-            control.MouseMove += control_MouseMove;
-            control.MouseUp += control_MouseUp;
-
-            foreach (var item in control.Controls)
-                AttachChildsToEvent((Control)item);
-        }
-
         #region mainFeild
 
         private Size DefaultSize = new Size(2048, 1152);
         private int sizeBounds = 0;
 
-        public bool AllowResize { get { return sizeBounds > -3 && sizeBounds < 3; } }
-
+        public bool AllowIncrase { get { return sizeBounds < 3; } }
+        public bool AllowDecrase { get { return sizeBounds > 0; } }
 
         public void SetDefaultSize()
         {
+            sizeBounds = 0;
             mainField.Size = DefaultSize;
         }
 
-        public void DecraseSizeTwise()
+        public void DecraseSizeQuatter()
         {
-            if (AllowResize)
+            if (AllowDecrase)
+            {
                 sizeBounds--;
+                mainField.Size = new Size(mainField.Size.Width - DefaultSize.Width / 4, mainField.Size.Height - DefaultSize.Height / 4);
+            }
         }
 
-        public void IncraseSizeTwice()
+        public void IncraseSizeQuatter()
         {
-            if (AllowResize)
+            if (AllowIncrase)
+            {
                 sizeBounds++;
+                mainField.Size = new Size(mainField.Size.Width + DefaultSize.Width / 4, mainField.Size.Height + DefaultSize.Height / 4);
+            }
         }
 
         #endregion
@@ -88,6 +84,17 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         public Point PointToClient(Point p)
         {
             return mainField.PointToClient(p);
+        }
+
+        private void AttachChildsToEvent(Control control)
+        {
+            control.Click += control_Click;
+            control.MouseDown += control_MouseDown;
+            control.MouseMove += control_MouseMove;
+            control.MouseUp += control_MouseUp;
+
+            foreach (var item in control.Controls)
+                AttachChildsToEvent((Control)item);
         }
 
         #endregion
