@@ -130,6 +130,7 @@ namespace STS.Workbench
         private void btnHomeTest_Click(object sender, EventArgs e)
         {
             Home home = new Home();
+            home.Dock = DockStyle.Fill;
             var tabPage = new TabPage("HOME TEST");
             tabPage.Controls.Add(home);
 

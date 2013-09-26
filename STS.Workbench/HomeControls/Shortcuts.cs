@@ -19,20 +19,26 @@ namespace STS.Workbench.HomeControls
 
         private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            try
+            if (e.Button == MouseButtons.Left)
             {
-                System.Diagnostics.Process.Start("http://stsdb.com/forum/forum.html");
+                try
+                {
+                    System.Diagnostics.Process.Start("http://stsdb.com/forum/forum.html");
+                }
+                catch { }
             }
-            catch { }
         }
 
         private void picBoxHomePage_MouseDown(object sender, MouseEventArgs e)
         {
-            try
+            if (e.Button == MouseButtons.Left)
             {
-                System.Diagnostics.Process.Start("http://stsdb.com/");
+                try
+                {
+                    System.Diagnostics.Process.Start("http://stsdb.com/");
+                }
+                catch { }
             }
-            catch { }
         }
 
         private void lblSTSdbHomePage_MouseMove(object sender, MouseEventArgs e)
