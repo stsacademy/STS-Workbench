@@ -34,13 +34,12 @@ namespace STS.Workbench
 
         private void btnTablesTest_Click(object sender, EventArgs e)
         {
-            string sys = "stsdb4.sys";
-            string dat = "stsdb4.data";
+           
+            string file = "stsdb4.data";
 
-            File.Delete(sys);
-            File.Delete(dat);
+            File.Delete(file);
 
-            IStorageEngine engine = STSdb.FromFile(sys, dat);
+            IStorageEngine engine = STSdb.FromFile(file);
 
             var index1 = engine.OpenXIndex<int, string>("Gosho");
             for (int i = 0; i < 10000; i++)
@@ -72,13 +71,11 @@ namespace STS.Workbench
 
         private void btnServer_Click(object sender, EventArgs e)
         {
-            string sys = "stsdb4.sys";
-            string dat = "stsdb4.data";
+            string file = "stsdb4.data";
 
-            File.Delete(sys);
-            File.Delete(dat);
+            File.Delete(file);
 
-            IStorageEngine engine = STSdb.FromFile(sys, dat);
+            IStorageEngine engine = STSdb.FromFile(file);
 
             var index1 = engine.OpenXIndex<int, string>("Table1asdasd");
             for (int i = 0; i < 10; i++)
