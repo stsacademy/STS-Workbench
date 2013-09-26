@@ -284,6 +284,7 @@
     <None Include="Resources\Cells.bmp" />
     <None Include="Resources\forumPicture.png" />
     <None Include="Resources\folderOpen.png" />
+    <None Include="Resources\BackGroundGray.bmp" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />

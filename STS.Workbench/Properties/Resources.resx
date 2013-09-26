@@ -121,6 +121,9 @@
   <data name="tableSmall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tableSmall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="table2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="document_export" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document_export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -135,6 +138,12 @@
   </data>
   <data name="HideLeft" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HideLeft.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="record" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\record.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="WrenchBtn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WrenchBtn2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="table_delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\table_delete.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -151,14 +160,14 @@
   <data name="WrenchBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\WrenchBtn.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file_export1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file-export.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="undo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\undo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="document_import" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\document_import.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="stop1normalred" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stop1normalred.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="userType" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\userType.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -202,14 +211,11 @@
   <data name="IconCatcher_icl__Delete" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\IconCatcher.icl #Delete.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="table2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\table2.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Wait" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Wait.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="table_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\table_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shape_square8x8" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shape_square8x8.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="place_tableTansperent" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\place_tableTansperent.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -226,25 +232,22 @@
   <data name="folderOpen" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folderOpen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file_import1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\file-import.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="PlusBtn" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlusBtn.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shape_square8x8" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shape_square8x8.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="file_export1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file-export.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="record" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\record.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="file_import1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\file-import.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="stop1normalred" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\stop1normalred.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="table_add" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\table_add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="button_last" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button_last.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="WrenchBtn2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\WrenchBtn2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="BackGroundGray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BackGroundGray.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

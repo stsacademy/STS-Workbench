@@ -341,9 +341,9 @@ namespace STS.Workbench
             }
         }
 
-        private void CloseTable(ITable table)
+        private void CloseOpenedTable()
         {
-            table = null;
+            OpenedTable = null;
             spltCntTablesData.Panel2Collapsed = true;
             pgrdTableInfo.SelectedObject = null;
         }
@@ -582,7 +582,7 @@ namespace STS.Workbench
 
         private void btnHideData_Click(object sender, EventArgs e)
         {
-            CloseTable(OpenedTable);
+            CloseOpenedTable();
         }
 
         private void btnLoadDiagram_Click(object sender, EventArgs e)
@@ -625,7 +625,7 @@ namespace STS.Workbench
                 }
             }
         }
-        
+
         private void btnCollapseTablse_Click(object sender, EventArgs e)
         {
             foreach (var item in TablesMap)
@@ -656,7 +656,7 @@ namespace STS.Workbench
 
         private void closeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            CloseTable(OpenedTable);
+            CloseOpenedTable();
         }
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
@@ -792,7 +792,7 @@ namespace STS.Workbench
                     table.Location = new Point(40, 40);
             }
         }
-              
+
         private void expandToolStripMenuItem_Click(object sender, EventArgs e)
         {
             foreach (var table in selectedTables)
