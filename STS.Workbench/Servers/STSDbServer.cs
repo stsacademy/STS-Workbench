@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,7 +34,7 @@ namespace STS.Workbench.Servers
 
         public string Host
         {
-            get { return "Localhost"; }
+            get { return Dns.GetHostEntry(Dns.GetHostName()).ToString(); }
         }
 
         public string DatabaseName
