@@ -129,7 +129,7 @@ namespace STS.Workbench
                 int bottomPos = ActiveTableComponent.Top + ActiveTableComponent.Height;
                 int rigthPos = ActiveTableComponent.Left + ActiveTableComponent.Width;
 
-                ActiveTableComponent.UserResize(tablesField.mainField, bottomPos, rigthPos, tablesField.VerticalScroll.Value, tablesField.HorizontalScroll.Value);
+                ActiveTableComponent.UserResize(tablesField.mainField, bottomPos, rigthPos, 0, 0);
                 return;
             }
 
@@ -167,7 +167,10 @@ namespace STS.Workbench
         private void UnSelectTables()
         {
             foreach (var table in selectedTables)
+            {
+                table.DisableResizers();
                 table.BackColor = Color.Transparent;
+            }
 
             selectedTables.Clear();
         }

@@ -17,13 +17,13 @@ namespace STS.Workbench.PreviewComponents
     {
         private int OriginalSize = 0;
 
-        private bool AllowResize = true;
         private bool isResizing = false;
 
         private List<PictureBox> Resizers = new List<PictureBox>();
 
         public Color CurrentColor;
 
+        private bool AllowResize { get { return Expanded; } }
         public bool IsResizing { get { return AllowResize && isResizing; } }
         public ResizeDirection Direction { get; private set; }
 
@@ -170,6 +170,9 @@ namespace STS.Workbench.PreviewComponents
 
         public void EnableResizers()
         {
+            if (!Expanded)
+                return;
+
             foreach (var item in Resizers)
                 ((PictureBox)item).Visible = true;
         }
@@ -257,7 +260,6 @@ namespace STS.Workbench.PreviewComponents
             owner.Refresh();
         }
 
-
         private void pbTop_MouseDown(object sender, MouseEventArgs e)
         {
             ActivateResize(ResizeDirection.Up);
@@ -320,7 +322,6 @@ namespace STS.Workbench.PreviewComponents
                 return;
 
             btnHide.BackgroundImage = global::STS.Workbench.Properties.Resources.HideDown;
-            AllowResize = true;
 
             MinimumSize = new Size(150, 120);
             Height = OriginalSize;
@@ -335,7 +336,6 @@ namespace STS.Workbench.PreviewComponents
                 return;
 
             btnHide.BackgroundImage = global::STS.Workbench.Properties.Resources.HideLeft;
-            AllowResize = false;
 
             OriginalSize = Height;
             MinimumSize = new Size(150, Height - splitContainer1.Panel2.Height - 4);

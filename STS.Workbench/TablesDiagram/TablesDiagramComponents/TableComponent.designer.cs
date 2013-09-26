@@ -310,7 +310,8 @@
             this.Controls.Add(this.pbTopLeft);
             this.Controls.Add(this.MainPanel);
             this.DoubleBuffered = true;
-            this.MinimumSize = new System.Drawing.Size(120, 150);
+            this.MaximumSize = new System.Drawing.Size(400, 400);
+            this.MinimumSize = new System.Drawing.Size(135, 150);
             this.Name = "TableComponent";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Size = new System.Drawing.Size(190, 200);

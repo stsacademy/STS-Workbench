@@ -191,6 +191,12 @@
     </Compile>
     <Compile Include="STSdbAdapter\STSParameter.cs" />
     <Compile Include="STSdbAdapter\STSSchema.cs" />
+    <Compile Include="TablesDiagram\TablesDiagramComponents\TablesSortWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TablesDiagram\TablesDiagramComponents\TablesSortWizard.Designer.cs">
+      <DependentUpon>TablesSortWizard.cs</DependentUpon>
+    </Compile>
     <Compile Include="TablesDiagram\TablesDiagramPreview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -249,6 +255,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TablesDiagram\TablesDiagramComponents\PropertyForm.resx">
       <DependentUpon>PropertyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablesDiagram\TablesDiagramComponents\TablesSortWizard.resx">
+      <DependentUpon>TablesSortWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TablesDiagram\TablesDiagramPreview.resx">
       <DependentUpon>TablesDiagramPreview.cs</DependentUpon>

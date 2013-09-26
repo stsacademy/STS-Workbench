@@ -30,7 +30,7 @@ namespace STS.Workbench
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("myDb");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.btnPlaceTable = new System.Windows.Forms.Button();
@@ -354,15 +354,17 @@ namespace STS.Workbench
             // 
             // splitContainerMain.Panel1
             // 
+            this.splitContainerMain.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
             this.splitContainerMain.Panel1.Controls.Add(this.mStripMain);
-            this.splitContainerMain.Panel1.Padding = new System.Windows.Forms.Padding(0, 2, 0, 2);
+            this.splitContainerMain.Panel1.Padding = new System.Windows.Forms.Padding(4);
             // 
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.splitContainer5);
             this.splitContainerMain.Panel2.Padding = new System.Windows.Forms.Padding(4);
             this.splitContainerMain.Size = new System.Drawing.Size(1458, 636);
-            this.splitContainerMain.SplitterDistance = 30;
+            this.splitContainerMain.SplitterDistance = 35;
+            this.splitContainerMain.SplitterWidth = 6;
             this.splitContainerMain.TabIndex = 10;
             // 
             // mStripMain
@@ -370,9 +372,9 @@ namespace STS.Workbench
             this.mStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.mStripMain.Location = new System.Drawing.Point(0, 2);
+            this.mStripMain.Location = new System.Drawing.Point(4, 4);
             this.mStripMain.Name = "mStripMain";
-            this.mStripMain.Size = new System.Drawing.Size(1456, 24);
+            this.mStripMain.Size = new System.Drawing.Size(1448, 24);
             this.mStripMain.TabIndex = 17;
             this.mStripMain.Text = "menuStrip1";
             // 
@@ -436,8 +438,8 @@ namespace STS.Workbench
             this.splitContainer5.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
             this.splitContainer5.Panel2.Controls.Add(this.lblInfo);
             this.splitContainer5.Panel2.Padding = new System.Windows.Forms.Padding(2, 7, 5, 7);
-            this.splitContainer5.Size = new System.Drawing.Size(1448, 592);
-            this.splitContainer5.SplitterDistance = 566;
+            this.splitContainer5.Size = new System.Drawing.Size(1448, 585);
+            this.splitContainer5.SplitterDistance = 559;
             this.splitContainer5.SplitterWidth = 1;
             this.splitContainer5.TabIndex = 6;
             // 
@@ -456,7 +458,7 @@ namespace STS.Workbench
             // splitContainerTablesPreview.Panel2
             // 
             this.splitContainerTablesPreview.Panel2.Controls.Add(this.spltCntTablesData);
-            this.splitContainerTablesPreview.Size = new System.Drawing.Size(1448, 566);
+            this.splitContainerTablesPreview.Size = new System.Drawing.Size(1448, 559);
             this.splitContainerTablesPreview.SplitterDistance = 204;
             this.splitContainerTablesPreview.TabIndex = 5;
             // 
@@ -475,7 +477,7 @@ namespace STS.Workbench
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer8);
-            this.splitContainer4.Size = new System.Drawing.Size(200, 562);
+            this.splitContainer4.Size = new System.Drawing.Size(200, 555);
             this.splitContainer4.SplitterDistance = 174;
             this.splitContainer4.TabIndex = 8;
             // 
@@ -517,10 +519,10 @@ namespace STS.Workbench
             this.treeViewTablesCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTablesCatalog.Location = new System.Drawing.Point(3, 3);
             this.treeViewTablesCatalog.Name = "treeViewTablesCatalog";
-            treeNode2.Name = "trvCatalogTree";
-            treeNode2.Text = "myDb";
+            treeNode1.Name = "trvCatalogTree";
+            treeNode1.Text = "myDb";
             this.treeViewTablesCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeViewTablesCatalog.Size = new System.Drawing.Size(194, 139);
             this.treeViewTablesCatalog.TabIndex = 4;
             this.treeViewTablesCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTablesCatalog_AfterSelect);
@@ -541,8 +543,8 @@ namespace STS.Workbench
             // splitContainer8.Panel2
             // 
             this.splitContainer8.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer8.Size = new System.Drawing.Size(200, 384);
-            this.splitContainer8.SplitterDistance = 180;
+            this.splitContainer8.Size = new System.Drawing.Size(200, 377);
+            this.splitContainer8.SplitterDistance = 176;
             this.splitContainer8.TabIndex = 2;
             // 
             // treeView1
@@ -550,7 +552,7 @@ namespace STS.Workbench
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(198, 178);
+            this.treeView1.Size = new System.Drawing.Size(198, 174);
             this.treeView1.TabIndex = 0;
             // 
             // splitContainer6
@@ -572,8 +574,9 @@ namespace STS.Workbench
             // 
             this.splitContainer6.Panel2.Controls.Add(this.pgrdTableInfo);
             this.splitContainer6.Panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.splitContainer6.Size = new System.Drawing.Size(198, 198);
+            this.splitContainer6.Size = new System.Drawing.Size(198, 195);
             this.splitContainer6.SplitterDistance = 25;
+            this.splitContainer6.SplitterWidth = 1;
             this.splitContainer6.TabIndex = 1;
             // 
             // lblSelectedTableInfo
@@ -609,8 +612,8 @@ namespace STS.Workbench
             // spltCntTablesData.Panel2
             // 
             this.spltCntTablesData.Panel2.Controls.Add(this.splitContainer3);
-            this.spltCntTablesData.Size = new System.Drawing.Size(1236, 562);
-            this.spltCntTablesData.SplitterDistance = 289;
+            this.spltCntTablesData.Size = new System.Drawing.Size(1236, 555);
+            this.spltCntTablesData.SplitterDistance = 285;
             this.spltCntTablesData.TabIndex = 4;
             // 
             // splitContainer1
@@ -632,8 +635,9 @@ namespace STS.Workbench
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer9);
-            this.splitContainer1.Size = new System.Drawing.Size(1232, 285);
+            this.splitContainer1.Size = new System.Drawing.Size(1232, 281);
             this.splitContainer1.SplitterDistance = 25;
+            this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 2;
             // 
             // lblDiagramHeader
@@ -664,8 +668,9 @@ namespace STS.Workbench
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.tablesField);
-            this.splitContainer9.Size = new System.Drawing.Size(1232, 256);
+            this.splitContainer9.Size = new System.Drawing.Size(1232, 255);
             this.splitContainer9.SplitterDistance = 42;
+            this.splitContainer9.SplitterWidth = 1;
             this.splitContainer9.TabIndex = 1;
             // 
             // tablesField
@@ -675,7 +680,7 @@ namespace STS.Workbench
             this.tablesField.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tablesField.Location = new System.Drawing.Point(0, 0);
             this.tablesField.Name = "tablesField";
-            this.tablesField.Size = new System.Drawing.Size(1184, 254);
+            this.tablesField.Size = new System.Drawing.Size(1187, 253);
             this.tablesField.TabIndex = 0;
             this.tablesField.Click += new System.EventHandler(this.tablesField_Click);
             this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
@@ -709,8 +714,9 @@ namespace STS.Workbench
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer3.Size = new System.Drawing.Size(1236, 269);
+            this.splitContainer3.Size = new System.Drawing.Size(1236, 266);
             this.splitContainer3.SplitterDistance = 29;
+            this.splitContainer3.SplitterWidth = 1;
             this.splitContainer3.TabIndex = 4;
             // 
             // lblImportExport
@@ -763,7 +769,8 @@ namespace STS.Workbench
             this.splitContainer7.Panel2.Controls.Add(this.cmbxPageCount);
             this.splitContainer7.Panel2.Controls.Add(this.label3);
             this.splitContainer7.Size = new System.Drawing.Size(1236, 236);
-            this.splitContainer7.SplitterDistance = 201;
+            this.splitContainer7.SplitterDistance = 204;
+            this.splitContainer7.SplitterWidth = 1;
             this.splitContainer7.TabIndex = 4;
             // 
             // grdViewTableRecords
@@ -775,7 +782,7 @@ namespace STS.Workbench
             this.grdViewTableRecords.Location = new System.Drawing.Point(0, 0);
             this.grdViewTableRecords.Name = "grdViewTableRecords";
             this.grdViewTableRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdViewTableRecords.Size = new System.Drawing.Size(1236, 201);
+            this.grdViewTableRecords.Size = new System.Drawing.Size(1236, 204);
             this.grdViewTableRecords.TabIndex = 3;
             this.grdViewTableRecords.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdViewTableRecords_CellMouseClick);
             this.grdViewTableRecords.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewTableRecords_CellValueChanged);
