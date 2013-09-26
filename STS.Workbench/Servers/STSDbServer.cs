@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -33,7 +34,7 @@ namespace STS.Workbench.Servers
 
         public string Host
         {
-            get { return "Localhost"; }
+            get { return Dns.GetHostEntry(Dns.GetHostName()).ToString(); }
         }
 
         public string DatabaseName
@@ -49,6 +50,17 @@ namespace STS.Workbench.Servers
         public int CountOfConnection
         {
             get { return ServerEngine.TcpServer.ServerConnections.Count; }
+        }
+
+
+        public long BytesReceive
+        {
+            get { return ServerEngine.TcpServer.BytesReceive; }
+        }
+
+        public long BytesSent
+        {
+            get { return ServerEngine.TcpServer.BytesSent; }
         }
     }
 }
