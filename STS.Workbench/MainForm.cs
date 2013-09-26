@@ -86,7 +86,7 @@ namespace STS.Workbench
 
             TcpServer server = new TcpServer();
             StorageEngineServer serverEngine = new StorageEngineServer(engine, server);
-            STSDbServer statusServer = new STSDbServer(serverEngine);
+            STSDbServer statusServer = new STSDbServer(serverEngine, true);
             statusServer.Start();
 
             ServerStatus status = new ServerStatus(statusServer);

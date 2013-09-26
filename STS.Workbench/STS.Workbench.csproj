@@ -112,6 +112,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ServerControls\ConnectionList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ServerControls\ConnectionList.Designer.cs">
+      <DependentUpon>ConnectionList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -220,6 +226,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerControls\ConnectionList.resx">
+      <DependentUpon>ConnectionList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerControls\ServerStatus.resx">
       <DependentUpon>ServerStatus.cs</DependentUpon>

@@ -14,11 +14,27 @@ namespace STS.Workbench.Servers
         int Port { get; }
         string DatabaseName { get; }
         string Host { get; }
+        
         long BytesReceive { get; }
         long BytesSent { get; }
+        long DBSize { get; }
 
         bool IsWorking { get; }
+        bool ErrorsLog { get; }
+
+        Queue<KeyValuePair<DateTime, string>> Errors { get; }
+
+        IEnumerable<IServerConnection> Connections { get; }
 
         int CountOfConnection { get; }
+    }
+
+    public interface IServerConnection
+    {
+        string Name { get; }
+
+        bool IsConnected { get; }
+
+        void Disconnect();
     }
 }
