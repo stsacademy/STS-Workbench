@@ -26,4 +26,13 @@ namespace STS.Workbench.Servers
 
         int CountOfConnection { get; }
     }
+
+    public interface IServerConnection
+    {
+        string Name { get; }
+
+        bool IsConnected { get; }
+
+        void Disconnect();
+    }
 }

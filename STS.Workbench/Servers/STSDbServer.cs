@@ -1,4 +1,5 @@
-﻿using STSdb4.Remote;
+﻿using STSdb4.General.Communication;
+using STSdb4.Remote;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -102,6 +103,31 @@ namespace STS.Workbench.Servers
         public long DBSize
         {
             get { return ServerEngine.StorageEngine.Size; }
+        }
+    }
+
+    public class STSDbServerConnection : IServerConnection
+    {
+        public ServerConnection Connection { get; private set; }
+
+        public STSDbServerConnection(ServerConnection connection)
+        {
+        }
+
+        public string Name
+        {
+            get { return IPAddress.Parse(((IPEndPoint)Connection.TcpClient.Client.RemoteEndPoint).Address.ToString()).ToString(); }
+        }
+
+        public void Disconnect()
+        {
+            Connection.Disconnect();
+        }
+
+
+        public bool IsConnected
+        {
+            get { return Connection.IsConnected; }
         }
     }
 }
