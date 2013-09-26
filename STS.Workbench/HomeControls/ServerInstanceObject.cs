@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace STS.Workbench.HomeControls
 {
-    public partial class Home : UserControl
+    public partial class ServerInstanceObject : UserControl
     {
-        public Home()
+        public ServerInstanceObject()
         {
             InitializeComponent();
-        }
-
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.OpenForms["MainForm"].Close();
         }
     }
 }
