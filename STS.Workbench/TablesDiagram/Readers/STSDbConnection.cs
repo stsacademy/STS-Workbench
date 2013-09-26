@@ -164,5 +164,10 @@ namespace STS.Workbench.Readers
         {
             XIndex.Clear();
         }
+
+        public bool Equals(ITable other)
+        {
+            return this.TableName == other.TableName;
+        }
     }
 }

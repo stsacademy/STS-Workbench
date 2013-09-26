@@ -14,6 +14,7 @@ using System.Threading;
 using STS.Workbench.TablesDiagram.DiagramPreviewComponents;
 using STS.Workbench.TablesDiagram.Helpers;
 using System.IO;
+using STS.Workbench.TablesDiagram.TablesDiagramComponents;
 
 namespace STS.Workbench
 {
@@ -37,7 +38,7 @@ namespace STS.Workbench
         public TableComponent ActiveTableComponent { get; private set; }
         public ITable OpenedTable { get; private set; }
 
-        public Dictionary<string, TableComponent> Tables { get { return tables; } }
+        public Dictionary<string, TableComponent> TablesMap { get { return tables; } }
 
         public TablesDiagramPreview(IConnection dbConnection)
         {
@@ -112,7 +113,7 @@ namespace STS.Workbench
             if (IsSelecting)
             {
                 UnSelectTables();
-                SelectTables(selectorTool.GetSelectedItems(Tables.Values));
+                SelectTables(selectorTool.GetSelectedItems(TablesMap.Values));
                 IsSelecting = false;
             }
 
@@ -230,7 +231,6 @@ namespace STS.Workbench
 
             table.Click += table_Click;
             table.DoubleClick += table_DoubleClick;
-
             ShowMessage(string.Format("Placed table '{0}'", table.TableName));
         }
 
@@ -266,7 +266,15 @@ namespace STS.Workbench
                 IsPlacing = false;
             }
 
-            UnSelectTables();
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+                UnSelectTables();
+            else
+            {
+                menuStripTablesField.Items["pasteToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
+
+                menuStripTablesField.Show(Cursor.Position);
+            }
         }
 
         #region Table Mark/Open
@@ -277,7 +285,12 @@ namespace STS.Workbench
             var mouseEventArgs = (MouseEventArgs)e;
 
             if (mouseEventArgs.Button == MouseButtons.Right)
+            {
+                menuStripTables.Items["openToolStripMenuItem"].Enabled = OpenedTable == null || OpenedTable.TableName != table.TableName;
+                menuStripTables.Items["closeToolStripMenuItem"].Enabled = OpenedTable != null && OpenedTable.TableName == table.TableName;
+                menuStripTables.Items["pasteDataToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
                 menuStripTables.Show(Cursor.Position);
+            }
 
             UnSelectTables();
             SelectTable(table);
@@ -297,30 +310,37 @@ namespace STS.Workbench
 
         private void table_DoubleClick(object sender, EventArgs e)
         {
-            OpenTable();
+            OpenTable((TableComponent)sender);
         }
 
         private void treeViewTablesCatalog_DoubleClick(object sender, EventArgs e)
         {
-            OpenTable();
+            OpenTable(ActiveTableComponent);
         }
 
-        private void OpenTable()
+        private void OpenTable(TableComponent table)
         {
             try
             {
                 ModifyedRows.Clear();
-                var table = DbConnection.OpenTable(ActiveTableComponent.Name, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
-                OpenedTable = table;
-                VisualizeData(table, null, null);
+                var openedTable = DbConnection.OpenTable(table.TableName, table.KeyTypes, table.RecordTypes);
+                OpenedTable = openedTable;
+                VisualizeData(openedTable, null, null);
 
-                pgrdTableInfo.SelectedObject = table;
-                ShowMessage(string.Format(@"Opened table '{0}'", table.TableName));
+                pgrdTableInfo.SelectedObject = openedTable;
+                ShowMessage(string.Format(@"Opened table '{0}'", openedTable.TableName));
             }
             catch (Exception e)
             {
                 FormExtensions.ShowError(e.Message);
             }
+        }
+
+        private void CloseTable(ITable table)
+        {
+            table = null;
+            spltCntTablesData.Panel2Collapsed = true;
+            pgrdTableInfo.SelectedObject = null;
         }
 
         #endregion
@@ -557,8 +577,7 @@ namespace STS.Workbench
 
         private void btnHideData_Click(object sender, EventArgs e)
         {
-            spltCntTablesData.Panel2Collapsed = true;
-            pgrdTableInfo.SelectedObject = null;
+            CloseTable(OpenedTable);
         }
 
         private void btnLoadDiagram_Click(object sender, EventArgs e)
@@ -577,7 +596,7 @@ namespace STS.Workbench
                         TableComponent table;
 
                         var settings = TableComponent.DeserializeSettings(reader);
-                        if (Tables.TryGetValue(settings.TableName, out table))
+                        if (TablesMap.TryGetValue(settings.TableName, out table))
                             table.ApplySettings(settings);
                     }
                 }
@@ -595,8 +614,8 @@ namespace STS.Workbench
             {
                 using (BinaryWriter writer = new BinaryWriter(new FileStream(dialog.FileName, FileMode.Create)))
                 {
-                    writer.Write(Tables.Count);
-                    foreach (var table in Tables)
+                    writer.Write(TablesMap.Count);
+                    foreach (var table in TablesMap)
                         table.Value.SerializeSettings(writer);
                 }
             }
@@ -604,13 +623,13 @@ namespace STS.Workbench
 
         private void btnExpandTables_Click(object sender, EventArgs e)
         {
-            foreach (var item in Tables)
+            foreach (var item in TablesMap)
                 item.Value.Expand();
         }
 
         private void btnCollapseTablse_Click(object sender, EventArgs e)
         {
-            foreach (var item in Tables)
+            foreach (var item in TablesMap)
                 item.Value.Collapse();
         }
 
@@ -628,5 +647,125 @@ namespace STS.Workbench
         {
             lblInfo.Text = text;
         }
+
+        #region Table menu strip
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenTable(ActiveTableComponent);
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseTable(OpenedTable);
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var table = DbConnection.OpenTable(ActiveTableComponent.TableName, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
+            TablesTransfer.Copy(table);
+        }
+
+        private void pasteDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var table = TablesTransfer.Paste();
+            var activeTable = DbConnection.OpenTable(ActiveTableComponent.TableName, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
+
+            try
+            {
+                foreach (var kv in table.Read())
+                    activeTable.Insert(kv.Key, kv.Value);
+            }
+            catch (Exception exc)
+            {
+                FormExtensions.ShowError(exc.Message);
+            }
+        }
+
+        private void editColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.Color = ActiveTableComponent.BackGroundColor;
+            if (dialog.ShowDialog() == DialogResult.OK)
+                ActiveTableComponent.BackGroundColor = dialog.Color;
+        }
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(Cursor.Position.X + " " + Cursor.Position.Y);
+            PropertyForm form = new PropertyForm(ActiveTableComponent);
+            form.ShowDialog();
+        }
+
+        #endregion
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var table = TablesTransfer.Paste();
+            var component = new TableComponent(table.TableName, table.KeyTypes, table.RecordTypes);
+            var newTable = DbConnection.OpenTable(table.TableName, table.KeyTypes, table.RecordTypes);
+
+            try
+            {
+                component.Location = tablesField.PointToClient(Cursor.Position);
+                AddTable(component);
+                foreach (var kv in table.Read())
+                    newTable.Insert(kv.Key, kv.Value);
+            }
+            catch (Exception exc)
+            {
+                FormExtensions.ShowError(exc.Message);
+            }
+        }
+
+        private void saveOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tablesField.ResetScrollBars();
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "diagram (*.dgr)|*.dgr";
+            dialog.FileName = "schema";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                using (BinaryWriter writer = new BinaryWriter(new FileStream(dialog.FileName, FileMode.Create)))
+                {
+                    writer.Write(TablesMap.Count);
+                    foreach (var table in TablesMap)
+                        table.Value.SerializeSettings(writer);
+                }
+            }
+        }
+
+        private void loadOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tablesField.ResetScrollBars();
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "diagram (*.dgr)|*.dgr";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                using (BinaryReader reader = new BinaryReader(new FileStream(dialog.FileName, FileMode.Open)))
+                {
+                    int count = reader.ReadInt32();
+                    for (int i = 0; i < count; i++)
+                    {
+                        TableComponent table;
+
+                        var settings = TableComponent.DeserializeSettings(reader);
+                        if (TablesMap.TryGetValue(settings.TableName, out table))
+                            table.ApplySettings(settings);
+                    }
+                }
+            }
+        }
+
+        private void sizeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #region TableField menu strip
+
+        #endregion
     }
 }
