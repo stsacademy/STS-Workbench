@@ -12,8 +12,10 @@ namespace STS.Workbench.HomeControls
 {
     public partial class ServerInstancesControl : UserControl
     {
+        List<Control> controlList;
         public ServerInstancesControl()
         {
+            controlList = new List<Control>();
             InitializeComponent();
         }
     }
