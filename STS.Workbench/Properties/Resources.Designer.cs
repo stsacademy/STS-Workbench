@@ -183,6 +183,16 @@ namespace STS.Workbench.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap FileMenuBackGround {
+            get {
+                object obj = ResourceManager.GetObject("FileMenuBackGround", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap folderOpen {
             get {
                 object obj = ResourceManager.GetObject("folderOpen", resourceCulture);
@@ -277,6 +287,16 @@ namespace STS.Workbench.Properties {
             get {
                 object obj = ResourceManager.GetObject("key", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap MenuStripBackGround {
+            get {
+                object obj = ResourceManager.GetObject("MenuStripBackGround", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

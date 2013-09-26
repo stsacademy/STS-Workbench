@@ -303,12 +303,14 @@
     <None Include="Resources\forumPicture.png" />
     <None Include="Resources\folderOpen.png" />
     <None Include="Resources\BackGroundGray.bmp" />
+    <None Include="Resources\FileMenuBackGround.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />
     <None Include="Resources\place_table2.png" />
     <None Include="Resources\place_tableTansperent.png" />
     <None Include="Resources\PlusBtn.gif" />
+    <None Include="Resources\MenuStripBackGround.png" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />
     <None Include="Resources\save-1.ico" />
