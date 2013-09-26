@@ -47,23 +47,16 @@
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.splitContainer12 = new System.Windows.Forms.SplitContainer();
             this.tbxFolderPath = new System.Windows.Forms.TextBox();
-            this.splitContainer13 = new System.Windows.Forms.SplitContainer();
-            this.tbxSystemFileName = new System.Windows.Forms.TextBox();
             this.tbxDataFileName = new System.Windows.Forms.TextBox();
             this.btnBrowseFolder = new System.Windows.Forms.Button();
             this.splitContainer10 = new System.Windows.Forms.SplitContainer();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.splitContainer11 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer14 = new System.Windows.Forms.SplitContainer();
-            this.tbxSystemFilePath = new System.Windows.Forms.TextBox();
             this.tbxDataFilePath = new System.Windows.Forms.TextBox();
             this.btnBrowseDataFile = new System.Windows.Forms.Button();
-            this.btnBrowseSystemFile = new System.Windows.Forms.Button();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
@@ -107,10 +100,6 @@
             this.splitContainer12.Panel1.SuspendLayout();
             this.splitContainer12.Panel2.SuspendLayout();
             this.splitContainer12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).BeginInit();
-            this.splitContainer13.Panel1.SuspendLayout();
-            this.splitContainer13.Panel2.SuspendLayout();
-            this.splitContainer13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).BeginInit();
             this.splitContainer10.Panel1.SuspendLayout();
             this.splitContainer10.Panel2.SuspendLayout();
@@ -119,10 +108,6 @@
             this.splitContainer11.Panel1.SuspendLayout();
             this.splitContainer11.Panel2.SuspendLayout();
             this.splitContainer11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer14)).BeginInit();
-            this.splitContainer14.Panel1.SuspendLayout();
-            this.splitContainer14.Panel2.SuspendLayout();
-            this.splitContainer14.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -143,7 +128,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(860, 436);
+            this.splitContainer1.Size = new System.Drawing.Size(872, 450);
             this.splitContainer1.SplitterDistance = 41;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -190,8 +175,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer2.Panel2.Controls.Add(this.btnOpen);
             this.splitContainer2.Panel2.Padding = new System.Windows.Forms.Padding(6);
-            this.splitContainer2.Size = new System.Drawing.Size(860, 391);
-            this.splitContainer2.SplitterDistance = 346;
+            this.splitContainer2.Size = new System.Drawing.Size(872, 405);
+            this.splitContainer2.SplitterDistance = 360;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -208,8 +193,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(858, 344);
-            this.splitContainer3.SplitterDistance = 100;
+            this.splitContainer3.Size = new System.Drawing.Size(870, 358);
+            this.splitContainer3.SplitterDistance = 104;
             this.splitContainer3.TabIndex = 2;
             // 
             // splitContainer4
@@ -230,14 +215,14 @@
             // 
             this.splitContainer4.Panel2.Controls.Add(this.splitContainer7);
             this.splitContainer4.Panel2.Padding = new System.Windows.Forms.Padding(5);
-            this.splitContainer4.Size = new System.Drawing.Size(858, 100);
+            this.splitContainer4.Size = new System.Drawing.Size(870, 104);
             this.splitContainer4.SplitterDistance = 94;
             this.splitContainer4.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 41);
+            this.label2.Location = new System.Drawing.Point(10, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 13);
             this.label2.TabIndex = 1;
@@ -246,7 +231,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 12);
+            this.label1.Location = new System.Drawing.Point(11, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 0;
@@ -270,7 +255,7 @@
             // 
             this.splitContainer7.Panel2.Controls.Add(this.tbxPort);
             this.splitContainer7.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer7.Size = new System.Drawing.Size(750, 90);
+            this.splitContainer7.Size = new System.Drawing.Size(762, 94);
             this.splitContainer7.SplitterDistance = 25;
             this.splitContainer7.TabIndex = 2;
             // 
@@ -279,7 +264,7 @@
             this.tbxHost.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxHost.Location = new System.Drawing.Point(4, 4);
             this.tbxHost.Name = "tbxHost";
-            this.tbxHost.Size = new System.Drawing.Size(742, 20);
+            this.tbxHost.Size = new System.Drawing.Size(754, 20);
             this.tbxHost.TabIndex = 0;
             this.tbxHost.Text = "localhost";
             // 
@@ -288,7 +273,7 @@
             this.tbxPort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbxPort.Location = new System.Drawing.Point(4, 4);
             this.tbxPort.Name = "tbxPort";
-            this.tbxPort.Size = new System.Drawing.Size(742, 20);
+            this.tbxPort.Size = new System.Drawing.Size(754, 20);
             this.tbxPort.TabIndex = 1;
             this.tbxPort.Text = "7182";
             // 
@@ -311,7 +296,7 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.splitContainer6);
-            this.splitContainer5.Size = new System.Drawing.Size(858, 240);
+            this.splitContainer5.Size = new System.Drawing.Size(870, 250);
             this.splitContainer5.SplitterDistance = 38;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -354,8 +339,8 @@
             // 
             this.splitContainer6.Panel2.Controls.Add(this.splitContainer10);
             this.splitContainer6.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer6.Size = new System.Drawing.Size(856, 196);
-            this.splitContainer6.SplitterDistance = 91;
+            this.splitContainer6.Size = new System.Drawing.Size(868, 206);
+            this.splitContainer6.SplitterDistance = 95;
             this.splitContainer6.TabIndex = 0;
             // 
             // splitContainer8
@@ -370,12 +355,11 @@
             // 
             this.splitContainer8.Panel1.Controls.Add(this.label5);
             this.splitContainer8.Panel1.Controls.Add(this.label4);
-            this.splitContainer8.Panel1.Controls.Add(this.label3);
             // 
             // splitContainer8.Panel2
             // 
             this.splitContainer8.Panel2.Controls.Add(this.splitContainer9);
-            this.splitContainer8.Size = new System.Drawing.Size(848, 83);
+            this.splitContainer8.Size = new System.Drawing.Size(860, 87);
             this.splitContainer8.SplitterDistance = 96;
             this.splitContainer8.TabIndex = 0;
             // 
@@ -391,20 +375,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 67);
+            this.label4.Location = new System.Drawing.Point(6, 39);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.Size = new System.Drawing.Size(55, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Data file name:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 38);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "System file name:";
+            this.label4.Text = "File name:";
             // 
             // splitContainer9
             // 
@@ -421,8 +396,8 @@
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.btnBrowseFolder);
-            this.splitContainer9.Size = new System.Drawing.Size(748, 83);
-            this.splitContainer9.SplitterDistance = 636;
+            this.splitContainer9.Size = new System.Drawing.Size(760, 87);
+            this.splitContainer9.SplitterDistance = 648;
             this.splitContainer9.TabIndex = 0;
             // 
             // splitContainer12
@@ -437,61 +412,31 @@
             // splitContainer12.Panel1
             // 
             this.splitContainer12.Panel1.Controls.Add(this.tbxFolderPath);
-            this.splitContainer12.Panel1.Padding = new System.Windows.Forms.Padding(4);
+            this.splitContainer12.Panel1.Padding = new System.Windows.Forms.Padding(5);
             // 
             // splitContainer12.Panel2
             // 
-            this.splitContainer12.Panel2.Controls.Add(this.splitContainer13);
-            this.splitContainer12.Size = new System.Drawing.Size(636, 83);
+            this.splitContainer12.Panel2.Controls.Add(this.tbxDataFileName);
+            this.splitContainer12.Panel2.Padding = new System.Windows.Forms.Padding(5);
+            this.splitContainer12.Size = new System.Drawing.Size(648, 87);
             this.splitContainer12.SplitterDistance = 27;
             this.splitContainer12.TabIndex = 0;
             // 
             // tbxFolderPath
             // 
             this.tbxFolderPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxFolderPath.Location = new System.Drawing.Point(4, 4);
+            this.tbxFolderPath.Location = new System.Drawing.Point(5, 5);
             this.tbxFolderPath.Name = "tbxFolderPath";
             this.tbxFolderPath.ReadOnly = true;
-            this.tbxFolderPath.Size = new System.Drawing.Size(628, 20);
+            this.tbxFolderPath.Size = new System.Drawing.Size(638, 20);
             this.tbxFolderPath.TabIndex = 0;
-            // 
-            // splitContainer13
-            // 
-            this.splitContainer13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer13.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer13.IsSplitterFixed = true;
-            this.splitContainer13.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer13.Name = "splitContainer13";
-            this.splitContainer13.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer13.Panel1
-            // 
-            this.splitContainer13.Panel1.Controls.Add(this.tbxSystemFileName);
-            this.splitContainer13.Panel1.Padding = new System.Windows.Forms.Padding(4);
-            // 
-            // splitContainer13.Panel2
-            // 
-            this.splitContainer13.Panel2.Controls.Add(this.tbxDataFileName);
-            this.splitContainer13.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer13.Size = new System.Drawing.Size(636, 52);
-            this.splitContainer13.SplitterDistance = 25;
-            this.splitContainer13.TabIndex = 0;
-            // 
-            // tbxSystemFileName
-            // 
-            this.tbxSystemFileName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxSystemFileName.Location = new System.Drawing.Point(4, 4);
-            this.tbxSystemFileName.Name = "tbxSystemFileName";
-            this.tbxSystemFileName.Size = new System.Drawing.Size(628, 20);
-            this.tbxSystemFileName.TabIndex = 0;
-            this.tbxSystemFileName.Text = "stsdb4.sys";
             // 
             // tbxDataFileName
             // 
             this.tbxDataFileName.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxDataFileName.Location = new System.Drawing.Point(4, 4);
+            this.tbxDataFileName.Location = new System.Drawing.Point(5, 5);
             this.tbxDataFileName.Name = "tbxDataFileName";
-            this.tbxDataFileName.Size = new System.Drawing.Size(628, 20);
+            this.tbxDataFileName.Size = new System.Drawing.Size(638, 20);
             this.tbxDataFileName.TabIndex = 0;
             this.tbxDataFileName.Text = "stsdb4.dat";
             // 
@@ -515,33 +460,23 @@
             // 
             // splitContainer10.Panel1
             // 
-            this.splitContainer10.Panel1.Controls.Add(this.label7);
             this.splitContainer10.Panel1.Controls.Add(this.label6);
             // 
             // splitContainer10.Panel2
             // 
             this.splitContainer10.Panel2.Controls.Add(this.splitContainer11);
-            this.splitContainer10.Size = new System.Drawing.Size(848, 93);
+            this.splitContainer10.Size = new System.Drawing.Size(860, 99);
             this.splitContainer10.SplitterDistance = 97;
             this.splitContainer10.TabIndex = 0;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(5, 7);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 13);
-            this.label7.TabIndex = 6;
-            this.label7.Text = "System file:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(5, 40);
+            this.label6.Location = new System.Drawing.Point(6, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.Size = new System.Drawing.Size(55, 13);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Data file:";
+            this.label6.Text = "File name:";
             // 
             // splitContainer11
             // 
@@ -553,75 +488,34 @@
             // 
             // splitContainer11.Panel1
             // 
-            this.splitContainer11.Panel1.Controls.Add(this.splitContainer14);
+            this.splitContainer11.Panel1.Controls.Add(this.tbxDataFilePath);
+            this.splitContainer11.Panel1.Padding = new System.Windows.Forms.Padding(5);
             // 
             // splitContainer11.Panel2
             // 
             this.splitContainer11.Panel2.Controls.Add(this.btnBrowseDataFile);
-            this.splitContainer11.Panel2.Controls.Add(this.btnBrowseSystemFile);
-            this.splitContainer11.Size = new System.Drawing.Size(747, 93);
-            this.splitContainer11.SplitterDistance = 635;
+            this.splitContainer11.Size = new System.Drawing.Size(759, 99);
+            this.splitContainer11.SplitterDistance = 647;
             this.splitContainer11.TabIndex = 0;
-            // 
-            // splitContainer14
-            // 
-            this.splitContainer14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer14.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer14.IsSplitterFixed = true;
-            this.splitContainer14.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer14.Name = "splitContainer14";
-            this.splitContainer14.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer14.Panel1
-            // 
-            this.splitContainer14.Panel1.Controls.Add(this.tbxSystemFilePath);
-            this.splitContainer14.Panel1.Padding = new System.Windows.Forms.Padding(4);
-            // 
-            // splitContainer14.Panel2
-            // 
-            this.splitContainer14.Panel2.Controls.Add(this.tbxDataFilePath);
-            this.splitContainer14.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer14.Size = new System.Drawing.Size(635, 93);
-            this.splitContainer14.SplitterDistance = 29;
-            this.splitContainer14.TabIndex = 0;
-            // 
-            // tbxSystemFilePath
-            // 
-            this.tbxSystemFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxSystemFilePath.Location = new System.Drawing.Point(4, 4);
-            this.tbxSystemFilePath.Name = "tbxSystemFilePath";
-            this.tbxSystemFilePath.ReadOnly = true;
-            this.tbxSystemFilePath.Size = new System.Drawing.Size(627, 20);
-            this.tbxSystemFilePath.TabIndex = 0;
             // 
             // tbxDataFilePath
             // 
             this.tbxDataFilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxDataFilePath.Location = new System.Drawing.Point(4, 4);
+            this.tbxDataFilePath.Location = new System.Drawing.Point(5, 5);
             this.tbxDataFilePath.Name = "tbxDataFilePath";
             this.tbxDataFilePath.ReadOnly = true;
-            this.tbxDataFilePath.Size = new System.Drawing.Size(627, 20);
+            this.tbxDataFilePath.Size = new System.Drawing.Size(637, 20);
             this.tbxDataFilePath.TabIndex = 1;
             // 
             // btnBrowseDataFile
             // 
-            this.btnBrowseDataFile.Location = new System.Drawing.Point(20, 35);
+            this.btnBrowseDataFile.Location = new System.Drawing.Point(20, 3);
             this.btnBrowseDataFile.Name = "btnBrowseDataFile";
             this.btnBrowseDataFile.Size = new System.Drawing.Size(75, 23);
             this.btnBrowseDataFile.TabIndex = 2;
             this.btnBrowseDataFile.Text = "Browse...";
             this.btnBrowseDataFile.UseVisualStyleBackColor = true;
             this.btnBrowseDataFile.Click += new System.EventHandler(this.btnBrowseDataFile_Click);
-            // 
-            // btnBrowseSystemFile
-            // 
-            this.btnBrowseSystemFile.Location = new System.Drawing.Point(20, 2);
-            this.btnBrowseSystemFile.Name = "btnBrowseSystemFile";
-            this.btnBrowseSystemFile.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowseSystemFile.TabIndex = 1;
-            this.btnBrowseSystemFile.Text = "Browse...";
-            this.btnBrowseSystemFile.UseVisualStyleBackColor = true;
-            this.btnBrowseSystemFile.Click += new System.EventHandler(this.btnBrowseSystemFile_Click);
             // 
             // btnSubmit
             // 
@@ -637,7 +531,7 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(772, 7);
+            this.btnCancel.Location = new System.Drawing.Point(784, 7);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -647,7 +541,7 @@
             // btnOpen
             // 
             this.btnOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOpen.Location = new System.Drawing.Point(691, 7);
+            this.btnOpen.Location = new System.Drawing.Point(703, 7);
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(75, 23);
             this.btnOpen.TabIndex = 0;
@@ -659,7 +553,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(860, 436);
+            this.ClientSize = new System.Drawing.Size(872, 450);
             this.Controls.Add(this.splitContainer1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -710,29 +604,19 @@
             this.splitContainer12.Panel1.ResumeLayout(false);
             this.splitContainer12.Panel1.PerformLayout();
             this.splitContainer12.Panel2.ResumeLayout(false);
+            this.splitContainer12.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer12)).EndInit();
             this.splitContainer12.ResumeLayout(false);
-            this.splitContainer13.Panel1.ResumeLayout(false);
-            this.splitContainer13.Panel1.PerformLayout();
-            this.splitContainer13.Panel2.ResumeLayout(false);
-            this.splitContainer13.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer13)).EndInit();
-            this.splitContainer13.ResumeLayout(false);
             this.splitContainer10.Panel1.ResumeLayout(false);
             this.splitContainer10.Panel1.PerformLayout();
             this.splitContainer10.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer10)).EndInit();
             this.splitContainer10.ResumeLayout(false);
             this.splitContainer11.Panel1.ResumeLayout(false);
+            this.splitContainer11.Panel1.PerformLayout();
             this.splitContainer11.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer11)).EndInit();
             this.splitContainer11.ResumeLayout(false);
-            this.splitContainer14.Panel1.ResumeLayout(false);
-            this.splitContainer14.Panel1.PerformLayout();
-            this.splitContainer14.Panel2.ResumeLayout(false);
-            this.splitContainer14.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer14)).EndInit();
-            this.splitContainer14.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -757,23 +641,16 @@
         private System.Windows.Forms.SplitContainer splitContainer8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.SplitContainer splitContainer9;
         private System.Windows.Forms.SplitContainer splitContainer12;
         private System.Windows.Forms.TextBox tbxFolderPath;
-        private System.Windows.Forms.SplitContainer splitContainer13;
-        private System.Windows.Forms.TextBox tbxSystemFileName;
         private System.Windows.Forms.TextBox tbxDataFileName;
         private System.Windows.Forms.Button btnBrowseFolder;
         private System.Windows.Forms.SplitContainer splitContainer10;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.SplitContainer splitContainer11;
-        private System.Windows.Forms.SplitContainer splitContainer14;
-        private System.Windows.Forms.TextBox tbxSystemFilePath;
         private System.Windows.Forms.TextBox tbxDataFilePath;
         private System.Windows.Forms.Button btnBrowseDataFile;
-        private System.Windows.Forms.Button btnBrowseSystemFile;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOpen;
         private System.Windows.Forms.Button btnSubmit;

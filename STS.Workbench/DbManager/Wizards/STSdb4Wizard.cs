@@ -18,8 +18,8 @@ namespace STS.Workbench.DbManager.Wizards
         {
             InitializeComponent();
 
-            Size = new Size(800, 300);
-            MinimumSize = new Size(800, 300);
+            Size = new Size(600, 250);
+            MinimumSize = new Size(600, 250);
             OnCheck(this, new EventArgs());
             btnSubmit.Size = new Size(0, 0);
         }
@@ -30,11 +30,9 @@ namespace STS.Workbench.DbManager.Wizards
         public string Host { get { return tbxHost.Text; } }
         public int Port { get { return Int32.Parse(tbxPort.Text); } }
 
-        public string SystemFilePath { get { return CreateNewSelected ? Path.Combine(FolderPath, SystemFileName) : tbxSystemFilePath.Text; } }
-        public string DataFilePath { get { return CreateNewSelected ? Path.Combine(FolderPath, DataFileName) : tbxDataFilePath.Text; } }
+        public string FilePath { get { return CreateNewSelected ? Path.Combine(FolderPath, FileName) : tbxDataFilePath.Text; } }
 
-        public string SystemFileName { get { return tbxDataFileName.Text; } }
-        public string DataFileName { get { return tbxSystemFileName.Text; } }
+        public string FileName { get { return tbxDataFileName.Text; } }
 
         public string FolderPath { get { return tbxFolderPath.Text; } }
 
@@ -55,19 +53,14 @@ namespace STS.Workbench.DbManager.Wizards
             {
                 if (CreateNewSelected)
                 {
-                    if (File.Exists(SystemFilePath))
+                    if (File.Exists(FilePath))
                     {
-                        if (MessageBox.Show(string.Format("File : {0}, alredy exist.\n\r Do you want to overwrite it?", SystemFilePath), "File conflict", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                            File.Delete(SystemFilePath);
-                    }
-                    if (File.Exists(DataFilePath))
-                    {
-                        if (MessageBox.Show(string.Format("File : {0}, alredy exist.\n\r Do you want to overwrite it?", DataFilePath), "File conflict", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
-                            File.Delete(SystemFilePath);
+                        if (MessageBox.Show(string.Format("File : {0}, alredy exist.\n\r Do you want to overwrite it?", FilePath), "File conflict", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                            File.Delete(FilePath);
                     }
                 }
 
-                StorageEngine = ClientSelected ? STSdb.FromNetwork(Host, Port) : STSdb.FromFile(DataFilePath);
+                StorageEngine = ClientSelected ? STSdb.FromNetwork(Host, Port) : STSdb.FromFile(FilePath);
                 btnSubmit.PerformClick();
             }
             catch (Exception exc)
@@ -81,13 +74,6 @@ namespace STS.Workbench.DbManager.Wizards
             FolderBrowserDialog dialog = new FolderBrowserDialog();
             if (dialog.ShowDialog() == DialogResult.OK)
                 tbxFolderPath.Text = dialog.SelectedPath;
-        }
-
-        private void btnBrowseSystemFile_Click(object sender, EventArgs e)
-        {
-            FileDialog dialog = new OpenFileDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
-                tbxSystemFilePath.Text = dialog.FileName;
         }
 
         private void btnBrowseDataFile_Click(object sender, EventArgs e)
