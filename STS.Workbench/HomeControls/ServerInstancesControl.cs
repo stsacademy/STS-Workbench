@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace STS.Workbench.HomeControls
 {
-    public partial class ModelControl : UserControl
+    public partial class ServerInstancesControl : UserControl
     {
-        public ModelControl()
+        public ServerInstancesControl()
         {
             InitializeComponent();
         }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace STS.Workbench.HomeControls
 {
-    public partial class ConnectionsControl : UserControl
+    public partial class DatabaseConnectionsControl : UserControl
     {
-        public ConnectionsControl()
+        public DatabaseConnectionsControl()
         {
             InitializeComponent();
         }

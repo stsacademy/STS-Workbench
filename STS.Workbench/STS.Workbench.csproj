@@ -77,11 +77,11 @@
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
-    <Compile Include="HomeControls\ConnectionsControl.cs">
+    <Compile Include="HomeControls\ServerInstancesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HomeControls\ConnectionsControl.Designer.cs">
-      <DependentUpon>ConnectionsControl.cs</DependentUpon>
+    <Compile Include="HomeControls\ServerInstancesControl.Designer.cs">
+      <DependentUpon>ServerInstancesControl.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeControls\Home.cs">
       <SubType>UserControl</SubType>
@@ -89,11 +89,11 @@
     <Compile Include="HomeControls\Home.Designer.cs">
       <DependentUpon>Home.cs</DependentUpon>
     </Compile>
-    <Compile Include="HomeControls\ModelControl.cs">
+    <Compile Include="HomeControls\DatabaseConnectionsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="HomeControls\ModelControl.Designer.cs">
-      <DependentUpon>ModelControl.cs</DependentUpon>
+    <Compile Include="HomeControls\DatabaseConnectionsControl.Designer.cs">
+      <DependentUpon>DatabaseConnectionsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="HomeControls\Shortcuts.cs">
       <SubType>UserControl</SubType>
@@ -190,14 +190,14 @@
     <EmbeddedResource Include="DbManager\Wizards\STSdb4Wizard.resx">
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomeControls\ConnectionsControl.resx">
-      <DependentUpon>ConnectionsControl.cs</DependentUpon>
+    <EmbeddedResource Include="HomeControls\ServerInstancesControl.resx">
+      <DependentUpon>ServerInstancesControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeControls\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HomeControls\ModelControl.resx">
-      <DependentUpon>ModelControl.cs</DependentUpon>
+    <EmbeddedResource Include="HomeControls\DatabaseConnectionsControl.resx">
+      <DependentUpon>DatabaseConnectionsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeControls\Shortcuts.resx">
       <DependentUpon>Shortcuts.cs</DependentUpon>
