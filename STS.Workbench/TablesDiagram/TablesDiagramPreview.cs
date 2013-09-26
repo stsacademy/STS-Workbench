@@ -14,6 +14,7 @@ using System.Threading;
 using STS.Workbench.TablesDiagram.DiagramPreviewComponents;
 using STS.Workbench.TablesDiagram.Helpers;
 using System.IO;
+using STS.Workbench.TablesDiagram.TablesDiagramComponents;
 
 namespace STS.Workbench
 {
@@ -37,7 +38,7 @@ namespace STS.Workbench
         public TableComponent ActiveTableComponent { get; private set; }
         public ITable OpenedTable { get; private set; }
 
-        public Dictionary<string, TableComponent> Tables { get { return tables; } }
+        public Dictionary<string, TableComponent> TablesMap { get { return tables; } }
 
         public TablesDiagramPreview(IConnection dbConnection)
         {
@@ -74,10 +75,11 @@ namespace STS.Workbench
             }
         }
 
-        #region Table Move, Resize and Selection
+        #region Table - move, resize and selection
 
         private SelectorTool selectorTool;
-        private Point MousePoint;
+        private List<TableComponent> selectedTables = new List<TableComponent>();
+        private Point SelectedMousePoint;
         private bool IsMoving = false;
         private bool IsPlacing = false;
         private bool IsSelecting = false;
@@ -86,48 +88,107 @@ namespace STS.Workbench
         {
             if (e.Button == MouseButtons.Left)
             {
-                MousePoint = e.Location;
+                SelectedMousePoint = e.Location;
 
                 if (sender.GetType() == typeof(TableComponent))
+                {
                     IsMoving = true;
-                if (sender.GetType() == typeof(FieldControl))
+                    if (!selectedTables.Contains((TableComponent)sender))
+                    {
+                        UnSelectTables();
+                        SelectTable((TableComponent)sender);
+                    }
+
+                }
+                else if (sender.GetType() == typeof(FieldControl))
+                {
                     IsSelecting = true;
+                    selectorTool.ClearLastSelection();
+                }
             }
         }
 
         private void OnMouseUp(object sender, MouseEventArgs e)
         {
+            if (IsSelecting)
+            {
+                UnSelectTables();
+                SelectTables(selectorTool.GetSelectedItems(TablesMap.Values));
+                IsSelecting = false;
+            }
+
             IsMoving = false;
-            IsSelecting = false;
             tablesField.Refresh();
         }
 
         private void On_MouseMove(object sender, MouseEventArgs e)
         {
+            //Do resize
             if (ActiveTableComponent != null && ActiveTableComponent.IsResizing)
             {
                 int bottomPos = ActiveTableComponent.Top + ActiveTableComponent.Height;
                 int rigthPos = ActiveTableComponent.Left + ActiveTableComponent.Width;
 
-                ActiveTableComponent.UserResize(tablesField, bottomPos, rigthPos, tablesField.VerticalScroll.Value, tablesField.HorizontalScroll.Value);
+                ActiveTableComponent.UserResize(tablesField.mainField, bottomPos, rigthPos, tablesField.VerticalScroll.Value, tablesField.HorizontalScroll.Value);
+                return;
             }
-            else if (IsMoving && e.Button == MouseButtons.Left)
+
+            //Do move
+            if (IsMoving)
             {
-                var table = (TableComponent)sender;
-
-                if (table.IsLeavingOwnerBounds(tablesField.mainField, MousePoint, e))
-                    return;
-
-                table.Left += e.X - MousePoint.X;
-                table.Top += e.Y - MousePoint.Y;
-
-                tablesField.ScrollControlIntoView(table);
-                tablesField.Refresh();
+                bool canMove = selectedTables.TrueForAll(x => !x.IsLeavingOwnerBounds(tablesField.mainField, SelectedMousePoint, e));
+                if (canMove)
+                {
+                    foreach (var table in selectedTables)
+                    {
+                        table.Left += e.X - SelectedMousePoint.X;
+                        table.Top += e.Y - SelectedMousePoint.Y;
+                    }
+                }
+                return;
             }
-            else if (IsSelecting)
-            {
-                selectorTool.DrawRectangle(new Pen(Color.Black), MousePoint, e.Location);
-            }
+
+            //Do select
+            if (IsSelecting)
+                selectorTool.DrawRectangle(new Pen(Color.Black), SelectedMousePoint, e.Location);
+        }
+
+        private void SelectTables(List<Control> tables)
+        {
+            foreach (var table in tables)
+                SelectTable((TableComponent)table);
+
+            if (tables.Count == 1)
+                ((TableComponent)tables[0]).EnableResizers();
+            else if (tables.Count > 1)
+                ShowMessage(string.Format(@"Selected tables '{0}'", string.Join(", ", new List<string>(tables.Select(x => ((TableComponent)x).Name)))));
+        }
+
+        private void UnSelectTables()
+        {
+            foreach (var table in selectedTables)
+                table.BackColor = Color.Transparent;
+
+            selectedTables.Clear();
+        }
+
+        private void SelectTable(TableComponent table)
+        {
+            if (ActiveTableComponent != null)
+                ActiveTableComponent.DisableResizers();
+
+            table.BackColor = Color.FromArgb(235, 195, 140);
+            table.CurrentColor = Color.FromArgb(235, 195, 140);
+            selectedTables.Add(table);
+
+            treeViewTablesCatalog.Nodes[0].SetChildBackColor(Color.White);
+            treeViewTablesCatalog.Nodes[0].Nodes.Find(table.TableName, true)[0].BackColor = SystemColors.Highlight;
+
+            table.BringToFront();
+            tablesField.ScrollControlIntoView(table);
+
+            ActiveTableComponent = table;
+            ShowMessage(string.Format(@"Selected table '{0}'", table.Name));
         }
 
         #endregion
@@ -138,20 +199,20 @@ namespace STS.Workbench
             IsPlacing = !IsPlacing;
         }
 
-        private void btnRemoveTable_Click(object sender, EventArgs e)
+        private void btnDeleteTables_Click(object sender, EventArgs e)
         {
-            if (ActiveTableComponent == null)
-                return;
-
-            if (MessageBox.Show(string.Format("Do you want to delete table {0}?", ActiveTableComponent.Name), "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            foreach (var table in selectedTables)
             {
-                try
+                if (MessageBox.Show(string.Format("Do you want to delete table {0}?", table.Name), "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    RemoveTable(ActiveTableComponent);
-                }
-                catch (Exception exc)
-                {
-                    MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    try
+                    {
+                        RemoveTable(ActiveTableComponent);
+                    }
+                    catch (Exception exc)
+                    {
+                        MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -170,7 +231,6 @@ namespace STS.Workbench
 
             table.Click += table_Click;
             table.DoubleClick += table_DoubleClick;
-
             ShowMessage(string.Format("Placed table '{0}'", table.TableName));
         }
 
@@ -205,6 +265,16 @@ namespace STS.Workbench
                 tablesField.Cursor = Cursors.Default;
                 IsPlacing = false;
             }
+
+            var mouseEvent = (MouseEventArgs)e;
+            if (mouseEvent.Button == MouseButtons.Left)
+                UnSelectTables();
+            else
+            {
+                menuStripTablesField.Items["pasteToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
+
+                menuStripTablesField.Show(Cursor.Position);
+            }
         }
 
         #region Table Mark/Open
@@ -212,11 +282,18 @@ namespace STS.Workbench
         private void table_Click(object sender, EventArgs e)
         {
             var table = (TableComponent)sender;
+            var mouseEventArgs = (MouseEventArgs)e;
 
-            var node = treeViewTablesCatalog.Nodes[0].Nodes.Find(table.TableName, true)[0];
-            treeViewTablesCatalog.SelectedNode = node;
+            if (mouseEventArgs.Button == MouseButtons.Right)
+            {
+                menuStripTables.Items["openToolStripMenuItem"].Enabled = OpenedTable == null || OpenedTable.TableName != table.TableName;
+                menuStripTables.Items["closeToolStripMenuItem"].Enabled = OpenedTable != null && OpenedTable.TableName == table.TableName;
+                menuStripTables.Items["pasteDataToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
+                menuStripTables.Show(Cursor.Position);
+            }
 
-            MarkTable(table);
+            UnSelectTables();
+            SelectTable(table);
         }
 
         private void treeViewTablesCatalog_AfterSelect(object sender, TreeViewEventArgs e)
@@ -227,30 +304,31 @@ namespace STS.Workbench
             TableComponent table;
             tables.TryGetValue(treeViewTablesCatalog.SelectedNode.Text, out table);
 
-            MarkTable(table);
+            UnSelectTables();
+            SelectTable(table);
         }
 
         private void table_DoubleClick(object sender, EventArgs e)
         {
-            OpenTable();
+            OpenTable((TableComponent)sender);
         }
 
         private void treeViewTablesCatalog_DoubleClick(object sender, EventArgs e)
         {
-            OpenTable();
+            OpenTable(ActiveTableComponent);
         }
 
-        private void OpenTable()
+        private void OpenTable(TableComponent table)
         {
             try
             {
                 ModifyedRows.Clear();
-                var table = DbConnection.OpenTable(ActiveTableComponent.Name, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
-                OpenedTable = table;
-                VisualizeData(table, null, null);
+                var openedTable = DbConnection.OpenTable(table.TableName, table.KeyTypes, table.RecordTypes);
+                OpenedTable = openedTable;
+                VisualizeData(openedTable, null, null);
 
-                pgrdTableInfo.SelectedObject = table;
-                ShowMessage(string.Format(@"Opened table '{0}'", table.TableName));
+                pgrdTableInfo.SelectedObject = openedTable;
+                ShowMessage(string.Format(@"Opened table '{0}'", openedTable.TableName));
             }
             catch (Exception e)
             {
@@ -258,21 +336,11 @@ namespace STS.Workbench
             }
         }
 
-        private void MarkTable(TableComponent table)
+        private void CloseTable(ITable table)
         {
-            if (ActiveTableComponent != null)
-                ActiveTableComponent.DisableResizers();
-
-            table.EnableResizers();
-
-            treeViewTablesCatalog.Nodes[0].SetChildBackColor(Color.White);
-            treeViewTablesCatalog.SelectedNode.BackColor = SystemColors.Highlight;
-
-            table.BringToFront();
-            tablesField.ScrollControlIntoView(table);
-
-            ActiveTableComponent = table;
-            ShowMessage(string.Format(@"Selected table '{0}'", table.Name));
+            table = null;
+            spltCntTablesData.Panel2Collapsed = true;
+            pgrdTableInfo.SelectedObject = null;
         }
 
         #endregion
@@ -281,7 +349,7 @@ namespace STS.Workbench
         {
             try
             {
-                grdViewTableRecords.SetHeader(table);
+                grdViewTableRecords.SetTableHeader(table);
 
                 object[] lastKey = null;
                 foreach (var kv in table.Read(fromKey, null).Take(PageCapacity))
@@ -360,6 +428,8 @@ namespace STS.Workbench
                 }
                 );
                 Worker.Start();
+                loadingForm = new LoadingForm();
+                loadingForm.Show();
             }
         }
 
@@ -373,6 +443,8 @@ namespace STS.Workbench
                 var fileType = (FileType)dialog.FilterIndex;
                 Worker = new Thread(() => FileUtils.Export(OpenedTable.Read(), dialog.FileName, fileType));
                 Worker.Start();
+                loadingForm = new LoadingForm();
+                loadingForm.Show();
             }
         }
 
@@ -442,7 +514,7 @@ namespace STS.Workbench
         {
             try
             {
-                grdViewTableRecords.SetHeader(OpenedTable);
+                grdViewTableRecords.SetTableHeader(OpenedTable);
 
                 foreach (var kv in OpenedTable.ReadReverse().Take(PageCapacity).Reverse())
                     grdViewTableRecords.Rows.Add(kv.Key.Concat(kv.Value).ToArray());
@@ -473,22 +545,11 @@ namespace STS.Workbench
 
             if (Worker.IsAlive)
             {
-                if (loadingForm == null)
+                loadingForm.SetPercents(FileUtils.Percents);
+                if (loadingForm.StopClicked)
                 {
-                    loadingForm = new LoadingForm();
-                    loadingForm.Show();
-                }
-                else //(loadingForm != null)
-                {
-                    loadingForm.SetPercents(FileUtils.Percents);
-
-                    if (loadingForm.StopClicked)
-                    {
-                        FileUtils.Stop();
-                        Worker.Join();
-                        loadingForm.Close();
-                        loadingForm = null;
-                    }
+                    FileUtils.Stop();
+                    Worker.Join();
                 }
             }
 
@@ -516,8 +577,7 @@ namespace STS.Workbench
 
         private void btnHideData_Click(object sender, EventArgs e)
         {
-            spltCntTablesData.Panel2Collapsed = true;
-            pgrdTableInfo.SelectedObject = null;
+            CloseTable(OpenedTable);
         }
 
         private void btnLoadDiagram_Click(object sender, EventArgs e)
@@ -536,7 +596,7 @@ namespace STS.Workbench
                         TableComponent table;
 
                         var settings = TableComponent.DeserializeSettings(reader);
-                        if (Tables.TryGetValue(settings.TableName, out table))
+                        if (TablesMap.TryGetValue(settings.TableName, out table))
                             table.ApplySettings(settings);
                     }
                 }
@@ -554,8 +614,8 @@ namespace STS.Workbench
             {
                 using (BinaryWriter writer = new BinaryWriter(new FileStream(dialog.FileName, FileMode.Create)))
                 {
-                    writer.Write(Tables.Count);
-                    foreach (var table in Tables)
+                    writer.Write(TablesMap.Count);
+                    foreach (var table in TablesMap)
                         table.Value.SerializeSettings(writer);
                 }
             }
@@ -563,13 +623,13 @@ namespace STS.Workbench
 
         private void btnExpandTables_Click(object sender, EventArgs e)
         {
-            foreach (var item in Tables)
+            foreach (var item in TablesMap)
                 item.Value.Expand();
         }
 
         private void btnCollapseTablse_Click(object sender, EventArgs e)
         {
-            foreach (var item in Tables)
+            foreach (var item in TablesMap)
                 item.Value.Collapse();
         }
 
@@ -588,9 +648,124 @@ namespace STS.Workbench
             lblInfo.Text = text;
         }
 
-        private void cntrlTablesField_MouseMove(object sender, MouseEventArgs e)
+        #region Table menu strip
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenTable(ActiveTableComponent);
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseTable(OpenedTable);
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var table = DbConnection.OpenTable(ActiveTableComponent.TableName, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
+            TablesTransfer.Copy(table);
+        }
+
+        private void pasteDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var table = TablesTransfer.Paste();
+            var activeTable = DbConnection.OpenTable(ActiveTableComponent.TableName, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
+
+            try
+            {
+                foreach (var kv in table.Read())
+                    activeTable.Insert(kv.Key, kv.Value);
+            }
+            catch (Exception exc)
+            {
+                FormExtensions.ShowError(exc.Message);
+            }
+        }
+
+        private void editColorsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ColorDialog dialog = new ColorDialog();
+            dialog.Color = ActiveTableComponent.BackGroundColor;
+            if (dialog.ShowDialog() == DialogResult.OK)
+                ActiveTableComponent.BackGroundColor = dialog.Color;
+        }
+
+        private void propertiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine(Cursor.Position.X + " " + Cursor.Position.Y);
+            PropertyForm form = new PropertyForm(ActiveTableComponent);
+            form.ShowDialog();
+        }
+
+        #endregion
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var table = TablesTransfer.Paste();
+            var component = new TableComponent(table.TableName, table.KeyTypes, table.RecordTypes);
+            var newTable = DbConnection.OpenTable(table.TableName, table.KeyTypes, table.RecordTypes);
+
+            try
+            {
+                component.Location = tablesField.PointToClient(Cursor.Position);
+                AddTable(component);
+                foreach (var kv in table.Read())
+                    newTable.Insert(kv.Key, kv.Value);
+            }
+            catch (Exception exc)
+            {
+                FormExtensions.ShowError(exc.Message);
+            }
+        }
+
+        private void saveOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tablesField.ResetScrollBars();
+
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.Filter = "diagram (*.dgr)|*.dgr";
+            dialog.FileName = "schema";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                using (BinaryWriter writer = new BinaryWriter(new FileStream(dialog.FileName, FileMode.Create)))
+                {
+                    writer.Write(TablesMap.Count);
+                    foreach (var table in TablesMap)
+                        table.Value.SerializeSettings(writer);
+                }
+            }
+        }
+
+        private void loadOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            tablesField.ResetScrollBars();
+
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "diagram (*.dgr)|*.dgr";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                using (BinaryReader reader = new BinaryReader(new FileStream(dialog.FileName, FileMode.Open)))
+                {
+                    int count = reader.ReadInt32();
+                    for (int i = 0; i < count; i++)
+                    {
+                        TableComponent table;
+
+                        var settings = TableComponent.DeserializeSettings(reader);
+                        if (TablesMap.TryGetValue(settings.TableName, out table))
+                            table.ApplySettings(settings);
+                    }
+                }
+            }
+        }
+
+        private void sizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
+
+        #region TableField menu strip
+
+        #endregion
     }
 }

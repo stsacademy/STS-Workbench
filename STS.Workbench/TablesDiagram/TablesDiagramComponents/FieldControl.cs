@@ -31,6 +31,29 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
                 AttachChildsToEvent((Control)item);
         }
 
+        #region mainFeild
+
+        private Size DefaultSize = new Size(2048, 1152);
+
+        public void SetDefaultSize()
+        {
+            mainField.Size = DefaultSize;
+        }
+
+        public void DecraseSizeTwise()
+        {
+
+        }
+
+        public void IncraseSizeTwice()
+        {
+
+        }
+
+        #endregion
+
+        #region events
+
         private void control_MouseUp(object sender, MouseEventArgs e)
         {
             OnMouseUp(e);
@@ -61,6 +84,8 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
             return mainField.PointToClient(p);
         }
 
+        #endregion
+
         #region Scroll
 
         public bool IsScrolledMaxUp()
@@ -90,5 +115,13 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         }
 
         #endregion
+    }
+
+    public enum FiledSize
+    {
+        _1280x600,
+        _1600x900,
+        _2048x1152,
+        _4096x2160
     }
 }

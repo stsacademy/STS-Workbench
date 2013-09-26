@@ -37,7 +37,7 @@
             this.mainField.BackgroundImage = global::STS.Workbench.Properties.Resources.Cells;
             this.mainField.Location = new System.Drawing.Point(0, 0);
             this.mainField.Name = "mainField";
-            this.mainField.Size = new System.Drawing.Size(2083, 1443);
+            this.mainField.Size = new System.Drawing.Size(2048, 1152);
             this.mainField.TabIndex = 2;
             this.mainField.TabStop = false;
             // 
@@ -49,7 +49,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.mainField);
             this.Name = "FieldControl";
-            this.Size = new System.Drawing.Size(944, 417);
+            this.Size = new System.Drawing.Size(927, 400);
             ((System.ComponentModel.ISupportInitialize)(this.mainField)).EndInit();
             this.ResumeLayout(false);
 

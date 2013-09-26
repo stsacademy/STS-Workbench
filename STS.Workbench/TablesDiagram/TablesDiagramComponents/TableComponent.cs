@@ -13,7 +13,7 @@ using System.IO;
 
 namespace STS.Workbench.PreviewComponents
 {
-    public partial class TableComponent : UserControl
+    public partial class TableComponent : UserControl, IEquatable<TableComponent>
     {
         private int OriginalSize = 0;
 
@@ -22,13 +22,11 @@ namespace STS.Workbench.PreviewComponents
 
         private List<PictureBox> Resizers = new List<PictureBox>();
 
-        [Browsable(false)]
-        public bool IsResizing { get { return AllowResize && isResizing; } }
+        public Color CurrentColor;
 
-        [Browsable(false)]
+        public bool IsResizing { get { return AllowResize && isResizing; } }
         public ResizeDirection Direction { get; private set; }
 
-        [Browsable(false)]
         public bool Expanded { get; private set; }
 
         public string TableName { get; private set; }
@@ -55,6 +53,7 @@ namespace STS.Workbench.PreviewComponents
         private void PrepareSettings()
         {
             Expanded = true;
+            CurrentColor = BackColor;
 
             lblTableName.Text = TableName;
             Name = TableName;
@@ -348,12 +347,13 @@ namespace STS.Workbench.PreviewComponents
 
         private void TableComponent_MouseEnter(object sender, EventArgs e)
         {
+            CurrentColor = BackColor;
             BackColor = Color.FromArgb(230, 170, 90);
         }
 
         private void TableComponent_MouseLeave(object sender, EventArgs e)
         {
-            BackColor = Color.Transparent;
+            BackColor = CurrentColor;
         }
 
         public void SerializeSettings(BinaryWriter writer)
@@ -381,14 +381,19 @@ namespace STS.Workbench.PreviewComponents
 
         #region Hided members
 
-        [Browsable(false)]
-        public AccessibleRole AccessibleRole { get { return AccessibleRole; } set { value = AccessibleRole; } }
-        [Browsable(false)]
-        public string AccessibleDescription { get { return AccessibleDescription; } set { value = AccessibleDescription; } }
-        [Browsable(false)]
-        public string AccessibleName { get { return AccessibleName; } set { value = AccessibleName; } }
+        //[Browsable(false)]
+        //public AccessibleRole AccessibleRole { get { return AccessibleRole; } set { value = AccessibleRole; } }
+        //[Browsable(false)]
+        //public string AccessibleDescription { get { return AccessibleDescription; } set { value = AccessibleDescription; } }
+        //[Browsable(false)]
+        //public string AccessibleName { get { return AccessibleName; } set { value = AccessibleName; } }
 
         #endregion
+
+        public bool Equals(TableComponent other)
+        {
+            return this.Name == other.Name;
+        }
     }
 
     public class TableComponentSettings

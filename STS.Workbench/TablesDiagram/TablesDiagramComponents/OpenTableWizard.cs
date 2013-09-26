@@ -46,7 +46,7 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
                 RecordTypes = GetRecTypes();
 
                 TableComponent t;
-                if (owner.Tables.TryGetValue(TableName, out t))
+                if (owner.TablesMap.TryGetValue(TableName, out t))
                     throw new Exception("table alredy exist.");
             }
             catch (Exception exc)

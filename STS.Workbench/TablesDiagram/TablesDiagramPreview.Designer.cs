@@ -30,7 +30,7 @@ namespace STS.Workbench
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("myDb");
             this.grdViewTableRecords = new System.Windows.Forms.DataGridView();
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
@@ -46,7 +46,7 @@ namespace STS.Workbench
             this.lblDiagramHeader = new System.Windows.Forms.Label();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
             this.btnPlaceTable = new System.Windows.Forms.Button();
-            this.btnRemoveTable = new System.Windows.Forms.Button();
+            this.btnDeleteTables = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.btnHideData = new System.Windows.Forms.Button();
             this.btnSelectAllRows = new System.Windows.Forms.Button();
@@ -79,6 +79,32 @@ namespace STS.Workbench
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.lblInfo = new System.Windows.Forms.Label();
+            this.menuStripTables = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editColorsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuStripTablesField = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.collapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.expandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.selectedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sortToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sizeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerTablesPreview)).BeginInit();
@@ -128,6 +154,8 @@ namespace STS.Workbench
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
             this.splitContainer5.SuspendLayout();
+            this.menuStripTables.SuspendLayout();
+            this.menuStripTablesField.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdViewTableRecords
@@ -150,10 +178,10 @@ namespace STS.Workbench
             this.treeViewTablesCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTablesCatalog.Location = new System.Drawing.Point(3, 3);
             this.treeViewTablesCatalog.Name = "treeViewTablesCatalog";
-            treeNode1.Name = "trvCatalogTree";
-            treeNode1.Text = "myDb";
+            treeNode2.Name = "trvCatalogTree";
+            treeNode2.Text = "myDb";
             this.treeViewTablesCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeViewTablesCatalog.Size = new System.Drawing.Size(194, 173);
             this.treeViewTablesCatalog.TabIndex = 4;
             this.treeViewTablesCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTablesCatalog_AfterSelect);
@@ -352,7 +380,7 @@ namespace STS.Workbench
             // 
             this.splitContainer9.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
             this.splitContainer9.Panel1.Controls.Add(this.btnPlaceTable);
-            this.splitContainer9.Panel1.Controls.Add(this.btnRemoveTable);
+            this.splitContainer9.Panel1.Controls.Add(this.btnDeleteTables);
             // 
             // splitContainer9.Panel2
             // 
@@ -375,19 +403,19 @@ namespace STS.Workbench
             this.btnPlaceTable.UseVisualStyleBackColor = false;
             this.btnPlaceTable.Click += new System.EventHandler(this.btnPlaceTable_Click);
             // 
-            // btnRemoveTable
+            // btnDeleteTables
             // 
-            this.btnRemoveTable.BackColor = System.Drawing.Color.Transparent;
-            this.btnRemoveTable.FlatAppearance.BorderSize = 0;
-            this.btnRemoveTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveTable.Image = global::STS.Workbench.Properties.Resources.table_delete;
-            this.btnRemoveTable.Location = new System.Drawing.Point(3, 49);
-            this.btnRemoveTable.Name = "btnRemoveTable";
-            this.btnRemoveTable.Size = new System.Drawing.Size(35, 40);
-            this.btnRemoveTable.TabIndex = 7;
-            this.toolTip.SetToolTip(this.btnRemoveTable, "Delete selected table");
-            this.btnRemoveTable.UseVisualStyleBackColor = false;
-            this.btnRemoveTable.Click += new System.EventHandler(this.btnRemoveTable_Click);
+            this.btnDeleteTables.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteTables.FlatAppearance.BorderSize = 0;
+            this.btnDeleteTables.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteTables.Image = global::STS.Workbench.Properties.Resources.table_delete;
+            this.btnDeleteTables.Location = new System.Drawing.Point(3, 49);
+            this.btnDeleteTables.Name = "btnDeleteTables";
+            this.btnDeleteTables.Size = new System.Drawing.Size(35, 40);
+            this.btnDeleteTables.TabIndex = 7;
+            this.toolTip.SetToolTip(this.btnDeleteTables, "Delete selected table/s");
+            this.btnDeleteTables.UseVisualStyleBackColor = false;
+            this.btnDeleteTables.Click += new System.EventHandler(this.btnDeleteTables_Click);
             // 
             // splitContainer3
             // 
@@ -822,6 +850,190 @@ namespace STS.Workbench
             this.lblInfo.Size = new System.Drawing.Size(0, 13);
             this.lblInfo.TabIndex = 0;
             // 
+            // menuStripTables
+            // 
+            this.menuStripTables.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openToolStripMenuItem,
+            this.closeToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.copyToolStripMenuItem,
+            this.pasteDataToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.editColorsToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.propertiesToolStripMenuItem});
+            this.menuStripTables.Name = "menuStripTables";
+            this.menuStripTables.Size = new System.Drawing.Size(130, 154);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            // 
+            // closeToolStripMenuItem
+            // 
+            this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.closeToolStripMenuItem.Text = "Close";
+            this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(126, 6);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // editColorsToolStripMenuItem
+            // 
+            this.editColorsToolStripMenuItem.Name = "editColorsToolStripMenuItem";
+            this.editColorsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.editColorsToolStripMenuItem.Text = "Edit colors";
+            this.editColorsToolStripMenuItem.Click += new System.EventHandler(this.editColorsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(126, 6);
+            // 
+            // propertiesToolStripMenuItem
+            // 
+            this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.propertiesToolStripMenuItem.Text = "Properties";
+            this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
+            // 
+            // pasteDataToolStripMenuItem
+            // 
+            this.pasteDataToolStripMenuItem.Name = "pasteDataToolStripMenuItem";
+            this.pasteDataToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.pasteDataToolStripMenuItem.Text = "Paste data";
+            this.pasteDataToolStripMenuItem.Click += new System.EventHandler(this.pasteDataToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(126, 6);
+            // 
+            // menuStripTablesField
+            // 
+            this.menuStripTablesField.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.collapseToolStripMenuItem,
+            this.expandToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.pasteToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.sizeToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.sortToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.saveOrderToolStripMenuItem,
+            this.loadOrderToolStripMenuItem});
+            this.menuStripTablesField.Name = "MenuStripTablesField";
+            this.menuStripTablesField.Size = new System.Drawing.Size(153, 204);
+            // 
+            // collapseToolStripMenuItem
+            // 
+            this.collapseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allToolStripMenuItem,
+            this.selectedToolStripMenuItem});
+            this.collapseToolStripMenuItem.Name = "collapseToolStripMenuItem";
+            this.collapseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.collapseToolStripMenuItem.Text = "Collapse";
+            // 
+            // allToolStripMenuItem
+            // 
+            this.allToolStripMenuItem.Name = "allToolStripMenuItem";
+            this.allToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.allToolStripMenuItem.Text = "all";
+            // 
+            // selectedToolStripMenuItem
+            // 
+            this.selectedToolStripMenuItem.Name = "selectedToolStripMenuItem";
+            this.selectedToolStripMenuItem.Size = new System.Drawing.Size(117, 22);
+            this.selectedToolStripMenuItem.Text = "selected";
+            // 
+            // expandToolStripMenuItem
+            // 
+            this.expandToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allToolStripMenuItem1,
+            this.selectedToolStripMenuItem1});
+            this.expandToolStripMenuItem.Name = "expandToolStripMenuItem";
+            this.expandToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.expandToolStripMenuItem.Text = "Expand";
+            // 
+            // allToolStripMenuItem1
+            // 
+            this.allToolStripMenuItem1.Name = "allToolStripMenuItem1";
+            this.allToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.allToolStripMenuItem1.Text = "all";
+            // 
+            // selectedToolStripMenuItem1
+            // 
+            this.selectedToolStripMenuItem1.Name = "selectedToolStripMenuItem1";
+            this.selectedToolStripMenuItem1.Size = new System.Drawing.Size(117, 22);
+            this.selectedToolStripMenuItem1.Text = "selected";
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // sortToolStripMenuItem
+            // 
+            this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sortToolStripMenuItem.Text = "Sort";
+            // 
+            // saveOrderToolStripMenuItem
+            // 
+            this.saveOrderToolStripMenuItem.Name = "saveOrderToolStripMenuItem";
+            this.saveOrderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveOrderToolStripMenuItem.Text = "Save field";
+            this.saveOrderToolStripMenuItem.Click += new System.EventHandler(this.saveOrderToolStripMenuItem_Click);
+            // 
+            // loadOrderToolStripMenuItem
+            // 
+            this.loadOrderToolStripMenuItem.Name = "loadOrderToolStripMenuItem";
+            this.loadOrderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadOrderToolStripMenuItem.Text = "Load field";
+            this.loadOrderToolStripMenuItem.Click += new System.EventHandler(this.loadOrderToolStripMenuItem_Click);
+            // 
+            // sizeToolStripMenuItem
+            // 
+            this.sizeToolStripMenuItem.Name = "sizeToolStripMenuItem";
+            this.sizeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sizeToolStripMenuItem.Text = "Size";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(149, 6);
+            // 
             // tablesField
             // 
             this.tablesField.AutoScroll = true;
@@ -831,6 +1043,7 @@ namespace STS.Workbench
             this.tablesField.Name = "tablesField";
             this.tablesField.Size = new System.Drawing.Size(1030, 294);
             this.tablesField.TabIndex = 0;
+            this.tablesField.Click += new System.EventHandler(this.tablesField_Click);
             this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
             this.tablesField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.On_MouseMove);
             this.tablesField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
@@ -900,6 +1113,8 @@ namespace STS.Workbench
             this.splitContainer5.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).EndInit();
             this.splitContainer5.ResumeLayout(false);
+            this.menuStripTables.ResumeLayout(false);
+            this.menuStripTablesField.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -911,7 +1126,7 @@ namespace STS.Workbench
         private SplitContainer splitContainerTablesPreview;
         private SplitContainer spltCntTablesData;
         private Button btnPlaceTable;
-        private Button btnRemoveTable;
+        private Button btnDeleteTables;
         private SplitContainer splitContainer3;
         private Button btnSaveRowChanges;
         private SplitContainer splitContainer4;
@@ -955,5 +1170,31 @@ namespace STS.Workbench
         private TablesDiagram.DiagramPreviewComponents.FieldControl tablesField;
         private SplitContainer splitContainer1;
         private Label lblDiagramHeader;
+        private ContextMenuStrip menuStripTables;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem closeToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator1;
+        private ToolStripMenuItem copyToolStripMenuItem;
+        private ToolStripMenuItem editColorsToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator4;
+        private ToolStripMenuItem propertiesToolStripMenuItem;
+        private ToolStripMenuItem pasteDataToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator3;
+        private ContextMenuStrip menuStripTablesField;
+        private ToolStripMenuItem collapseToolStripMenuItem;
+        private ToolStripMenuItem allToolStripMenuItem;
+        private ToolStripMenuItem selectedToolStripMenuItem;
+        private ToolStripMenuItem expandToolStripMenuItem;
+        private ToolStripMenuItem allToolStripMenuItem1;
+        private ToolStripMenuItem selectedToolStripMenuItem1;
+        private ToolStripSeparator toolStripSeparator7;
+        private ToolStripMenuItem pasteToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator6;
+        private ToolStripMenuItem sizeToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator8;
+        private ToolStripMenuItem sortToolStripMenuItem;
+        private ToolStripSeparator toolStripSeparator5;
+        private ToolStripMenuItem saveOrderToolStripMenuItem;
+        private ToolStripMenuItem loadOrderToolStripMenuItem;
     }
 }
