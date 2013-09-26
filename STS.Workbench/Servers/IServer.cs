@@ -14,6 +14,8 @@ namespace STS.Workbench.Servers
         int Port { get; }
         string DatabaseName { get; }
         string Host { get; }
+        long BytesReceive { get; }
+        long BytesSent { get; }
 
         bool IsWorking { get; }
 

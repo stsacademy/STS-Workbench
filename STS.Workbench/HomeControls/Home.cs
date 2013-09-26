@@ -16,5 +16,10 @@ namespace STS.Workbench.HomeControls
         {
             InitializeComponent();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.OpenForms["MainForm"].Close();
+        }
     }
 }

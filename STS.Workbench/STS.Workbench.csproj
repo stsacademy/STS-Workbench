@@ -77,6 +77,12 @@
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
     </Compile>
     <Compile Include="FormExtensions.cs" />
+    <Compile Include="HomeControls\ServerInstanceControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="HomeControls\ServerInstanceControl.Designer.cs">
+      <DependentUpon>ServerInstanceControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="HomeControls\ServerInstancesControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DbManager\Wizards\STSdb4Wizard.resx">
       <DependentUpon>STSdb4Wizard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeControls\ServerInstanceControl.resx">
+      <DependentUpon>ServerInstanceControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HomeControls\ServerInstancesControl.resx">
       <DependentUpon>ServerInstancesControl.cs</DependentUpon>

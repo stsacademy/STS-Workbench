@@ -10,12 +10,10 @@ using System.Windows.Forms;
 
 namespace STS.Workbench.HomeControls
 {
-    public partial class ServerInstancesControl : UserControl
+    public partial class ServerInstanceObject : UserControl
     {
-        List<Control> controlList;
-        public ServerInstancesControl()
+        public ServerInstanceObject()
         {
-            controlList = new List<Control>();
             InitializeComponent();
         }
     }
