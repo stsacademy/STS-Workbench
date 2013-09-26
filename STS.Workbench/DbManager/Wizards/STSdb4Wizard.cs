@@ -67,7 +67,7 @@ namespace STS.Workbench.DbManager.Wizards
                     }
                 }
 
-                StorageEngine = ClientSelected ? STSdb.FromNetwork(Host, Port) : STSdb.FromFile(SystemFilePath, DataFilePath);
+                StorageEngine = ClientSelected ? STSdb.FromNetwork(Host, Port) : STSdb.FromFile(DataFilePath);
                 btnSubmit.PerformClick();
             }
             catch (Exception exc)

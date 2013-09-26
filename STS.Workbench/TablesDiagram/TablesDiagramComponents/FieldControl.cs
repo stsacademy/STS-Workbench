@@ -34,6 +34,10 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
         #region mainFeild
 
         private Size DefaultSize = new Size(2048, 1152);
+        private int sizeBounds = 0;
+
+        public bool AllowResize { get { return sizeBounds > -3 && sizeBounds < 3; } }
+
 
         public void SetDefaultSize()
         {
@@ -42,12 +46,14 @@ namespace STS.Workbench.TablesDiagram.DiagramPreviewComponents
 
         public void DecraseSizeTwise()
         {
-
+            if (AllowResize)
+                sizeBounds--;
         }
 
         public void IncraseSizeTwice()
         {
-
+            if (AllowResize)
+                sizeBounds++;
         }
 
         #endregion

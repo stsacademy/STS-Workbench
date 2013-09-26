@@ -71,10 +71,10 @@ namespace STS.Workbench.STS_Data_Adapter
 
         public void Open()
         {
-            if (IsValidConnectionString())
-                engine = STSdb.FromFile(systemFile, dataFile);
-            else
-                throw new Exception("Connection failed.");
+            //if (IsValidConnectionString())
+            //    engine = STSdb.FromFile(systemFile, dataFile);
+            //else
+            //    throw new Exception("Connection failed.");
 
             state = ConnectionState.Open;
         }

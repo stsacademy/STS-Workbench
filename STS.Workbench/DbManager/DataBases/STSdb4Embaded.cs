@@ -36,7 +36,7 @@ namespace STS.Workbench.DbManager.DataBases
                     File.Delete(DataFilePath);
                 }
 
-                IStorageEngine engine = STSdb.FromFile(SystemFilePath, DataFilePath, true);
+                IStorageEngine engine = STSdb.FromFile(DataFilePath, true);
                 STSDbConnection = new STSDbConnection(engine);
 
                 IsReady = true;

@@ -34,7 +34,7 @@ namespace STS.Workbench.Schema
             SystemFile = Path.Combine(DatabasePath, "System.sys");
             DataFile = Path.Combine(DatabasePath, DatabaseName + ".data");
 
-            Engine = (StorageEngine)STSdb4.Database.STSdb.FromFile(SystemFile, DataFile, Compress);
+            //Engine = (StorageEngine)STSdb4.Database.STSdb.FromFile(SystemFile, DataFile, Compress);
         }
 
         public DataTable CreateTable(string tableName, Column[] columns)
