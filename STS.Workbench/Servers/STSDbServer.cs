@@ -99,10 +99,19 @@ namespace STS.Workbench.Servers
             }
         }
 
-
         public long DBSize
         {
             get { return ServerEngine.StorageEngine.Size; }
+        }
+
+
+        public IEnumerable<IServerConnection> Connections
+        {
+            get 
+            {
+                foreach (var connection in ServerEngine.TcpServer.ServerConnections)
+                    yield return new STSDbServerConnection(connection.Key);
+            }
         }
     }
 

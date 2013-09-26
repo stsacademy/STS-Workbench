@@ -24,6 +24,8 @@ namespace STS.Workbench.Servers
 
         Queue<KeyValuePair<DateTime, string>> Errors { get; }
 
+        IEnumerable<IServerConnection> Connections { get; }
+
         int CountOfConnection { get; }
     }
 
