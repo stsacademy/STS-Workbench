@@ -50,5 +50,16 @@ namespace STS.Workbench.Servers
         {
             get { return ServerEngine.TcpServer.ServerConnections.Count; }
         }
+
+
+        public long BytesReceive
+        {
+            get { return ServerEngine.TcpServer.BytesReceive; }
+        }
+
+        public long BytesSent
+        {
+            get { return ServerEngine.TcpServer.BytesSent; }
+        }
     }
 }

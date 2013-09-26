@@ -10,13 +10,17 @@ using System.Windows.Forms;
 using STS.Workbench.Servers;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
+using System.Net.Sockets;
 
 namespace STS.Workbench.ServerControls
 {
     public partial class ServerStatus : UserControl
     {
         private long OldTime = Process.GetCurrentProcess().UserProcessorTime.Ticks;
-        private PerformanceCounter NetworkBytesTotal;
+        private float OldByteTranfer;
+
+        private PerformanceCounter NetworkSentBytesPC;
+        private PerformanceCounter NetworkReceivedBytesPC;
 
         public IServer ServerInfo { get; private set; }
 
@@ -24,10 +28,16 @@ namespace STS.Workbench.ServerControls
         {
             ServerInfo = serverInfo;
             InitializeComponent();
+            PerformanceCounterCategory Array = new PerformanceCounterCategory(".NET CLR Networking");
+            var c = Array.InstanceExists("_global_");
+            TcpClient client = new TcpClient();
+            client.Connect("194.153.145.104", 80);
 
-           // NetworkBytesTotal = new PerformanceCounter("Network Interface", "Bytes Total/sec");
-           // NetworkBytesTotal.NextValue();
-            
+
+            NetworkSentBytesPC = new PerformanceCounter(".NET CLR Networking", "Bytes Sent");
+            NetworkReceivedBytesPC = new PerformanceCounter(".NET CLR Networking", "Bytes Received");
+            OldByteTranfer = NetworkSentBytesPC.NextValue() + NetworkReceivedBytesPC.NextValue();
+
             Task task = new Task(() => { while (true);});
             task.Start();
         }
