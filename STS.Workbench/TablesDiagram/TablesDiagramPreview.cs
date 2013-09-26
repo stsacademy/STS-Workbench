@@ -574,56 +574,10 @@ namespace STS.Workbench
         {
             grdViewTableRecords.SelectAll();
         }
-
-        private void btnCloseTab_Click(object sender, EventArgs e)
-        {
-            DbConnection.Close();
-        }
-
-        private void btnHideData_Click(object sender, EventArgs e)
+        
+        private void btnCloseTable_Click(object sender, EventArgs e)
         {
             CloseOpenedTable();
-        }
-
-        private void btnLoadDiagram_Click(object sender, EventArgs e)
-        {
-            tablesField.ResetScrollBars();
-
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "diagram (*.dgr)|*.dgr";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                using (BinaryReader reader = new BinaryReader(new FileStream(dialog.FileName, FileMode.Open)))
-                {
-                    int count = reader.ReadInt32();
-                    for (int i = 0; i < count; i++)
-                    {
-                        TableComponent table;
-
-                        var settings = TableComponent.DeserializeSettings(reader);
-                        if (TablesMap.TryGetValue(settings.TableName, out table))
-                            table.ApplySettings(settings);
-                    }
-                }
-            }
-        }
-
-        private void btnSaveTableDiagram_Click(object sender, EventArgs e)
-        {
-            tablesField.ResetScrollBars();
-
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.Filter = "diagram (*.dgr)|*.dgr";
-            dialog.FileName = "schema";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                using (BinaryWriter writer = new BinaryWriter(new FileStream(dialog.FileName, FileMode.Create)))
-                {
-                    writer.Write(TablesMap.Count);
-                    foreach (var table in TablesMap)
-                        table.Value.SerializeSettings(writer);
-                }
-            }
         }
 
         private void btnCollapseTablse_Click(object sender, EventArgs e)
@@ -647,7 +601,7 @@ namespace STS.Workbench
             lblInfo.Text = text;
         }
 
-        #region Table menu strip
+        #region Table - Menu strip
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -698,7 +652,7 @@ namespace STS.Workbench
 
         #endregion
 
-        #region TableField menu strip
+        #region TableField - Menu strip
 
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
