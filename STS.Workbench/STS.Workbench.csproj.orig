@@ -111,7 +111,6 @@
     </Compile>
     <Compile Include="TablesDiagram\Helpers\LoadingHelper.cs" />
     <Compile Include="TablesDiagram\Helpers\SelectorTool.cs" />
-    <Compile Include="TablesDiagram\Helpers\TablesTransfer.cs" />
     <Compile Include="TablesDiagram\TablesDiagramComponents\FieldControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -123,12 +122,6 @@
     </Compile>
     <Compile Include="TablesDiagram\TablesDiagramComponents\OpenTableWizard.Designer.cs">
       <DependentUpon>OpenTableWizard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TablesDiagram\TablesDiagramComponents\PropertyForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TablesDiagram\TablesDiagramComponents\PropertyForm.Designer.cs">
-      <DependentUpon>PropertyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TablesDiagram\TablesDiagramComponents\TableComponent.cs">
       <SubType>UserControl</SubType>
@@ -228,9 +221,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TablesDiagram\TablesDiagramComponents\PropertyForm.resx">
-      <DependentUpon>PropertyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TablesDiagram\TablesDiagramPreview.resx">
       <DependentUpon>TablesDiagramPreview.cs</DependentUpon>
