@@ -271,9 +271,14 @@ namespace STS.Workbench
                 UnSelectTables();
             else
             {
-                menuStripTablesField.Items["pasteToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
+                mStripTablesField.Items["expandToolStripMenuItem"].Enabled = selectedTables.Count > 0;
+                mStripTablesField.Items["collapseToolStripMenuItem"].Enabled = selectedTables.Count > 0;
+                mStripTablesField.Items["pasteToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
+                var size = (ToolStripMenuItem)mStripTablesField.Items["sizeToolStripMenuItem"];
+                size.DropDownItems["incrase2xToolStripMenuItem"].Enabled = tablesField.AllowIncrase;
+                size.DropDownItems["decrase2xToolStripMenuItem"].Enabled = tablesField.AllowDecrase;
 
-                menuStripTablesField.Show(Cursor.Position);
+                mStripTablesField.Show(Cursor.Position);
             }
         }
 
@@ -286,10 +291,10 @@ namespace STS.Workbench
 
             if (mouseEventArgs.Button == MouseButtons.Right)
             {
-                menuStripTables.Items["openToolStripMenuItem"].Enabled = OpenedTable == null || OpenedTable.TableName != table.TableName;
-                menuStripTables.Items["closeToolStripMenuItem"].Enabled = OpenedTable != null && OpenedTable.TableName == table.TableName;
-                menuStripTables.Items["pasteDataToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
-                menuStripTables.Show(Cursor.Position);
+                mStripTables.Items["openToolStripMenuItem"].Enabled = OpenedTable == null || OpenedTable.TableName != table.TableName;
+                mStripTables.Items["closeToolStripMenuItem"].Enabled = OpenedTable != null && OpenedTable.TableName == table.TableName;
+                mStripTables.Items["pasteDataToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
+                mStripTables.Show(Cursor.Position);
             }
 
             UnSelectTables();
@@ -620,13 +625,7 @@ namespace STS.Workbench
                 }
             }
         }
-
-        private void btnExpandTables_Click(object sender, EventArgs e)
-        {
-            foreach (var item in TablesMap)
-                item.Value.Expand();
-        }
-
+        
         private void btnCollapseTablse_Click(object sender, EventArgs e)
         {
             foreach (var item in TablesMap)
@@ -668,7 +667,7 @@ namespace STS.Workbench
 
         private void pasteDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var table = TablesTransfer.Paste();
+            var table = TablesTransfer.Paste()[0];
             var activeTable = DbConnection.OpenTable(ActiveTableComponent.TableName, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
 
             try
@@ -699,22 +698,32 @@ namespace STS.Workbench
 
         #endregion
 
+        #region TableField menu strip
+
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var table = TablesTransfer.Paste();
-            var component = new TableComponent(table.TableName, table.KeyTypes, table.RecordTypes);
-            var newTable = DbConnection.OpenTable(table.TableName, table.KeyTypes, table.RecordTypes);
+            var tables = TablesTransfer.Paste();
 
-            try
+            Point location = tablesField.PointToClient(Cursor.Position);
+            foreach (var table in tables)
             {
-                component.Location = tablesField.PointToClient(Cursor.Position);
-                AddTable(component);
-                foreach (var kv in table.Read())
-                    newTable.Insert(kv.Key, kv.Value);
-            }
-            catch (Exception exc)
-            {
-                FormExtensions.ShowError(exc.Message);
+                var component = new TableComponent(table.TableName, table.KeyTypes, table.RecordTypes);
+                var newTable = DbConnection.OpenTable(table.TableName, table.KeyTypes, table.RecordTypes);
+                try
+                {
+                    component.Location = location;
+                    AddTable(component);
+                    foreach (var kv in table.Read())
+                        newTable.Insert(kv.Key, kv.Value);
+
+                    location = location.X + component.Width + 20 > tablesField.Width ? new Point(20, location.Y + component.Height + 20) : location;
+                    location = location.Y + component.Height + 20 > tablesField.Height ? new Point(20, 20) : location;
+                    location = new Point(location.X + component.Width + 20, location.Y);
+                }
+                catch (Exception exc)
+                {
+                    FormExtensions.ShowError(exc.Message);
+                }
             }
         }
 
@@ -761,10 +770,51 @@ namespace STS.Workbench
 
         private void sizeToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var control = (ToolStripMenuItem)sender;
+            switch (control.Name)
+            {
+                case "defaultToolStripMenuItem":
+                    tablesField.SetDefaultSize();
+                    break;
+                case "incrase2xToolStripMenuItem":
+                    tablesField.IncraseSizeQuatter();
+                    break;
+                case "decrase2xToolStripMenuItem":
+                    tablesField.DecraseSizeQuatter();
+                    break;
+                default:
+                    break;
+            }
 
+            foreach (var table in TablesMap.Values)
+            {
+                if (table.Location.X + table.Width > tablesField.mainField.Width)
+                    table.Location = new Point(40, 40);
+            }
+        }
+              
+        private void expandToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var table in selectedTables)
+                table.Expand();
         }
 
-        #region TableField menu strip
+        private void collapseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var table in selectedTables)
+                table.Collapse();
+        }
+
+        private void copyToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            List<ITable> tables = new List<ITable>(selectedTables.Select<TableComponent, ITable>((x) => { return DbConnection.OpenTable(x.TableName, x.KeyTypes, x.RecordTypes); }));
+            TablesTransfer.Copy(tables.ToArray());
+        }
+
+        private void selectAllToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectTables(new List<Control>(TablesMap.Values.Select(x => (Control)x)));
+        }
 
         #endregion
     }

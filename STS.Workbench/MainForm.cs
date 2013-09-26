@@ -58,7 +58,6 @@ namespace STS.Workbench
 
             var tabPage = new TabPage("Tables");
             tablesPreview.Dock = DockStyle.Fill;
-            tablesPreview.btnCloseTab.Click += btnCloseTab_Click;
             tabPage.Controls.Add(tablesPreview);
 
             userControls.Controls.Add(tabPage);
@@ -121,7 +120,6 @@ namespace STS.Workbench
 
                 var tabPage = new TabPage(STSdbConnection.Name);
                 tablesPreview.Dock = DockStyle.Fill;
-                tablesPreview.btnCloseTab.Click += btnCloseTab_Click;
                 tabPage.Controls.Add(tablesPreview);
 
                 userControls.Controls.Add(tabPage);
