@@ -33,12 +33,13 @@ namespace STS.Workbench
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.userControls = new System.Windows.Forms.TabControl();
             this.HomePage = new System.Windows.Forms.TabPage();
+            this.btnHomeTest = new System.Windows.Forms.Button();
             this.btnWizarDbTest = new System.Windows.Forms.Button();
             this.btnControlTest = new System.Windows.Forms.Button();
             this.btnServer = new System.Windows.Forms.Button();
             this.btnTablesTest = new System.Windows.Forms.Button();
             this.imgListControls = new System.Windows.Forms.ImageList(this.components);
-            this.btnHomeTest = new System.Windows.Forms.Button();
+            this.btnChartTest = new System.Windows.Forms.Button();
             this.userControls.SuspendLayout();
             this.HomePage.SuspendLayout();
             this.SuspendLayout();
@@ -56,6 +57,7 @@ namespace STS.Workbench
             // 
             // HomePage
             // 
+            this.HomePage.Controls.Add(this.btnChartTest);
             this.HomePage.Controls.Add(this.btnHomeTest);
             this.HomePage.Controls.Add(this.btnWizarDbTest);
             this.HomePage.Controls.Add(this.btnControlTest);
@@ -69,6 +71,16 @@ namespace STS.Workbench
             this.HomePage.TabIndex = 1;
             this.HomePage.Text = "Home";
             this.HomePage.UseVisualStyleBackColor = true;
+            // 
+            // btnHomeTest
+            // 
+            this.btnHomeTest.Location = new System.Drawing.Point(93, 196);
+            this.btnHomeTest.Name = "btnHomeTest";
+            this.btnHomeTest.Size = new System.Drawing.Size(101, 23);
+            this.btnHomeTest.TabIndex = 4;
+            this.btnHomeTest.Text = "Home Test";
+            this.btnHomeTest.UseVisualStyleBackColor = true;
+            this.btnHomeTest.Click += new System.EventHandler(this.btnHomeTest_Click);
             // 
             // btnWizarDbTest
             // 
@@ -116,15 +128,15 @@ namespace STS.Workbench
             this.imgListControls.TransparentColor = System.Drawing.Color.Transparent;
             this.imgListControls.Images.SetKeyName(0, "home-12.ico");
             // 
-            // btnHomeTest
+            // btnChartTest
             // 
-            this.btnHomeTest.Location = new System.Drawing.Point(93, 196);
-            this.btnHomeTest.Name = "btnHomeTest";
-            this.btnHomeTest.Size = new System.Drawing.Size(101, 23);
-            this.btnHomeTest.TabIndex = 4;
-            this.btnHomeTest.Text = "Home Test";
-            this.btnHomeTest.UseVisualStyleBackColor = true;
-            this.btnHomeTest.Click += new System.EventHandler(this.btnHomeTest_Click);
+            this.btnChartTest.Location = new System.Drawing.Point(200, 80);
+            this.btnChartTest.Name = "btnChartTest";
+            this.btnChartTest.Size = new System.Drawing.Size(101, 23);
+            this.btnChartTest.TabIndex = 5;
+            this.btnChartTest.Text = "ChartTests";
+            this.btnChartTest.UseVisualStyleBackColor = true;
+            this.btnChartTest.Click += new System.EventHandler(this.btnChartTest_Click);
             // 
             // MainForm
             // 
@@ -153,6 +165,7 @@ namespace STS.Workbench
         private Button btnControlTest;
         private Button btnWizarDbTest;
         private Button btnHomeTest;
+        private Button btnChartTest;
     }
 }
 

@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using STS.Workbench.HomeControls;
+using STS.Workbench.TablesDiagram.TablesDiagramComponents;
 
 namespace STS.Workbench
 {
@@ -34,7 +35,7 @@ namespace STS.Workbench
 
         private void btnTablesTest_Click(object sender, EventArgs e)
         {
-           
+
             string file = "stsdb4.data";
 
             File.Delete(file);
@@ -134,6 +135,12 @@ namespace STS.Workbench
             tabPage.Controls.Add(home);
 
             userControls.Controls.Add(tabPage);
+        }
+
+        private void btnChartTest_Click(object sender, EventArgs e)
+        {
+            ChartWizardForm chart = new ChartWizardForm();
+            chart.Show();
         }
     }
 }

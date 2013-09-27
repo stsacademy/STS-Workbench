@@ -101,26 +101,6 @@ namespace STS.Workbench.Readers
             return recordTransformer.FromIData(XIndex.Find(keyTransfomer.ToIData(key)));
         }
 
-        public KeyValuePair<object[], object[]>? FindAfter(object[] key)
-        {
-            var after = XIndex.FindAfter(keyTransfomer.ToIData(key));
-
-            if (after.HasValue)
-                return new KeyValuePair<object[], object[]>(keyTransfomer.FromIData(after.Value.Key), recordTransformer.FromIData(after.Value.Value));
-
-            return null;
-        }
-
-        public KeyValuePair<object[], object[]>? FindBefore(object[] key)
-        {
-            var before = XIndex.FindBefore(keyTransfomer.ToIData(key));
-
-            if (before.HasValue)
-                return new KeyValuePair<object[], object[]>(keyTransfomer.FromIData(before.Value.Key), recordTransformer.FromIData(before.Value.Value));
-
-            return null;
-        }
-
         public IEnumerable<KeyValuePair<object[], object[]>> Read()
         {
             return Read(null, null);

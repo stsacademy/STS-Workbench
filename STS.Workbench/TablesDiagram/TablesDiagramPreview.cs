@@ -15,6 +15,7 @@ using STS.Workbench.TablesDiagram.DiagramPreviewComponents;
 using STS.Workbench.TablesDiagram.Helpers;
 using System.IO;
 using STS.Workbench.TablesDiagram.TablesDiagramComponents;
+using System.Drawing.Drawing2D;
 
 namespace STS.Workbench
 {
@@ -23,7 +24,7 @@ namespace STS.Workbench
         private LoadingForm loadingForm = null;
         private Thread Worker = new Thread(() => { });
 
-        private int PageCapacity { get { return int.Parse(cmbxPageCount.Text); } }
+        private int PageCapacity { get { return int.Parse(cmbPageCapacity.Text); } }
 
         private object[] NextKey = null;
         private object[] CurrentKey = null;
@@ -49,10 +50,13 @@ namespace STS.Workbench
 
             InitializeComponent();
 
-            selectorTool = new SelectorTool(tablesField.mainField);
+            Pen pen = new Pen(Color.Black);
+            pen.DashStyle = DashStyle.Dash;
+            selectorTool = new SelectorTool(tablesField.mainField, pen);
+
             spltCntTablesData.Panel2Collapsed = true;
             treeViewTablesCatalog.Nodes[0].Text = dbConnection.Name;
-            cmbxPageCount.Text = "5";
+            cmbPageCapacity.Text = "5";
 
             PreviewScheme(190);
         }
@@ -150,7 +154,8 @@ namespace STS.Workbench
 
             //Do select
             if (IsSelecting)
-                selectorTool.DrawRectangle(new Pen(Color.Black), SelectedMousePoint, e.Location);
+                selectorTool.DrawRectangle(SelectedMousePoint, e.Location);
+
         }
 
         private void SelectTables(List<Control> tables)
@@ -205,19 +210,7 @@ namespace STS.Workbench
         private void btnDeleteTables_Click(object sender, EventArgs e)
         {
             foreach (var table in selectedTables)
-            {
-                if (MessageBox.Show(string.Format("Do you want to delete table {0}?", table.Name), "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    try
-                    {
-                        RemoveTable(ActiveTableComponent);
-                    }
-                    catch (Exception exc)
-                    {
-                        MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
+                RemoveTable(table);
         }
 
         private void AddTable(TableComponent table)
@@ -239,13 +232,22 @@ namespace STS.Workbench
 
         private void RemoveTable(TableComponent table)
         {
-            DbConnection.RemoveTable(ActiveTableComponent.Name, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
-            tables.Remove(table.TableName);
-            treeViewTablesCatalog.Nodes[0].Nodes.RemoveByKey(table.TableName);
-            tablesField.Controls.Remove(table);
+            if (MessageBox.Show(string.Format("Do you want to delete table {0}?", table.Name), "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    DbConnection.RemoveTable(ActiveTableComponent.Name, ActiveTableComponent.KeyTypes, ActiveTableComponent.RecordTypes);
+                    tables.Remove(table.TableName);
+                    treeViewTablesCatalog.Nodes[0].Nodes.RemoveByKey(table.TableName);
+                    tablesField.Controls.Remove(table);
 
-            OpenedTable = null;
-            ActiveTableComponent = null;
+                    table = null;
+                }
+                catch (Exception exc)
+                {
+                    MessageBox.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void tablesField_Click(object sender, EventArgs e)
@@ -276,6 +278,7 @@ namespace STS.Workbench
             {
                 mStripTablesField.Items["expandToolStripMenuItem"].Enabled = selectedTables.Count > 0;
                 mStripTablesField.Items["collapseToolStripMenuItem"].Enabled = selectedTables.Count > 0;
+                mStripTablesField.Items["deleteToolStripMenuItem1"].Enabled = selectedTables.Count > 0;
                 mStripTablesField.Items["pasteToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
                 var size = (ToolStripMenuItem)mStripTablesField.Items["sizeToolStripMenuItem"];
                 size.DropDownItems["incrase2xToolStripMenuItem"].Enabled = tablesField.AllowIncrase;
@@ -294,10 +297,10 @@ namespace STS.Workbench
 
             if (mouseEventArgs.Button == MouseButtons.Right)
             {
-                mStripTables.Items["openToolStripMenuItem"].Enabled = OpenedTable == null || OpenedTable.TableName != table.TableName;
-                mStripTables.Items["closeToolStripMenuItem"].Enabled = OpenedTable != null && OpenedTable.TableName == table.TableName;
-                mStripTables.Items["pasteDataToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
-                mStripTables.Show(Cursor.Position);
+                mStripTable.Items["openToolStripMenuItem"].Enabled = OpenedTable == null || OpenedTable.TableName != table.TableName;
+                mStripTable.Items["closeToolStripMenuItem"].Enabled = OpenedTable != null && OpenedTable.TableName == table.TableName;
+                mStripTable.Items["pasteDataToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
+                mStripTable.Show(Cursor.Position);
             }
 
             UnSelectTables();
@@ -406,71 +409,6 @@ namespace STS.Workbench
             ModifyedRows.Clear();
         }
 
-        private void btnDiscard_Click(object sender, EventArgs e)
-        {
-            ModifyedRows.Clear();
-            VisualizeData(OpenedTable, CurrentKey, null);
-        }
-
-        #region Export/Import
-
-        private void btnImportCsv_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.Filter = "Csv ';'separated (*.csv)|*.csv|Epf ',' separated (*.epf)|*.epf|Txt ',' separated (*.txt)|*.txt|Txt 'Tab' separated (*.txt)|*.txt";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var fileType = (FileType)dialog.FilterIndex;
-                Worker = new Thread(() =>
-                {
-                    foreach (var kv in FileUtils.Import(dialog.FileName, fileType, OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
-                    {
-                        try
-                        {
-                            OpenedTable.Insert(kv.Key, kv.Value);
-                        }
-                        catch { }
-                    };
-
-                    OpenedTable.Save();
-                }
-                );
-                Worker.Start();
-                loadingForm = new LoadingForm();
-                loadingForm.Show();
-            }
-        }
-
-        private void btnExportCsv_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog dialog = new SaveFileDialog();
-            dialog.FileName = OpenedTable.TableName;
-            dialog.Filter = "Csv ';'separated (*.csv)|*.csv|Epf ',' separated (*.epf)|*.epf|Txt ',' separated (*.txt)|*.txt|Txt 'Tab' separated (*.txt)|*.txt";
-            if (dialog.ShowDialog() == DialogResult.OK)
-            {
-                var fileType = (FileType)dialog.FilterIndex;
-                Worker = new Thread(() => FileUtils.Export(OpenedTable.Read(), dialog.FileName, fileType));
-                Worker.Start();
-                loadingForm = new LoadingForm();
-                loadingForm.Show();
-            }
-        }
-
-        #endregion
-
-        private void btnDeleteRow_Click(object sender, EventArgs e)
-        {
-            foreach (var row in grdViewTableRecords.SelectedRows)
-            {
-                //Not last(empty) row.
-                if ((DataGridViewRow)row != grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1])
-                {
-                    ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Delete, (DataGridViewRow)row));
-                    grdViewTableRecords.Rows.Remove((DataGridViewRow)row);
-                }
-            }
-        }
-
         private DataGridViewRow clickedRow;
         private DataGridViewRow oldChangedRow;
         private void grdViewTableRecords_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -498,10 +436,7 @@ namespace STS.Workbench
                 oldChangedRow.Cells[i].Value = clickedRow.Cells[i].Value;
         }
 
-        private void btnCommit_Click(object sender, EventArgs e)
-        {
-            DbConnection.Commit();
-        }
+        #region Paging
 
         private void btnNextPage_Click(object sender, EventArgs e)
         {
@@ -541,31 +476,75 @@ namespace STS.Workbench
             }
         }
 
+        #endregion
+
+        #region EditTable
+
+        private void btnDiscard_Click(object sender, EventArgs e)
+        {
+            ModifyedRows.Clear();
+            VisualizeData(OpenedTable, CurrentKey, null);
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Csv ';'separated (*.csv)|*.csv|Epf ',' separated (*.epf)|*.epf|Txt ',' separated (*.txt)|*.txt|Txt 'Tab' separated (*.txt)|*.txt";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var fileType = (FileType)dialog.FilterIndex;
+                Worker = new Thread(() =>
+                {
+                    foreach (var kv in FileUtils.Import(dialog.FileName, fileType, OpenedTable.KeyTypes.Length, OpenedTable.RecordTypes.Length))
+                    {
+                        try
+                        {
+                            OpenedTable.Insert(kv.Key, kv.Value);
+                        }
+                        catch { }
+                    };
+
+                    OpenedTable.Save();
+                }
+                );
+                Worker.Start();
+                loadingForm = new LoadingForm();
+                loadingForm.Show();
+            }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog dialog = new SaveFileDialog();
+            dialog.FileName = OpenedTable.TableName;
+            dialog.Filter = "Csv ';'separated (*.csv)|*.csv|Epf ',' separated (*.epf)|*.epf|Txt ',' separated (*.txt)|*.txt|Txt 'Tab' separated (*.txt)|*.txt";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                var fileType = (FileType)dialog.FilterIndex;
+                Worker = new Thread(() => FileUtils.Export(OpenedTable.Read(), dialog.FileName, fileType));
+                Worker.Start();
+                loadingForm = new LoadingForm();
+                loadingForm.Show();
+            }
+        }
+
+        private void btnDeleteRow_Click(object sender, EventArgs e)
+        {
+            foreach (var row in grdViewTableRecords.SelectedRows)
+            {
+                //Not last(empty) row.
+                if ((DataGridViewRow)row != grdViewTableRecords.Rows[grdViewTableRecords.Rows.Count - 1])
+                {
+                    ModifyedRows.Add(new KeyValuePair<RowOperation, DataGridViewRow>(RowOperation.Delete, (DataGridViewRow)row));
+                    grdViewTableRecords.Rows.Remove((DataGridViewRow)row);
+                }
+            }
+        }
+
         private void cmbxPageCount_SelectedValueChanged(object sender, EventArgs e)
         {
             if (OpenedTable != null)
                 VisualizeData(OpenedTable, CurrentKey, null);
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            Enabled = !Worker.IsAlive;
-
-            if (Worker.IsAlive)
-            {
-                loadingForm.SetPercents(FileUtils.Percents);
-                if (loadingForm.StopClicked)
-                {
-                    FileUtils.Stop();
-                    Worker.Join();
-                }
-            }
-
-            if (!Worker.IsAlive && loadingForm != null)
-            {
-                loadingForm.Close();
-                loadingForm = null;
-            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -577,17 +556,18 @@ namespace STS.Workbench
         {
             grdViewTableRecords.SelectAll();
         }
-        
-        private void btnCloseTable_Click(object sender, EventArgs e)
+
+        private void btnChartWizard_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void btnCloseTable_Click(object sender, EventArgs e)
         {
             CloseOpenedTable();
         }
 
-        private void btnCollapseTablse_Click(object sender, EventArgs e)
-        {
-            foreach (var item in TablesMap)
-                item.Value.Collapse();
-        }
+        #endregion
 
         private void btnTest_Click(object sender, EventArgs e)
         {
@@ -638,6 +618,11 @@ namespace STS.Workbench
             }
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RemoveTable(ActiveTableComponent);
+        }
+
         private void editColorsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ColorDialog dialog = new ColorDialog();
@@ -682,6 +667,12 @@ namespace STS.Workbench
                     FormExtensions.ShowError(exc.Message);
                 }
             }
+        }
+
+        private void deleteToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            foreach (var table in selectedTables)
+                RemoveTable(table);
         }
 
         private void saveOrderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -774,5 +765,26 @@ namespace STS.Workbench
         }
 
         #endregion
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Enabled = !Worker.IsAlive;
+
+            if (Worker.IsAlive)
+            {
+                loadingForm.SetPercents(FileUtils.Percents);
+                if (loadingForm.StopClicked)
+                {
+                    FileUtils.Stop();
+                    Worker.Join();
+                }
+            }
+
+            if (!Worker.IsAlive && loadingForm != null)
+            {
+                loadingForm.Close();
+                loadingForm = null;
+            }
+        }
     }
 }

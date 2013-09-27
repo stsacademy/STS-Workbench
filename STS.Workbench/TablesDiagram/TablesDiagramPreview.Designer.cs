@@ -33,8 +33,18 @@ namespace STS.Workbench
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.cmbxPageCount = new System.Windows.Forms.ComboBox();
+            this.cmbPageCapacity = new System.Windows.Forms.ComboBox();
+            this.btnPlaceTable = new System.Windows.Forms.Button();
+            this.btnDeleteTables = new System.Windows.Forms.Button();
+            this.btnCloseTable = new System.Windows.Forms.Button();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.mStripMain = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.splitContainerTablesPreview = new System.Windows.Forms.SplitContainer();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
@@ -42,7 +52,7 @@ namespace STS.Workbench
             this.lblCatalogTree = new System.Windows.Forms.Label();
             this.treeViewTablesCatalog = new System.Windows.Forms.TreeView();
             this.splitContainer8 = new System.Windows.Forms.SplitContainer();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.lblTest = new System.Windows.Forms.Label();
             this.splitContainer6 = new System.Windows.Forms.SplitContainer();
             this.lblSelectedTableInfo = new System.Windows.Forms.Label();
             this.pgrdTableInfo = new System.Windows.Forms.PropertyGrid();
@@ -50,17 +60,36 @@ namespace STS.Workbench
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lblDiagramHeader = new System.Windows.Forms.Label();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
+            this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.lblImportExport = new System.Windows.Forms.Label();
-            this.lblEditRows = new System.Windows.Forms.Label();
-            this.lblChanges = new System.Windows.Forms.Label();
+            this.toolStripTableEdit = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.btnDeleteRows = new System.Windows.Forms.ToolStripButton();
+            this.btnSelectAllRows = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.btnSaveRowChanges = new System.Windows.Forms.ToolStripButton();
+            this.btnDiscard = new System.Windows.Forms.ToolStripButton();
+            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.btnImport = new System.Windows.Forms.ToolStripButton();
+            this.btnExport = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
+            this.btnChartWizard = new System.Windows.Forms.ToolStripButton();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.grdViewTableRecords = new System.Windows.Forms.DataGridView();
+            this.btnLastPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.btnFirstPage = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
-            this.mStripTables = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mStripTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +102,7 @@ namespace STS.Workbench
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.copyToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.expandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.collapseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,32 +119,11 @@ namespace STS.Workbench
             this.mStripCatalogDb = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.commitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripCatalogTables = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mStripMain = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
-            this.btnPlaceTable = new System.Windows.Forms.Button();
-            this.btnDeleteTables = new System.Windows.Forms.Button();
-            this.btnCloseTable = new System.Windows.Forms.Button();
-            this.btnSelectAllRows = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnDiscard = new System.Windows.Forms.Button();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.btnDeleteRows = new System.Windows.Forms.Button();
-            this.btnSaveRowChanges = new System.Windows.Forms.Button();
-            this.btnLastPage = new System.Windows.Forms.Button();
-            this.btnNextPage = new System.Windows.Forms.Button();
-            this.btnPreviousPage = new System.Windows.Forms.Button();
-            this.btnFirstPage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
+            this.mStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer5)).BeginInit();
             this.splitContainer5.Panel1.SuspendLayout();
             this.splitContainer5.Panel2.SuspendLayout();
@@ -155,15 +164,15 @@ namespace STS.Workbench
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.toolStripTableEdit.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).BeginInit();
             this.splitContainer7.Panel1.SuspendLayout();
             this.splitContainer7.Panel2.SuspendLayout();
             this.splitContainer7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).BeginInit();
-            this.mStripTables.SuspendLayout();
+            this.mStripTable.SuspendLayout();
             this.mStripTablesField.SuspendLayout();
             this.mStripCatalogDb.SuspendLayout();
-            this.mStripMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
@@ -171,13 +180,13 @@ namespace STS.Workbench
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // cmbxPageCount
+            // cmbPageCapacity
             // 
-            this.cmbxPageCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbxPageCount.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.cmbxPageCount.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbxPageCount.FormattingEnabled = true;
-            this.cmbxPageCount.Items.AddRange(new object[] {
+            this.cmbPageCapacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbPageCapacity.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.cmbPageCapacity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPageCapacity.FormattingEnabled = true;
+            this.cmbPageCapacity.Items.AddRange(new object[] {
             "2",
             "5",
             "10",
@@ -193,12 +202,53 @@ namespace STS.Workbench
             "20000",
             "50000",
             "100000"});
-            this.cmbxPageCount.Location = new System.Drawing.Point(1112, 3);
-            this.cmbxPageCount.Name = "cmbxPageCount";
-            this.cmbxPageCount.Size = new System.Drawing.Size(121, 21);
-            this.cmbxPageCount.TabIndex = 8;
-            this.toolTip.SetToolTip(this.cmbxPageCount, "Change displaying records count");
-            this.cmbxPageCount.SelectedValueChanged += new System.EventHandler(this.cmbxPageCount_SelectedValueChanged);
+            this.cmbPageCapacity.Location = new System.Drawing.Point(1112, 3);
+            this.cmbPageCapacity.Name = "cmbPageCapacity";
+            this.cmbPageCapacity.Size = new System.Drawing.Size(121, 21);
+            this.cmbPageCapacity.TabIndex = 8;
+            this.toolTip.SetToolTip(this.cmbPageCapacity, "Change displaying records count");
+            this.cmbPageCapacity.SelectedValueChanged += new System.EventHandler(this.cmbxPageCount_SelectedValueChanged);
+            // 
+            // btnPlaceTable
+            // 
+            this.btnPlaceTable.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlaceTable.FlatAppearance.BorderSize = 0;
+            this.btnPlaceTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlaceTable.Image = global::STS.Workbench.Properties.Resources.table_add;
+            this.btnPlaceTable.Location = new System.Drawing.Point(2, 3);
+            this.btnPlaceTable.Name = "btnPlaceTable";
+            this.btnPlaceTable.Size = new System.Drawing.Size(35, 40);
+            this.btnPlaceTable.TabIndex = 6;
+            this.toolTip.SetToolTip(this.btnPlaceTable, "Place new table");
+            this.btnPlaceTable.UseVisualStyleBackColor = false;
+            this.btnPlaceTable.Click += new System.EventHandler(this.btnPlaceTable_Click);
+            // 
+            // btnDeleteTables
+            // 
+            this.btnDeleteTables.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteTables.FlatAppearance.BorderSize = 0;
+            this.btnDeleteTables.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteTables.Image = global::STS.Workbench.Properties.Resources.table_delete;
+            this.btnDeleteTables.Location = new System.Drawing.Point(2, 49);
+            this.btnDeleteTables.Name = "btnDeleteTables";
+            this.btnDeleteTables.Size = new System.Drawing.Size(35, 40);
+            this.btnDeleteTables.TabIndex = 7;
+            this.toolTip.SetToolTip(this.btnDeleteTables, "Delete selected table/s");
+            this.btnDeleteTables.UseVisualStyleBackColor = false;
+            this.btnDeleteTables.Click += new System.EventHandler(this.btnDeleteTables_Click);
+            // 
+            // btnCloseTable
+            // 
+            this.btnCloseTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseTable.BackColor = System.Drawing.SystemColors.Control;
+            this.btnCloseTable.Image = global::STS.Workbench.Properties.Resources.sort_down;
+            this.btnCloseTable.Location = new System.Drawing.Point(1185, 2);
+            this.btnCloseTable.Name = "btnCloseTable";
+            this.btnCloseTable.Size = new System.Drawing.Size(48, 24);
+            this.btnCloseTable.TabIndex = 13;
+            this.toolTip.SetToolTip(this.btnCloseTable, "Close opened table");
+            this.btnCloseTable.UseVisualStyleBackColor = false;
+            this.btnCloseTable.Click += new System.EventHandler(this.btnCloseTable_Click);
             // 
             // splitContainerMain
             // 
@@ -225,6 +275,61 @@ namespace STS.Workbench
             this.splitContainerMain.SplitterDistance = 35;
             this.splitContainerMain.SplitterWidth = 6;
             this.splitContainerMain.TabIndex = 10;
+            // 
+            // mStripMain
+            // 
+            this.mStripMain.BackgroundImage = global::STS.Workbench.Properties.Resources.MenuStripBackGround;
+            this.mStripMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.mStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.helpToolStripMenuItem});
+            this.mStripMain.Location = new System.Drawing.Point(2, 4);
+            this.mStripMain.Name = "mStripMain";
+            this.mStripMain.Size = new System.Drawing.Size(1452, 24);
+            this.mStripMain.TabIndex = 17;
+            this.mStripMain.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem2.Text = "1";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem3.Text = "2";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(80, 22);
+            this.toolStripMenuItem4.Text = "3";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.aboutToolStripMenuItem.Text = "about";
             // 
             // splitContainer5
             // 
@@ -344,22 +449,24 @@ namespace STS.Workbench
             // 
             // splitContainer8.Panel1
             // 
-            this.splitContainer8.Panel1.Controls.Add(this.treeView1);
+            this.splitContainer8.Panel1.BackColor = System.Drawing.Color.White;
+            this.splitContainer8.Panel1.Controls.Add(this.lblTest);
             // 
             // splitContainer8.Panel2
             // 
             this.splitContainer8.Panel2.Controls.Add(this.splitContainer6);
             this.splitContainer8.Size = new System.Drawing.Size(200, 377);
-            this.splitContainer8.SplitterDistance = 176;
+            this.splitContainer8.SplitterDistance = 173;
             this.splitContainer8.TabIndex = 2;
             // 
-            // treeView1
+            // lblTest
             // 
-            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView1.Location = new System.Drawing.Point(0, 0);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(198, 174);
-            this.treeView1.TabIndex = 0;
+            this.lblTest.AutoSize = true;
+            this.lblTest.Location = new System.Drawing.Point(16, 13);
+            this.lblTest.Name = "lblTest";
+            this.lblTest.Size = new System.Drawing.Size(28, 13);
+            this.lblTest.TabIndex = 8;
+            this.lblTest.Text = "Test";
             // 
             // splitContainer6
             // 
@@ -380,7 +487,7 @@ namespace STS.Workbench
             // 
             this.splitContainer6.Panel2.Controls.Add(this.pgrdTableInfo);
             this.splitContainer6.Panel2.Padding = new System.Windows.Forms.Padding(3);
-            this.splitContainer6.Size = new System.Drawing.Size(198, 195);
+            this.splitContainer6.Size = new System.Drawing.Size(198, 198);
             this.splitContainer6.SplitterDistance = 25;
             this.splitContainer6.SplitterWidth = 1;
             this.splitContainer6.TabIndex = 1;
@@ -400,7 +507,7 @@ namespace STS.Workbench
             this.pgrdTableInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pgrdTableInfo.Location = new System.Drawing.Point(3, 3);
             this.pgrdTableInfo.Name = "pgrdTableInfo";
-            this.pgrdTableInfo.Size = new System.Drawing.Size(192, 163);
+            this.pgrdTableInfo.Size = new System.Drawing.Size(192, 166);
             this.pgrdTableInfo.TabIndex = 0;
             // 
             // spltCntTablesData
@@ -419,7 +526,7 @@ namespace STS.Workbench
             // 
             this.spltCntTablesData.Panel2.Controls.Add(this.splitContainer3);
             this.spltCntTablesData.Size = new System.Drawing.Size(1236, 555);
-            this.spltCntTablesData.SplitterDistance = 285;
+            this.spltCntTablesData.SplitterDistance = 284;
             this.spltCntTablesData.TabIndex = 4;
             // 
             // splitContainer1
@@ -441,7 +548,7 @@ namespace STS.Workbench
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer9);
-            this.splitContainer1.Size = new System.Drawing.Size(1232, 281);
+            this.splitContainer1.Size = new System.Drawing.Size(1232, 280);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.SplitterWidth = 1;
             this.splitContainer1.TabIndex = 2;
@@ -474,10 +581,24 @@ namespace STS.Workbench
             // splitContainer9.Panel2
             // 
             this.splitContainer9.Panel2.Controls.Add(this.tablesField);
-            this.splitContainer9.Size = new System.Drawing.Size(1232, 255);
+            this.splitContainer9.Size = new System.Drawing.Size(1232, 254);
             this.splitContainer9.SplitterDistance = 42;
             this.splitContainer9.SplitterWidth = 1;
             this.splitContainer9.TabIndex = 1;
+            // 
+            // tablesField
+            // 
+            this.tablesField.AutoScroll = true;
+            this.tablesField.BackColor = System.Drawing.Color.White;
+            this.tablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablesField.Location = new System.Drawing.Point(0, 0);
+            this.tablesField.Name = "tablesField";
+            this.tablesField.Size = new System.Drawing.Size(1187, 252);
+            this.tablesField.TabIndex = 0;
+            this.tablesField.Click += new System.EventHandler(this.tablesField_Click);
+            this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.tablesField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.On_MouseMove);
+            this.tablesField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // splitContainer3
             // 
@@ -492,51 +613,171 @@ namespace STS.Workbench
             // 
             this.splitContainer3.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
             this.splitContainer3.Panel1.Controls.Add(this.btnCloseTable);
-            this.splitContainer3.Panel1.Controls.Add(this.btnSelectAllRows);
-            this.splitContainer3.Panel1.Controls.Add(this.btnRefresh);
-            this.splitContainer3.Panel1.Controls.Add(this.lblImportExport);
-            this.splitContainer3.Panel1.Controls.Add(this.lblEditRows);
-            this.splitContainer3.Panel1.Controls.Add(this.lblChanges);
-            this.splitContainer3.Panel1.Controls.Add(this.btnDiscard);
-            this.splitContainer3.Panel1.Controls.Add(this.btnExport);
-            this.splitContainer3.Panel1.Controls.Add(this.btnImport);
-            this.splitContainer3.Panel1.Controls.Add(this.btnDeleteRows);
-            this.splitContainer3.Panel1.Controls.Add(this.btnSaveRowChanges);
+            this.splitContainer3.Panel1.Controls.Add(this.toolStripTableEdit);
             // 
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer7);
-            this.splitContainer3.Size = new System.Drawing.Size(1236, 266);
+            this.splitContainer3.Size = new System.Drawing.Size(1236, 267);
             this.splitContainer3.SplitterDistance = 29;
             this.splitContainer3.SplitterWidth = 1;
             this.splitContainer3.TabIndex = 4;
             // 
-            // lblImportExport
+            // toolStripTableEdit
             // 
-            this.lblImportExport.AutoSize = true;
-            this.lblImportExport.Location = new System.Drawing.Point(304, 8);
-            this.lblImportExport.Name = "lblImportExport";
-            this.lblImportExport.Size = new System.Drawing.Size(74, 13);
-            this.lblImportExport.TabIndex = 10;
-            this.lblImportExport.Text = "Import/Export:";
+            this.toolStripTableEdit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.toolStripTableEdit.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripTableEdit.GripMargin = new System.Windows.Forms.Padding(3);
+            this.toolStripTableEdit.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripTableEdit.ImageScalingSize = new System.Drawing.Size(19, 19);
+            this.toolStripTableEdit.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1,
+            this.btnDeleteRows,
+            this.btnSelectAllRows,
+            this.toolStripSeparator9,
+            this.toolStripLabel2,
+            this.btnSaveRowChanges,
+            this.btnDiscard,
+            this.btnRefresh,
+            this.toolStripSeparator10,
+            this.toolStripLabel3,
+            this.btnImport,
+            this.btnExport,
+            this.toolStripSeparator11,
+            this.toolStripLabel4,
+            this.btnChartWizard});
+            this.toolStripTableEdit.Location = new System.Drawing.Point(0, 0);
+            this.toolStripTableEdit.Name = "toolStripTableEdit";
+            this.toolStripTableEdit.Size = new System.Drawing.Size(1236, 29);
+            this.toolStripTableEdit.TabIndex = 0;
+            this.toolStripTableEdit.Text = "ToolStripTableEdit";
             // 
-            // lblEditRows
+            // toolStripLabel1
             // 
-            this.lblEditRows.AutoSize = true;
-            this.lblEditRows.Location = new System.Drawing.Point(4, 7);
-            this.lblEditRows.Name = "lblEditRows";
-            this.lblEditRows.Size = new System.Drawing.Size(53, 13);
-            this.lblEditRows.TabIndex = 7;
-            this.lblEditRows.Text = "Edit rows:";
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(64, 26);
+            this.toolStripLabel1.Text = "Edit Rows: ";
             // 
-            // lblChanges
+            // btnDeleteRows
             // 
-            this.lblChanges.AutoSize = true;
-            this.lblChanges.Location = new System.Drawing.Point(139, 7);
-            this.lblChanges.Name = "lblChanges";
-            this.lblChanges.Size = new System.Drawing.Size(52, 13);
-            this.lblChanges.TabIndex = 6;
-            this.lblChanges.Text = "Changes:";
+            this.btnDeleteRows.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDeleteRows.Image = global::STS.Workbench.Properties.Resources.symbol_remove;
+            this.btnDeleteRows.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteRows.Name = "btnDeleteRows";
+            this.btnDeleteRows.Size = new System.Drawing.Size(23, 26);
+            this.btnDeleteRows.Text = "Delete Rows";
+            this.btnDeleteRows.ToolTipText = "Delete selected row/rowss";
+            this.btnDeleteRows.Click += new System.EventHandler(this.btnDeleteRow_Click);
+            // 
+            // btnSelectAllRows
+            // 
+            this.btnSelectAllRows.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSelectAllRows.Image = global::STS.Workbench.Properties.Resources.edit_select_all__1_;
+            this.btnSelectAllRows.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSelectAllRows.Name = "btnSelectAllRows";
+            this.btnSelectAllRows.Size = new System.Drawing.Size(23, 26);
+            this.btnSelectAllRows.Text = "Select all rows";
+            this.btnSelectAllRows.ToolTipText = "Select all rows";
+            this.btnSelectAllRows.Click += new System.EventHandler(this.btnSelectAllRows_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.BackColor = System.Drawing.Color.Black;
+            this.toolStripSeparator9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(59, 26);
+            this.toolStripLabel2.Text = "Changes: ";
+            // 
+            // btnSaveRowChanges
+            // 
+            this.btnSaveRowChanges.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnSaveRowChanges.Image = global::STS.Workbench.Properties.Resources.save__1_;
+            this.btnSaveRowChanges.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSaveRowChanges.Name = "btnSaveRowChanges";
+            this.btnSaveRowChanges.Size = new System.Drawing.Size(23, 26);
+            this.btnSaveRowChanges.Text = "Flush";
+            this.btnSaveRowChanges.ToolTipText = "Apply changes to data";
+            this.btnSaveRowChanges.Click += new System.EventHandler(this.btnSaveRowChanges_Click);
+            // 
+            // btnDiscard
+            // 
+            this.btnDiscard.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDiscard.Image = global::STS.Workbench.Properties.Resources.undo;
+            this.btnDiscard.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDiscard.Name = "btnDiscard";
+            this.btnDiscard.Size = new System.Drawing.Size(23, 26);
+            this.btnDiscard.Text = "Disard";
+            this.btnDiscard.ToolTipText = "Discard changes to data";
+            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnRefresh.Image = global::STS.Workbench.Properties.Resources.view_refresh;
+            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(23, 26);
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(87, 26);
+            this.toolStripLabel3.Text = "Import/Export: ";
+            // 
+            // btnImport
+            // 
+            this.btnImport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnImport.Image = global::STS.Workbench.Properties.Resources.document_import;
+            this.btnImport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(23, 26);
+            this.btnImport.Text = "Import";
+            this.btnImport.ToolTipText = "Import data from external file";
+            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
+            // 
+            // btnExport
+            // 
+            this.btnExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnExport.Image = global::STS.Workbench.Properties.Resources.document_export;
+            this.btnExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(23, 26);
+            this.btnExport.Text = "Export";
+            this.btnExport.ToolTipText = "Export data to external file";
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 29);
+            // 
+            // toolStripLabel4
+            // 
+            this.toolStripLabel4.Name = "toolStripLabel4";
+            this.toolStripLabel4.Size = new System.Drawing.Size(47, 26);
+            this.toolStripLabel4.Text = "Charts: ";
+            // 
+            // btnChartWizard
+            // 
+            this.btnChartWizard.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnChartWizard.Image = global::STS.Workbench.Properties.Resources.chart_bar;
+            this.btnChartWizard.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnChartWizard.Name = "btnChartWizard";
+            this.btnChartWizard.Size = new System.Drawing.Size(23, 26);
+            this.btnChartWizard.Text = "Chart wiazard";
+            this.btnChartWizard.Click += new System.EventHandler(this.btnChartWizard_Click);
             // 
             // splitContainer7
             // 
@@ -558,10 +799,10 @@ namespace STS.Workbench
             this.splitContainer7.Panel2.Controls.Add(this.btnNextPage);
             this.splitContainer7.Panel2.Controls.Add(this.btnPreviousPage);
             this.splitContainer7.Panel2.Controls.Add(this.btnFirstPage);
-            this.splitContainer7.Panel2.Controls.Add(this.cmbxPageCount);
+            this.splitContainer7.Panel2.Controls.Add(this.cmbPageCapacity);
             this.splitContainer7.Panel2.Controls.Add(this.label3);
-            this.splitContainer7.Size = new System.Drawing.Size(1236, 236);
-            this.splitContainer7.SplitterDistance = 204;
+            this.splitContainer7.Size = new System.Drawing.Size(1236, 237);
+            this.splitContainer7.SplitterDistance = 211;
             this.splitContainer7.SplitterWidth = 1;
             this.splitContainer7.TabIndex = 4;
             // 
@@ -574,11 +815,54 @@ namespace STS.Workbench
             this.grdViewTableRecords.Location = new System.Drawing.Point(0, 0);
             this.grdViewTableRecords.Name = "grdViewTableRecords";
             this.grdViewTableRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdViewTableRecords.Size = new System.Drawing.Size(1236, 204);
+            this.grdViewTableRecords.Size = new System.Drawing.Size(1236, 211);
             this.grdViewTableRecords.TabIndex = 3;
             this.grdViewTableRecords.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdViewTableRecords_CellMouseClick);
             this.grdViewTableRecords.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewTableRecords_CellValueChanged);
             this.grdViewTableRecords.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grdViewTableRecords_UserAddedRow);
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.BackColor = System.Drawing.Color.Transparent;
+            this.btnLastPage.Image = global::STS.Workbench.Properties.Resources.button_last;
+            this.btnLastPage.Location = new System.Drawing.Point(93, 3);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(24, 24);
+            this.btnLastPage.TabIndex = 11;
+            this.btnLastPage.UseVisualStyleBackColor = false;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Image = global::STS.Workbench.Properties.Resources.go_next;
+            this.btnNextPage.Location = new System.Drawing.Point(63, 3);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(24, 24);
+            this.btnNextPage.TabIndex = 10;
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.Image = global::STS.Workbench.Properties.Resources.go_back;
+            this.btnPreviousPage.Location = new System.Drawing.Point(33, 3);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(24, 24);
+            this.btnPreviousPage.TabIndex = 9;
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.BackColor = System.Drawing.Color.Transparent;
+            this.btnFirstPage.FlatAppearance.BorderSize = 0;
+            this.btnFirstPage.Image = global::STS.Workbench.Properties.Resources.button_first;
+            this.btnFirstPage.Location = new System.Drawing.Point(3, 3);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(24, 24);
+            this.btnFirstPage.TabIndex = 8;
+            this.btnFirstPage.UseVisualStyleBackColor = false;
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
             // label3
             // 
@@ -600,11 +884,12 @@ namespace STS.Workbench
             this.lblInfo.Size = new System.Drawing.Size(0, 13);
             this.lblInfo.TabIndex = 0;
             // 
-            // mStripTables
+            // mStripTable
             // 
-            this.mStripTables.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mStripTable.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.closeToolStripMenuItem,
+            this.deleteToolStripMenuItem,
             this.toolStripSeparator1,
             this.copyToolStripMenuItem,
             this.pasteDataToolStripMenuItem,
@@ -612,63 +897,70 @@ namespace STS.Workbench
             this.editColorsToolStripMenuItem,
             this.toolStripSeparator4,
             this.propertiesToolStripMenuItem});
-            this.mStripTables.Name = "menuStripTables";
-            this.mStripTables.Size = new System.Drawing.Size(130, 154);
+            this.mStripTable.Name = "menuStripTables";
+            this.mStripTable.Size = new System.Drawing.Size(162, 176);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.closeToolStripMenuItem.Text = "Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(158, 6);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteDataToolStripMenuItem
             // 
             this.pasteDataToolStripMenuItem.Name = "pasteDataToolStripMenuItem";
-            this.pasteDataToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.pasteDataToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.pasteDataToolStripMenuItem.Text = "Paste data";
             this.pasteDataToolStripMenuItem.Click += new System.EventHandler(this.pasteDataToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(158, 6);
             // 
             // editColorsToolStripMenuItem
             // 
             this.editColorsToolStripMenuItem.Name = "editColorsToolStripMenuItem";
-            this.editColorsToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
-            this.editColorsToolStripMenuItem.Text = "Edit colors";
+            this.editColorsToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.editColorsToolStripMenuItem.Text = "Backgroud color";
             this.editColorsToolStripMenuItem.Click += new System.EventHandler(this.editColorsToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(158, 6);
             // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
-            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.propertiesToolStripMenuItem.Text = "Properties";
             this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
@@ -679,6 +971,7 @@ namespace STS.Workbench
             this.toolStripSeparator2,
             this.copyToolStripMenuItem1,
             this.pasteToolStripMenuItem,
+            this.deleteToolStripMenuItem1,
             this.toolStripSeparator7,
             this.expandToolStripMenuItem,
             this.collapseToolStripMenuItem,
@@ -690,7 +983,7 @@ namespace STS.Workbench
             this.loadOrderToolStripMenuItem,
             this.saveOrderToolStripMenuItem});
             this.mStripTablesField.Name = "MenuStripTablesField";
-            this.mStripTablesField.Size = new System.Drawing.Size(127, 232);
+            this.mStripTablesField.Size = new System.Drawing.Size(127, 254);
             // 
             // selectAllToolStripMenuItem
             // 
@@ -717,6 +1010,13 @@ namespace STS.Workbench
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // deleteToolStripMenuItem1
+            // 
+            this.deleteToolStripMenuItem1.Name = "deleteToolStripMenuItem1";
+            this.deleteToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
+            this.deleteToolStripMenuItem1.Text = "Delete";
+            this.deleteToolStripMenuItem1.Click += new System.EventHandler(this.deleteToolStripMenuItem1_Click);
             // 
             // toolStripSeparator7
             // 
@@ -821,259 +1121,6 @@ namespace STS.Workbench
             this.mStripCatalogTables.Name = "mStripCatalogTables";
             this.mStripCatalogTables.Size = new System.Drawing.Size(61, 4);
             // 
-            // mStripMain
-            // 
-            this.mStripMain.BackgroundImage = global::STS.Workbench.Properties.Resources.MenuStripBackGround;
-            this.mStripMain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.mStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.helpToolStripMenuItem});
-            this.mStripMain.Location = new System.Drawing.Point(2, 4);
-            this.mStripMain.Name = "mStripMain";
-            this.mStripMain.Size = new System.Drawing.Size(1452, 24);
-            this.mStripMain.TabIndex = 17;
-            this.mStripMain.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.toolStripMenuItem3,
-            this.toolStripMenuItem4});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
-            this.toolStripMenuItem2.Text = "1";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(80, 22);
-            this.toolStripMenuItem3.Text = "2";
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(80, 22);
-            this.toolStripMenuItem4.Text = "3";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
-            this.aboutToolStripMenuItem.Text = "about";
-            // 
-            // tablesField
-            // 
-            this.tablesField.AutoScroll = true;
-            this.tablesField.BackColor = System.Drawing.Color.White;
-            this.tablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablesField.Location = new System.Drawing.Point(0, 0);
-            this.tablesField.Name = "tablesField";
-            this.tablesField.Size = new System.Drawing.Size(1187, 253);
-            this.tablesField.TabIndex = 0;
-            this.tablesField.Click += new System.EventHandler(this.tablesField_Click);
-            this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
-            this.tablesField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.On_MouseMove);
-            this.tablesField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
-            // 
-            // btnPlaceTable
-            // 
-            this.btnPlaceTable.BackColor = System.Drawing.Color.Transparent;
-            this.btnPlaceTable.FlatAppearance.BorderSize = 0;
-            this.btnPlaceTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlaceTable.Image = global::STS.Workbench.Properties.Resources.table_add;
-            this.btnPlaceTable.Location = new System.Drawing.Point(2, 3);
-            this.btnPlaceTable.Name = "btnPlaceTable";
-            this.btnPlaceTable.Size = new System.Drawing.Size(35, 40);
-            this.btnPlaceTable.TabIndex = 6;
-            this.toolTip.SetToolTip(this.btnPlaceTable, "Place new table");
-            this.btnPlaceTable.UseVisualStyleBackColor = false;
-            this.btnPlaceTable.Click += new System.EventHandler(this.btnPlaceTable_Click);
-            // 
-            // btnDeleteTables
-            // 
-            this.btnDeleteTables.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeleteTables.FlatAppearance.BorderSize = 0;
-            this.btnDeleteTables.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteTables.Image = global::STS.Workbench.Properties.Resources.table_delete;
-            this.btnDeleteTables.Location = new System.Drawing.Point(3, 49);
-            this.btnDeleteTables.Name = "btnDeleteTables";
-            this.btnDeleteTables.Size = new System.Drawing.Size(35, 40);
-            this.btnDeleteTables.TabIndex = 7;
-            this.toolTip.SetToolTip(this.btnDeleteTables, "Delete selected table/s");
-            this.btnDeleteTables.UseVisualStyleBackColor = false;
-            this.btnDeleteTables.Click += new System.EventHandler(this.btnDeleteTables_Click);
-            // 
-            // btnCloseTable
-            // 
-            this.btnCloseTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseTable.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCloseTable.Image = global::STS.Workbench.Properties.Resources.sort_down;
-            this.btnCloseTable.Location = new System.Drawing.Point(1185, 1);
-            this.btnCloseTable.Name = "btnCloseTable";
-            this.btnCloseTable.Size = new System.Drawing.Size(48, 24);
-            this.btnCloseTable.TabIndex = 13;
-            this.toolTip.SetToolTip(this.btnCloseTable, "Close opened table");
-            this.btnCloseTable.UseVisualStyleBackColor = false;
-            this.btnCloseTable.Click += new System.EventHandler(this.btnCloseTable_Click);
-            // 
-            // btnSelectAllRows
-            // 
-            this.btnSelectAllRows.BackColor = System.Drawing.Color.Transparent;
-            this.btnSelectAllRows.FlatAppearance.BorderSize = 0;
-            this.btnSelectAllRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSelectAllRows.Image = global::STS.Workbench.Properties.Resources.gnome_edit_select_all;
-            this.btnSelectAllRows.Location = new System.Drawing.Point(93, 1);
-            this.btnSelectAllRows.Name = "btnSelectAllRows";
-            this.btnSelectAllRows.Size = new System.Drawing.Size(24, 24);
-            this.btnSelectAllRows.TabIndex = 12;
-            this.toolTip.SetToolTip(this.btnSelectAllRows, "Select all rows");
-            this.btnSelectAllRows.UseVisualStyleBackColor = false;
-            this.btnSelectAllRows.Click += new System.EventHandler(this.btnSelectAllRows_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.BackColor = System.Drawing.Color.Transparent;
-            this.btnRefresh.FlatAppearance.BorderSize = 0;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Image = global::STS.Workbench.Properties.Resources.view_refresh;
-            this.btnRefresh.Location = new System.Drawing.Point(257, 1);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(24, 24);
-            this.btnRefresh.TabIndex = 11;
-            this.toolTip.SetToolTip(this.btnRefresh, "Refresh data");
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnDiscard
-            // 
-            this.btnDiscard.BackColor = System.Drawing.Color.Transparent;
-            this.btnDiscard.FlatAppearance.BorderSize = 0;
-            this.btnDiscard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDiscard.Image = global::STS.Workbench.Properties.Resources.undo;
-            this.btnDiscard.Location = new System.Drawing.Point(227, 1);
-            this.btnDiscard.Name = "btnDiscard";
-            this.btnDiscard.Size = new System.Drawing.Size(24, 24);
-            this.btnDiscard.TabIndex = 5;
-            this.toolTip.SetToolTip(this.btnDiscard, "Discard changes to data");
-            this.btnDiscard.UseVisualStyleBackColor = false;
-            this.btnDiscard.Click += new System.EventHandler(this.btnDiscard_Click);
-            // 
-            // btnExport
-            // 
-            this.btnExport.BackColor = System.Drawing.Color.Transparent;
-            this.btnExport.FlatAppearance.BorderSize = 0;
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Image = global::STS.Workbench.Properties.Resources.document_export;
-            this.btnExport.Location = new System.Drawing.Point(415, 2);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(24, 24);
-            this.btnExport.TabIndex = 4;
-            this.toolTip.SetToolTip(this.btnExport, "Export data to external file");
-            this.btnExport.UseVisualStyleBackColor = false;
-            this.btnExport.Click += new System.EventHandler(this.btnExportCsv_Click);
-            // 
-            // btnImport
-            // 
-            this.btnImport.BackColor = System.Drawing.Color.Transparent;
-            this.btnImport.FlatAppearance.BorderSize = 0;
-            this.btnImport.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.btnImport.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.btnImport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnImport.Image = global::STS.Workbench.Properties.Resources.document_import;
-            this.btnImport.Location = new System.Drawing.Point(385, 2);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(24, 24);
-            this.btnImport.TabIndex = 3;
-            this.toolTip.SetToolTip(this.btnImport, "Import data from external file");
-            this.btnImport.UseVisualStyleBackColor = false;
-            this.btnImport.Click += new System.EventHandler(this.btnImportCsv_Click);
-            // 
-            // btnDeleteRows
-            // 
-            this.btnDeleteRows.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeleteRows.FlatAppearance.BorderSize = 0;
-            this.btnDeleteRows.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteRows.Image = global::STS.Workbench.Properties.Resources.Delete;
-            this.btnDeleteRows.Location = new System.Drawing.Point(63, 1);
-            this.btnDeleteRows.Name = "btnDeleteRows";
-            this.btnDeleteRows.Size = new System.Drawing.Size(24, 24);
-            this.btnDeleteRows.TabIndex = 1;
-            this.toolTip.SetToolTip(this.btnDeleteRows, "Delete selected row/rowss");
-            this.btnDeleteRows.UseVisualStyleBackColor = false;
-            this.btnDeleteRows.Click += new System.EventHandler(this.btnDeleteRow_Click);
-            // 
-            // btnSaveRowChanges
-            // 
-            this.btnSaveRowChanges.BackColor = System.Drawing.Color.Transparent;
-            this.btnSaveRowChanges.FlatAppearance.BorderSize = 0;
-            this.btnSaveRowChanges.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveRowChanges.Image = global::STS.Workbench.Properties.Resources.Save;
-            this.btnSaveRowChanges.Location = new System.Drawing.Point(197, 2);
-            this.btnSaveRowChanges.Name = "btnSaveRowChanges";
-            this.btnSaveRowChanges.Size = new System.Drawing.Size(24, 24);
-            this.btnSaveRowChanges.TabIndex = 0;
-            this.toolTip.SetToolTip(this.btnSaveRowChanges, "Apply changes to data");
-            this.btnSaveRowChanges.UseVisualStyleBackColor = false;
-            this.btnSaveRowChanges.Click += new System.EventHandler(this.btnSaveRowChanges_Click);
-            // 
-            // btnLastPage
-            // 
-            this.btnLastPage.BackColor = System.Drawing.Color.Transparent;
-            this.btnLastPage.Image = global::STS.Workbench.Properties.Resources.button_last;
-            this.btnLastPage.Location = new System.Drawing.Point(93, 3);
-            this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(24, 24);
-            this.btnLastPage.TabIndex = 11;
-            this.btnLastPage.UseVisualStyleBackColor = false;
-            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
-            // 
-            // btnNextPage
-            // 
-            this.btnNextPage.Image = global::STS.Workbench.Properties.Resources.go_next;
-            this.btnNextPage.Location = new System.Drawing.Point(63, 3);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(24, 24);
-            this.btnNextPage.TabIndex = 10;
-            this.btnNextPage.UseVisualStyleBackColor = true;
-            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
-            // 
-            // btnPreviousPage
-            // 
-            this.btnPreviousPage.Image = global::STS.Workbench.Properties.Resources.go_back;
-            this.btnPreviousPage.Location = new System.Drawing.Point(33, 3);
-            this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(24, 24);
-            this.btnPreviousPage.TabIndex = 9;
-            this.btnPreviousPage.UseVisualStyleBackColor = true;
-            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
-            // 
-            // btnFirstPage
-            // 
-            this.btnFirstPage.BackColor = System.Drawing.Color.Transparent;
-            this.btnFirstPage.FlatAppearance.BorderSize = 0;
-            this.btnFirstPage.Image = global::STS.Workbench.Properties.Resources.button_first;
-            this.btnFirstPage.Location = new System.Drawing.Point(3, 3);
-            this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(24, 24);
-            this.btnFirstPage.TabIndex = 8;
-            this.btnFirstPage.UseVisualStyleBackColor = false;
-            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
-            // 
             // TablesDiagramPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1090,6 +1137,8 @@ namespace STS.Workbench
             this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
+            this.mStripMain.ResumeLayout(false);
+            this.mStripMain.PerformLayout();
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel2.ResumeLayout(false);
             this.splitContainer5.Panel2.PerformLayout();
@@ -1109,6 +1158,7 @@ namespace STS.Workbench
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.splitContainer8.Panel1.ResumeLayout(false);
+            this.splitContainer8.Panel1.PerformLayout();
             this.splitContainer8.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer8)).EndInit();
             this.splitContainer8.ResumeLayout(false);
@@ -1135,17 +1185,17 @@ namespace STS.Workbench
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.toolStripTableEdit.ResumeLayout(false);
+            this.toolStripTableEdit.PerformLayout();
             this.splitContainer7.Panel1.ResumeLayout(false);
             this.splitContainer7.Panel2.ResumeLayout(false);
             this.splitContainer7.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer7)).EndInit();
             this.splitContainer7.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdViewTableRecords)).EndInit();
-            this.mStripTables.ResumeLayout(false);
+            this.mStripTable.ResumeLayout(false);
             this.mStripTablesField.ResumeLayout(false);
             this.mStripCatalogDb.ResumeLayout(false);
-            this.mStripMain.ResumeLayout(false);
-            this.mStripMain.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1159,24 +1209,14 @@ namespace STS.Workbench
         private Button btnPlaceTable;
         private Button btnDeleteTables;
         private SplitContainer splitContainer3;
-        private Button btnSaveRowChanges;
         private SplitContainer splitContainer4;
-        private Button btnExport;
-        private Button btnImport;
-        private Button btnDeleteRows;
-        private Button btnDiscard;
-        private Label lblEditRows;
-        private Label lblChanges;
         private SplitContainer splitContainer7;
         private Button btnNextPage;
         private Button btnPreviousPage;
         private Button btnFirstPage;
         private Label label3;
-        private ComboBox cmbxPageCount;
-        private Label lblImportExport;
+        private ComboBox cmbPageCapacity;
         private Timer timer1;
-        private Button btnRefresh;
-        private Button btnSelectAllRows;
         private ToolTip toolTip;
         private SplitContainer splitContainer9;
         private Button btnCloseTable;
@@ -1191,7 +1231,7 @@ namespace STS.Workbench
         private TablesDiagram.DiagramPreviewComponents.FieldControl tablesField;
         private SplitContainer splitContainer1;
         private Label lblDiagramHeader;
-        private ContextMenuStrip mStripTables;
+        private ContextMenuStrip mStripTable;
         private ToolStripMenuItem openToolStripMenuItem;
         private ToolStripMenuItem closeToolStripMenuItem;
         private ToolStripSeparator toolStripSeparator1;
@@ -1231,6 +1271,24 @@ namespace STS.Workbench
         private ToolStripMenuItem aboutToolStripMenuItem;
         private SplitContainer splitContainer5;
         private Label lblInfo;
-        private TreeView treeView1;
+        private ToolStrip toolStripTableEdit;
+        private ToolStripLabel toolStripLabel1;
+        private ToolStripButton btnDeleteRows;
+        private ToolStripButton btnSelectAllRows;
+        private ToolStripSeparator toolStripSeparator9;
+        private ToolStripLabel toolStripLabel2;
+        private ToolStripButton btnSaveRowChanges;
+        private ToolStripButton btnDiscard;
+        private ToolStripButton btnRefresh;
+        private ToolStripSeparator toolStripSeparator10;
+        private ToolStripLabel toolStripLabel3;
+        private ToolStripButton btnImport;
+        private ToolStripButton btnExport;
+        private Label lblTest;
+        private ToolStripMenuItem deleteToolStripMenuItem;
+        private ToolStripMenuItem deleteToolStripMenuItem1;
+        private ToolStripSeparator toolStripSeparator11;
+        private ToolStripButton btnChartWizard;
+        private ToolStripLabel toolStripLabel4;
     }
 }

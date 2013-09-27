@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -18,10 +19,13 @@ namespace STS.Workbench.TablesDiagram.Helpers
         private List<Control> seekedItems = new List<Control>();
 
         public readonly Control Owner;
+        public Pen Pen;
 
-        public SelectorTool(Control owner)
+        public SelectorTool(Control owner, Pen pen)
         {
             Owner = owner;
+            Pen = pen;
+
             graphics = Owner.CreateGraphics();
         }
 
@@ -42,11 +46,11 @@ namespace STS.Workbench.TablesDiagram.Helpers
             lastSelection = new Rectangle();
         }
 
-        public void DrawRectangle(Pen pen, Point center, Point offset)
+        public void DrawRectangle(Point center, Point offset)
         {
             Owner.Refresh();
             var rect = CalculateRectangle(center, offset);
-            graphics.DrawRectangle(pen, rect);
+            graphics.DrawRectangle(Pen, rect);
         }
 
         public Rectangle CalculateRectangle(Point center, Point offset)
