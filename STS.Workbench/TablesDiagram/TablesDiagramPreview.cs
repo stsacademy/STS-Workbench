@@ -559,7 +559,8 @@ namespace STS.Workbench
 
         private void btnChartWizard_Click(object sender, EventArgs e)
         {
-
+            ChartWizardForm chartWizard = new ChartWizardForm();
+            chartWizard.Show();
         }
 
         public void btnCloseTable_Click(object sender, EventArgs e)

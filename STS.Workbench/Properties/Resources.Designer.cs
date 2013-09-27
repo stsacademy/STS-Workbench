@@ -63,16 +63,6 @@ namespace STS.Workbench.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BackGroundGray {
-            get {
-                object obj = ResourceManager.GetObject("BackGroundGray", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap button_first {
             get {
                 object obj = ResourceManager.GetObject("button_first", resourceCulture);
@@ -323,6 +313,16 @@ namespace STS.Workbench.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Line {
+            get {
+                object obj = ResourceManager.GetObject("Line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MenuStripBackGround {
             get {
                 object obj = ResourceManager.GetObject("MenuStripBackGround", resourceCulture);
@@ -366,6 +366,16 @@ namespace STS.Workbench.Properties {
         internal static System.Drawing.Bitmap PlusBtn {
             get {
                 object obj = ResourceManager.GetObject("PlusBtn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Point {
+            get {
+                object obj = ResourceManager.GetObject("Point", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -536,16 +546,6 @@ namespace STS.Workbench.Properties {
         internal static System.Drawing.Bitmap view_refresh {
             get {
                 object obj = ResourceManager.GetObject("view_refresh", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap view_refresh__1_ {
-            get {
-                object obj = ResourceManager.GetObject("view_refresh__1_", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

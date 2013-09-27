@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -333,6 +334,8 @@
     <None Include="Resources\place_tableTansperent.png" />
     <None Include="Resources\PlusBtn.gif" />
     <None Include="Resources\MenuStripBackGround.png" />
+    <None Include="Resources\Line.png" />
+    <None Include="Resources\Point.png" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />
     <None Include="Resources\save-1.ico" />
