@@ -122,6 +122,12 @@
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TablesDiagram\ChartWizard\ChartSeriesSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TablesDiagram\ChartWizard\ChartSeriesSelector.Designer.cs">
+      <DependentUpon>ChartSeriesSelector.cs</DependentUpon>
+    </Compile>
     <Compile Include="TablesDiagram\ChartWizard\ChartTypeSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -251,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ServerControls\ServerStatus.resx">
       <DependentUpon>ServerStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TablesDiagram\ChartWizard\ChartSeriesSelector.resx">
+      <DependentUpon>ChartSeriesSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TablesDiagram\ChartWizard\ChartTypeSelector.resx">
       <DependentUpon>ChartTypeSelector.cs</DependentUpon>

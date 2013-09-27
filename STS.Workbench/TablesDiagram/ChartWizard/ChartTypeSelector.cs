@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace STS.Workbench.TablesDiagram.ChartWizard
 {
@@ -14,6 +15,7 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
     {
         private ToolStripButton LastCheckedButton = null;
 
+        public SeriesChartType SelectedChartType { get { return FindChartType(); } }
 
         public ChartTypeSelector()
         {
@@ -22,7 +24,6 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
 
         private void toolButton_Click(object sender, EventArgs e)
         {
-
             if (LastCheckedButton != null)
                 LastCheckedButton.Checked = false;
 
@@ -30,6 +31,19 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             button.Checked = !button.Checked;
 
             LastCheckedButton = button;
+        }
+
+        private SeriesChartType FindChartType()
+        {
+            switch (LastCheckedButton.Text)
+            {
+                case "Line":
+                    return SeriesChartType.Line;
+                case "Point":
+                    return SeriesChartType.Point;
+                default:
+                    return SeriesChartType.Line;
+            }
         }
     }
 }
