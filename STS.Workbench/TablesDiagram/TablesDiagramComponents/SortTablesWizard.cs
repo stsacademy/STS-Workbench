@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
 {
-    public partial class TablesSortWizard : Form
+    public partial class SortTablesWizard : Form
     {
-        public TablesSortWizard()
+        public SortTablesWizard()
         {
             InitializeComponent();
         }

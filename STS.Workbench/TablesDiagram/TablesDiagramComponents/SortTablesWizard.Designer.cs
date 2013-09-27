@@ -1,6 +1,6 @@
 ﻿namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
 {
-    partial class TablesSortWizard
+    partial class SortTablesWizard
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // TablesSortWizard
+            // SortTablesWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(426, 325);
-            this.Name = "TablesSortWizard";
-            this.Text = "TablesSortWizard";
+            this.Name = "SortTablesWizard";
+            this.Text = "Sort tables";
             this.ResumeLayout(false);
 
         }
