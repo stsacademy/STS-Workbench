@@ -1,4 +1,5 @@
-﻿using System;
+﻿using STSdb4.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,21 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
         private int controlPage = 0;
         private UserControl[] controls;
 
+        public string TableName { get; private set; }
+        public DataType[] KeyTypes { get; private set; }
+        public DataType[] RecordTypes { get; private set; }
+
         public ChartWizardForm()
+            : this(null, null, null)
         {
+        }
+
+        public ChartWizardForm(string tableName, DataType[] keyTypes, DataType[] recordTypes)
+        {
+            TableName = tableName;
+            KeyTypes = keyTypes;
+            RecordTypes = recordTypes;
+
             InitializeComponent();
             ControlsInit();
         }
@@ -61,6 +75,5 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
         {
 
         }
-
     }
 }

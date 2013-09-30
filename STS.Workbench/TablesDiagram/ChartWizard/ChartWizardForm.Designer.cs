@@ -105,7 +105,7 @@
             // 
             this.chartSeriesSelector.Location = new System.Drawing.Point(248, 11);
             this.chartSeriesSelector.Name = "chartSeriesSelector";
-            this.chartSeriesSelector.Size = new System.Drawing.Size(231, 279);
+            this.chartSeriesSelector.Size = new System.Drawing.Size(257, 324);
             this.chartSeriesSelector.TabIndex = 1;
             // 
             // chartTypesSelector
@@ -113,7 +113,7 @@
             this.chartTypesSelector.Location = new System.Drawing.Point(5, 5);
             this.chartTypesSelector.Name = "chartTypesSelector";
             this.chartTypesSelector.Padding = new System.Windows.Forms.Padding(5);
-            this.chartTypesSelector.Size = new System.Drawing.Size(237, 282);
+            this.chartTypesSelector.Size = new System.Drawing.Size(237, 330);
             this.chartTypesSelector.TabIndex = 0;
             // 
             // ChartWizardForm

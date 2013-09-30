@@ -30,7 +30,7 @@ namespace STS.Workbench
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("myDb");
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cmbPageCapacity = new System.Windows.Forms.ComboBox();
@@ -60,7 +60,6 @@ namespace STS.Workbench
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lblDiagramHeader = new System.Windows.Forms.Label();
             this.splitContainer9 = new System.Windows.Forms.SplitContainer();
-            this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.toolStripTableEdit = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
@@ -119,6 +118,7 @@ namespace STS.Workbench
             this.mStripCatalogDb = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.commitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripCatalogTables = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.Panel2.SuspendLayout();
@@ -242,7 +242,7 @@ namespace STS.Workbench
             this.btnCloseTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCloseTable.BackColor = System.Drawing.SystemColors.Control;
             this.btnCloseTable.Image = global::STS.Workbench.Properties.Resources.sort_down;
-            this.btnCloseTable.Location = new System.Drawing.Point(1185, 2);
+            this.btnCloseTable.Location = new System.Drawing.Point(1185, 3);
             this.btnCloseTable.Name = "btnCloseTable";
             this.btnCloseTable.Size = new System.Drawing.Size(48, 24);
             this.btnCloseTable.TabIndex = 13;
@@ -328,7 +328,7 @@ namespace STS.Workbench
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "about";
             // 
             // splitContainer5
@@ -430,10 +430,10 @@ namespace STS.Workbench
             this.treeViewTablesCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTablesCatalog.Location = new System.Drawing.Point(3, 3);
             this.treeViewTablesCatalog.Name = "treeViewTablesCatalog";
-            treeNode1.Name = "trvCatalogTree";
-            treeNode1.Text = "myDb";
+            treeNode2.Name = "trvCatalogTree";
+            treeNode2.Text = "myDb";
             this.treeViewTablesCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeViewTablesCatalog.Size = new System.Drawing.Size(194, 139);
             this.treeViewTablesCatalog.TabIndex = 4;
             this.treeViewTablesCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTablesCatalog_AfterSelect);
@@ -557,7 +557,7 @@ namespace STS.Workbench
             // 
             this.lblDiagramHeader.AutoSize = true;
             this.lblDiagramHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblDiagramHeader.Location = new System.Drawing.Point(6, 5);
+            this.lblDiagramHeader.Location = new System.Drawing.Point(2, 2);
             this.lblDiagramHeader.Name = "lblDiagramHeader";
             this.lblDiagramHeader.Size = new System.Drawing.Size(82, 17);
             this.lblDiagramHeader.TabIndex = 0;
@@ -585,20 +585,6 @@ namespace STS.Workbench
             this.splitContainer9.SplitterDistance = 42;
             this.splitContainer9.SplitterWidth = 1;
             this.splitContainer9.TabIndex = 1;
-            // 
-            // tablesField
-            // 
-            this.tablesField.AutoScroll = true;
-            this.tablesField.BackColor = System.Drawing.Color.White;
-            this.tablesField.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tablesField.Location = new System.Drawing.Point(0, 0);
-            this.tablesField.Name = "tablesField";
-            this.tablesField.Size = new System.Drawing.Size(1187, 252);
-            this.tablesField.TabIndex = 0;
-            this.tablesField.Click += new System.EventHandler(this.tablesField_Click);
-            this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
-            this.tablesField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.On_MouseMove);
-            this.tablesField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // splitContainer3
             // 
@@ -1120,6 +1106,20 @@ namespace STS.Workbench
             // 
             this.mStripCatalogTables.Name = "mStripCatalogTables";
             this.mStripCatalogTables.Size = new System.Drawing.Size(61, 4);
+            // 
+            // tablesField
+            // 
+            this.tablesField.AutoScroll = true;
+            this.tablesField.BackColor = System.Drawing.Color.White;
+            this.tablesField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tablesField.Location = new System.Drawing.Point(0, 0);
+            this.tablesField.Name = "tablesField";
+            this.tablesField.Size = new System.Drawing.Size(1187, 252);
+            this.tablesField.TabIndex = 0;
+            this.tablesField.Click += new System.EventHandler(this.tablesField_Click);
+            this.tablesField.MouseDown += new System.Windows.Forms.MouseEventHandler(this.OnMouseDown);
+            this.tablesField.MouseMove += new System.Windows.Forms.MouseEventHandler(this.On_MouseMove);
+            this.tablesField.MouseUp += new System.Windows.Forms.MouseEventHandler(this.OnMouseUp);
             // 
             // TablesDiagramPreview
             // 

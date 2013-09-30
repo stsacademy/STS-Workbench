@@ -274,11 +274,12 @@ namespace STS.Workbench
             var mouseEvent = (MouseEventArgs)e;
             if (mouseEvent.Button == MouseButtons.Left)
                 UnSelectTables();
-            else
+            else if (mouseEvent.Button == MouseButtons.Right)
             {
                 mStripTablesField.Items["expandToolStripMenuItem"].Enabled = selectedTables.Count > 0;
                 mStripTablesField.Items["collapseToolStripMenuItem"].Enabled = selectedTables.Count > 0;
                 mStripTablesField.Items["deleteToolStripMenuItem1"].Enabled = selectedTables.Count > 0;
+                mStripTablesField.Items["copyToolStripMenuItem1"].Enabled = selectedTables.Count > 0;
                 mStripTablesField.Items["pasteToolStripMenuItem"].Enabled = TablesTransfer.HavePaste;
                 var size = (ToolStripMenuItem)mStripTablesField.Items["sizeToolStripMenuItem"];
                 size.DropDownItems["incrase2xToolStripMenuItem"].Enabled = tablesField.AllowIncrase;
@@ -559,7 +560,7 @@ namespace STS.Workbench
 
         private void btnChartWizard_Click(object sender, EventArgs e)
         {
-            ChartWizardForm chartWizard = new ChartWizardForm();
+            ChartWizardForm chartWizard = new ChartWizardForm(OpenedTable.TableName, OpenedTable.KeyTypes, OpenedTable.RecordTypes);
             chartWizard.Show();
         }
 

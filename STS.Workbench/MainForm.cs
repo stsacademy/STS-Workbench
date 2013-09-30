@@ -33,25 +33,45 @@ namespace STS.Workbench
             InitializeComponent();
         }
 
+        public static Random rand = new Random();
+
+        public class Tick
+        {
+            public string symbol;
+            public double Bid;
+            public double Ask;
+        }
+
+        public static Tick GetRandomTick()
+        {
+            Tick tick = new Tick();
+            tick.symbol = "Q";
+            tick.Bid = rand.Next(0, 4) + rand.NextDouble();
+            tick.Ask = rand.Next(0, 4) + rand.NextDouble();
+
+            return tick;
+        }
+
         private void btnTablesTest_Click(object sender, EventArgs e)
         {
-
             string file = "stsdb4.data";
-
             File.Delete(file);
 
             IStorageEngine engine = STSdb.FromFile(file);
 
-            var index1 = engine.OpenXIndex<int, string>("Gosho");
+            var table1 = engine.OpenXIndex<int, string>("table1");
             for (int i = 0; i < 10000; i++)
-                index1[i] = "gosho " + i;
+                table1[i] = "record N: " + i;
 
-            var index2 = engine.OpenXIndex<int, string>("table2");
-            for (int i = 0; i < 10000; i++)
-                index2[i] = "gosho " + i;
+            var table2 = engine.OpenXIndex<int, Tick>("ticks");
 
-            index1.Flush();
-            index2.Flush();
+            for (int i = 0; i < 20000; i++)
+            {
+                table2[i] = GetRandomTick();
+            }
+
+            table2.Flush();
+            table1.Flush();
             engine.Commit();
 
             STSDbConnection STSdbConnection = new STSDbConnection(engine);
