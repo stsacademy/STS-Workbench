@@ -1,6 +1,6 @@
 ﻿namespace STS.Workbench.HomeControls
 {
-    partial class ServerInstanceObject
+    partial class ServerInstanceControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,19 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.lblTest = new System.Windows.Forms.Label();
             this.SuspendLayout();
+            // 
+            // lblTest
+            // 
+            this.lblTest.AutoSize = true;
+            this.lblTest.Location = new System.Drawing.Point(30, 27);
+            this.lblTest.Name = "lblTest";
+            this.lblTest.Size = new System.Drawing.Size(35, 13);
+            this.lblTest.TabIndex = 0;
+            this.lblTest.Text = "label1";
             // 
             // ServerInstanceObject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.Name = "ServerInstanceObject";
+            this.Controls.Add(this.lblTest);
+            this.Name = "ServerInstanceControl";
             this.Size = new System.Drawing.Size(178, 111);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblTest;
     }
 }
