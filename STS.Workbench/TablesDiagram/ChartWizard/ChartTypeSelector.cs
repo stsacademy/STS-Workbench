@@ -26,6 +26,9 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
 
             InitializeComponent();
             LastCheckedButton = toolStripButtonLine;
+
+            foreach (var item in toolStrip1.Items)
+                ((ToolStripItem)item).Click += toolButton_Click;
         }
 
         private void toolButton_Click(object sender, EventArgs e)
@@ -41,10 +44,17 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
         {
             switch (LastCheckedButton.Text)
             {
+                case "Area":
+                    return SeriesChartType.Area;
+                case "Bar":
+                    return SeriesChartType.Bar;
+                case "BoxPlot":
+                    return SeriesChartType.BoxPlot;
                 case "Line":
                     return SeriesChartType.Line;
                 case "Point":
                     return SeriesChartType.Point;
+
                 default:
                     return SeriesChartType.Line;
             }

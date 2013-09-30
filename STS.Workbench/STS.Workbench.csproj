@@ -337,6 +337,8 @@
     <None Include="Resources\chart_bar.png" />
     <None Include="Resources\edit_select_all %281%29.png" />
     <None Include="Resources\gtk_refresh.png" />
+    <None Include="Resources\Done.png" />
+    <None Include="Resources\Back.png" />
     <Content Include="Resources\key.ico" />
     <None Include="Resources\Move.ico" />
     <None Include="Resources\place_table.bmp" />
@@ -346,6 +348,7 @@
     <None Include="Resources\MenuStripBackGround.png" />
     <None Include="Resources\Line.png" />
     <None Include="Resources\Point.png" />
+    <None Include="Resources\Next.png" />
     <Content Include="Resources\record.ico" />
     <Content Include="Resources\empty.ico" />
     <None Include="Resources\save-1.ico" />

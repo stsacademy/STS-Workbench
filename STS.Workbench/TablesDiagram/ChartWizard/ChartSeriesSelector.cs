@@ -10,13 +10,14 @@ using System.Windows.Forms;
 using STSdb4.Data;
 using STS.Workbench.PreviewComponents;
 using STS.Workbench.TablesDiagram.TablesDiagramComponents;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace STS.Workbench.TablesDiagram.ChartWizard
 {
     public partial class ChartSeriesSelector : UserControl
     {
-        private int PageCapacity { get { return Int32.Parse(cmbRecords.Text); } }
         private List<ChartInfo> selectedFields = new List<ChartInfo>();
+        private List<KeyValuePair<object[], object[]>> values = new List<KeyValuePair<object[], object[]>>();
 
         public ChartWizardForm Owner { get; private set; }
 
@@ -48,17 +49,52 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             VisibleChanged += ChartSeriesSelector_VisibleChanged;
         }
 
-        private void ChartSeriesSelector_VisibleChanged(object sender, EventArgs e)
+        private int PageCapacity
         {
-            SetGridView();
-            VisualiazeChart();
-            AddVirtualTable();
+            get
+            {
+                int value = 5;
+                Int32.TryParse(cmbRecords.Text, out value);
+                return value;
+            }
         }
+
 
         private void VisualiazeChart()
         {
+            if (!Visible)
+                return;
+
+            chrtSelected.Series.Clear();
+            var selections = SelectedFields;
+            if (selections.Count == 0)
+                return;
+
+            for (int i = 0; i < selections.Count; i++)
+            {
+                if (selections[i].IsChecked)
+                    chrtSelected.Series.Add(selections[i].SeriesName);
+            }
+
             foreach (var series in chrtSelected.Series)
                 series.ChartType = Owner.crtTypesSelector.SelectedChartType;
+
+            foreach (var kv in values)
+            {
+                int chartCounter = 0;
+
+                for (int i = 0; i < kv.Key.Length; i++)
+                {
+                    if (selections[i].IsChecked)
+                        chrtSelected.Series[chartCounter++].Points.AddY(kv.Key[i]);
+                }
+
+                for (int i = 0; i < kv.Value.Length; i++)
+                {
+                    if (selections[i + kv.Key.Length].IsChecked)
+                        chrtSelected.Series[chartCounter++].Points.AddY(kv.Value[i]);
+                }
+            }
         }
 
         private void AddVirtualTable()
@@ -67,6 +103,9 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             table.Lock();
             splitContainer2.Panel1.Controls.Add(table);
             table.Dock = DockStyle.Fill;
+            table.CurrentColor = Color.FromArgb(188, 199, 216);
+            table.BackColor = Color.FromArgb(188, 199, 216);
+            table.MaximumSize = new Size();
         }
 
         private void SetGridView()
@@ -75,23 +114,36 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             int counter = 0;
 
             foreach (var type in Owner.Table.KeyTypes)
-                grdViewSeriesSet.Rows.Add(true, "Series" + counter++, type);
+                grdViewSeriesSet.Rows.Add(true, "Series" + counter++, "* " + type);
 
             foreach (var type in Owner.Table.RecordTypes)
                 grdViewSeriesSet.Rows.Add(true, "Series" + counter++, type);
         }
 
+        private void ChartSeriesSelector_VisibleChanged(object sender, EventArgs e)
+        {
+            SetGridView();
+            VisualiazeChart();
+            AddVirtualTable();
+        }
+
         private void btnRefreshChanges_Click(object sender, EventArgs e)
         {
-            var record = Owner.Table.Read().Take(PageCapacity);
+            VisualiazeChart();
+        }
 
-            foreach (var kv in record)
-            {
-                for (int i = 0; i < kv.Key.Length; i++)
-                {
+        private void grdViewSeriesSet_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            VisualiazeChart();
+        }
 
-                }
-            }
+        private void cmbRecords_SelectedValueChanged(object sender, EventArgs e)
+        {
+            values.Clear();
+            foreach (var kv in Owner.Table.Read().Take(PageCapacity))
+                values.Add(new KeyValuePair<object[], object[]>(kv.Key, kv.Value));
+
+            VisualiazeChart();
         }
     }
 }

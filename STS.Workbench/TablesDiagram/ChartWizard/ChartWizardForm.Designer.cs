@@ -30,12 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChartWizardForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnBack = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnFinish = new System.Windows.Forms.Button();
+            this.toolStripFooterMenu = new System.Windows.Forms.ToolStrip();
+            this.btnFinish = new System.Windows.Forms.ToolStripButton();
+            this.btnNext = new System.Windows.Forms.ToolStripButton();
+            this.btnBack = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.toolStripFooterMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -55,60 +57,78 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnBack);
-            this.splitContainer1.Panel2.Controls.Add(this.btnNext);
-            this.splitContainer1.Panel2.Controls.Add(this.btnFinish);
+            this.splitContainer1.Panel2.Controls.Add(this.toolStripFooterMenu);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.splitContainer1.Size = new System.Drawing.Size(692, 542);
-            this.splitContainer1.SplitterDistance = 500;
+            this.splitContainer1.Size = new System.Drawing.Size(637, 469);
+            this.splitContainer1.SplitterDistance = 427;
             this.splitContainer1.TabIndex = 0;
             // 
-            // btnBack
+            // toolStripFooterMenu
             // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBack.Location = new System.Drawing.Point(448, 8);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(75, 23);
-            this.btnBack.TabIndex = 2;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // btnNext
-            // 
-            this.btnNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNext.Location = new System.Drawing.Point(529, 8);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
-            this.btnNext.TabIndex = 1;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = true;
-            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            this.toolStripFooterMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.toolStripFooterMenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripFooterMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripFooterMenu.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStripFooterMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnFinish,
+            this.btnNext,
+            this.btnBack});
+            this.toolStripFooterMenu.Location = new System.Drawing.Point(4, 4);
+            this.toolStripFooterMenu.Name = "toolStripFooterMenu";
+            this.toolStripFooterMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toolStripFooterMenu.Size = new System.Drawing.Size(627, 28);
+            this.toolStripFooterMenu.TabIndex = 0;
+            this.toolStripFooterMenu.Text = "toolStrip1";
             // 
             // btnFinish
             // 
-            this.btnFinish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnFinish.Location = new System.Drawing.Point(610, 7);
+            this.btnFinish.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFinish.Image = global::STS.Workbench.Properties.Resources.Done;
+            this.btnFinish.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFinish.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
             this.btnFinish.Name = "btnFinish";
-            this.btnFinish.Size = new System.Drawing.Size(75, 23);
-            this.btnFinish.TabIndex = 0;
+            this.btnFinish.Size = new System.Drawing.Size(28, 25);
             this.btnFinish.Text = "Finish";
-            this.btnFinish.UseVisualStyleBackColor = true;
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNext.Image = global::STS.Workbench.Properties.Resources.Next;
+            this.btnNext.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(28, 25);
+            this.btnNext.Text = "Back";
+            this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnBack.Image = global::STS.Workbench.Properties.Resources.Back;
+            this.btnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(28, 25);
+            this.btnBack.Text = "Next";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // ChartWizardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(692, 542);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
+            this.ClientSize = new System.Drawing.Size(637, 469);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(300, 300);
             this.Name = "ChartWizardForm";
             this.Text = "Chart wizard";
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.toolStripFooterMenu.ResumeLayout(false);
+            this.toolStripFooterMenu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -116,8 +136,9 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button btnBack;
-        private System.Windows.Forms.Button btnNext;
-        private System.Windows.Forms.Button btnFinish;
+        private System.Windows.Forms.ToolStrip toolStripFooterMenu;
+        private System.Windows.Forms.ToolStripButton btnNext;
+        private System.Windows.Forms.ToolStripButton btnBack;
+        private System.Windows.Forms.ToolStripButton btnFinish;
     }
 }
