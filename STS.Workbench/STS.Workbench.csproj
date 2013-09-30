@@ -122,6 +122,7 @@
     <Compile Include="ServerControls\VerticalProgressBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TablesDiagram\ChartWizard\ChartInfo.cs" />
     <Compile Include="TablesDiagram\ChartWizard\ChartSeriesSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>

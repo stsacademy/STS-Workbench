@@ -16,11 +16,11 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
     public partial class ChartSeriesSelector : UserControl
     {
         private int PageCapacity { get { return Int32.Parse(cmbRecords.Text); } }
-        private List<KeyValuePair<int, bool>> selectedFields = new List<KeyValuePair<int, bool>>();
+        private List<ChartInfo> selectedFields = new List<ChartInfo>();
 
         public ChartWizardForm Owner { get; private set; }
 
-        public List<KeyValuePair<int, bool>> SelectedFields
+        public List<ChartInfo> SelectedFields
         {
             get
             {
@@ -30,7 +30,9 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
                 foreach (var row in grdViewSeriesSet.Rows)
                 {
                     var isChecked = ((DataGridViewRow)row).Cells[0].Value;
-                    selectedFields.Add(new KeyValuePair<int, bool>(number++, (bool)isChecked));
+                    var seriesName = ((DataGridViewRow)row).Cells[1].Value;
+
+                    selectedFields.Add(new ChartInfo((string)seriesName, number++, (bool)isChecked));
                 }
 
                 return selectedFields;
@@ -83,6 +85,13 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
         {
             var record = Owner.Table.Read().Take(PageCapacity);
 
+            foreach (var kv in record)
+            {
+                for (int i = 0; i < kv.Key.Length; i++)
+                {
+
+                }
+            }
         }
     }
 }
