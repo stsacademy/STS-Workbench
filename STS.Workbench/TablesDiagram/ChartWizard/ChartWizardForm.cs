@@ -18,12 +18,10 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
         private int controlPage = 0;
 
         private UserControl[] controls;
-        private ChartSeriesSelector chartSeriesSelector;
-        private ChartTypeSelector chartTypesSelector;
+        public ChartSeriesSelector crtSeriesSelector { get; private set; }
+        public ChartTypeSelector crtTypesSelector { get; private set; }
 
         public ITable Table { get; private set; }
-
-        public SeriesChartType SeriesChartType { get { return chartTypesSelector.SelectedChartType; } }
 
         public ChartWizardForm(ITable table)
         {
@@ -35,10 +33,10 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
 
         private void ControlsInit()
         {
-            chartSeriesSelector = new ChartSeriesSelector(Table);
-            chartTypesSelector = new ChartTypeSelector();
-            controls = new UserControl[] { chartTypesSelector, chartSeriesSelector };
+            crtSeriesSelector = new ChartSeriesSelector(this);
+            crtTypesSelector = new ChartTypeSelector(this);
 
+            controls = new UserControl[] { crtTypesSelector, crtSeriesSelector };
             foreach (var control in controls)
             {
                 splitContainer1.Panel1.Controls.Add(control);
@@ -48,11 +46,6 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
 
             SetButtons();
             controls[controlPage].Show();
-        }
-
-        private void GetSettings(object sender, EventArgs e)
-        {
-
         }
 
         private void SetButtons()
