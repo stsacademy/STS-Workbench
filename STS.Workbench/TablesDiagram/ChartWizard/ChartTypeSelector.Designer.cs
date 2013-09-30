@@ -50,6 +50,8 @@
             // 
             // toolStripButtonLine
             // 
+            this.toolStripButtonLine.Checked = true;
+            this.toolStripButtonLine.CheckState = System.Windows.Forms.CheckState.Checked;
             this.toolStripButtonLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonLine.Image = global::STS.Workbench.Properties.Resources.Line;
             this.toolStripButtonLine.ImageTransparentColor = System.Drawing.Color.Magenta;

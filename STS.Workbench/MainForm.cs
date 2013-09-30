@@ -159,7 +159,8 @@ namespace STS.Workbench
 
         private void btnChartTest_Click(object sender, EventArgs e)
         {
-            ChartWizardForm chart = new ChartWizardForm();
+            var engine = STSdb.FromMemory();
+            ChartWizardForm chart = new ChartWizardForm(new STSDbTable(engine, "Table Test", new DataType[] { DataType.Int32 }, new DataType[] { DataType.Int32, DataType.String }));
             chart.Show();
         }
     }

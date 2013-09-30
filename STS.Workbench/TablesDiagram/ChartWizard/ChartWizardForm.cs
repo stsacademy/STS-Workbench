@@ -1,4 +1,5 @@
-﻿using STSdb4.Data;
+﻿using STS.Workbench.TablesDiagram.ChartWizard;
+using STSdb4.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,28 +9,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
 {
     public partial class ChartWizardForm : Form
     {
         private int controlPage = 0;
+
         private UserControl[] controls;
+        private ChartSeriesSelector chartSeriesSelector;
+        private ChartTypeSelector chartTypesSelector;
 
-        public string TableName { get; private set; }
-        public DataType[] KeyTypes { get; private set; }
-        public DataType[] RecordTypes { get; private set; }
+        public ITable Table { get; private set; }
 
-        public ChartWizardForm()
-            : this(null, null, null)
+        public SeriesChartType SeriesChartType { get { return chartTypesSelector.SelectedChartType; } }
+
+        public ChartWizardForm(ITable table)
         {
-        }
-
-        public ChartWizardForm(string tableName, DataType[] keyTypes, DataType[] recordTypes)
-        {
-            TableName = tableName;
-            KeyTypes = keyTypes;
-            RecordTypes = recordTypes;
+            Table = table;
 
             InitializeComponent();
             ControlsInit();
@@ -37,9 +35,13 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
 
         private void ControlsInit()
         {
+            chartSeriesSelector = new ChartSeriesSelector(Table);
+            chartTypesSelector = new ChartTypeSelector();
             controls = new UserControl[] { chartTypesSelector, chartSeriesSelector };
+
             foreach (var control in controls)
             {
+                splitContainer1.Panel1.Controls.Add(control);
                 control.Dock = DockStyle.Fill;
                 control.Hide();
             }

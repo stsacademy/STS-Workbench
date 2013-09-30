@@ -17,20 +17,19 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
         private ToolStripButton LastCheckedButton = null;
 
         public SeriesChartType SelectedChartType { get { return FindChartType(); } }
-        
+
         public ChartTypeSelector()
         {
             InitializeComponent();
+            LastCheckedButton = toolStripButtonLine;
         }
 
         private void toolButton_Click(object sender, EventArgs e)
         {
-            if (LastCheckedButton != null)
-                LastCheckedButton.Checked = false;
-
             var button = (ToolStripButton)sender;
-            button.Checked = !button.Checked;
 
+            LastCheckedButton.Checked = false;
+            button.Checked = true;
             LastCheckedButton = button;
         }
 

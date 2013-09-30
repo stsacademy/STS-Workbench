@@ -560,7 +560,7 @@ namespace STS.Workbench
 
         private void btnChartWizard_Click(object sender, EventArgs e)
         {
-            ChartWizardForm chartWizard = new ChartWizardForm(OpenedTable.TableName, OpenedTable.KeyTypes, OpenedTable.RecordTypes);
+            ChartWizardForm chartWizard = new ChartWizardForm(OpenedTable);
             chartWizard.Show();
         }
 

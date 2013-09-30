@@ -136,8 +136,23 @@ namespace STS.Workbench.PreviewComponents
                 AttachControlsToEvents((Control)item);
         }
 
+        public bool Locked { get; private set; }
+
+        public void Lock()
+        {
+            Locked = true;
+        }
+
+        public void Unlock()
+        {
+            Locked = false;
+        }
+
         private void control_Click(object sender, EventArgs e)
         {
+            if (Locked)
+                return;
+
             OnClick(e);
 
             if (AllowResize)
@@ -148,11 +163,17 @@ namespace STS.Workbench.PreviewComponents
 
         private void control_DoubleClick(object sender, EventArgs e)
         {
+            if (Locked)
+                return;
+
             OnDoubleClick(e);
         }
 
         private void control_MouseUp(object sender, MouseEventArgs e)
         {
+            if (Locked)
+                return;
+
             isResizing = false;
             Direction = ResizeDirection.None;
             OnMouseUp(e);
@@ -160,16 +181,25 @@ namespace STS.Workbench.PreviewComponents
 
         private void control_MouseDown(object sender, MouseEventArgs e)
         {
+            if (Locked)
+                return;
+
             OnMouseDown(e);
         }
 
         private void control_MouseMove(object sender, MouseEventArgs e)
         {
+            if (Locked)
+                return;
+
             OnMouseMove(e);
         }
 
         public void EnableResizers()
         {
+            if (Locked)
+                return;
+
             if (!Expanded)
                 return;
 
@@ -179,12 +209,18 @@ namespace STS.Workbench.PreviewComponents
 
         public void DisableResizers()
         {
+            if (Locked)
+                return;
+
             foreach (var item in Resizers)
                 ((PictureBox)item).Visible = false;
         }
 
         private void TableComponent2_Resize(object sender, EventArgs e)
         {
+            if (Locked)
+                return;
+
             pbRigth.Location = new Point(Width - pbRigth.Size.Width, Height / 2 - pbRigth.Size.Height / 2);
             pbDown.Location = new Point(Width / 2 - pbDown.Size.Width / 2, Height - pbDown.Size.Height);
             pbLeft.Location = new Point(0, Height / 2 - pbLeft.Size.Height / 2);
@@ -202,6 +238,9 @@ namespace STS.Workbench.PreviewComponents
 
         public void UserResize(Control owner, int downSidePosition, int rigthSidePosition, int verticalScrollBarValue, int horizontalScrollBarValue)
         {
+            if (Locked)
+                return;
+
             var ownerCoordinates = owner.PointToClient(Cursor.Position);
 
             if (ownerCoordinates.X < 0 || ownerCoordinates.Y < 0)
@@ -302,6 +341,9 @@ namespace STS.Workbench.PreviewComponents
 
         private void ActivateResize(ResizeDirection direction)
         {
+            if (Locked)
+                return;
+
             isResizing = true;
             Direction = direction;
         }
@@ -310,6 +352,9 @@ namespace STS.Workbench.PreviewComponents
 
         private void btnHide_Click(object sender, EventArgs e)
         {
+            if (Locked)
+                return;
+
             if (Expanded)
                 Collapse();
             else
@@ -318,7 +363,7 @@ namespace STS.Workbench.PreviewComponents
 
         public void Expand()
         {
-            if (Expanded)
+            if (Locked || Expanded)
                 return;
 
             btnHide.BackgroundImage = global::STS.Workbench.Properties.Resources.HideDown;
@@ -332,7 +377,7 @@ namespace STS.Workbench.PreviewComponents
 
         public void Collapse()
         {
-            if (!Expanded)
+            if (Locked || !Expanded)
                 return;
 
             btnHide.BackgroundImage = global::STS.Workbench.Properties.Resources.HideLeft;
@@ -347,6 +392,9 @@ namespace STS.Workbench.PreviewComponents
 
         private void TableComponent_MouseEnter(object sender, EventArgs e)
         {
+            if (Locked)
+                return;
+
             CurrentColor = BackColor;
             BackColor = Color.FromArgb(230, 170, 90);
         }
@@ -369,6 +417,9 @@ namespace STS.Workbench.PreviewComponents
 
         public void ApplySettings(TableComponentSettings settings)
         {
+            if (Locked)
+                return;
+
             if (settings.Expanded)
                 Expand();
             else
