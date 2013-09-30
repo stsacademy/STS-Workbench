@@ -85,7 +85,7 @@
             this.btnFinish.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnFinish.Image = global::STS.Workbench.Properties.Resources.Done;
             this.btnFinish.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnFinish.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
+            this.btnFinish.Margin = new System.Windows.Forms.Padding(6, 1, 6, 2);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Size = new System.Drawing.Size(28, 25);
             this.btnFinish.Text = "Finish";
@@ -96,7 +96,7 @@
             this.btnNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnNext.Image = global::STS.Workbench.Properties.Resources.Next;
             this.btnNext.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnNext.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(28, 25);
             this.btnNext.Text = "Back";
@@ -107,7 +107,7 @@
             this.btnBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.btnBack.Image = global::STS.Workbench.Properties.Resources.Back;
             this.btnBack.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 1, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 1, 4, 2);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(28, 25);
             this.btnBack.Text = "Next";
