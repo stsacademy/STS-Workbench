@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnCloseTab = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.cbxDataBases = new System.Windows.Forms.ComboBox();
             this.btnAddDb = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.btnCloseTab = new System.Windows.Forms.Button();
-            this.tbxInfo = new System.Windows.Forms.TextBox();
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbxInfo = new System.Windows.Forms.TextBox();
+            this.dbField = new STS.Workbench.DbManager.FieldTest();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,6 +74,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(1040, 554);
             this.splitContainer1.SplitterDistance = 39;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnCloseTab
+            // 
+            this.btnCloseTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCloseTab.Location = new System.Drawing.Point(945, 3);
+            this.btnCloseTab.Name = "btnCloseTab";
+            this.btnCloseTab.Size = new System.Drawing.Size(92, 31);
+            this.btnCloseTab.TabIndex = 11;
+            this.btnCloseTab.Text = "Close tab";
+            this.btnCloseTab.UseVisualStyleBackColor = true;
             // 
             // splitContainer2
             // 
@@ -132,6 +143,7 @@
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.dbField);
             // 
             // splitContainer3.Panel2
             // 
@@ -140,26 +152,6 @@
             this.splitContainer3.Size = new System.Drawing.Size(1036, 472);
             this.splitContainer3.SplitterDistance = 484;
             this.splitContainer3.TabIndex = 1;
-            // 
-            // btnCloseTab
-            // 
-            this.btnCloseTab.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseTab.Location = new System.Drawing.Point(945, 3);
-            this.btnCloseTab.Name = "btnCloseTab";
-            this.btnCloseTab.Size = new System.Drawing.Size(92, 31);
-            this.btnCloseTab.TabIndex = 11;
-            this.btnCloseTab.Text = "Close tab";
-            this.btnCloseTab.UseVisualStyleBackColor = true;
-            // 
-            // tbxInfo
-            // 
-            this.tbxInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbxInfo.Location = new System.Drawing.Point(0, 0);
-            this.tbxInfo.Multiline = true;
-            this.tbxInfo.Name = "tbxInfo";
-            this.tbxInfo.ReadOnly = true;
-            this.tbxInfo.Size = new System.Drawing.Size(542, 436);
-            this.tbxInfo.TabIndex = 0;
             // 
             // splitContainer4
             // 
@@ -191,6 +183,26 @@
             this.label1.Size = new System.Drawing.Size(82, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Information:";
+            // 
+            // tbxInfo
+            // 
+            this.tbxInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbxInfo.Location = new System.Drawing.Point(0, 0);
+            this.tbxInfo.Multiline = true;
+            this.tbxInfo.Name = "tbxInfo";
+            this.tbxInfo.ReadOnly = true;
+            this.tbxInfo.Size = new System.Drawing.Size(542, 436);
+            this.tbxInfo.TabIndex = 0;
+            // 
+            // dbField
+            // 
+            this.dbField.AutoScroll = true;
+            this.dbField.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dbField.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dbField.Location = new System.Drawing.Point(0, 0);
+            this.dbField.Name = "dbField";
+            this.dbField.Size = new System.Drawing.Size(482, 470);
+            this.dbField.TabIndex = 0;
             // 
             // ManagerPreview
             // 
@@ -233,5 +245,6 @@
         private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbxInfo;
+        private DbManager.FieldTest dbField;
     }
 }

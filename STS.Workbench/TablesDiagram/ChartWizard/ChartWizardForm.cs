@@ -50,6 +50,11 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
             controls[controlPage].Show();
         }
 
+        private void GetSettings(object sender, EventArgs e)
+        {
+
+        }
+
         private void SetButtons()
         {
             btnBack.Enabled = controlPage > 0;

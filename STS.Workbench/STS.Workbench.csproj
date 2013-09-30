@@ -65,6 +65,12 @@
     <Compile Include="DbManager\DataBases\STSdb4Embaded.Designer.cs">
       <DependentUpon>STSdb4Embaded.cs</DependentUpon>
     </Compile>
+    <Compile Include="DbManager\FieldTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DbManager\FieldTest.Designer.cs">
+      <DependentUpon>FieldTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="DbManager\ManagerPreview.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DbManager\DataBases\STSdb4Embaded.resx">
       <DependentUpon>STSdb4Embaded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DbManager\FieldTest.resx">
+      <DependentUpon>FieldTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DbManager\ManagerPreview.resx">
       <DependentUpon>ManagerPreview.cs</DependentUpon>
