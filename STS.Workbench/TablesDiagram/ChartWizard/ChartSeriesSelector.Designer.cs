@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.grdViewSeriesSet = new System.Windows.Forms.DataGridView();
             this.isShow = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.series = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.chrtSelected = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.btnViewChanges = new System.Windows.Forms.Button();
+            this.cmbRecords = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSeriesSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -46,6 +49,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrtSelected)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,27 +116,69 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.chrtSelected);
+            this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer2.Size = new System.Drawing.Size(532, 241);
-            this.splitContainer2.SplitterDistance = 206;
+            this.splitContainer2.SplitterDistance = 205;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.chrtSelected);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.cmbRecords);
+            this.splitContainer3.Panel2.Controls.Add(this.btnViewChanges);
+            this.splitContainer3.Size = new System.Drawing.Size(321, 239);
+            this.splitContainer3.SplitterDistance = 205;
+            this.splitContainer3.TabIndex = 1;
             // 
             // chrtSelected
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chrtSelected.ChartAreas.Add(chartArea1);
+            chartArea2.Name = "ChartArea1";
+            this.chrtSelected.ChartAreas.Add(chartArea2);
             this.chrtSelected.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chrtSelected.Legends.Add(legend1);
+            legend2.Name = "Legend1";
+            this.chrtSelected.Legends.Add(legend2);
             this.chrtSelected.Location = new System.Drawing.Point(0, 0);
             this.chrtSelected.Name = "chrtSelected";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chrtSelected.Series.Add(series1);
-            this.chrtSelected.Size = new System.Drawing.Size(320, 239);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chrtSelected.Series.Add(series2);
+            this.chrtSelected.Size = new System.Drawing.Size(321, 205);
             this.chrtSelected.TabIndex = 0;
             this.chrtSelected.Text = "chart1";
+            // 
+            // btnViewChanges
+            // 
+            this.btnViewChanges.Location = new System.Drawing.Point(3, 4);
+            this.btnViewChanges.Name = "btnViewChanges";
+            this.btnViewChanges.Size = new System.Drawing.Size(75, 23);
+            this.btnViewChanges.TabIndex = 0;
+            this.btnViewChanges.Text = "Refresh";
+            this.btnViewChanges.UseVisualStyleBackColor = true;
+            this.btnViewChanges.Click += new System.EventHandler(this.btnRefreshChanges_Click);
+            // 
+            // cmbRecords
+            // 
+            this.cmbRecords.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRecords.FormattingEnabled = true;
+            this.cmbRecords.Items.AddRange(new object[] {
+            "5",
+            "10",
+            "20"});
+            this.cmbRecords.Location = new System.Drawing.Point(197, 6);
+            this.cmbRecords.Name = "cmbRecords";
+            this.cmbRecords.Size = new System.Drawing.Size(121, 21);
+            this.cmbRecords.TabIndex = 1;
             // 
             // ChartSeriesSelector
             // 
@@ -146,6 +195,10 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chrtSelected)).EndInit();
             this.ResumeLayout(false);
 
@@ -160,6 +213,9 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrtSelected;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Button btnViewChanges;
+        private System.Windows.Forms.ComboBox cmbRecords;
 
     }
 }

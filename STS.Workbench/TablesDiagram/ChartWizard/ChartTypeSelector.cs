@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using STSdb4.Data;
+using STS.Workbench.TablesDiagram.TablesDiagramComponents;
 
 namespace STS.Workbench.TablesDiagram.ChartWizard
 {
@@ -17,9 +18,12 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
         private ToolStripButton LastCheckedButton = null;
 
         public SeriesChartType SelectedChartType { get { return FindChartType(); } }
+        public ChartWizardForm Owner { get; private set; }
 
-        public ChartTypeSelector()
+        public ChartTypeSelector(ChartWizardForm owner)
         {
+            Owner = owner;
+
             InitializeComponent();
             LastCheckedButton = toolStripButtonLine;
         }
