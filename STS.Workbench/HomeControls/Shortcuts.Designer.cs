@@ -41,7 +41,7 @@
             // 
             this.lblShortcuts.AutoSize = true;
             this.lblShortcuts.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.68F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShortcuts.Location = new System.Drawing.Point(35, 33);
+            this.lblShortcuts.Location = new System.Drawing.Point(41, 9);
             this.lblShortcuts.Name = "lblShortcuts";
             this.lblShortcuts.Size = new System.Drawing.Size(135, 32);
             this.lblShortcuts.TabIndex = 1;
@@ -51,7 +51,7 @@
             // 
             this.lblSTSdbForums.AutoSize = true;
             this.lblSTSdbForums.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.68F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSTSdbForums.Location = new System.Drawing.Point(76, 193);
+            this.lblSTSdbForums.Location = new System.Drawing.Point(82, 169);
             this.lblSTSdbForums.Name = "lblSTSdbForums";
             this.lblSTSdbForums.Size = new System.Drawing.Size(109, 18);
             this.lblSTSdbForums.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             this.lblSTSdbHomePage.AutoSize = true;
             this.lblSTSdbHomePage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.68F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSTSdbHomePage.Location = new System.Drawing.Point(76, 112);
+            this.lblSTSdbHomePage.Location = new System.Drawing.Point(82, 88);
             this.lblSTSdbHomePage.Name = "lblSTSdbHomePage";
             this.lblSTSdbHomePage.Size = new System.Drawing.Size(136, 18);
             this.lblSTSdbHomePage.TabIndex = 3;
@@ -77,7 +77,7 @@
             // 
             this.picBoxHomePage.BackColor = System.Drawing.SystemColors.Control;
             this.picBoxHomePage.Image = global::STS.Workbench.Properties.Resources.stsdbPic;
-            this.picBoxHomePage.Location = new System.Drawing.Point(19, 102);
+            this.picBoxHomePage.Location = new System.Drawing.Point(25, 78);
             this.picBoxHomePage.Name = "picBoxHomePage";
             this.picBoxHomePage.Size = new System.Drawing.Size(51, 49);
             this.picBoxHomePage.TabIndex = 4;
@@ -90,7 +90,7 @@
             // 
             this.picBoxForums.BackColor = System.Drawing.SystemColors.Control;
             this.picBoxForums.Image = global::STS.Workbench.Properties.Resources.forumPicture;
-            this.picBoxForums.Location = new System.Drawing.Point(19, 181);
+            this.picBoxForums.Location = new System.Drawing.Point(25, 157);
             this.picBoxForums.Name = "picBoxForums";
             this.picBoxForums.Size = new System.Drawing.Size(51, 49);
             this.picBoxForums.TabIndex = 0;

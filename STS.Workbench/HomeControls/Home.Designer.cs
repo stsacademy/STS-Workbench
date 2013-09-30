@@ -30,19 +30,20 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.ServerInstancesControl = new STS.Workbench.HomeControls.ServerInstancesControl();
+            this.modelControl1 = new STS.Workbench.HomeControls.DatabaseConnectionsControl();
+            this.shortcuts1 = new STS.Workbench.HomeControls.Shortcuts();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newServerInstancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newDatabaseConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ServerInstancesControl = new STS.Workbench.HomeControls.ServerInstancesControl();
-            this.modelControl1 = new STS.Workbench.HomeControls.DatabaseConnectionsControl();
-            this.shortcuts1 = new STS.Workbench.HomeControls.Shortcuts();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -52,6 +53,9 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.toolStripContainer1.ContentPanel.SuspendLayout();
+            this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -71,7 +75,7 @@
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.splitContainer1.Panel2.Controls.Add(this.shortcuts1);
             this.splitContainer1.Panel2MinSize = 209;
-            this.splitContainer1.Size = new System.Drawing.Size(1013, 649);
+            this.splitContainer1.Size = new System.Drawing.Size(1013, 625);
             this.splitContainer1.SplitterDistance = 800;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -93,12 +97,40 @@
             this.splitContainer2.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
             this.splitContainer2.Panel2.Controls.Add(this.modelControl1);
             this.splitContainer2.Panel2MinSize = 250;
-            this.splitContainer2.Size = new System.Drawing.Size(800, 649);
-            this.splitContainer2.SplitterDistance = 395;
+            this.splitContainer2.Size = new System.Drawing.Size(800, 625);
+            this.splitContainer2.SplitterDistance = 371;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // ServerInstancesControl
+            // 
+            this.ServerInstancesControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.ServerInstancesControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerInstancesControl.Location = new System.Drawing.Point(0, 0);
+            this.ServerInstancesControl.Name = "ServerInstancesControl";
+            this.ServerInstancesControl.Size = new System.Drawing.Size(800, 371);
+            this.ServerInstancesControl.TabIndex = 0;
+            // 
+            // modelControl1
+            // 
+            this.modelControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.modelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modelControl1.Location = new System.Drawing.Point(0, 0);
+            this.modelControl1.Name = "modelControl1";
+            this.modelControl1.Size = new System.Drawing.Size(800, 250);
+            this.modelControl1.TabIndex = 0;
+            // 
+            // shortcuts1
+            // 
+            this.shortcuts1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.shortcuts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shortcuts1.Location = new System.Drawing.Point(0, 0);
+            this.shortcuts1.Name = "shortcuts1";
+            this.shortcuts1.Size = new System.Drawing.Size(209, 625);
+            this.shortcuts1.TabIndex = 0;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
@@ -132,6 +164,11 @@
             this.newDatabaseConnectionToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.newDatabaseConnectionToolStripMenuItem.Text = "New Database connection";
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(209, 6);
+            // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
@@ -153,11 +190,6 @@
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
             this.undoToolStripMenuItem.Text = "Preferences";
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(209, 6);
-            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -172,39 +204,33 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             // 
-            // ServerInstancesControl
+            // toolStripContainer1
             // 
-            this.ServerInstancesControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            this.ServerInstancesControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerInstancesControl.Location = new System.Drawing.Point(0, 0);
-            this.ServerInstancesControl.Name = "ServerInstancesControl";
-            this.ServerInstancesControl.Size = new System.Drawing.Size(800, 395);
-            this.ServerInstancesControl.TabIndex = 0;
+            this.toolStripContainer1.BottomToolStripPanelVisible = false;
             // 
-            // modelControl1
+            // toolStripContainer1.ContentPanel
             // 
-            this.modelControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
-            this.modelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modelControl1.Location = new System.Drawing.Point(0, 0);
-            this.modelControl1.Name = "modelControl1";
-            this.modelControl1.Size = new System.Drawing.Size(800, 250);
-            this.modelControl1.TabIndex = 0;
+            this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.splitContainer1);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1013, 625);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.LeftToolStripPanelVisible = false;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.RightToolStripPanelVisible = false;
+            this.toolStripContainer1.Size = new System.Drawing.Size(1013, 649);
+            this.toolStripContainer1.TabIndex = 3;
+            this.toolStripContainer1.Text = "toolStripContainer1";
             // 
-            // shortcuts1
+            // toolStripContainer1.TopToolStripPanel
             // 
-            this.shortcuts1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.shortcuts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shortcuts1.Location = new System.Drawing.Point(0, 0);
-            this.shortcuts1.Name = "shortcuts1";
-            this.shortcuts1.Size = new System.Drawing.Size(209, 649);
-            this.shortcuts1.TabIndex = 0;
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.toolStripContainer1);
             this.Name = "Home";
             this.Size = new System.Drawing.Size(1013, 649);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -217,8 +243,12 @@
             this.splitContainer2.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer1.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -239,6 +269,7 @@
         private System.Windows.Forms.ToolStripMenuItem undoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
 
     }
 }

@@ -40,7 +40,7 @@
             this.lblTest.TabIndex = 0;
             this.lblTest.Text = "label1";
             // 
-            // ServerInstanceObject
+            // ServerInstanceControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -55,6 +55,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lblTest;
+        internal System.Windows.Forms.Label lblTest;
+
     }
 }
