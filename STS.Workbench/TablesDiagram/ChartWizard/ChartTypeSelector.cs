@@ -27,6 +27,7 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
 
             InitializeComponent();
 
+            Name = "Select chart type";
             LastCheckedButton = toolStripButtonLine;
             lblChartName.Text = "Mode: " + LastCheckedButton.Text;
 

@@ -30,13 +30,12 @@ namespace STS.Workbench
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("myDb");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cmbPageCapacity = new System.Windows.Forms.ComboBox();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnDeleteTables = new System.Windows.Forms.Button();
-            this.btnCloseTable = new System.Windows.Forms.Button();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.mStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -118,6 +117,7 @@ namespace STS.Workbench
             this.mStripCatalogDb = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.commitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripCatalogTables = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnCloseTable = new System.Windows.Forms.ToolStripButton();
             this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -237,19 +237,6 @@ namespace STS.Workbench
             this.btnDeleteTables.UseVisualStyleBackColor = false;
             this.btnDeleteTables.Click += new System.EventHandler(this.btnDeleteTables_Click);
             // 
-            // btnCloseTable
-            // 
-            this.btnCloseTable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCloseTable.BackColor = System.Drawing.SystemColors.Control;
-            this.btnCloseTable.Image = global::STS.Workbench.Properties.Resources.sort_down;
-            this.btnCloseTable.Location = new System.Drawing.Point(1185, 3);
-            this.btnCloseTable.Name = "btnCloseTable";
-            this.btnCloseTable.Size = new System.Drawing.Size(48, 24);
-            this.btnCloseTable.TabIndex = 13;
-            this.toolTip.SetToolTip(this.btnCloseTable, "Close opened table");
-            this.btnCloseTable.UseVisualStyleBackColor = false;
-            this.btnCloseTable.Click += new System.EventHandler(this.btnCloseTable_Click);
-            // 
             // splitContainerMain
             // 
             this.splitContainerMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
@@ -328,7 +315,7 @@ namespace STS.Workbench
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.aboutToolStripMenuItem.Text = "about";
             // 
             // splitContainer5
@@ -430,10 +417,10 @@ namespace STS.Workbench
             this.treeViewTablesCatalog.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTablesCatalog.Location = new System.Drawing.Point(3, 3);
             this.treeViewTablesCatalog.Name = "treeViewTablesCatalog";
-            treeNode2.Name = "trvCatalogTree";
-            treeNode2.Text = "myDb";
+            treeNode1.Name = "trvCatalogTree";
+            treeNode1.Text = "myDb";
             this.treeViewTablesCatalog.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeViewTablesCatalog.Size = new System.Drawing.Size(194, 139);
             this.treeViewTablesCatalog.TabIndex = 4;
             this.treeViewTablesCatalog.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTablesCatalog_AfterSelect);
@@ -598,7 +585,6 @@ namespace STS.Workbench
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
-            this.splitContainer3.Panel1.Controls.Add(this.btnCloseTable);
             this.splitContainer3.Panel1.Controls.Add(this.toolStripTableEdit);
             // 
             // splitContainer3.Panel2
@@ -631,12 +617,13 @@ namespace STS.Workbench
             this.btnExport,
             this.toolStripSeparator11,
             this.toolStripLabel4,
-            this.btnChartWizard});
+            this.btnChartWizard,
+            this.btnCloseTable});
             this.toolStripTableEdit.Location = new System.Drawing.Point(0, 0);
             this.toolStripTableEdit.Name = "toolStripTableEdit";
             this.toolStripTableEdit.Size = new System.Drawing.Size(1236, 29);
             this.toolStripTableEdit.TabIndex = 0;
-            this.toolStripTableEdit.Text = "ToolStripTableEdit";
+            this.toolStripTableEdit.Text = "Close table";
             // 
             // toolStripLabel1
             // 
@@ -670,8 +657,9 @@ namespace STS.Workbench
             // 
             this.toolStripSeparator9.BackColor = System.Drawing.Color.Black;
             this.toolStripSeparator9.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.toolStripSeparator9.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 29);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabel2
             // 
@@ -713,8 +701,9 @@ namespace STS.Workbench
             // 
             // toolStripSeparator10
             // 
+            this.toolStripSeparator10.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 29);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabel3
             // 
@@ -746,8 +735,9 @@ namespace STS.Workbench
             // 
             // toolStripSeparator11
             // 
+            this.toolStripSeparator11.Margin = new System.Windows.Forms.Padding(3);
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 29);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 23);
             // 
             // toolStripLabel4
             // 
@@ -1107,6 +1097,19 @@ namespace STS.Workbench
             this.mStripCatalogTables.Name = "mStripCatalogTables";
             this.mStripCatalogTables.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnCloseTable
+            // 
+            this.btnCloseTable.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCloseTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
+            this.btnCloseTable.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCloseTable.Image = global::STS.Workbench.Properties.Resources.sort_down;
+            this.btnCloseTable.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCloseTable.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.btnCloseTable.Name = "btnCloseTable";
+            this.btnCloseTable.Size = new System.Drawing.Size(23, 23);
+            this.btnCloseTable.Text = "Close/hide table";
+            this.btnCloseTable.Click += new System.EventHandler(this.btnCloseTable_Click);
+            // 
             // tablesField
             // 
             this.tablesField.AutoScroll = true;
@@ -1219,7 +1222,6 @@ namespace STS.Workbench
         private Timer timer1;
         private ToolTip toolTip;
         private SplitContainer splitContainer9;
-        private Button btnCloseTable;
         private Button btnLastPage;
         private SplitContainer splitContainer2;
         private Label lblCatalogTree;
@@ -1290,5 +1292,6 @@ namespace STS.Workbench
         private ToolStripSeparator toolStripSeparator11;
         private ToolStripButton btnChartWizard;
         private ToolStripLabel toolStripLabel4;
+        private ToolStripButton btnCloseTable;
     }
 }

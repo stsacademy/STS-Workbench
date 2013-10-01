@@ -45,6 +45,8 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             Owner = owner;
 
             InitializeComponent();
+
+            Name = "Set series fields";
             cmbRecords.Text = "5";
             VisibleChanged += ChartSeriesSelector_VisibleChanged;
         }
@@ -77,7 +79,7 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             }
 
             foreach (var series in chrtSelected.Series)
-                series.ChartType = Owner.crtTypesSelector.SelectedChartType;
+                series.ChartType = Owner.SeriesType.SelectedChartType;
 
             foreach (var kv in values)
             {

@@ -36,28 +36,28 @@
             this.series = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.chrtSelected = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.cmbRecords = new System.Windows.Forms.ToolStripComboBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSeriesSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chrtSelected)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdViewSeriesSet
@@ -73,7 +73,7 @@
             this.grdViewSeriesSet.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdViewSeriesSet.Location = new System.Drawing.Point(0, 0);
             this.grdViewSeriesSet.Name = "grdViewSeriesSet";
-            this.grdViewSeriesSet.Size = new System.Drawing.Size(526, 168);
+            this.grdViewSeriesSet.Size = new System.Drawing.Size(463, 179);
             this.grdViewSeriesSet.TabIndex = 0;
             this.grdViewSeriesSet.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewSeriesSet_CellValueChanged);
             // 
@@ -109,33 +109,14 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer3);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.grdViewSeriesSet);
-            this.splitContainer1.Size = new System.Drawing.Size(528, 429);
-            this.splitContainer1.SplitterDistance = 255;
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Size = new System.Drawing.Size(689, 454);
+            this.splitContainer1.SplitterDistance = 269;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // splitContainer2
-            // 
-            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.White;
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer2.Size = new System.Drawing.Size(528, 255);
-            this.splitContainer2.SplitterDistance = 220;
-            this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
             // 
@@ -153,8 +134,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.toolStrip1);
-            this.splitContainer3.Size = new System.Drawing.Size(302, 253);
-            this.splitContainer3.SplitterDistance = 217;
+            this.splitContainer3.Size = new System.Drawing.Size(687, 267);
+            this.splitContainer3.SplitterDistance = 231;
             this.splitContainer3.TabIndex = 1;
             // 
             // chrtSelected
@@ -166,7 +147,7 @@
             this.chrtSelected.Legends.Add(legend1);
             this.chrtSelected.Location = new System.Drawing.Point(0, 0);
             this.chrtSelected.Name = "chrtSelected";
-            this.chrtSelected.Size = new System.Drawing.Size(302, 217);
+            this.chrtSelected.Size = new System.Drawing.Size(687, 231);
             this.chrtSelected.TabIndex = 0;
             this.chrtSelected.Text = "chart1";
             // 
@@ -182,7 +163,7 @@
             this.cmbRecords});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(302, 32);
+            this.toolStrip1.Size = new System.Drawing.Size(687, 32);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -215,8 +196,27 @@
             "50"});
             this.cmbRecords.Name = "cmbRecords";
             this.cmbRecords.Size = new System.Drawing.Size(121, 32);
-            this.cmbRecords.ToolTipText = "!Warning changing value may cause some I/O\'s";
+            this.cmbRecords.ToolTipText = "Warning changing value may cause some I/O\'s !";
             this.cmbRecords.SelectedIndexChanged += new System.EventHandler(this.cmbRecords_SelectedValueChanged);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.BackColor = System.Drawing.Color.White;
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.grdViewSeriesSet);
+            this.splitContainer2.Size = new System.Drawing.Size(689, 181);
+            this.splitContainer2.SplitterDistance = 220;
+            this.splitContainer2.TabIndex = 0;
             // 
             // ChartSeriesSelector
             // 
@@ -226,15 +226,12 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "ChartSeriesSelector";
             this.Padding = new System.Windows.Forms.Padding(2);
-            this.Size = new System.Drawing.Size(532, 433);
+            this.Size = new System.Drawing.Size(693, 458);
             ((System.ComponentModel.ISupportInitialize)(this.grdViewSeriesSet)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.Panel2.PerformLayout();
@@ -243,6 +240,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.chrtSelected)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

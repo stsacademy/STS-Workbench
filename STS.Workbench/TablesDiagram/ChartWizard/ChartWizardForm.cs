@@ -18,8 +18,11 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
         private int controlPage = 0;
 
         private UserControl[] controls;
-        public ChartSeriesSelector crtSeriesSelector { get; private set; }
-        public ChartTypeSelector crtTypesSelector { get; private set; }
+        public ChartSeriesSelector SeriesFields { get; private set; }
+        public ChartTypeSelector SeriesType { get; private set; }
+
+        public SeriesChartType ChartType { get { return SeriesType.SelectedChartType; } }
+        public List<ChartInfo> SelectedFields { get { return SeriesFields.SelectedFields; } }
 
         public ITable Table { get; private set; }
 
@@ -33,42 +36,48 @@ namespace STS.Workbench.TablesDiagram.TablesDiagramComponents
 
         private void ControlsInit()
         {
-            crtSeriesSelector = new ChartSeriesSelector(this);
-            crtTypesSelector = new ChartTypeSelector(this);
+            SeriesFields = new ChartSeriesSelector(this);
+            SeriesType = new ChartTypeSelector(this);
 
-            controls = new UserControl[] { crtTypesSelector, crtSeriesSelector };
+            controls = new UserControl[] { SeriesType, SeriesFields };
             foreach (var control in controls)
             {
-                splitContainer1.Panel1.Controls.Add(control);
+                splitContainer2.Panel2.Controls.Add(control);
                 control.Dock = DockStyle.Fill;
                 control.Hide();
             }
 
-            SetButtons();
-            controls[controlPage].Show();
+            VisualiazeItems();
         }
 
-        private void SetButtons()
+        private void VisualiazeItems()
         {
+            //buttons
             btnBack.Enabled = controlPage > 0;
             btnNext.Enabled = controlPage < controls.Length - 1;
             btnFinish.Enabled = controlPage == controls.Length - 1;
+
+            //controls
+            controls[controlPage].Show();
+
+            //labels
+            lblPage.Text = string.Format("{0}. - {1}", controlPage + 1, controls[controlPage].Name);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
             controls[controlPage].Hide();
             controlPage--;
-            controls[controlPage].Show();
-            SetButtons();
+
+            VisualiazeItems();
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
             controls[controlPage].Hide();
             controlPage++;
-            controls[controlPage].Show();
-            SetButtons();
+
+            VisualiazeItems();
         }
 
         private void btnFinish_Click(object sender, EventArgs e)
