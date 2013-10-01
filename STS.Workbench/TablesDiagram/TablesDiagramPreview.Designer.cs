@@ -33,7 +33,6 @@ namespace STS.Workbench
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("myDb");
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.cmbPageCapacity = new System.Windows.Forms.ComboBox();
             this.btnPlaceTable = new System.Windows.Forms.Button();
             this.btnDeleteTables = new System.Windows.Forms.Button();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
@@ -76,13 +75,9 @@ namespace STS.Workbench
             this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel4 = new System.Windows.Forms.ToolStripLabel();
             this.btnChartWizard = new System.Windows.Forms.ToolStripButton();
+            this.btnCloseTable = new System.Windows.Forms.ToolStripButton();
             this.splitContainer7 = new System.Windows.Forms.SplitContainer();
             this.grdViewTableRecords = new System.Windows.Forms.DataGridView();
-            this.btnLastPage = new System.Windows.Forms.Button();
-            this.btnNextPage = new System.Windows.Forms.Button();
-            this.btnPreviousPage = new System.Windows.Forms.Button();
-            this.btnFirstPage = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblInfo = new System.Windows.Forms.Label();
             this.mStripTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -117,7 +112,13 @@ namespace STS.Workbench
             this.mStripCatalogDb = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.commitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mStripCatalogTables = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnCloseTable = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnFirstPage = new System.Windows.Forms.ToolStripButton();
+            this.btnPreviousPage = new System.Windows.Forms.ToolStripButton();
+            this.btnNextPage = new System.Windows.Forms.ToolStripButton();
+            this.btnLastPage = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelPaging = new System.Windows.Forms.ToolStripLabel();
+            this.cmbPageCapacity = new System.Windows.Forms.ToolStripComboBox();
             this.tablesField = new STS.Workbench.TablesDiagram.DiagramPreviewComponents.FieldControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -173,41 +174,13 @@ namespace STS.Workbench
             this.mStripTable.SuspendLayout();
             this.mStripTablesField.SuspendLayout();
             this.mStripCatalogDb.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // cmbPageCapacity
-            // 
-            this.cmbPageCapacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbPageCapacity.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.cmbPageCapacity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPageCapacity.FormattingEnabled = true;
-            this.cmbPageCapacity.Items.AddRange(new object[] {
-            "2",
-            "5",
-            "10",
-            "20",
-            "50",
-            "100",
-            "200",
-            "500",
-            "1000",
-            "2000",
-            "5000",
-            "10000",
-            "20000",
-            "50000",
-            "100000"});
-            this.cmbPageCapacity.Location = new System.Drawing.Point(1112, 3);
-            this.cmbPageCapacity.Name = "cmbPageCapacity";
-            this.cmbPageCapacity.Size = new System.Drawing.Size(121, 21);
-            this.cmbPageCapacity.TabIndex = 8;
-            this.toolTip.SetToolTip(this.cmbPageCapacity, "Change displaying records count");
-            this.cmbPageCapacity.SelectedValueChanged += new System.EventHandler(this.cmbxPageCount_SelectedValueChanged);
             // 
             // btnPlaceTable
             // 
@@ -755,6 +728,19 @@ namespace STS.Workbench
             this.btnChartWizard.Text = "Chart wiazard";
             this.btnChartWizard.Click += new System.EventHandler(this.btnChartWizard_Click);
             // 
+            // btnCloseTable
+            // 
+            this.btnCloseTable.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btnCloseTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
+            this.btnCloseTable.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCloseTable.Image = global::STS.Workbench.Properties.Resources.sort_down;
+            this.btnCloseTable.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCloseTable.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
+            this.btnCloseTable.Name = "btnCloseTable";
+            this.btnCloseTable.Size = new System.Drawing.Size(23, 23);
+            this.btnCloseTable.Text = "Close/hide table";
+            this.btnCloseTable.Click += new System.EventHandler(this.btnCloseTable_Click);
+            // 
             // splitContainer7
             // 
             this.splitContainer7.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -771,12 +757,7 @@ namespace STS.Workbench
             // splitContainer7.Panel2
             // 
             this.splitContainer7.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
-            this.splitContainer7.Panel2.Controls.Add(this.btnLastPage);
-            this.splitContainer7.Panel2.Controls.Add(this.btnNextPage);
-            this.splitContainer7.Panel2.Controls.Add(this.btnPreviousPage);
-            this.splitContainer7.Panel2.Controls.Add(this.btnFirstPage);
-            this.splitContainer7.Panel2.Controls.Add(this.cmbPageCapacity);
-            this.splitContainer7.Panel2.Controls.Add(this.label3);
+            this.splitContainer7.Panel2.Controls.Add(this.toolStrip1);
             this.splitContainer7.Size = new System.Drawing.Size(1236, 237);
             this.splitContainer7.SplitterDistance = 211;
             this.splitContainer7.SplitterWidth = 1;
@@ -796,59 +777,6 @@ namespace STS.Workbench
             this.grdViewTableRecords.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.grdViewTableRecords_CellMouseClick);
             this.grdViewTableRecords.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdViewTableRecords_CellValueChanged);
             this.grdViewTableRecords.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.grdViewTableRecords_UserAddedRow);
-            // 
-            // btnLastPage
-            // 
-            this.btnLastPage.BackColor = System.Drawing.Color.Transparent;
-            this.btnLastPage.Image = global::STS.Workbench.Properties.Resources.button_last;
-            this.btnLastPage.Location = new System.Drawing.Point(93, 3);
-            this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(24, 24);
-            this.btnLastPage.TabIndex = 11;
-            this.btnLastPage.UseVisualStyleBackColor = false;
-            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
-            // 
-            // btnNextPage
-            // 
-            this.btnNextPage.Image = global::STS.Workbench.Properties.Resources.go_next;
-            this.btnNextPage.Location = new System.Drawing.Point(63, 3);
-            this.btnNextPage.Name = "btnNextPage";
-            this.btnNextPage.Size = new System.Drawing.Size(24, 24);
-            this.btnNextPage.TabIndex = 10;
-            this.btnNextPage.UseVisualStyleBackColor = true;
-            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
-            // 
-            // btnPreviousPage
-            // 
-            this.btnPreviousPage.Image = global::STS.Workbench.Properties.Resources.go_back;
-            this.btnPreviousPage.Location = new System.Drawing.Point(33, 3);
-            this.btnPreviousPage.Name = "btnPreviousPage";
-            this.btnPreviousPage.Size = new System.Drawing.Size(24, 24);
-            this.btnPreviousPage.TabIndex = 9;
-            this.btnPreviousPage.UseVisualStyleBackColor = true;
-            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
-            // 
-            // btnFirstPage
-            // 
-            this.btnFirstPage.BackColor = System.Drawing.Color.Transparent;
-            this.btnFirstPage.FlatAppearance.BorderSize = 0;
-            this.btnFirstPage.Image = global::STS.Workbench.Properties.Resources.button_first;
-            this.btnFirstPage.Location = new System.Drawing.Point(3, 3);
-            this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(24, 24);
-            this.btnFirstPage.TabIndex = 8;
-            this.btnFirstPage.UseVisualStyleBackColor = false;
-            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1063, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Paging:";
             // 
             // lblInfo
             // 
@@ -1097,18 +1025,99 @@ namespace STS.Workbench
             this.mStripCatalogTables.Name = "mStripCatalogTables";
             this.mStripCatalogTables.Size = new System.Drawing.Size(61, 4);
             // 
-            // btnCloseTable
+            // toolStrip1
             // 
-            this.btnCloseTable.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.btnCloseTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(153)))));
-            this.btnCloseTable.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCloseTable.Image = global::STS.Workbench.Properties.Resources.sort_down;
-            this.btnCloseTable.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCloseTable.Margin = new System.Windows.Forms.Padding(5, 3, 5, 3);
-            this.btnCloseTable.Name = "btnCloseTable";
-            this.btnCloseTable.Size = new System.Drawing.Size(23, 23);
-            this.btnCloseTable.Text = "Close/hide table";
-            this.btnCloseTable.Click += new System.EventHandler(this.btnCloseTable_Click);
+            this.toolStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnFirstPage,
+            this.btnPreviousPage,
+            this.btnNextPage,
+            this.btnLastPage,
+            this.cmbPageCapacity,
+            this.toolStripLabelPaging});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1236, 31);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnFirstPage.Image = global::STS.Workbench.Properties.Resources.button_first;
+            this.btnFirstPage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnFirstPage.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(28, 28);
+            this.btnFirstPage.Text = "first page";
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnPreviousPage.Image = global::STS.Workbench.Properties.Resources.go_back;
+            this.btnPreviousPage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnPreviousPage.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(28, 28);
+            this.btnPreviousPage.Text = "previous page";
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnNextPage.Image = global::STS.Workbench.Properties.Resources.go_next;
+            this.btnNextPage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnNextPage.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(28, 28);
+            this.btnNextPage.Text = "next page";
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnLastPage.Image = global::STS.Workbench.Properties.Resources.button_last;
+            this.btnLastPage.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLastPage.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(28, 28);
+            this.btnLastPage.Text = "last page";
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
+            // 
+            // toolStripLabelPaging
+            // 
+            this.toolStripLabelPaging.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelPaging.Name = "toolStripLabelPaging";
+            this.toolStripLabelPaging.Size = new System.Drawing.Size(47, 28);
+            this.toolStripLabelPaging.Text = "Paging:";
+            // 
+            // cmbPageCapacity
+            // 
+            this.cmbPageCapacity.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.cmbPageCapacity.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.cmbPageCapacity.Items.AddRange(new object[] {
+            "2",
+            "5",
+            "10",
+            "20",
+            "50",
+            "100",
+            "200",
+            "500",
+            "1000",
+            "2000",
+            "5000",
+            "10000",
+            "20000",
+            "50000",
+            "100000"});
+            this.cmbPageCapacity.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.cmbPageCapacity.Name = "cmbPageCapacity";
+            this.cmbPageCapacity.Size = new System.Drawing.Size(121, 31);
+            this.cmbPageCapacity.SelectedIndexChanged += new System.EventHandler(this.cmbxPageCount_SelectedValueChanged);
             // 
             // tablesField
             // 
@@ -1199,6 +1208,8 @@ namespace STS.Workbench
             this.mStripTable.ResumeLayout(false);
             this.mStripTablesField.ResumeLayout(false);
             this.mStripCatalogDb.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1214,15 +1225,9 @@ namespace STS.Workbench
         private SplitContainer splitContainer3;
         private SplitContainer splitContainer4;
         private SplitContainer splitContainer7;
-        private Button btnNextPage;
-        private Button btnPreviousPage;
-        private Button btnFirstPage;
-        private Label label3;
-        private ComboBox cmbPageCapacity;
         private Timer timer1;
         private ToolTip toolTip;
         private SplitContainer splitContainer9;
-        private Button btnLastPage;
         private SplitContainer splitContainer2;
         private Label lblCatalogTree;
         private SplitContainer splitContainerMain;
@@ -1293,5 +1298,12 @@ namespace STS.Workbench
         private ToolStripButton btnChartWizard;
         private ToolStripLabel toolStripLabel4;
         private ToolStripButton btnCloseTable;
+        private ToolStrip toolStrip1;
+        private ToolStripButton btnFirstPage;
+        private ToolStripButton btnPreviousPage;
+        private ToolStripButton btnNextPage;
+        private ToolStripButton btnLastPage;
+        private ToolStripComboBox cmbPageCapacity;
+        private ToolStripLabel toolStripLabelPaging;
     }
 }
