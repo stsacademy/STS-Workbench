@@ -54,7 +54,7 @@
             this.btnNewServerInstances.Size = new System.Drawing.Size(23, 23);
             this.btnNewServerInstances.TabIndex = 2;
             this.btnNewServerInstances.UseVisualStyleBackColor = true;
-            this.btnNewServerInstances.Click += new System.EventHandler(this.btnNewServerInstances_Click);
+            this.btnNewServerInstances.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnNewServerInstances_MouseClick);
             // 
             // btnEditServerInstances
             // 

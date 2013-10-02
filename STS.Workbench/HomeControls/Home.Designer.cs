@@ -30,9 +30,6 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.ServerInstancesControl = new STS.Workbench.HomeControls.ServerInstancesControl();
-            this.modelControl1 = new STS.Workbench.HomeControls.DatabaseConnectionsControl();
-            this.shortcuts1 = new STS.Workbench.HomeControls.Shortcuts();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newServerInstancesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,6 +41,9 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.ServerInstancesControl = new STS.Workbench.HomeControls.ServerInstancesControl();
+            this.modelControl1 = new STS.Workbench.HomeControls.DatabaseConnectionsControl();
+            this.shortcuts1 = new STS.Workbench.HomeControls.Shortcuts();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,6 +62,7 @@
             // 
             this.splitContainer1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -100,33 +101,6 @@
             this.splitContainer2.Size = new System.Drawing.Size(800, 625);
             this.splitContainer2.SplitterDistance = 371;
             this.splitContainer2.TabIndex = 0;
-            // 
-            // ServerInstancesControl
-            // 
-            this.ServerInstancesControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
-            this.ServerInstancesControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ServerInstancesControl.Location = new System.Drawing.Point(0, 0);
-            this.ServerInstancesControl.Name = "ServerInstancesControl";
-            this.ServerInstancesControl.Size = new System.Drawing.Size(800, 371);
-            this.ServerInstancesControl.TabIndex = 0;
-            // 
-            // modelControl1
-            // 
-            this.modelControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
-            this.modelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.modelControl1.Location = new System.Drawing.Point(0, 0);
-            this.modelControl1.Name = "modelControl1";
-            this.modelControl1.Size = new System.Drawing.Size(800, 250);
-            this.modelControl1.TabIndex = 0;
-            // 
-            // shortcuts1
-            // 
-            this.shortcuts1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.shortcuts1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.shortcuts1.Location = new System.Drawing.Point(0, 0);
-            this.shortcuts1.Name = "shortcuts1";
-            this.shortcuts1.Size = new System.Drawing.Size(209, 625);
-            this.shortcuts1.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -225,6 +199,34 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
+            // 
+            // ServerInstancesControl
+            // 
+            this.ServerInstancesControl.AutoScroll = true;
+            this.ServerInstancesControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(55)))), ((int)(((byte)(82)))));
+            this.ServerInstancesControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ServerInstancesControl.Location = new System.Drawing.Point(0, 0);
+            this.ServerInstancesControl.Name = "ServerInstancesControl";
+            this.ServerInstancesControl.Size = new System.Drawing.Size(800, 371);
+            this.ServerInstancesControl.TabIndex = 0;
+            // 
+            // modelControl1
+            // 
+            this.modelControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(199)))), ((int)(((byte)(216)))));
+            this.modelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.modelControl1.Location = new System.Drawing.Point(0, 0);
+            this.modelControl1.Name = "modelControl1";
+            this.modelControl1.Size = new System.Drawing.Size(800, 250);
+            this.modelControl1.TabIndex = 0;
+            // 
+            // shortcuts1
+            // 
+            this.shortcuts1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.shortcuts1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.shortcuts1.Location = new System.Drawing.Point(0, 0);
+            this.shortcuts1.Name = "shortcuts1";
+            this.shortcuts1.Size = new System.Drawing.Size(209, 625);
+            this.shortcuts1.TabIndex = 0;
             // 
             // Home
             // 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using STSdb4.General.Communication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 
 namespace STS.Workbench.HomeControls
 {
@@ -14,18 +16,28 @@ namespace STS.Workbench.HomeControls
     {
         List<Control> ControlList;
 
+        int i = 1;
+
+        Label ServerInstanceInformation = new Label();
+
         public ServerInstancesControl()
         {
+
             ControlList = new List<Control>();
 
             InitializeComponent();
         }
 
-        private void btnNewServerInstances_Click(object sender, EventArgs e)
+        private void btnNewServerInstances_MouseClick(object sender, MouseEventArgs e)
         {
-            ControlList.Add(new ServerInstanceControl());
+            if (e.Button == MouseButtons.Left)
+            {
+                ControlList.Add(new ServerInstanceControl("Gosho" + i, Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].ToString(), "7182"));
 
-            ShowAddedControls(ControlList);
+                ShowAddedControls(ControlList);
+
+                i++;
+            }
         }
 
         private void ShowAddedControls(List<Control> controlList)
@@ -43,7 +55,7 @@ namespace STS.Workbench.HomeControls
                     control.Location = new System.Drawing.Point(begginPoint.X, begginPoint.Y);
                     control.Size = new System.Drawing.Size(180, 120);
                     control.Parent = this;
-                    control.Visible = true;                   
+                    control.Visible = true;
 
                     if (begginPoint.X < 1000)
                         begginPoint.X += 200;

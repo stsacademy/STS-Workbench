@@ -12,9 +12,31 @@ namespace STS.Workbench.HomeControls
 {
     public partial class ServerInstanceControl : UserControl
     {
-        public ServerInstanceControl()
+        private string InstanceName { get; set; }
+        private string Host { get; set; }
+        private string Port { get; set; }
+
+        public ServerInstanceControl(string name, string host, string port)
         {
             InitializeComponent();
+
+            InstanceName = name;
+            Host = host;
+            Port = port;
+
+            lblName.Text = name;
+            lblHost.Text = host;
+            lblPort.Text = port;
+        }
+
+        private void ServerInstanceControl_MouseMove(object sender, MouseEventArgs e)
+        {
+            BackColor = Color.Aqua;
+        }
+
+        private void ServerInstanceControl_MouseLeave(object sender, EventArgs e)
+        {
+            BackColor = System.Drawing.SystemColors.GradientActiveCaption;
         }
     }
 }
