@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using STSdb4.Data;
 using STS.Workbench.TablesDiagram.TablesDiagramComponents;
+using System.Diagnostics;
 
 namespace STS.Workbench.TablesDiagram.ChartWizard
 {
@@ -25,7 +26,17 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             Owner = owner;
 
             InitializeComponent();
+
+            Name = "Select chart type";
             LastCheckedButton = toolStripButtonLine;
+            lblChartName.Text = "Mode: " + LastCheckedButton.Text;
+
+
+            foreach (var item in toolStrip1.Items)
+            {
+                var toolStripItem = (ToolStripItem)item;
+                toolStripItem.Click += toolButton_Click;
+            }
         }
 
         private void toolButton_Click(object sender, EventArgs e)
@@ -35,16 +46,25 @@ namespace STS.Workbench.TablesDiagram.ChartWizard
             LastCheckedButton.Checked = false;
             button.Checked = true;
             LastCheckedButton = button;
+
+            lblChartName.Text = "Mode: " + LastCheckedButton.Text;
         }
 
         private SeriesChartType FindChartType()
         {
             switch (LastCheckedButton.Text)
             {
+                case "Area":
+                    return SeriesChartType.Area;
+                case "Bar":
+                    return SeriesChartType.Bar;
+                case "BoxPlot":
+                    return SeriesChartType.BoxPlot;
                 case "Line":
                     return SeriesChartType.Line;
                 case "Point":
                     return SeriesChartType.Point;
+
                 default:
                     return SeriesChartType.Line;
             }

@@ -73,6 +73,8 @@ namespace STS.Workbench
                 instance.Columns[i].HeaderText = typesRow[i];
                 instance.Columns[i].SortMode = DataGridViewColumnSortMode.NotSortable;
             }
+
+            instance.Columns[instance.Columns.Count - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
         }
 
         public static void ShowError(string message)
